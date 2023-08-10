@@ -34,7 +34,6 @@ public class UnitBehavior : MonoBehaviour, IEventHandler
     #region AssetKey
     private const string SOUND_BEHAVIOR_ASSETKEY = "Assets/GameResources/Prefab/SoundBehavior.prefab";
     private const string EFFECT_BEHAVIOR_ASSETKEY = "Assets/GameResources/Prefab/EffectBehavior.prefab";
-    private const string PROJECTILE_BEHAVIOR_ASSETKEY = "Assets/GameResources/Prefab/ProjectileBehavior.prefab";
     #endregion
 
     public void Init(object key, int id)
@@ -170,10 +169,7 @@ public class UnitBehavior : MonoBehaviour, IEventHandler
 
     private void OnHandleProjectileEvent(ProjectileEvent projectileEvent)
     {
-        if (!manager.GameObjectPool.TryGet(PROJECTILE_BEHAVIOR_ASSETKEY, out var projectile)) return;
-        ProjectileBehavior projectileBehavior = projectile.GetComponent<ProjectileBehavior>();
-
-        projectileBehavior.Init(projectileEvent, this, target);
+        ProjectileManager.Instance.SpawnProjectile(projectileEvent, this, target);
     }
     #endregion
 }

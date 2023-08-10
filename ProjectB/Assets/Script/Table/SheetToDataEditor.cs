@@ -60,6 +60,9 @@ public class SheetToDataEditor : OdinEditorWindow
                 case "Dummy":
                     CreateDataFile<Data.Dummy>(tableName, table, ConvertTableToDummy);
                     break;
+                case "String":
+                    CreateDataFile<Data.String>(tableName, table, ConvertTableToString);
+                    break;
                 default:
                     break;
             }
@@ -144,10 +147,48 @@ public class SheetToDataEditor : OdinEditorWindow
                         value = (float)numberValue;
                         break;
                 }
-
-                if (seed == 0) continue;
-                listData.Add(new Data.Dummy(seed, value));
             }
+            if (seed == 0) continue;
+            listData.Add(new Data.Dummy(seed, value));
+        }
+
+        return listData.OrderBy(r => r.Seed).ToArray();
+    }
+    #endregion
+    #region String
+    public Data.String[] ConvertTableToString(IEnumerable<IDictionary<string, object>> table)
+    {
+        List<Data.String> listData = new();
+
+        foreach (var row in table)
+        {
+            int seed = 0;
+            string kor = "";
+            string eng = "";
+            foreach (var data in row)
+            {
+                string header = data.Key;
+                if (string.IsNullOrEmpty(header)) continue;
+                if (string.IsNullOrWhiteSpace(header)) continue;
+                var numberValue = data.Value is double ? Convert.ToDouble(data.Value) : 0;
+                var boolValue = data.Value is bool && Convert.ToBoolean(data.Value);
+                var stringValue = data.Value is string ? Convert.ToString(data.Value) : string.Empty;
+
+                switch (header)
+                {
+                    case "Seed":
+                        seed = (int)numberValue;
+                        break;
+                    case "kor":
+                        kor = stringValue;
+                        break;
+                    case "eng":
+                        eng = stringValue;
+                        break;
+                }
+            }
+            if (seed == 0) continue;
+            listData.Add(new Data.String(seed, kor, eng));
         }
 
         return listData.OrderBy(r => r.Seed).ToArray();

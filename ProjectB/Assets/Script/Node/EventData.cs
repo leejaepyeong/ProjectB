@@ -61,6 +61,8 @@ public class ProjectileEvent : EventNodeData
     public Projectiles.eProjectileType projectileType;
     public Projectiles.eProjectileHit projectileHit;
 
+    [SerializeField, ShowIf("@projectileHit == eProjectileHit.Penetration")]
+    private int maxHitCount;
     [SerializeField, ShowIf("@projectileType == Projectiles.eProjectileType.Straight")] 
     private Projectiles.Straight straight;
     [SerializeField, ShowIf("@projectileType == Projectiles.eProjectileType.StraightFollow")] 
@@ -68,10 +70,7 @@ public class ProjectileEvent : EventNodeData
     [SerializeField, ShowIf("@projectileType == Projectiles.eProjectileType.Parabolic")] 
     private Projectiles.Parabolic parabolic;
 
-    [SerializeField]
-    private bool isEvent;
-    [BoxGroup("NextEvent"), ShowInInspector, ShowIf("@isEvent == true")]
-    private List<EventNodeData> eventNodes;
+    public int MaxHitCount => maxHitCount;
 
     public Projectiles.IProjectileData GetProjectileData()
     {

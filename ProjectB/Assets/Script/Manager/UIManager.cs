@@ -23,7 +23,7 @@ public class UIManager : BaseManager
         uiBases = new();
     }
 
-    public void Clear()
+    public void DeInit()
     {
         RemoveUIAll();
         uiBases.Clear();

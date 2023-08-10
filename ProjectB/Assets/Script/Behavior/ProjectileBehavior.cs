@@ -5,12 +5,14 @@ using UnityEngine;
 public class ProjectileBehavior : MonoBehaviour
 {
     private float elasped;
-    private float duration;
     private ProjectileEvent projectileEvent;
     private Projectile projectile;
 
     private UnitBehavior caster;
     private UnitBehavior target;
+
+    protected bool isInit;
+    public bool IsInit => isInit;
 
     public void Init(ProjectileEvent projectileEvent, UnitBehavior caster, UnitBehavior target)
     {
@@ -19,10 +21,18 @@ public class ProjectileBehavior : MonoBehaviour
         this.target = target;
         elasped = 0;
         SpawnProjectile();
+        isInit = true;
+    }
+
+    public void Close()
+    {
+        isInit = false;
+        ProjectileManager.Instance.RemoveProjectile(this);
     }
 
     public void UpdateFrame(float deltaTime)
     {
+        elasped += deltaTime;
         projectile.UpdateFrame(deltaTime);
     }
 
@@ -43,4 +53,24 @@ public class ProjectileBehavior : MonoBehaviour
 
         projectile.Init(this, projectileEvent, caster.transform, target.transform);
     }
+
+    #region Collision
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Unit")
+        {
+            UnitBehavior hitUnit = other.GetComponent<UnitBehavior>();
+            projectile.AddHitTarget(hitUnit);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.tag == "Unit")
+        {
+            UnitBehavior hitUnit = other.GetComponent<UnitBehavior>();
+            projectile.RemoveHitTarget(hitUnit);
+        }
+    }
+    #endregion
 }

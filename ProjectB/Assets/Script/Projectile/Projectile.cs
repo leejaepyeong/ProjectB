@@ -6,6 +6,7 @@ public abstract class Projectile
 {
     protected bool isDone;
     public bool IsDone => isDone;
+    protected bool isHitEnd;
     protected float speed;
     protected float duration;
     protected float elasped;
@@ -17,12 +18,12 @@ public abstract class Projectile
     protected Projectiles.IProjectileData projectileData;
 
     protected ProjectileBehavior projectileBehavior;
+    protected GameObject Model;
     protected Transform transform => projectileBehavior.transform;
     protected Transform caster;
     protected Transform targetTrf;
-    protected int raycastHitCnt;
-    protected RaycastHit[] raycastHits = new RaycastHit[30];
     protected Dictionary<int ,UnitBehavior> targetList = new();
+    protected int hitCount;
 
     public virtual void Init(ProjectileBehavior projectileBehavior, ProjectileEvent projectileEvent, Transform caster, Transform targetTrf)
     {
@@ -36,6 +37,8 @@ public abstract class Projectile
     public virtual void ResetData()
     {
         isDone = false;
+        isHitEnd = false;
+        hitCount = 0;
         projectileData = projectileEvent.GetProjectileData();
         elapsedTime = 0;
         elapsedDistance = 0;
@@ -43,7 +46,7 @@ public abstract class Projectile
         targetList.Clear();
     }
 
-    public virtual void UnInit()
+    public virtual void DeInit()
     {
 
     }
@@ -54,7 +57,7 @@ public abstract class Projectile
     }
     public virtual void Close()
     {
-
+        isDone = true;
     }
 
     public virtual void UpdateFrame(float deltaTime)
@@ -68,5 +71,41 @@ public abstract class Projectile
 
     public abstract void Move();
     public abstract bool CheckStop();
-    
+    public virtual void OnHit(UnitBehavior unit)
+    {
+        if (isHitEnd) return;
+
+        hitCount += 1;
+
+        switch (projectileEvent.projectileHit)
+        {
+            case Projectiles.eProjectileHit.Normal:
+                isHitEnd = true;
+                break;
+            case Projectiles.eProjectileHit.Penetration:
+                if (projectileEvent.MaxHitCount != 0 && hitCount >= projectileEvent.MaxHitCount)
+                    isHitEnd = true;
+                ApplyDamage(unit);
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void AddHitTarget(UnitBehavior unit)
+    {
+        if (targetList.ContainsKey(unit.ID)) return;
+        targetList.Add(unit.ID, unit);
+        OnHit(unit);
+    }
+
+    public void RemoveHitTarget(UnitBehavior unit)
+    {
+        targetList.Remove(unit.ID);
+    }
+
+    public void ApplyDamage(UnitBehavior unit)
+    {
+
+    }
 }
