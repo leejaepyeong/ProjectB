@@ -7,7 +7,7 @@ public class UnitManager : BaseManager
     private int unitId;
     private Dictionary<int, UnitBehavior> unitDic;
 
-    public const string UNITBEHAVIOR_ASSET_KEY = "Assets/GameResources/Prefab/UnitBehavior.prefab";
+    public const string UNITBEHAVIOR_ASSET_KEY = "Assets/Data/GameResources/Prefab/Behavior/UnitBehavior.prefab";
 
     public static UnitManager Instance
     {

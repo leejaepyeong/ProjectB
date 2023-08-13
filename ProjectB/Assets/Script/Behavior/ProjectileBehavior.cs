@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ProjectileBehavior : MonoBehaviour
 {
-    private float elasped;
+    private float elaspedTime;
     private ProjectileEvent projectileEvent;
     private Projectile projectile;
 
@@ -19,7 +19,7 @@ public class ProjectileBehavior : MonoBehaviour
         this.projectileEvent = projectileEvent;
         this.caster = caster;
         this.target = target;
-        elasped = 0;
+        elaspedTime = 0;
         SpawnProjectile();
         isInit = true;
     }
@@ -32,7 +32,7 @@ public class ProjectileBehavior : MonoBehaviour
 
     public void UpdateFrame(float deltaTime)
     {
-        elasped += deltaTime;
+        elaspedTime += deltaTime;
         projectile.UpdateFrame(deltaTime);
     }
 

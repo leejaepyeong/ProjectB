@@ -6,7 +6,7 @@ public class ProjectileManager : BaseManager
 {
     private List<ProjectileBehavior> projectileList = new();
 
-    private const string PROJECTILE_BEHAVIOR_ASSETKEY = "Assets/GameResources/Prefab/ProjectileBehavior.prefab";
+    private const string PROJECTILE_BEHAVIOR_ASSETKEY = "Assets/Data/GameResources/Prefab/Behavior/ProjectileBehavior.prefab";
 
     public static ProjectileManager Instance
     {

@@ -34,11 +34,6 @@ public class EffectBehavior : MonoBehaviour
         particle = null;
     }
 
-    private void Update()
-    {
-        UpdateFrame(Time.deltaTime);
-    }
-
     public void UpdateFrame(float deltaTime)
     {
         if (isInit == false)

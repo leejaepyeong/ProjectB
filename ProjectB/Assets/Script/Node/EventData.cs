@@ -90,3 +90,38 @@ public class ProjectileEvent : EventNodeData
     public override string TitleName { get; } = "Projectile Event";
     public override string SubjectName { get; } = string.Empty;
 }
+
+[Serializable]
+public class HitEvent : EventNodeData
+{
+    public HitEvenet.eHitRange hitRange;
+    public HitEvenet.eHitType hitType;
+
+    public Vector2 startPos;
+    public Vector3 startRot;
+
+    [SerializeField, ShowIf("@hitRange == eHitRange.Circle")]
+    private HitEvenet.Circle circle;
+    [SerializeField, ShowIf("@hitRange == eHitRange.Rect")]
+    private HitEvenet.Rect rect;
+    [SerializeField, ShowIf("@hitRange == eHitRange.FanShape")]
+    private HitEvenet.FanShape fanShape;
+
+    public HitEvenet.IHitData GetHitData()
+    {
+        switch (hitRange)
+        {
+            case HitEvenet.eHitRange.Circle:
+                return circle;
+            case HitEvenet.eHitRange.Rect:
+                return rect;
+            case HitEvenet.eHitRange.FanShape:
+                return fanShape;
+            default:
+                return null;
+        }
+    }
+
+    public override string TitleName { get; } = "Hit Event";
+    public override string SubjectName { get; } = string.Empty;
+}

@@ -9,7 +9,6 @@ public abstract class Projectile
     protected bool isHitEnd;
     protected float speed;
     protected float duration;
-    protected float elasped;
     protected float moveDistance;
     protected float elapsedDistance;
     protected float DeltaTime;
