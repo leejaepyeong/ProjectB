@@ -2,15 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundBehavior : MonoBehaviour
+public class SoundBehavior : BaseBehavior
 {
     [SerializeField] private AudioSource audio;
 
     private SoundManager manager;
     private AudioClip clip;
     private float duration;
-    private float elasped;
-    private bool isInit;
 
     public void Init(SoundEvent soundEvent)
     {
@@ -24,7 +22,7 @@ public class SoundBehavior : MonoBehaviour
         audio.Play();
         audio.outputAudioMixerGroup = SoundManager.Instance.AudioMixer.FindMatchingGroups(GetAudioMixerType(soundEvent.soundType))[0];
 
-        elasped = 0;
+        elaspedTime = 0;
         isInit = true;
     }
 
@@ -32,22 +30,17 @@ public class SoundBehavior : MonoBehaviour
     {
         isInit = false;
         clip = null;
-        elasped = 0;
+        elaspedTime = 0;
         manager.GameObjectPool.Return(gameObject);
     }
 
-    private void Update()
-    {
-        UpdateFrame(Time.deltaTime);
-    }
-
-    public void UpdateFrame(float deltaTime)
+    public override void UpdateFrame(float deltaTime)
     {
         if (isInit == false)
             return;
 
-        elasped += deltaTime;
-        if (duration < elasped)
+        base.UpdateFrame(deltaTime);
+        if (duration < elaspedTime)
             UnInit();
     }
 

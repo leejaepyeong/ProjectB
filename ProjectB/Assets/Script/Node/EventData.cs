@@ -61,6 +61,11 @@ public class ProjectileEvent : EventNodeData
     public Projectiles.eProjectileType projectileType;
     public Projectiles.eProjectileHit projectileHit;
 
+    [SerializeField] private AssetReferenceGameObject projectileEffect;
+    [SerializeField] private ParticleEvent hitEvent;
+    public object projectileEffectKey => projectileEffect.RuntimeKey;
+    public ParticleEvent HitEvent => hitEvent;
+
     [SerializeField, ShowIf("@projectileHit == eProjectileHit.Penetration")]
     private int maxHitCount;
     [SerializeField, ShowIf("@projectileType == Projectiles.eProjectileType.Straight")] 

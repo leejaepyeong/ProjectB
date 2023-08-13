@@ -2,17 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileBehavior : MonoBehaviour
+public class ProjectileBehavior : BaseBehavior
 {
-    private float elaspedTime;
     private ProjectileEvent projectileEvent;
     private Projectile projectile;
 
     private UnitBehavior caster;
     private UnitBehavior target;
-
-    protected bool isInit;
-    public bool IsInit => isInit;
 
     public void Init(ProjectileEvent projectileEvent, UnitBehavior caster, UnitBehavior target)
     {
@@ -30,14 +26,17 @@ public class ProjectileBehavior : MonoBehaviour
         ProjectileManager.Instance.RemoveProjectile(this);
     }
 
-    public void UpdateFrame(float deltaTime)
+    public override void UpdateFrame(float deltaTime)
     {
-        elaspedTime += deltaTime;
+        base.UpdateFrame(deltaTime);
         projectile.UpdateFrame(deltaTime);
     }
 
     private void SpawnProjectile()
     {
+        Model = ProjectileManager.Instance.GameObjectPool.Get(projectileEvent.projectileEffectKey);
+        Model.transform.SetParent(scaleTransform.transform);
+
         switch (projectileEvent.projectileType)
         {
             case Projectiles.eProjectileType.Straight:

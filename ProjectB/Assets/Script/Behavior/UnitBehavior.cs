@@ -2,15 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitBehavior : MonoBehaviour, IEventHandler
+public class UnitBehavior : BaseBehavior, IEventHandler
 {
-    [SerializeField]
-    private Transform scaleTransform;
-
-    private GameObject Model;
     private Animator Animator;
     private AnimatorOverrideController animatorContorller;
-    private bool isInit;
     private int id;
     public int ID => id;
     private UnitBehavior target;
@@ -32,8 +27,7 @@ public class UnitBehavior : MonoBehaviour, IEventHandler
     private UnitManager manager;
 
     #region AssetKey
-    private const string SOUND_BEHAVIOR_ASSETKEY = "Assets/GameResources/Prefab/SoundBehavior.prefab";
-    private const string EFFECT_BEHAVIOR_ASSETKEY = "Assets/GameResources/Prefab/EffectBehavior.prefab";
+    private const string SOUND_BEHAVIOR_ASSETKEY = "Assets/Data/GameResources/Prefab/Behavior/SoundBehavior.prefab";    
     #endregion
 
     public void Init(object key, int id)
@@ -129,37 +123,18 @@ public class UnitBehavior : MonoBehaviour, IEventHandler
     }
     private void OnHandleParticleEvent(ParticleEvent particleEvent)
     {
-        if (!manager.GameObjectPool.TryGet(EFFECT_BEHAVIOR_ASSETKEY, out var effect)) return;
-        EffectBehavior effectBehavior = effect.GetComponent<EffectBehavior>();
-        
         var referenceBone = Model.transform;
         if(!string.IsNullOrEmpty(particleEvent.referenceBone))
         {
             if (dicBoneTrf.TryGetValue(particleEvent.referenceBone, out var bone))
                 referenceBone = bone;
         }
-
-        effectBehavior.transform.SetParent(referenceBone);
-        effectBehavior.transform.position = referenceBone.position + particleEvent.localPosition;
-        effectBehavior.transform.localEulerAngles = particleEvent.localEular;
-        effectBehavior.transform.localScale = particleEvent.localScale;
-        effectBehavior.Init(particleEvent);
-
-        if (!particleEvent.boneBinding) effectBehavior.transform.SetParent(null);
+        EffectManager.Instance.SpawnEffect(particleEvent, referenceBone);
     }
 
-    public void HitParticleEvent(ParticleEvent particleEvent, Vector3 hitPos)
+    public void HitParticleEvent(ParticleEvent particleEvent, Vector3 spawnPos)
     {
-        if (!manager.GameObjectPool.TryGet(EFFECT_BEHAVIOR_ASSETKEY, out var effect)) return;
-        EffectBehavior effectBehavior = effect.GetComponent<EffectBehavior>();
-
-        effectBehavior.transform.SetParent(transform);
-        effectBehavior.transform.position = hitPos + particleEvent.localPosition;
-        effectBehavior.transform.localEulerAngles = particleEvent.localEular;
-        effectBehavior.transform.localScale = particleEvent.localScale;
-        effectBehavior.Init(particleEvent);
-
-        if (!particleEvent.boneBinding) effectBehavior.transform.SetParent(null);
+        
     }
 
     private void OnHandleTimeScaleEvent(TimeScaleEvent timeScaleEvent)

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseBehavior : MonoBehaviour
+public class Behavior : MonoBehaviour
 {
     [SerializeField]
     protected Transform scaleTransform;

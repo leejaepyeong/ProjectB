@@ -84,11 +84,12 @@ public abstract class Projectile
             case Projectiles.eProjectileHit.Penetration:
                 if (projectileEvent.MaxHitCount != 0 && hitCount >= projectileEvent.MaxHitCount)
                     isHitEnd = true;
-                ApplyDamage(unit);
                 break;
             default:
                 break;
         }
+
+        ApplyDamage(unit);
     }
 
     public void AddHitTarget(UnitBehavior unit)
@@ -105,6 +106,6 @@ public abstract class Projectile
 
     public void ApplyDamage(UnitBehavior unit)
     {
-
+        EffectManager.Instance.SpawnEffect(projectileEvent.HitEvent, projectileBehavior.transform.position);
     }
 }

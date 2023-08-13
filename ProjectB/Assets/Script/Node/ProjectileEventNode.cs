@@ -41,16 +41,12 @@ namespace Projectiles
         [SerializeField] private float radius;
         [SerializeField] private float speed;
         [SerializeField] private AnimationCurve curveSpeed;
-        [SerializeField] private AssetReferenceGameObject projectileEffect;
-        [SerializeField] private ParticleEvent hitEvent;
 
         public float MaxDistance => maxDistance;
         public float Radius => radius;
         public float Speed => speed;
         public AnimationCurve CurveSpeed => curveSpeed;
-        public object projectileEffectKey => projectileEffect.RuntimeKey;
-        public ParticleEvent HitEvent => hitEvent;
-
+        
         public eProjectileType projectileType => eProjectileType.Straight;
     }
 

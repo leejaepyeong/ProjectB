@@ -2,14 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EffectBehavior : MonoBehaviour
+public class EffectBehavior : BaseBehavior
 {
     private EffectManager manager;
     private GameObject particle;
     private float duration;
-    private float elapased;
-    private bool isInit;
-
     public void Init(ParticleEvent particleEvent)
     {
         manager = EffectManager.Instance;
@@ -22,7 +19,7 @@ public class EffectBehavior : MonoBehaviour
         particle.transform.SetParent(transform);
         particle.transform.localPosition = Vector3.zero;
         duration = particleEvent.duration;
-        elapased = 0;
+        elaspedTime = 0;
         isInit = true;
     }
 
@@ -34,14 +31,13 @@ public class EffectBehavior : MonoBehaviour
         particle = null;
     }
 
-    public void UpdateFrame(float deltaTime)
+    public override void UpdateFrame(float deltaTime)
     {
         if (isInit == false)
             return;
-
-        elapased += deltaTime;
+        base.UpdateFrame(deltaTime);
         
-        if (elapased > duration)
+        if (elaspedTime > duration)
             UnInit();
     }
 

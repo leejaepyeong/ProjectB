@@ -2,16 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HitBehavior : MonoBehaviour
+public class HitBehavior : BaseBehavior
 {
-    private float elaspedTime;
     private HitEvent hitEvent;
     private Hit hit;
 
     private UnitBehavior caster;
     private UnitBehavior target;
-    protected bool isInit;
-    public bool IsInit => isInit;
 
     public void Init(HitEvent hitEvent, UnitBehavior caster, UnitBehavior target)
     {
@@ -29,12 +26,12 @@ public class HitBehavior : MonoBehaviour
         HitManager.Instance.RemoveHit(this);
     }
 
-    public void UpdateFrame(float deltaTime)
+    public override void UpdateFrame(float deltaTime)
     {
         if (isInit == false) return;
         if (hit.IsDone) Close();
+        base.UpdateFrame(deltaTime);
 
-        elaspedTime += deltaTime;
         hit.UpdateFrame(deltaTime);
     }
 
@@ -47,5 +44,6 @@ public class HitBehavior : MonoBehaviour
                 break;
         }
 
+        hit.Init(this, hitEvent, caster, target);
     }
 }
