@@ -4,9 +4,12 @@ using UnityEngine;
 using UnityEditor;
 using System.IO;
 using System.Security.Cryptography;
+using Sirenix.OdinInspector;
+using Sirenix.OdinInspector.Editor;
+using Sirenix.Utilities.Editor;
 
 [System.Serializable]
-public class SaveData
+public class SaveUnitData
 {
     public List<UnitDataEditor_Data> dataList = new();
 }
@@ -24,19 +27,57 @@ public class UnitInfo
 }
 
 
-public class UnitDataEditor : EditorWindow
+public class UnitDataEditor : OdinMenuEditorWindow
 {
     #region Data
     private string path;
     private List<UnitDataEditor_Data> dataList = new();
+    private bool isReadData;
     #endregion
 
-    private string iconPath;
-    private Texture2D UnitIcon;
-    private Rect iconRect;
-    private float iconSize = 100;
-    
-    private string searchText;
+    private static GUIStyle redLabel;
+    public static GUIStyle RedLabel
+    {
+        get
+        {
+            if(redLabel == null)
+            {
+                redLabel = new GUIStyle(EditorStyles.label) { margin = new RectOffset(0,0,0,0)};
+                redLabel.fontStyle = FontStyle.Bold;
+                redLabel.normal.textColor = Color.red;
+                redLabel.onNormal.textColor = Color.red;
+            }
+            return redLabel;
+        }
+    }
+    private static OdinMenuStyle menuErrorStyle;
+    public static OdinMenuStyle MenuErrorStyle
+    {
+        get
+        {
+            if (menuErrorStyle == null)
+            {
+                menuErrorStyle = new OdinMenuStyle();
+                menuErrorStyle.DefaultLabelStyle = RedLabel;
+                menuErrorStyle.SelectedLabelStyle = RedLabel;
+            }
+            return menuErrorStyle;
+        }
+    }
+    private static OdinMenuStyle menuDefaultStyle;
+
+    public static OdinMenuStyle MenuDefaultStyle
+    {
+        get
+        {
+            if (menuDefaultStyle == null)
+            {
+                menuDefaultStyle = new OdinMenuStyle();
+            }
+
+            return menuDefaultStyle;
+        }
+    }
 
     [MenuItem("Tools/UnitInfoEditor")]
     public static void Open()
@@ -44,96 +85,116 @@ public class UnitDataEditor : EditorWindow
         GetWindow<UnitDataEditor>().titleContent = new GUIContent("Unit Info");
     }
 
-    private void OnEnable()
+    protected override OdinMenuTree BuildMenuTree()
     {
-        path = "./Assets/GameResources/DataJsons/";
-        path = Path.Combine(Application.dataPath + "/GameResources/DataJsons/", this.GetType().Name + ".json");
-        GetSaveData();
+        var tree = new OdinMenuTree(true);
+        tree.DefaultMenuStyle.IconSize = 50f;
+        tree.Config.DrawSearchToolbar = true;
+
+        path = "./Assets/Data/GameResources/DataJsons/";
+        path = Path.Combine(Application.dataPath + "/Data/GameResources/DataJsons/", this.GetType().Name + ".json");
+        if(isReadData == false)
+            GetSaveData();
+
+        foreach (var unit in dataList)
+        {
+            var name = unit.Name;
+            var type = unit.Type;
+            var mainSubIdText = unit.Seed;
+
+            var menuItem = new OdinMenuItem(tree, name, unit);
+            menuItem.OnRightClick += item => EditorGUIUtility.PingObject(item.Value as Object);
+            tree.AddMenuItemAtPath(type.ToString(), menuItem);
+        }
+
+        return tree;
+    }
+    
+    protected override void OnBeginDrawEditors()
+    {
+        if (MenuTree == null) return;
+        if (MenuTree.Config == null) return;
+        var toolbarHeiight = MenuTree.Config.SearchToolbarHeight;
+
+        SirenixEditorGUI.BeginHorizontalToolbar(toolbarHeiight);
+        {
+            if (SirenixEditorGUI.ToolbarButton(new GUIContent("Create Unit")))
+            {
+                CreateUnitAdd();
+                ForceMenuTreeRebuild();
+            }
+            if (SirenixEditorGUI.ToolbarButton(new GUIContent("Delete Unit")))
+            {
+                DeleteUnit();
+                ForceMenuTreeRebuild();
+            }
+            if (SirenixEditorGUI.ToolbarButton(new GUIContent("Refresh")))
+            {
+                ForceMenuTreeRebuild();
+            }
+            if (SirenixEditorGUI.ToolbarButton(new GUIContent("Save")))
+            {
+                if(isExistDuplicated)
+                {
+                    Debug.LogError("중복 Seed존재");
+                    return;
+                }
+                SaveToJson();
+            }
+        }
+        SirenixEditorGUI.EndHorizontalToolbar();
     }
 
-    private void OnGUI()
+    private int n = 5;
+    private bool isExistDuplicated;
+    private Dictionary<int, int> dicTemp = new Dictionary<int, int>();
+    private void OnInspectorUpdate()
     {
-        Draw();
+        --n;
+        if (n > 0) return;
+        n = 5;
+
+        isExistDuplicated = false;
+        dicTemp.Clear();
+        foreach (var unit in dataList)
+        {
+            if (!dicTemp.TryGetValue(unit.Seed, out var count))
+                dicTemp[unit.Seed] = 1;
+            else
+                ++dicTemp[unit.Seed];
+            if (dicTemp[unit.Seed] > 1)
+                isExistDuplicated = true;
+        }
+
+        if(MenuTree != null)
+        {
+            foreach (var treeMenuItem in MenuTree.MenuItems)
+            {
+                foreach (var menuItem in treeMenuItem.ChildMenuItems)
+                {
+                    if (!(menuItem.Value is UnitDataEditor_Data unit)) continue;
+                    if (!dicTemp.TryGetValue(unit.Seed, out var count)) continue;
+
+                    if(count > 1)
+                    {
+                        menuItem.Style = MenuErrorStyle;
+                        menuItem.Parent.Style = MenuErrorStyle;
+                    }
+                    else
+                    {
+                        menuItem.Style = MenuDefaultStyle;
+                        menuItem.Parent.Style = MenuDefaultStyle;
+                    }
+                }
+            }
+        }
     }
 
     private void GetSaveData()
     {
+        isReadData = true;
         LoadJson();
     }
-
-    private void Draw()
-    {
-        GUILayout.BeginVertical();
-        DrawTool();
-        GUILayout.BeginHorizontal();
-        DrawUnitList();
-        DrawUnitInfo();
-        GUILayout.EndHorizontal();
-
-        GUILayout.EndVertical();
-    }
-
-    Vector2 scrollbar;
-    int unitSelect;
-
-    #region Draw
-
-    private void DrawTool()
-    {
-        GUILayout.BeginHorizontal();
-        if (GUILayout.Button("Save", EditorStyles.toolbarButton, GUILayout.Width(100)))
-        {
-            SaveToJson();
-        }
-        if (GUILayout.Button("Create Unit", EditorStyles.toolbarButton, GUILayout.Width(100)))
-        {
-            CreateUnitAdd();
-        }
-        if (GUILayout.Button("Delete Unit", EditorStyles.toolbarButton, GUILayout.Width(100)))
-        {
-            DeleteUnit();
-        }
-        GUILayout.EndHorizontal();
-    }
-
-    private void DrawUnitList()
-    {
-        scrollbar = GUILayout.BeginScrollView(scrollbar, GUILayout.ExpandHeight(true), GUILayout.ExpandWidth(true), GUILayout.Width(400));
-
-        GUILayout.BeginVertical();
-
-        searchText = GUILayout.TextField(searchText, GUILayout.Width(100));
-        for (int i = 0; i < dataList.Count; i++)
-        {
-            if (string.IsNullOrEmpty(searchText) == false && dataList[i].Name.Contains(searchText) == false)
-                continue;
-
-            UnitInfo info = new(dataList[i].Name, dataList[i].Seed);
-            if(GUILayout.Toggle(i == unitSelect, dataList[i].Name, GUILayout.ExpandWidth(true), GUILayout.Width(100)))
-            {
-                PlayerPrefs.SetInt("DebugTapIdx", unitSelect = i);
-            }
-        }
-        GUILayout.EndVertical();
-        GUILayout.EndScrollView();
-    }
-
-    private void DrawUnitInfo()
-    {
-        EditorGUILayout.BeginVertical();
-        EditorGUIUtility.labelWidth = 30;
-        dataList[unitSelect].Name = EditorGUILayout.TextField("Name", dataList[unitSelect].Name, GUILayout.Width(120));
-        dataList[unitSelect].Seed = EditorGUILayout.IntField("Seed", dataList[unitSelect].Seed, GUILayout.Width(120));
-        var unitInfo = dataList[unitSelect].info;
-        unitInfo.hp  = EditorGUILayout.IntField("Hp", unitInfo.hp, GUILayout.Width(120));
-        unitInfo.texture = (Texture2D)EditorGUILayout.ObjectField("Icon", unitInfo.texture, typeof(Texture2D), GUILayout.Width(120));
-        unitInfo.objectValue = EditorGUILayout.ObjectField("Prefab", unitInfo.objectValue, typeof(Object), GUILayout.Width(120));
-        unitInfo.pos = EditorGUILayout.Vector3Field("Pos", unitInfo.pos, GUILayout.Width(150));
-
-        EditorGUILayout.EndVertical();
-    }
-
-    #endregion
 
     private void CreateUnitAdd()
     {
@@ -143,15 +204,17 @@ public class UnitDataEditor : EditorWindow
 
     private void DeleteUnit()
     {
-        dataList.RemoveAt(unitSelect);
-        unitSelect = 0;
+        if (MenuTree == null) return;
+        if (!(MenuTree.Selection.SelectedValue is UnitDataEditor_Data unit)) return;
+
+        dataList.Remove(unit);
     }
 
 
     #region Json
     private void SaveToJson()
     {
-        SaveData saveData = new();
+        SaveUnitData saveData = new();
 
         for (int i = 0; i < dataList.Count; i++)
         {
@@ -165,12 +228,12 @@ public class UnitDataEditor : EditorWindow
 
     private void LoadJson()
     {
-        SaveData saveData = new();
+        SaveUnitData saveData = new();
         if (File.Exists(path))
         {
             string decryptString = File.ReadAllText(path);
             string jsonText = Decrypt(decryptString);
-            saveData = JsonUtility.FromJson<SaveData>(jsonText);
+            saveData = JsonUtility.FromJson<SaveUnitData>(jsonText);
 
             for (int i = 0; i < saveData.dataList.Count; i++)
             {

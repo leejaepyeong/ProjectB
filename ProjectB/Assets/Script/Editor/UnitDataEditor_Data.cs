@@ -3,12 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.AddressableAssets;
+using Sirenix.OdinInspector;
 
 [Serializable]
 public class UnitDataEditor_Data
 {
+    public enum eUnitType
+    {
+        Normal,
+        Uniq,
+        Boss,
+    }
+
+
     public int Seed;
     public string Name;
+    public eUnitType Type;
     public Info info = new();
 
     public UnitDataEditor_Data(int seed, string name)
@@ -20,9 +31,11 @@ public class UnitDataEditor_Data
     [Serializable]
     public class Info
     {
-        public int hp;
-        public Vector3 pos;
-        public Texture2D texture;
-        public UnityEngine.Object objectValue;
+        [FoldoutGroup("Stat")]public int hp;
+        [FoldoutGroup("Stat")] public int atk;
+        [FoldoutGroup("Stat")] public float moveSpd;
+        [VerticalGroup("Info")] public Texture2D icon;
+        [VerticalGroup("Info")] public GameObject modelAssetRef;
+        [VerticalGroup("Info")] public RuntimeAnimatorController animatorAssetRef;
     }
 }
