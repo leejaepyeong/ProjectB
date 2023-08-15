@@ -102,8 +102,11 @@ public class HitEvent : EventNodeData
     public HitEvenet.eHitRange hitRange;
     public HitEvenet.eHitType hitType;
 
-    public Vector2 startPos;
+    public Vector3 startPos;
     public Vector3 startRot;
+
+    public float radius;
+    public float speed;
 
     [SerializeField, ShowIf("@hitRange == eHitRange.Circle")]
     private HitEvenet.Circle circle;

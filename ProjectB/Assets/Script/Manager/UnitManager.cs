@@ -6,6 +6,8 @@ public class UnitManager : BaseManager
 {
     private int unitId;
     private Dictionary<int, UnitBehavior> unitDic;
+    private List<UnitBehavior> unitActiveList;
+    public List<UnitBehavior> UnitActiveList => unitActiveList;
 
     public const string UNITBEHAVIOR_ASSET_KEY = "Assets/Data/GameResources/Prefab/Behavior/UnitBehavior.prefab";
 
@@ -17,8 +19,17 @@ public class UnitManager : BaseManager
     public override void Init()
     {
         base.Init();
-        unitId = 0;
+        unitId = 1;
         unitDic = new Dictionary<int, UnitBehavior>();
+    }
+
+    public override void UnInit()
+    {
+        unitDic.Clear();
+        unitDic = null;
+        unitActiveList.Clear();
+        unitActiveList = null;
+        base.UnInit();
     }
 
     public override void UpdateFrame(float deltaTime)
@@ -42,13 +53,26 @@ public class UnitManager : BaseManager
         unit.transform.SetParent(transform);
 
         unit.Init(modelKey, GetUnitId());
+        unitDic.Add(unitId, unit);
+        UnitActive(unit, true);
         unitId += 1;
     }
 
     public void RemoveUnit(UnitBehavior unit)
     {
+        if (unitActiveList.Contains(unit))
+            UnitActive(unit,false);
+
         unitDic.Remove(unit.ID);
         unit.Close();
         GameObjectPool.Return(unit.gameObject);
+    }
+
+    public void UnitActive(UnitBehavior unit, bool isActive)
+    {
+        if (isActive)
+            unitActiveList.Add(unit);
+        else
+            unitActiveList.Remove(unit);
     }
 }

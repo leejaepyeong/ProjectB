@@ -24,4 +24,9 @@ public class BaseBehavior : MonoBehaviour
     {
         return transform.position;
     }
+
+    public Quaternion GetRot()
+    {
+        return transform.rotation;
+    }
 }

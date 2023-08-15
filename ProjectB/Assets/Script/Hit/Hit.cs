@@ -19,8 +19,14 @@ public abstract class Hit
     protected Transform transform => hitBehavior.transform;
     protected UnitBehavior caster;
     protected UnitBehavior target;
-    protected Vector2 startPosOffset;
+    protected Vector3 startPos;
+    protected Quaternion startRot;
+    protected Vector3 startPosOffset;
     protected Vector3 startRotOffset;
+    protected float maxDistance;
+    protected float waveSpeed;
+
+    protected List<UnitBehavior> targetList = new();
 
     public virtual void Init(HitBehavior hitBehavior, HitEvent hitEvent, UnitBehavior caster, UnitBehavior target)
     {
@@ -28,11 +34,19 @@ public abstract class Hit
         this.hitEvent = hitEvent;
         this.caster = caster;
         this.target = target;
+        startPos = target == null ? caster.GetPos() : target.GetPos();
+        startRot = target == null ? caster.GetRot() : target.GetRot();
         startPosOffset = hitEvent.startPos;
         startRotOffset = hitEvent.startRot;
+        maxDistance = hitEvent.radius;
+        waveSpeed = hitEvent.speed;
+
+        targetList.Clear();
+        isWave = hitEvent.hitType == HitEvenet.eHitType.Wave;
     }
     public virtual void UpdateFrame(float deltaTime)
     {
+        if (isDone) return;
         this.deltaTime = deltaTime;
         elaspedTime += deltaTime;
 
@@ -43,6 +57,7 @@ public abstract class Hit
         else
         {
             ApplyDamage();
+            isDone = true;
         }
     }
 
@@ -52,6 +67,11 @@ public abstract class Hit
     }
 
     protected virtual void ApplyDamage()
+    {
+
+    }
+
+    protected virtual void GetTargetList()
     {
 
     }

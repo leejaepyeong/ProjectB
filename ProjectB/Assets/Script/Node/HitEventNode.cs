@@ -35,15 +35,10 @@ namespace HitEvenet
     [Serializable]
     public class Circle : IHitData
     {
-        [SerializeField] private float radius;
-        [SerializeField] private float speed;
-        
         [SerializeField] private AnimationCurve curveSpeed;
         [SerializeField] private AssetReferenceGameObject projectileEffect;
         [SerializeField] private ParticleEvent hitEvent;
 
-        public float Radius => radius;
-        public float Speed => speed;
         public AnimationCurve CurveSpeed => curveSpeed;
         public object projectileEffectKey => projectileEffect.RuntimeKey;
         public ParticleEvent HitEvent => hitEvent;
@@ -53,14 +48,10 @@ namespace HitEvenet
     [Serializable]
     public class Rect : IHitData
     {
-        [SerializeField] private float radius;
-        [SerializeField] private float speed;
         [SerializeField] private AnimationCurve curveSpeed;
         [SerializeField] private AssetReferenceGameObject projectileEffect;
         [SerializeField] private ParticleEvent hitEvent;
 
-        public float Radius => radius;
-        public float Speed => speed;
         public AnimationCurve CurveSpeed => curveSpeed;
         public object projectileEffectKey => projectileEffect.RuntimeKey;
         public ParticleEvent HitEvent => hitEvent;
@@ -71,15 +62,11 @@ namespace HitEvenet
     [Serializable]
     public class FanShape : IHitData
     {
-        [SerializeField] private float radius;
-        [SerializeField] private float speed;
         [SerializeField] private float angle;
         [SerializeField] private AnimationCurve curveSpeed;
         [SerializeField] private AssetReferenceGameObject projectileEffect;
         [SerializeField] private ParticleEvent hitEvent;
 
-        public float Radius => radius;
-        public float Speed => speed;
         public float Angle => angle;
         public AnimationCurve CurveSpeed => curveSpeed;
         public object projectileEffectKey => projectileEffect.RuntimeKey;

@@ -19,6 +19,12 @@ public class BaseManager : MonoBehaviour
         GameObjectPool = new(name);
     }
 
+    public virtual void UnInit()
+    {
+        ResourcePool = null;
+        GameObjectPool = null;
+    }
+
     public virtual void UpdateFrame(float deltaTime)
     {
         DeltaTime = deltaTime;
