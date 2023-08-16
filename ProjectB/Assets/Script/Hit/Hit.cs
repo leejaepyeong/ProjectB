@@ -68,11 +68,15 @@ public abstract class Hit
 
     protected virtual void ApplyDamage()
     {
-
+        var list = GetTargetList();
+        for (int i = 0; i < list.Count; i++)
+        {
+            list[i].ApplyDamage(hitEvent.dmgPercent);
+        }
     }
 
-    protected virtual void GetTargetList()
+    protected virtual List<UnitBehavior> GetTargetList()
     {
-
+        return null;
     }
 }

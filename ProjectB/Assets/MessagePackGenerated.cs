@@ -50,13 +50,13 @@ namespace MessagePack.Resolvers
             lookup = new global::System.Collections.Generic.Dictionary<global::System.Type, int>(8)
             {
                 { typeof(global::Data.Dummy[]), 0 },
-                { typeof(global::Data.String[]), 1 },
+                { typeof(global::Data.StringText[]), 1 },
                 { typeof(global::System.Collections.Generic.List<global::Data.Dummy>), 2 },
-                { typeof(global::System.Collections.Generic.List<global::Data.String>), 3 },
+                { typeof(global::System.Collections.Generic.List<global::Data.StringText>), 3 },
                 { typeof(global::Data.ArrayMeta), 4 },
                 { typeof(global::Data.Dummy), 5 },
                 { typeof(global::Data.ListMeta), 6 },
-                { typeof(global::Data.String), 7 },
+                { typeof(global::Data.StringText), 7 },
             };
         }
 
@@ -71,13 +71,13 @@ namespace MessagePack.Resolvers
             switch (key)
             {
                 case 0: return new global::MessagePack.Formatters.ArrayFormatter<global::Data.Dummy>();
-                case 1: return new global::MessagePack.Formatters.ArrayFormatter<global::Data.String>();
+                case 1: return new global::MessagePack.Formatters.ArrayFormatter<global::Data.StringText>();
                 case 2: return new global::MessagePack.Formatters.ListFormatter<global::Data.Dummy>();
-                case 3: return new global::MessagePack.Formatters.ListFormatter<global::Data.String>();
+                case 3: return new global::MessagePack.Formatters.ListFormatter<global::Data.StringText>();
                 case 4: return new MessagePack.Formatters.Data.ArrayMetaFormatter();
                 case 5: return new MessagePack.Formatters.Data.DummyFormatter();
                 case 6: return new MessagePack.Formatters.Data.ListMetaFormatter();
-                case 7: return new MessagePack.Formatters.Data.StringFormatter();
+                case 7: return new MessagePack.Formatters.Data.StringTextFormatter();
                 default: return null;
             }
         }
@@ -117,8 +117,8 @@ namespace MessagePack.Formatters.Data
     {
         // Dummy
         private static global::System.ReadOnlySpan<byte> GetSpan_Dummy() => new byte[1 + 5] { 165, 68, 117, 109, 109, 121 };
-        // String
-        private static global::System.ReadOnlySpan<byte> GetSpan_String() => new byte[1 + 6] { 166, 83, 116, 114, 105, 110, 103 };
+        // StringText
+        private static global::System.ReadOnlySpan<byte> GetSpan_StringText() => new byte[1 + 10] { 170, 83, 116, 114, 105, 110, 103, 84, 101, 120, 116 };
 
         public void Serialize(ref global::MessagePack.MessagePackWriter writer, global::Data.ArrayMeta value, global::MessagePack.MessagePackSerializerOptions options)
         {
@@ -132,8 +132,8 @@ namespace MessagePack.Formatters.Data
             writer.WriteMapHeader(2);
             writer.WriteRaw(GetSpan_Dummy());
             global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<global::Data.Dummy[]>(formatterResolver).Serialize(ref writer, value.Dummy, options);
-            writer.WriteRaw(GetSpan_String());
-            global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<global::Data.String[]>(formatterResolver).Serialize(ref writer, value.String, options);
+            writer.WriteRaw(GetSpan_StringText());
+            global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<global::Data.StringText[]>(formatterResolver).Serialize(ref writer, value.StringText, options);
         }
 
         public global::Data.ArrayMeta Deserialize(ref global::MessagePack.MessagePackReader reader, global::MessagePack.MessagePackSerializerOptions options)
@@ -162,8 +162,8 @@ namespace MessagePack.Formatters.Data
 
                         reader.Skip();
                         continue;
-                    case 6:
-                        if (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey) != 113723913172051UL) { goto FAIL; }
+                    case 10:
+                        if (!global::System.MemoryExtensions.SequenceEqual(stringKey, GetSpan_StringText().Slice(1))) { goto FAIL; }
 
                         reader.Skip();
                         continue;
@@ -243,8 +243,8 @@ namespace MessagePack.Formatters.Data
     {
         // Dummy
         private static global::System.ReadOnlySpan<byte> GetSpan_Dummy() => new byte[1 + 5] { 165, 68, 117, 109, 109, 121 };
-        // String
-        private static global::System.ReadOnlySpan<byte> GetSpan_String() => new byte[1 + 6] { 166, 83, 116, 114, 105, 110, 103 };
+        // StringText
+        private static global::System.ReadOnlySpan<byte> GetSpan_StringText() => new byte[1 + 10] { 170, 83, 116, 114, 105, 110, 103, 84, 101, 120, 116 };
 
         public void Serialize(ref global::MessagePack.MessagePackWriter writer, global::Data.ListMeta value, global::MessagePack.MessagePackSerializerOptions options)
         {
@@ -258,8 +258,8 @@ namespace MessagePack.Formatters.Data
             writer.WriteMapHeader(2);
             writer.WriteRaw(GetSpan_Dummy());
             global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<global::System.Collections.Generic.List<global::Data.Dummy>>(formatterResolver).Serialize(ref writer, value.Dummy, options);
-            writer.WriteRaw(GetSpan_String());
-            global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<global::System.Collections.Generic.List<global::Data.String>>(formatterResolver).Serialize(ref writer, value.String, options);
+            writer.WriteRaw(GetSpan_StringText());
+            global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<global::System.Collections.Generic.List<global::Data.StringText>>(formatterResolver).Serialize(ref writer, value.StringText, options);
         }
 
         public global::Data.ListMeta Deserialize(ref global::MessagePack.MessagePackReader reader, global::MessagePack.MessagePackSerializerOptions options)
@@ -288,8 +288,8 @@ namespace MessagePack.Formatters.Data
 
                         reader.Skip();
                         continue;
-                    case 6:
-                        if (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey) != 113723913172051UL) { goto FAIL; }
+                    case 10:
+                        if (!global::System.MemoryExtensions.SequenceEqual(stringKey, GetSpan_StringText().Slice(1))) { goto FAIL; }
 
                         reader.Skip();
                         continue;
@@ -302,7 +302,7 @@ namespace MessagePack.Formatters.Data
         }
     }
 
-    public sealed class StringFormatter : global::MessagePack.Formatters.IMessagePackFormatter<global::Data.String>
+    public sealed class StringTextFormatter : global::MessagePack.Formatters.IMessagePackFormatter<global::Data.StringText>
     {
         // Seed
         private static global::System.ReadOnlySpan<byte> GetSpan_Seed() => new byte[1 + 4] { 164, 83, 101, 101, 100 };
@@ -311,7 +311,7 @@ namespace MessagePack.Formatters.Data
         // Eng
         private static global::System.ReadOnlySpan<byte> GetSpan_Eng() => new byte[1 + 3] { 163, 69, 110, 103 };
 
-        public void Serialize(ref global::MessagePack.MessagePackWriter writer, global::Data.String value, global::MessagePack.MessagePackSerializerOptions options)
+        public void Serialize(ref global::MessagePack.MessagePackWriter writer, global::Data.StringText value, global::MessagePack.MessagePackSerializerOptions options)
         {
             if (value is null)
             {
@@ -329,7 +329,7 @@ namespace MessagePack.Formatters.Data
             global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<string>(formatterResolver).Serialize(ref writer, value.Eng, options);
         }
 
-        public global::Data.String Deserialize(ref global::MessagePack.MessagePackReader reader, global::MessagePack.MessagePackSerializerOptions options)
+        public global::Data.StringText Deserialize(ref global::MessagePack.MessagePackReader reader, global::MessagePack.MessagePackSerializerOptions options)
         {
             if (reader.TryReadNil())
             {
@@ -372,7 +372,7 @@ namespace MessagePack.Formatters.Data
                 }
             }
 
-            var ____result = new global::Data.String(__Seed__, __Kor__, __Eng__);
+            var ____result = new global::Data.StringText(__Seed__, __Kor__, __Eng__);
             reader.Depth--;
             return ____result;
         }

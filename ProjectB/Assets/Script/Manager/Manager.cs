@@ -38,6 +38,7 @@ public class Manager : Singleton<Manager>
     #endregion
 
     private FileData fileData;
+    private Data.DataManager dataManager;
     public FileData getFileData
     {
         get
@@ -46,6 +47,9 @@ public class Manager : Singleton<Manager>
             {
                 fileData = CreateComponent<FileData>(transform);
                 fileData.Init();
+
+                dataManager = CreateComponent<Data.DataManager>(transform);
+                dataManager.ReadData();
             }
             return fileData;
         }

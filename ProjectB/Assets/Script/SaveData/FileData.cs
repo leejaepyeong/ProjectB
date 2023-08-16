@@ -14,13 +14,14 @@ public class FileData : MonoBehaviour
         }
     }
 
+    private StringFileSave fileSave = new StringFileSave();
     protected List<ISaveDataControl> saveDataList = new();
 
     public void Init()
     {
         StringFileSave fileSave = new StringFileSave();
 
-        saveDataList.Add(new SaveDataControl<SaveData_Local>("local", fileSave));
+        saveDataList.Add(new SaveDataControl<SaveData_Local>(fileSave.GetPath("local"), fileSave));
 
         LoadFile();
     }

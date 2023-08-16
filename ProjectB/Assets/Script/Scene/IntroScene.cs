@@ -13,6 +13,8 @@ public class IntroScene : BaseScene
 
     public override void UpdateFrame(float deltaTime)
     {
+        return;
+
         if (SaveData_Local.Instance.IsSaveData == false)
         {
             UIManager.Instance.OpenUI<UICreateAccount>();

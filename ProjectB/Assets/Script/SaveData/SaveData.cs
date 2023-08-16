@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public interface ISaveDataControl
@@ -79,18 +80,25 @@ public class SaveDataControl<T> : ISaveDataControl where T : SaveData, new()
     }
     public void Load()
     {
+        string data = "";
+
         if (fileSave == null) return;
+        if(File.Exists(path) == false)
+        {
+            saveData = new T();
+            data = JsonUtility.ToJson(saveData);
+            if (data != null)
+                fileSave.Save(path, data);
+        }
 
         try
         {
-            string data = fileSave.Load(fileSave.GetPath(path));
+            data = fileSave.Load(path);
             if(data != null)
             {
                 saveData = JsonUtility.FromJson<T>(data);
                 saveData.SetUp();
             }
-            if (saveData == null)
-                saveData = new T();
         }
         catch
         {

@@ -2,6 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public class UnitState
+{
+    #region stat
+    public long hp;
+    public float atk;
+    public long def;
+    public float atkSpd;
+    public float moveSpd;
+    #endregion
+
+    #region state
+    public bool isDead;
+    public bool isStun;
+    public bool isSlow;
+    #endregion
+
+    public void Init()
+    {
+        isDead = false;
+        isStun = false;
+        isSlow = false;
+
+        SetStat();
+    }
+
+    public void SetStat()
+    {
+
+    }
+}
+
 public class UnitBehavior : BaseBehavior, IEventHandler
 {
     private Animator Animator;
@@ -25,6 +57,8 @@ public class UnitBehavior : BaseBehavior, IEventHandler
     #endregion
 
     private UnitManager manager;
+    private UnitState unitState;
+    public UnitState UnitState => unitState;
 
     #region AssetKey
     private const string SOUND_BEHAVIOR_ASSETKEY = "Assets/Data/GameResources/Prefab/Behavior/SoundBehavior.prefab";    
@@ -147,4 +181,9 @@ public class UnitBehavior : BaseBehavior, IEventHandler
         ProjectileManager.Instance.SpawnProjectile(projectileEvent, this, target);
     }
     #endregion
+
+    public void ApplyDamage(float dmgPercent)
+    {
+        float dmg = unitState.atk * dmgPercent;
+    }
 }

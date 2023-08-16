@@ -107,6 +107,7 @@ public class HitEvent : EventNodeData
 
     public float radius;
     public float speed;
+    public float dmgPercent;
 
     [SerializeField, ShowIf("@hitRange == eHitRange.Circle")]
     private HitEvenet.Circle circle;

@@ -11,7 +11,7 @@ using Sirenix.Utilities.Editor;
 [System.Serializable]
 public class SaveUnitData
 {
-    public List<UnitDataEditor_Data> dataList = new();
+    public List<UnitData> dataList = new();
 }
 
 public class UnitInfo
@@ -31,7 +31,7 @@ public class UnitDataEditor : OdinMenuEditorWindow
 {
     #region Data
     private string path;
-    private List<UnitDataEditor_Data> dataList = new();
+    private List<UnitData> dataList = new();
     private bool isReadData;
     #endregion
 
@@ -172,7 +172,7 @@ public class UnitDataEditor : OdinMenuEditorWindow
             {
                 foreach (var menuItem in treeMenuItem.ChildMenuItems)
                 {
-                    if (!(menuItem.Value is UnitDataEditor_Data unit)) continue;
+                    if (!(menuItem.Value is UnitData unit)) continue;
                     if (!dicTemp.TryGetValue(unit.Seed, out var count)) continue;
 
                     if(count > 1)
@@ -198,14 +198,14 @@ public class UnitDataEditor : OdinMenuEditorWindow
 
     private void CreateUnitAdd()
     {
-        UnitDataEditor_Data data = new UnitDataEditor_Data(dataList.Count, dataList.Count.ToString());
+        UnitData data = new UnitData(dataList.Count, dataList.Count.ToString());
         dataList.Add(data);
     }
 
     private void DeleteUnit()
     {
         if (MenuTree == null) return;
-        if (!(MenuTree.Selection.SelectedValue is UnitDataEditor_Data unit)) return;
+        if (!(MenuTree.Selection.SelectedValue is UnitData unit)) return;
 
         dataList.Remove(unit);
     }
@@ -242,7 +242,7 @@ public class UnitDataEditor : OdinMenuEditorWindow
         }
         else
         {
-            UnitDataEditor_Data data = new UnitDataEditor_Data(0,"0");
+            UnitData data = new UnitData(0,"0");
             dataList.Add(data);
             SaveToJson();
         }
@@ -250,7 +250,7 @@ public class UnitDataEditor : OdinMenuEditorWindow
     #endregion
 
     #region Encryption
-    private static readonly string privateKey = "thisismyprivatekey";
+    
     private static string Encrypt(string data)
     {
         byte[] bytes = System.Text.Encoding.UTF8.GetBytes(data);
@@ -271,7 +271,7 @@ public class UnitDataEditor : OdinMenuEditorWindow
 
     private static RijndaelManaged CreateRijndaelManaged()
     {
-        byte[] keyArray = System.Text.Encoding.UTF8.GetBytes(privateKey);
+        byte[] keyArray = System.Text.Encoding.UTF8.GetBytes(Define.privateKey);
         RijndaelManaged result = new();
 
         byte[] newKeysArray = new byte[16];

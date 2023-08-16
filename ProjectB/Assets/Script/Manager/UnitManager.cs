@@ -46,13 +46,13 @@ public class UnitManager : BaseManager
         return unitId;
     }
 
-    public void SpawnUnit(object modelKey, out UnitBehavior unit)
+    public void SpawnUnit(int seed, out UnitBehavior unit)
     {
         Manager.Instance.GetManager<UnitManager>().GameObjectPool.TryGet(UNITBEHAVIOR_ASSET_KEY, out var unitObject);
         unit = unitObject.GetComponent<UnitBehavior>();
         unit.transform.SetParent(transform);
 
-        unit.Init(modelKey, GetUnitId());
+        unit.Init(seed, GetUnitId());
         unitDic.Add(unitId, unit);
         UnitActive(unit, true);
         unitId += 1;

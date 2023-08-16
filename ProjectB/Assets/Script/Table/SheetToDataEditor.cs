@@ -60,8 +60,8 @@ public class SheetToDataEditor : OdinEditorWindow
                 case "Dummy":
                     CreateDataFile<Data.Dummy>(tableName, table, ConvertTableToDummy);
                     break;
-                case "String":
-                    CreateDataFile<Data.String>(tableName, table, ConvertTableToString);
+                case "StringText":
+                    CreateDataFile<Data.StringText>(tableName, table, ConvertTableToString);
                     break;
                 default:
                     break;
@@ -156,9 +156,9 @@ public class SheetToDataEditor : OdinEditorWindow
     }
     #endregion
     #region String
-    public Data.String[] ConvertTableToString(IEnumerable<IDictionary<string, object>> table)
+    public Data.StringText[] ConvertTableToString(IEnumerable<IDictionary<string, object>> table)
     {
-        List<Data.String> listData = new();
+        List<Data.StringText> listData = new();
 
         foreach (var row in table)
         {
@@ -188,7 +188,7 @@ public class SheetToDataEditor : OdinEditorWindow
                 }
             }
             if (seed == 0) continue;
-            listData.Add(new Data.String(seed, kor, eng));
+            listData.Add(new Data.StringText(seed, kor, eng));
         }
 
         return listData.OrderBy(r => r.Seed).ToArray();

@@ -13,19 +13,26 @@ public class Hit_Circle : Hit
     {
 
     }
-    protected override void GetTargetList()
+    protected List<UnitBehavior> GetTargetList()
     {
+        List<UnitBehavior> list = new();
+
         if(isWave)
         {
 
         }
         else
         {
-            RaycastHit2D[] hits = Physics2D.CircleCastAll(startPos, maxDistance, transform.forward);
-            for (int i = 0; i < hits.Length; i++)
+            Collider2D[] col = Physics2D.OverlapCircleAll(startPos, maxDistance, 12);
+            
+            for (int i = 0; i < col.Length; i++)
             {
-
+                UnitBehavior unit = col[i].GetComponentInParent<UnitBehavior>();
+                if (unit == null || unit.UnitState.isDead) continue;
+                list.Add(unit);
             }
         }
+
+        return list;
     }
 }

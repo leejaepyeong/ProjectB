@@ -16,13 +16,13 @@ namespace Data
     public class ArrayMeta
     {
         public Dummy[] Dummy { get; }
-        public String[] String { get; }
+        public StringText[] StringText { get; }
     }
     [MessagePackObject(true)]
     public class ListMeta
     {
         public List<Dummy> Dummy { get; }
-        public List<String> String { get; }
+        public List<StringText> StringText { get; }
     }
 
 
@@ -42,13 +42,13 @@ namespace Data
         public int Key => Seed;
     }
     [MessagePackObject(true)]
-    public class String : IDataKey<int>
+    public class StringText : IDataKey<int>
     {
         public int Seed;
         public string Kor;
         public string Eng;
 
-        public String(int seed, string kor, string eng)
+        public StringText(int seed, string kor, string eng)
         {
             Seed = seed;
             Kor = kor;
@@ -59,4 +59,25 @@ namespace Data
         public int Key => Seed;
     }
 
+    public class UnitData : IDataKey<int>
+    {
+        public int Seed;
+        public string Name;
+        public Define.eUnitType Type;
+
+        public int hp;
+        public int atk;
+        public float moveSpd;
+        public Texture2D icon;
+        public GameObject modelAssetRef;
+        public RuntimeAnimatorController animatorAssetRef;
+
+        public UnitData(int seed)
+        {
+            Seed = seed;
+        }
+
+        [IgnoreMember]
+        public int Key => Seed;
+    }
 }
