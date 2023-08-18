@@ -52,7 +52,8 @@ public class UnitManager : BaseManager
         unit = unitObject.GetComponent<UnitBehavior>();
         unit.transform.SetParent(transform);
 
-        unit.Init(seed, GetUnitId());
+        Data.DataManager.Instance.UnitData.TryGet(seed, out var unitData);
+        unit.Init(unitData, GetUnitId());
         unitDic.Add(unitId, unit);
         UnitActive(unit, true);
         unitId += 1;

@@ -16,6 +16,8 @@ public class FileData : MonoBehaviour
 
     private StringFileSave fileSave = new StringFileSave();
     protected List<ISaveDataControl> saveDataList = new();
+    private bool isLoadDone;
+    public bool IsLoadDone => isLoadDone;
 
     public void Init()
     {
@@ -53,5 +55,7 @@ public class FileData : MonoBehaviour
             if (saveDataList[i].IsFileSave() == false)
                 saveDataList[i].Init();
         }
+
+        isLoadDone = true;
     }
 }

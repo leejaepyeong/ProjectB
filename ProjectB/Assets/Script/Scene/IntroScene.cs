@@ -1,28 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class IntroScene : BaseScene
 {
+    #region Commnad
+    QueueCommand commands = new QueueCommand();
+    IntroCommand_LoadDataFile loadDataFile = new IntroCommand_LoadDataFile();
+    IntroCommand_LoadLocalData loadLocalData = new IntroCommand_LoadLocalData();
+    IntroCommand_CreateAccount createAccount = new IntroCommand_CreateAccount();
+    #endregion
     public override void Init()
     {
-        Manager.Instance.getFileData.InitSaveData();
-
-        base.Init();
+        commands.Add(loadDataFile);
+        commands.Add(loadLocalData);
+        commands.Add(createAccount);
     }
 
     public override void UpdateFrame(float deltaTime)
     {
-        return;
-
-        if (SaveData_Local.Instance.IsSaveData == false)
-        {
-            UIManager.Instance.OpenUI<UICreateAccount>();
-            return;
-        }
-
-
+        commands.UpdateFrame(deltaTime);
     }
 
+    private void LoadData()
+    {
 
+    }
 }

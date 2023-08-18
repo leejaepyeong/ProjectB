@@ -38,7 +38,6 @@ public class Manager : Singleton<Manager>
     #endregion
 
     private FileData fileData;
-    private Data.DataManager dataManager;
     public FileData getFileData
     {
         get
@@ -47,11 +46,21 @@ public class Manager : Singleton<Manager>
             {
                 fileData = CreateComponent<FileData>(transform);
                 fileData.Init();
-
+            }
+            return fileData;
+        }
+    }
+    private Data.DataManager dataManager;
+    public Data.DataManager getDataManager
+    {
+        get
+        {
+            if(dataManager == null)
+            {
                 dataManager = CreateComponent<Data.DataManager>(transform);
                 dataManager.ReadData();
             }
-            return fileData;
+            return dataManager;
         }
     }
 
@@ -117,5 +126,12 @@ public class Manager : Singleton<Manager>
 
 
         }
+    }
+
+    public string GetString(int seed)
+    {
+        if (!Data.DataManager.Instance.StringText.TryGet(seed, out var str)) return "";
+
+        return str.Kor;
     }
 }

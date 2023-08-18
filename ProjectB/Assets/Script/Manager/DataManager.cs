@@ -39,6 +39,11 @@ namespace Data
                 }
             }
         }
+
+        public void ReadEncrptData(K key, E data)
+        {
+            dicData.Add(key, data);
+        }
         public void ReadData(byte[] bytes)
         {
             E[] dataSet = MessagePack.MessagePackSerializer.Deserialize<E[]>(bytes);
@@ -71,10 +76,27 @@ namespace Data
 
     public class DataManager : MonoBehaviour
     {
+        public static DataManager Instance
+        {
+            get
+            {
+                if (Manager.Instance == null)
+                    return null;
+                return Manager.Instance.getDataManager;
+            }
+        }
         #region Datas
         public SingleData<int, Dummy> Dummy { get; private set; }
         public SingleData<int, StringText> StringText { get; private set; }
+        public SingleData<int, UnitData> UnitData { get; private set; }
         #endregion
+
+        private bool isEncryptFileDone;
+        private bool isReadDataDone;
+        public bool IsReadDone => isEncryptFileDone && isReadDataDone;
+
+        private bool isDownLoadLeft;
+        public bool IsDownLoadLeft => isDownLoadLeft;
 
         public void ReadData()
         {
@@ -82,7 +104,7 @@ namespace Data
                 StartCoroutine(LoadAllJsonCo());
             else
                 StartCoroutine(LoadAllMessagePackCo());
-            LoadEncrypFile();
+            StartCoroutine(LoadAllEncrypFileCo());
         }
         #region Read Json
         private IEnumerator LoadAllJsonCo()
@@ -110,6 +132,8 @@ namespace Data
                 LoadJsonText(fileName, jsonText);
                 yield return new WaitForEndOfFrame();
             }
+
+            isReadDataDone = true;
         }
 
         private void LoadJsonText(string fileName, string jsonText)
@@ -123,6 +147,17 @@ namespace Data
                 case "StringText":
                     StringText = new();
                     StringText.ReadData(jsonText);
+                    break;
+                case "UnitDataEditor":
+                    UnitData = new();
+
+                    var saveData = JsonUtility.FromJson<Editor.SaveUnitData>(jsonText);
+
+                    for (int i = 0; i < saveData.dataList.Count; i++)
+                    {
+                        UnitData data = new UnitData(saveData.dataList[i]);
+                        UnitData.ReadEncrptData(saveData.dataList[i].Seed, data);
+                    }
                     break;
                 default:
                     break;
@@ -157,7 +192,7 @@ namespace Data
                 yield return new WaitForEndOfFrame();
             }
 
-            yield return new WaitForEndOfFrame();
+            isReadDataDone = true;
         }
 
         private void LoadMessagePackText(string fileName, byte[] bytes)
@@ -178,10 +213,6 @@ namespace Data
         }
         #endregion
         #region Read Encryp File
-        private void LoadEncrypFile()
-        {
-            StartCoroutine(LoadAllEncrypFileCo());
-        }
 
         private IEnumerator LoadAllEncrypFileCo()
         {
@@ -208,6 +239,8 @@ namespace Data
                 LoadJsonText(fileName, jsonText);
                 yield return new WaitForEndOfFrame();
             }
+
+            isEncryptFileDone = true;
         }
 
         private static string Decrypt(string data)
@@ -231,6 +264,25 @@ namespace Data
             result.Mode = CipherMode.ECB;
             result.Padding = PaddingMode.PKCS7;
             return result;
+        }
+        #endregion
+        #region Read All Data
+        public void LoadAllData()
+        {
+            Addressables.GetDownloadSizeAsync("Remote").Completed += (opSize) =>
+            {
+                if (opSize.Status == UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded && opSize.Result > 0)
+                {
+                    Addressables.DownloadDependenciesAsync("Remote", true).Completed += (opDownload) =>
+                    {
+                        if (opDownload.Status != UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded) return;
+                        isDownLoadLeft = true;
+                    };
+                }
+                else
+                    isDownLoadLeft = true;
+
+            };
         }
         #endregion
     }

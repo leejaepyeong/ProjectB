@@ -9,18 +9,50 @@ public class Parameter
 
 public class UIManager : BaseManager
 {
-    public Canvas canvas;
+    private const string UICANVAS_PATH = "Assets/Data/GameResources/Prefab/Widget/UICanvas.prefab";
+    private UICanvas uiCanvas;
+    public UICanvas UiCanvas
+    {
+        get
+        {
+            if(uiCanvas == null)
+            {
+                if (GameObjectPool.TryGet(UICANVAS_PATH, out var obj))
+                    uiCanvas = obj.GetComponent<UICanvas>();
+            }
+            return uiCanvas;
+        }
+    }
+
+    public Canvas canvas
+    {
+        get
+        {
+            return UiCanvas.canvas;
+        }
+    }
+    public Camera uiCamera
+    {
+        get
+        {
+            return UiCanvas.uiCamera;
+        }
+    }
 
     private List<UIBase> uiBases;
 
     public static UIManager Instance
     {
-        get { return Manager.Instance.GetManager<UIManager>(); }
+        get 
+        { 
+            return Manager.Instance.GetManager<UIManager>(); 
+        }
     }
 
     public override void Init()
     {
         uiBases = new();
+        base.Init();
     }
 
     public void DeInit()
@@ -71,7 +103,6 @@ public class UIManager : BaseManager
         uiBase.RectTransform.localScale = Vector3.one;
 
         uiBase.SetParam(param);
-        uiBase.uiManager = this;
         uiBase.Init();
         uiBase.Open();
 
@@ -137,6 +168,6 @@ public class UIManager : BaseManager
     private string GetUIPath<T>()
     {
         System.Type _key = typeof(T);
-        return string.Format("Assets/GameResources/Prefab/UI/" + _key.Name + ".prefab");
+        return string.Format("Assets/GameResources/Prefab/Widget/" + _key.Name + ".prefab");
     }
 }

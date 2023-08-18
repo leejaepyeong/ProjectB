@@ -64,7 +64,7 @@ public class UnitBehavior : BaseBehavior, IEventHandler
     private const string SOUND_BEHAVIOR_ASSETKEY = "Assets/Data/GameResources/Prefab/Behavior/SoundBehavior.prefab";    
     #endregion
 
-    public void Init(object key, int id)
+    public void Init(Data.UnitData data, int id)
     {
         manager = UnitManager.Instance;
         this.id = id;
@@ -74,7 +74,7 @@ public class UnitBehavior : BaseBehavior, IEventHandler
         eventDispatcher = Utilities.StaticeObjectPool.Pop<EventDispatcher>();
         eventDispatcher.Init();
 
-        Model = manager.GameObjectPool.Get(key);
+        Model = manager.GameObjectPool.Get(data.modelAssetRef);
         Model.transform.SetParent(scaleTransform.transform);
         animatorContorller = manager.ResourcePool.Load<AnimatorOverrideController>("Assets/GameResources/Animation/TestPlayer.overrideController");
         Animator = Model.GetComponent<Animator>();

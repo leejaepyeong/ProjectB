@@ -69,12 +69,21 @@ namespace Data
         public int atk;
         public float moveSpd;
         public Texture2D icon;
-        public GameObject modelAssetRef;
-        public RuntimeAnimatorController animatorAssetRef;
+        public string modelAssetRef;
+        public string animatorAssetRef;
 
-        public UnitData(int seed)
+        public UnitData(Editor.UnitData data)
         {
-            Seed = seed;
+            Seed = data.Seed;
+            Name = data.Name;
+            Type = data.Type;
+
+            hp = data.info.hp;
+            atk = data.info.atk;
+            moveSpd = data.info.moveSpd;
+            icon = data.info.icon;
+            modelAssetRef = data.info.modelAssetPath;
+            animatorAssetRef = data.info.animatorAssetPath;
         }
 
         [IgnoreMember]

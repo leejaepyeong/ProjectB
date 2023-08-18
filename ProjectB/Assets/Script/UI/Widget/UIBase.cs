@@ -7,7 +7,7 @@ using TMPro;
 public class UIBase : MonoBase
 {
     public RectTransform RectTransform => transform as RectTransform;
-    public UIManager uiManager;
+    protected UIManager uiManager => UIManager.Instance;
 
     protected bool escapable;
     protected bool backable;
@@ -19,7 +19,6 @@ public class UIBase : MonoBase
 
     public override void Init()
     {
-        uiManager = Manager.Instance.GetManager<UIManager>();
     }
 
     public virtual void DeInit()

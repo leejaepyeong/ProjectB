@@ -7,6 +7,13 @@ using TMPro;
 
 public class UICreateAccount : UIBase
 {
+    public enum eNickDeny
+    {
+        none,
+        empty,
+        maxLength,
+    }
+
     [SerializeField, FoldoutGroup("Center")] private TextMeshProUGUI textTitle;
     [SerializeField, FoldoutGroup("Center")] private TextMeshProUGUI textDest;
     [SerializeField, FoldoutGroup("Center")] private TMP_InputField textInputNick;
@@ -15,7 +22,7 @@ public class UICreateAccount : UIBase
 
     private string title;
     private string dest;
-    private int maxLength = 12;
+    private eNickDeny nickState;
 
     public class UIParameter : Parameter
     {
@@ -62,20 +69,24 @@ public class UICreateAccount : UIBase
     private void OnClickConfirm()
     {
         UIMessageBox.UIParameter parameter = new UIMessageBox.UIParameter();
+        CheckNickName(textInputNick.text);
 
-        if (CheckNickName(textInputNick.text) == false)
+        switch (nickState)
         {
-            parameter.title = "";
-            parameter.dest = "";
-
-            uiManager.OpenUI<UIMessageBox>();
+            case eNickDeny.none:
+                parameter.title = Manager.Instance.GetString(1000);
+                parameter.dest = string.Format(Manager.Instance.GetString(1001), textInputNick);
+                break;
+            case eNickDeny.empty:
+                parameter.title = Manager.Instance.GetString(1000);
+                parameter.dest = Manager.Instance.GetString(1002);
+                break;
+            case eNickDeny.maxLength:
+                parameter.title = Manager.Instance.GetString(1000);
+                parameter.dest = Manager.Instance.GetString(1003);
+                break;
         }
-        else
-        {
-            parameter.title = "";
-            parameter.dest = "";
-            uiManager.OpenUI<UIMessageBox>(parameter);
-        }
+        uiManager.OpenUI<UIMessageBox>(parameter);
     }
 
     private void OnClickCancle()
@@ -84,11 +95,12 @@ public class UICreateAccount : UIBase
     }
     #endregion
 
-    private bool CheckNickName(string name)
+    private void CheckNickName(string name)
     {
-        if (string.IsNullOrEmpty(name)) return false;
-        if (name.Length > maxLength) return false;
+        if (string.IsNullOrEmpty(name)) { nickState = eNickDeny.empty; return; };
+        if (name.Length > Define.MaxNickName) {nickState = eNickDeny.maxLength ; return; };
 
-        return true;
+        nickState = eNickDeny.none;
+        return;
     }
 }
