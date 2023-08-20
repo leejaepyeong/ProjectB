@@ -5,9 +5,11 @@ using UnityEngine;
 
 public class UnitState
 {
+    private Data.UnitData data;
     #region stat
+    public long curHp;
     public long hp;
-    public float atk;
+    public long atk;
     public long def;
     public float atkSpd;
     public float moveSpd;
@@ -17,20 +19,28 @@ public class UnitState
     public bool isDead;
     public bool isStun;
     public bool isSlow;
+    public bool isMove;
     #endregion
 
-    public void Init()
+    public void Init(Data.UnitData data)
     {
+        this.data = data;
         isDead = false;
         isStun = false;
         isSlow = false;
+        isMove = data.moveSpd > 0;
 
         SetStat();
     }
 
     public void SetStat()
     {
-
+        hp = data.hp;
+        curHp = hp;
+        atk = data.atk;
+        def = data.def;
+        atkSpd = data.atkSpd;
+        moveSpd = data.moveSpd;
     }
 }
 
@@ -182,8 +192,25 @@ public class UnitBehavior : BaseBehavior, IEventHandler
     }
     #endregion
 
-    public void ApplyDamage(float dmgPercent)
+    public void ApplyDamage(float dmgPercent, Define.eDamageType dmgType = Define.eDamageType.Normal)
     {
-        float dmg = unitState.atk * dmgPercent;
+        switch (dmgType)
+        {
+            case Define.eDamageType.Normal:
+            default:
+                unitState.curHp -= (long)(unitState.atk * dmgPercent);
+                break;
+            case Define.eDamageType.PerHp:
+                unitState.curHp -= (long)(unitState.curHp * dmgPercent);
+                break;
+            case Define.eDamageType.PerMaxHp:
+                unitState.curHp -= (long)(unitState.hp * dmgPercent);
+                break;
+        }
+
+        if(unitState.curHp <= 0)
+        {
+            unitState.isDead = true;
+        }
     }
 }

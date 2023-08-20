@@ -15,8 +15,9 @@ public abstract class Hit
 
     protected HitBehavior hitBehavior;
     protected GameObject Model;
+    protected Dictionary<int, UnitBehavior> hittedDic = new Dictionary<int, UnitBehavior>();
 
-    protected Transform transform => hitBehavior.transform;
+    public Transform transform => hitBehavior.transform;
     protected UnitBehavior caster;
     protected UnitBehavior target;
     protected Vector3 startPos;
@@ -24,6 +25,8 @@ public abstract class Hit
     protected Vector3 startPosOffset;
     protected Vector3 startRotOffset;
     protected float maxDistance;
+    protected float curDistance;
+    protected float preDistance;
     protected float waveSpeed;
 
     protected List<UnitBehavior> targetList = new();
@@ -34,13 +37,17 @@ public abstract class Hit
         this.hitEvent = hitEvent;
         this.caster = caster;
         this.target = target;
+        hitData = hitEvent.GetHitData();
         startPos = target == null ? caster.GetPos() : target.GetPos();
         startRot = target == null ? caster.GetRot() : target.GetRot();
         startPosOffset = hitEvent.startPos;
         startRotOffset = hitEvent.startRot;
         maxDistance = hitEvent.radius;
+        curDistance = 0;
+        preDistance = 0;
         waveSpeed = hitEvent.speed;
 
+        hittedDic.Clear();
         targetList.Clear();
         isWave = hitEvent.hitType == HitEvenet.eHitType.Wave;
     }
@@ -63,7 +70,14 @@ public abstract class Hit
 
     protected virtual void ActiveWave()
     {
-
+        if (curDistance >= maxDistance)
+        {
+            isDone = true;
+            return;
+        }
+        preDistance = curDistance;
+        curDistance += deltaTime * waveSpeed;
+        ApplyDamage();
     }
 
     protected virtual void ApplyDamage()
@@ -71,7 +85,8 @@ public abstract class Hit
         var list = GetTargetList();
         for (int i = 0; i < list.Count; i++)
         {
-            list[i].ApplyDamage(hitEvent.dmgPercent);
+            list[i].ApplyDamage(hitEvent.dmgPercent, hitEvent.dmgType);
+            hittedDic.Add(list[i].ID, list[i]);
         }
     }
 

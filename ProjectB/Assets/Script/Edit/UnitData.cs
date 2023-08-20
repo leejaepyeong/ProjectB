@@ -26,8 +26,10 @@ namespace Editor
         [Serializable]
         public class Info
         {
-            [FoldoutGroup("Stat")] public int hp;
-            [FoldoutGroup("Stat")] public int atk;
+            [FoldoutGroup("Stat")] public long hp;
+            [FoldoutGroup("Stat")] public long atk;
+            [FoldoutGroup("Stat")] public long def;
+            [FoldoutGroup("Stat")] public float atkSpd;
             [FoldoutGroup("Stat")] public float moveSpd;
             [VerticalGroup("Info")] public Texture2D icon;
             [VerticalGroup("Info")] public GameObject modelAssetRef;

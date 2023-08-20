@@ -48,10 +48,12 @@ namespace HitEvenet
     [Serializable]
     public class Rect : IHitData
     {
+        [SerializeField] private Vector2 range;
         [SerializeField] private AnimationCurve curveSpeed;
         [SerializeField] private AssetReferenceGameObject projectileEffect;
         [SerializeField] private ParticleEvent hitEvent;
 
+        public Vector2 Range => range;
         public AnimationCurve CurveSpeed => curveSpeed;
         public object projectileEffectKey => projectileEffect.RuntimeKey;
         public ParticleEvent HitEvent => hitEvent;

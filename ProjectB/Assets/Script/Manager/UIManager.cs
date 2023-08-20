@@ -19,6 +19,7 @@ public class UIManager : BaseManager
             {
                 if (GameObjectPool.TryGet(UICANVAS_PATH, out var obj))
                     uiCanvas = obj.GetComponent<UICanvas>();
+                uiCanvas.transform.SetParent(transform);
             }
             return uiCanvas;
         }
@@ -168,6 +169,6 @@ public class UIManager : BaseManager
     private string GetUIPath<T>()
     {
         System.Type _key = typeof(T);
-        return string.Format("Assets/GameResources/Prefab/Widget/" + _key.Name + ".prefab");
+        return string.Format("Assets/Data/GameResources/Prefab/Widget/" + _key.Name + ".prefab");
     }
 }

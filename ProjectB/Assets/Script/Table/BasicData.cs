@@ -65,8 +65,10 @@ namespace Data
         public string Name;
         public Define.eUnitType Type;
 
-        public int hp;
-        public int atk;
+        public long hp;
+        public long atk;
+        public long def;
+        public float atkSpd;
         public float moveSpd;
         public Texture2D icon;
         public string modelAssetRef;
@@ -80,6 +82,8 @@ namespace Data
 
             hp = data.info.hp;
             atk = data.info.atk;
+            def = data.info.def;
+            atkSpd = data.info.atkSpd;
             moveSpd = data.info.moveSpd;
             icon = data.info.icon;
             modelAssetRef = data.info.modelAssetPath;

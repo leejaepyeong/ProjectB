@@ -4,33 +4,20 @@ using UnityEngine;
 
 public class Hit_Circle : Hit
 {
-    public override void Init(HitBehavior hitBehavior, HitEvent hitEvent, UnitBehavior caster, UnitBehavior target)
-    {
-        base.Init(hitBehavior, hitEvent, caster, target);
-    }
-
-    protected override void ActiveWave()
-    {
-
-    }
-    protected List<UnitBehavior> GetTargetList()
+    protected override List<UnitBehavior> GetTargetList()
     {
         List<UnitBehavior> list = new();
-
-        if(isWave)
-        {
-
-        }
+        Collider2D[] col = null;
+        if (isWave)
+            col = Physics2D.OverlapCircleAll(startPos, curDistance, 12);
         else
+            col = Physics2D.OverlapCircleAll(startPos, maxDistance, 12);
+
+        for (int i = 0; i < col.Length; i++)
         {
-            Collider2D[] col = Physics2D.OverlapCircleAll(startPos, maxDistance, 12);
-            
-            for (int i = 0; i < col.Length; i++)
-            {
-                UnitBehavior unit = col[i].GetComponentInParent<UnitBehavior>();
-                if (unit == null || unit.UnitState.isDead) continue;
-                list.Add(unit);
-            }
+            UnitBehavior unit = col[i].GetComponentInParent<UnitBehavior>();
+            if (unit == null || unit.UnitState.isDead || hittedDic.ContainsKey(unit.ID)) continue;
+            list.Add(unit);
         }
 
         return list;
