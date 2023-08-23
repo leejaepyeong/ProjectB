@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 2361092477270909524}
   - component: {fileID: 3783968134151840258}
   - component: {fileID: 4542628075335773021}
+  - component: {fileID: 161737712815017972}
   m_Layer: 5
   m_Name: Text_Dest
   m_TagString: Untagged
@@ -257,6 +258,20 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &161737712815017972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1824829448139976714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c721f57826980704d9f1534c558e2260, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tmp: {fileID: 4542628075335773021}
+  seed: 1004
 --- !u!1 &2677337568343354242
 GameObject:
   m_ObjectHideFlags: 0
@@ -803,8 +818,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d8283f63f1e4fc4c85cb5fcc4ffab7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textTitle: {fileID: 9116618052174320442}
-  textDest: {fileID: 4542628075335773021}
   textInputNick: {fileID: 4445002992073943520}
   buttonOk: {fileID: 2979264988141770386}
   buttonCancle: {fileID: 5607123091203176706}
@@ -1423,6 +1436,7 @@ GameObject:
   - component: {fileID: 7801682117935617606}
   - component: {fileID: 7525484250841086740}
   - component: {fileID: 9116618052174320442}
+  - component: {fileID: 1348808877192923987}
   m_Layer: 5
   m_Name: Text_Title
   m_TagString: Untagged
@@ -1547,3 +1561,17 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1348808877192923987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8978736605654578852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c721f57826980704d9f1534c558e2260, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tmp: {fileID: 9116618052174320442}
+  seed: 1000

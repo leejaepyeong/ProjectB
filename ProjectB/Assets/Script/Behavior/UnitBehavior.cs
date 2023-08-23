@@ -13,6 +13,7 @@ public class UnitState
     public long def;
     public float atkSpd;
     public float moveSpd;
+    public float atkRange;
     #endregion
 
     #region state
@@ -41,6 +42,7 @@ public class UnitState
         def = data.def;
         atkSpd = data.atkSpd;
         moveSpd = data.moveSpd;
+        atkRange = data.atkRange;
     }
 }
 
@@ -67,7 +69,10 @@ public class UnitBehavior : BaseBehavior, IEventHandler
     #endregion
 
     private UnitManager manager;
+    private Data.UnitData unitData;
+    public Data.UnitData UnitData => unitData;
     private UnitState unitState;
+    private Unit_Base unitBase;
     public UnitState UnitState => unitState;
 
     #region AssetKey
@@ -77,6 +82,7 @@ public class UnitBehavior : BaseBehavior, IEventHandler
     public void Init(Data.UnitData data, int id)
     {
         manager = UnitManager.Instance;
+        unitData = data;
         this.id = id;
         ElapsedTime = 0;
 
@@ -95,6 +101,9 @@ public class UnitBehavior : BaseBehavior, IEventHandler
         {
             dicBoneTrf.Add(boneList[i].name, boneList[i]);
         }
+
+        unitState.Init(data);
+        unitBase.Init(this);
 
         isInit = true;
     }
@@ -139,25 +148,18 @@ public class UnitBehavior : BaseBehavior, IEventHandler
         ElapsedTime += DeltaTime;
 
         eventDispatcher.UpdateFrame(DeltaTime, this);
+        unitBase.UpdateFrame(DeltaTime);
         Animator.speed = TimeScale;
-
-        TestAction();
-    }
-
-    private void TestAction()
-    {
-        if (Input.GetKeyDown(KeyCode.A))
-            Action();
-    }
-
-    public void Action()
-    {
-        eventDispatcher.Clear();
-        eventDispatcher.Add(manager.ResourcePool.Load<EventGraph>("Assets/GameResources/Animation/Action.asset"));
-        Animator.CrossFadeInFixedTime("Action", 0.1f);
     }
 
     #region NodeEvent
+    public void Action(string aniName, string eventGraphPath)
+    {
+        eventDispatcher.Clear();
+        eventDispatcher.Add(manager.ResourcePool.Load<EventGraph>(eventGraphPath));
+        Animator.CrossFadeInFixedTime(aniName, 0.05f);
+    }
+
     private void OnHandleSoundEvent(SoundEvent soundEvent)
     {
         if (!manager.GameObjectPool.TryGet(SOUND_BEHAVIOR_ASSETKEY, out var sound)) return;

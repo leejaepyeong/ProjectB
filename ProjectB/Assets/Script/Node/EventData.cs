@@ -17,7 +17,6 @@ public class ParticleEvent : EventNodeData
 {
     public AssetReferenceGameObject paricleObject;
     public string referenceBone;
-    public bool boneBinding;
     public Vector3 localPosition;
     public Vector3 localEular;
     public Vector3 localScale;

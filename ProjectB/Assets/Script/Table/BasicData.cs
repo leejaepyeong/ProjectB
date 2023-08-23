@@ -70,6 +70,7 @@ namespace Data
         public long def;
         public float atkSpd;
         public float moveSpd;
+        public float atkRange;
         public Texture2D icon;
         public string modelAssetRef;
         public string animatorAssetRef;
@@ -85,6 +86,7 @@ namespace Data
             def = data.info.def;
             atkSpd = data.info.atkSpd;
             moveSpd = data.info.moveSpd;
+            atkRange = data.info.atkRange;
             icon = data.info.icon;
             modelAssetRef = data.info.modelAssetPath;
             animatorAssetRef = data.info.animatorAssetPath;

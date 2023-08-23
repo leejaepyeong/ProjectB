@@ -35,8 +35,6 @@ public class EffectManager : BaseManager
         effectBehavior.transform.localScale = particleEvent.localScale;
         effectBehavior.Init(particleEvent);
 
-        if (!particleEvent.boneBinding) effectBehavior.transform.SetParent(null);
-
         effectList.Add(effectBehavior);
     }
     public void SpawnEffect(ParticleEvent particleEvent, Vector3 hitPos)

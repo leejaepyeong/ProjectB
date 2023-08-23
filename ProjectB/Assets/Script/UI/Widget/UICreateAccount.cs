@@ -14,20 +14,14 @@ public class UICreateAccount : UIBase
         maxLength,
     }
 
-    [SerializeField, FoldoutGroup("Center")] private TextMeshProUGUI textTitle;
-    [SerializeField, FoldoutGroup("Center")] private TextMeshProUGUI textDest;
     [SerializeField, FoldoutGroup("Center")] private TMP_InputField textInputNick;
     [SerializeField, FoldoutGroup("Center")] private Button buttonOk;
     [SerializeField, FoldoutGroup("Center")] private Button buttonCancle;
 
-    private string title;
-    private string dest;
     private eNickDeny nickState;
 
     public class UIParameter : Parameter
     {
-        public string title;
-        public string dest;
         public string ok;
         public string cancle;
         public bool escapable = true;
@@ -38,8 +32,6 @@ public class UICreateAccount : UIBase
     {
         if (param is UIParameter parameter)
         {
-            title = parameter.title;
-            dest = parameter.dest;
             escapable = parameter.escapable;
             backable = parameter.backable;
         }
@@ -60,9 +52,6 @@ public class UICreateAccount : UIBase
     public override void Open()
     {
         base.Open();
-
-        SetText(textTitle, title);
-        SetText(textDest, dest);
     }
 
     #region Button Click

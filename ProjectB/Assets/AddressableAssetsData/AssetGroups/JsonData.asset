@@ -38,6 +38,11 @@ MonoBehaviour:
     - Encryp
     - Remote
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bec6a5ab43e709d4d971197df77ab201
+    m_Address: Assets/Data/GameResources/Prefab/Effect/Projectile/Projectile.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 0b85ada165676584a86a5d299cec6c75, type: 2}
   m_SchemaSet:

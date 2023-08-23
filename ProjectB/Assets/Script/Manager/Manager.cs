@@ -78,6 +78,7 @@ public class Manager : Singleton<Manager>
     private void Init()
     {
         managerDic.Clear();
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Update()

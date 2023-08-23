@@ -31,12 +31,17 @@ namespace Editor
             [FoldoutGroup("Stat")] public long def;
             [FoldoutGroup("Stat")] public float atkSpd;
             [FoldoutGroup("Stat")] public float moveSpd;
+            [FoldoutGroup("Stat")] public float atkRange;
             [VerticalGroup("Info")] public Texture2D icon;
             [VerticalGroup("Info")] public GameObject modelAssetRef;
             [VerticalGroup("Info"), ReadOnly] public string modelAssetPath => AssetDatabase.GetAssetPath(modelAssetRef);
             [VerticalGroup("Info")] public RuntimeAnimatorController animatorAssetRef;
             [VerticalGroup("Info"), ReadOnly] public string animatorAssetPath => AssetDatabase.GetAssetPath(animatorAssetRef);
             public AssetReference test;
+            [VerticalGroup("Info")] public EventGraph atkEventNode;
+            [VerticalGroup("Info"), ReadOnly] public string atkEventNodePath => AssetDatabase.GetAssetPath(atkEventNode);
+            [VerticalGroup("Info")] public EventGraph skillEventNode;
+            [VerticalGroup("Info"), ReadOnly] public string skillEventNodePath => AssetDatabase.GetAssetPath(skillEventNode);
         }
     }
 
