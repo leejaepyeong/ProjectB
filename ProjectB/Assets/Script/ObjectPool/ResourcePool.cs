@@ -14,10 +14,12 @@ public class ResourcePool
     }
 
     private Dictionary<object, AssetReferenceCount> dicAssetReferenceCount;
+    private Dictionary<int, object> dicAssetKey;
 
     public ResourcePool()
     {
         dicAssetReferenceCount = new();
+        dicAssetKey = new();
     }
 
     ~ResourcePool() 
@@ -26,6 +28,9 @@ public class ResourcePool
             UnLoadAll();
 
         dicAssetReferenceCount = null;
+
+        dicAssetKey.Clear();
+        dicAssetKey = null;
     }
 
     #region Load
@@ -43,6 +48,13 @@ public class ResourcePool
         dicAssetReferenceCount[key] = referenceCount;
     }
 
+    private void InternalCacheKey(Object asset, object key)
+    {
+        var instanceId = asset.GetInstanceID();
+        dicAssetKey.TryAdd(instanceId, key);
+    }
+
+
     public E Load<E>(object key) where E : Object
     {
         if(key == null)
@@ -58,12 +70,36 @@ public class ResourcePool
             if (!handle.IsValid()) return null;
 
             InternalCacheOperation(key, handle);
+            InternalCacheKey(handle.Result, key);
             return handle.Result;
         }
         catch(Exception e)
         {
             Debug.LogError(e);
             return null;
+        }
+    }
+
+    public bool TryLoad<E>(object key, out EventGraph graph) where E : Object
+    {
+        graph = null;
+        if (key == null) return false;
+
+        try
+        {
+            var handle = Addressables.LoadAssetAsync<E>(key);
+            handle.WaitForCompletion();
+            if (!handle.IsValid()) return false;
+
+            InternalCacheOperation(key, handle);
+            InternalCacheKey(handle.Result,key);
+
+            return handle.Result;
+        }
+        catch(Exception e)
+        {
+            Debug.LogError(e);
+            return false;
         }
     }
     #endregion
@@ -87,6 +123,11 @@ public class ResourcePool
 
         return referenceCount.Count;
     }
+    private void InternalUnCacheKey(Object asset)
+    {
+        var instanceId = asset.GetInstanceID();
+        dicAssetKey.Remove(instanceId);
+    }
 
     public int UnLoad(object key)
     {
@@ -103,8 +144,9 @@ public class ResourcePool
 
         int count = referenceCount.Count;
         var handle = referenceCount.Handle;
-        Addressables.Release(handle);
 
+        InternalUnCacheKey(handle.Result as Object);
+        Addressables.Release(handle);
         return InternalDecacheOperation(key, handle);
     }
 
@@ -128,6 +170,7 @@ public class ResourcePool
             }
 
             dicAssetReferenceCount.Clear();
+            dicAssetKey.Clear();
         }
     }
 

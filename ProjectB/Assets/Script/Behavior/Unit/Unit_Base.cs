@@ -34,11 +34,11 @@ public class Unit_Base : MonoBehaviour
 
     public virtual void Attack()
     {
-        unitBehavior.Action("","");
+        unitBehavior.Action(unitData.atkEventNodePath);
     }
 
     public virtual void Skill()
     {
-
+        unitBehavior.Action(unitData.skillEventNodePath);
     }
 }

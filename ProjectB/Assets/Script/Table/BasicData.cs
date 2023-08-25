@@ -74,6 +74,8 @@ namespace Data
         public Texture2D icon;
         public string modelAssetRef;
         public string animatorAssetRef;
+        public string atkEventNodePath;
+        public string skillEventNodePath;
 
         public UnitData(Editor.UnitData data)
         {
@@ -90,6 +92,8 @@ namespace Data
             icon = data.info.icon;
             modelAssetRef = data.info.modelAssetPath;
             animatorAssetRef = data.info.animatorAssetPath;
+            atkEventNodePath = data.info.atkEventNodePath;
+            skillEventNodePath = data.info.skillEventNodePath;
         }
 
         [IgnoreMember]
