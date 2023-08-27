@@ -4,18 +4,14 @@ using UnityEngine;
 
 public class Unit_Monster : Unit_Base
 {
+    private float totalMoveDistance;
     public override void Move()
     {
-        base.Move();
-    }
+        var direction = Vector3.Normalize(UnitManager.Instance.Player.GetPos() - unitBehavior.GetPos());
+        float moveDistance = unitData.moveSpd * deltaTime;
 
-    public override void Attack()
-    {
-        base.Attack();
-    }
+        unitBehavior.transform.position += direction * moveDistance;
 
-    public override void Skill()
-    {
-        base.Skill();
+        totalMoveDistance += moveDistance;
     }
 }

@@ -36,7 +36,6 @@ MonoBehaviour:
         m_SubObjectType: 
         m_EditorAssetChanged: 0
       referenceBone: 
-      boneBinding: 0
       localPosition: {x: 0, y: 0, z: 0}
       localEular: {x: 0, y: 0, z: 0}
       localScale: {x: 0, y: 0, z: 0}

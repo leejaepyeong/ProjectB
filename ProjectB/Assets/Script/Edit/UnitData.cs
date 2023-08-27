@@ -14,7 +14,7 @@ namespace Editor
     {
         public int Seed;
         public string Name;
-        public Define.eUnitType Type;
+        public eUnitType Type;
         public Info info = new();
 
         public UnitData(int seed, string name)
@@ -34,15 +34,29 @@ namespace Editor
             [FoldoutGroup("Stat")] public float atkRange;
             [VerticalGroup("Info")] public Texture2D icon;
             [VerticalGroup("Info")] public GameObject modelAssetRef;
-            [VerticalGroup("Info"), ReadOnly] public string modelAssetPath => AssetDatabase.GetAssetPath(modelAssetRef);
             [VerticalGroup("Info")] public RuntimeAnimatorController animatorAssetRef;
-            [VerticalGroup("Info"), ReadOnly] public string animatorAssetPath => AssetDatabase.GetAssetPath(animatorAssetRef);
             public AssetReference test;
-            [VerticalGroup("Info")] public EventGraph atkEventNode;
-            [VerticalGroup("Info"), ReadOnly] public string atkEventNodePath => AssetDatabase.GetAssetPath(atkEventNode);
-            [VerticalGroup("Info")] public EventGraph skillEventNode;
-            [VerticalGroup("Info"), ReadOnly] public string skillEventNodePath => AssetDatabase.GetAssetPath(skillEventNode);
+            [VerticalGroup("Info")] public SkillInfo atkInfo;
+            [VerticalGroup("Info")] public SkillInfo[] skillInfoGroup;
+        }
+    
+        [Serializable]
+        public class SkillInfo
+        {
+            [FoldoutGroup("Activate")] public eSkillActivate activateType;
+            [FoldoutGroup("Activate")] public float activateValue;
+            [FoldoutGroup("Duration")] public eSkillDuration durationType;
+            [FoldoutGroup("Duration")] public float durationValue;
+            [FoldoutGroup("Target")] public eSkillTarget targetType;
+            [FoldoutGroup("Target")] public float targetValue;
+            [FoldoutGroup("Type")] public eSkillType skillType;
+            [FoldoutGroup("Type")] public float typeValue;
+            public float maxCoolTime;
+
+            public EventNode skillNode;
         }
     }
+
+
 
 }

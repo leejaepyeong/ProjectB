@@ -6,6 +6,8 @@ public class UnitManager : BaseManager
 {
     private int unitId;
     private Dictionary<int, UnitBehavior> unitDic;
+    private UnitBehavior player;
+    public UnitBehavior Player => player;
     private List<UnitBehavior> unitActiveList;
     public List<UnitBehavior> UnitActiveList => unitActiveList;
 
@@ -64,9 +66,18 @@ public class UnitManager : BaseManager
         if (unitActiveList.Contains(unit))
             UnitActive(unit,false);
 
+        StartCoroutine(RemoveUnitCo(unit));
+    }
+
+    IEnumerator RemoveUnitCo(UnitBehavior unit)
+    {
+        yield return new WaitForEndOfFrame();
+
         unitDic.Remove(unit.ID);
         unit.Close();
         GameObjectPool.Return(unit.gameObject);
+
+        yield return new WaitForEndOfFrame();
     }
 
     public void UnitActive(UnitBehavior unit, bool isActive)

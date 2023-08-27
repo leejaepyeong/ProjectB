@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using MessagePack;
 using UnityEngine;
+using UnityEditor;
 
 namespace Data
 {
@@ -63,7 +64,7 @@ namespace Data
     {
         public int Seed;
         public string Name;
-        public Define.eUnitType Type;
+        public eUnitType Type;
 
         public long hp;
         public long atk;
@@ -74,8 +75,8 @@ namespace Data
         public Texture2D icon;
         public string modelAssetRef;
         public string animatorAssetRef;
-        public string atkEventNodePath;
-        public string skillEventNodePath;
+        public SkillInfo atkInfo;
+        public List<SkillInfo> skillInfoGroup;
 
         public UnitData(Editor.UnitData data)
         {
@@ -90,13 +91,67 @@ namespace Data
             moveSpd = data.info.moveSpd;
             atkRange = data.info.atkRange;
             icon = data.info.icon;
-            modelAssetRef = data.info.modelAssetPath;
-            animatorAssetRef = data.info.animatorAssetPath;
-            atkEventNodePath = data.info.atkEventNodePath;
-            skillEventNodePath = data.info.skillEventNodePath;
+            modelAssetRef = AssetDatabase.GetAssetPath(data.info.modelAssetRef);
+            animatorAssetRef = AssetDatabase.GetAssetPath(data.info.animatorAssetRef);
+            atkInfo = new SkillInfo(data.info.atkInfo);
+            skillInfoGroup = new List<SkillInfo>();
+            for (int i = 0; i < data.info.skillInfoGroup.Length; i++)
+            {
+                skillInfoGroup.Add(new SkillInfo(data.info.skillInfoGroup[i]));
+            }
         }
 
         [IgnoreMember]
         public int Key => Seed;
+    }
+    public class SkillInfo
+    {
+        public eSkillActivate activateType;
+        public float activateValue;
+        public eSkillDuration durationType;
+        public float durationValue;
+        public eSkillTarget targetType;
+        public float targetValue;
+        public eSkillType skillType;
+        public float typeValue;
+        public float maxCoolTime;
+
+        public string skillNode;
+
+        private float coolTime;
+
+        public SkillInfo(Editor.UnitData.SkillInfo skillInfo)
+        {
+            activateType = skillInfo.activateType;
+            activateValue = skillInfo.activateValue;
+            durationType = skillInfo.durationType;
+            durationValue = skillInfo.durationValue;
+            targetType = skillInfo.targetType;
+            targetValue = skillInfo.targetValue;
+            skillType = skillInfo.skillType;
+            typeValue = skillInfo.typeValue;
+            maxCoolTime = skillInfo.maxCoolTime;
+
+            skillNode = AssetDatabase.GetAssetPath(skillInfo.skillNode);
+        }
+
+        public void UpdateFrame(float deltaTime)
+        {
+            if (coolTime > 0)
+                coolTime -= deltaTime;
+        }
+
+        public bool CheckCoolTime()
+        {
+            return coolTime > 0;
+        }
+
+        public void ResetSkill(float cool = 0)
+        {
+            if (cool == 0)
+                coolTime = maxCoolTime;
+            else
+                coolTime = cool;
+        }
     }
 }

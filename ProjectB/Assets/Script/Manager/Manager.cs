@@ -35,6 +35,16 @@ public class Manager : Singleton<Manager>
 {
     #region Manager
     private Dictionary<string, BaseManager> managerDic = new Dictionary<string, BaseManager>();
+    private SkillManager sm;
+    public SkillManager skillManager
+    {
+        get
+        {
+            if (sm == null)
+                sm = new SkillManager();
+            return sm;
+        }
+    }
     #endregion
 
     private FileData fileData;

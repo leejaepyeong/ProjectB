@@ -20,7 +20,7 @@ public class UnitState
     public bool isDead;
     public bool isStun;
     public bool isSlow;
-    public bool isMove;
+    public bool isMoveAble { get { return isStun == false; } }
     #endregion
 
     public void Init(Data.UnitData data)
@@ -29,7 +29,6 @@ public class UnitState
         isDead = false;
         isStun = false;
         isSlow = false;
-        isMove = data.moveSpd > 0;
 
         SetStat();
     }
@@ -52,7 +51,7 @@ public class UnitBehavior : BaseBehavior, IEventHandler
     private AnimatorOverrideController animatorContorller;
     private int id;
     public int ID => id;
-    private UnitBehavior target;
+    private List<UnitBehavior> targets = new List<UnitBehavior>();
 
     private EventDispatcher eventDispatcher;
     private Dictionary<string, Transform> dicBoneTrf;
@@ -191,22 +190,34 @@ public class UnitBehavior : BaseBehavior, IEventHandler
 
     private void OnHandleProjectileEvent(ProjectileEvent projectileEvent)
     {
-        ProjectileManager.Instance.SpawnProjectile(projectileEvent, this, target);
+        for (int i = 0; i < targets.Count; i++)
+        {
+            ProjectileManager.Instance.SpawnProjectile(projectileEvent, this, targets[i]);
+        }
     }
     #endregion
 
-    public void ApplyDamage(float dmgPercent, Define.eDamageType dmgType = Define.eDamageType.Normal)
+    public void SetTargets(List<UnitBehavior> targets)
+    {
+        this.targets.Clear();
+        for (int i = 0; i < targets.Count; i++)
+        {
+            this.targets.Add(targets[i]);
+        }
+    }
+
+    public void ApplyDamage(float dmgPercent, eDamageType dmgType = eDamageType.Normal)
     {
         switch (dmgType)
         {
-            case Define.eDamageType.Normal:
+            case eDamageType.Normal:
             default:
                 unitState.curHp -= (long)(unitState.atk * dmgPercent);
                 break;
-            case Define.eDamageType.PerHp:
+            case eDamageType.PerHp:
                 unitState.curHp -= (long)(unitState.curHp * dmgPercent);
                 break;
-            case Define.eDamageType.PerMaxHp:
+            case eDamageType.PerMaxHp:
                 unitState.curHp -= (long)(unitState.hp * dmgPercent);
                 break;
         }
