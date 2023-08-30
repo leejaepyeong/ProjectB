@@ -7,13 +7,16 @@ public class UnitState
 {
     private Data.UnitData data;
     #region stat
-    public long curHp;
     public long hp;
+    public long mp;
     public long atk;
     public long def;
+    public float acc;
     public float atkSpd;
     public float moveSpd;
     public float atkRange;
+    public float criRate;
+    public float criDmg;
     #endregion
 
     #region state
@@ -36,12 +39,31 @@ public class UnitState
     public void SetStat()
     {
         hp = data.hp;
-        curHp = hp;
+        mp = data.mp;
         atk = data.atk;
         def = data.def;
+        acc = data.acc;
         atkSpd = data.atkSpd;
         moveSpd = data.moveSpd;
         atkRange = data.atkRange;
+        criRate = data.criRate;
+        criDmg = data.criDmg;
+    }
+    public void SetStat(eStat statType, bool isTestScene)
+    {
+        switch (statType)
+        {
+            case eStat.hp: hp += isTestScene ? Manager.Instance.playerData.hp : SaveData_Local.Instance.userStat.hp; break;
+            case eStat.mp: mp += isTestScene ? Manager.Instance.playerData.mp : SaveData_Local.Instance.userStat.mp; break;
+            case eStat.atk:atk += isTestScene ? Manager.Instance.playerData.atk : SaveData_Local.Instance.userStat.atk; break;
+            case eStat.def: def += isTestScene ? Manager.Instance.playerData.def : SaveData_Local.Instance.userStat.def; break;
+            case eStat.acc: acc += isTestScene ? Manager.Instance.playerData.acc : SaveData_Local.Instance.userStat.acc; break;
+            case eStat.moveSpd: moveSpd += isTestScene ? Manager.Instance.playerData.moveSpd : SaveData_Local.Instance.userStat.moveSpd; break;
+            case eStat.atkSpd: atkSpd += isTestScene ? Manager.Instance.playerData.atkSpd : SaveData_Local.Instance.userStat.atkSpd; break;
+            case eStat.atkRange: atkRange += isTestScene ? Manager.Instance.playerData.atkRange : SaveData_Local.Instance.userStat.atkRange; break;
+            case eStat.criRate: criRate += isTestScene ? Manager.Instance.playerData.criRate : SaveData_Local.Instance.userStat.criRate; break;
+            case eStat.criDmg: criDmg += isTestScene ? Manager.Instance.playerData.criDmg : SaveData_Local.Instance.userStat.criDmg; break;
+        }
     }
 }
 
@@ -70,14 +92,16 @@ public class UnitBehavior : BaseBehavior, IEventHandler
     private UnitManager manager;
     private Data.UnitData unitData;
     public Data.UnitData UnitData => unitData;
-    private UnitState unitState;
-    private Unit_Base unitBase;
+    private UnitState unitState = new UnitState();
+    private Unit_Base unitBase = new Unit_Base();
     public UnitState UnitState => unitState;
+    public Unit_Base UnitBase => unitBase;
 
     #region AssetKey
     private const string SOUND_BEHAVIOR_ASSETKEY = "Assets/Data/GameResources/Prefab/Behavior/SoundBehavior.prefab";    
     #endregion
 
+    //Monster
     public void Init(Data.UnitData data, int id)
     {
         manager = UnitManager.Instance;
@@ -91,9 +115,12 @@ public class UnitBehavior : BaseBehavior, IEventHandler
 
         Model = manager.GameObjectPool.Get(data.modelAssetRef);
         Model.transform.SetParent(scaleTransform.transform);
-        animatorContorller = manager.ResourcePool.Load<AnimatorOverrideController>("Assets/GameResources/Animation/TestPlayer.overrideController");
-        Animator = Model.GetComponent<Animator>();
-        Animator.runtimeAnimatorController = animatorContorller;
+        if(string.IsNullOrEmpty(data.animatorAssetRef) == false)
+        {
+            animatorContorller = manager.ResourcePool.Load<AnimatorOverrideController>(data.animatorAssetRef);
+            Animator = Model.GetComponent<Animator>();
+            Animator.runtimeAnimatorController = animatorContorller;
+        }
         dicBoneTrf = Utilities.StaticeObjectPool.Pop<Dictionary<string, Transform>>();
         var boneList = Model.GetComponentsInChildren<Transform>();
         for (int i = 0; i < boneList.Length; i++)
@@ -203,28 +230,6 @@ public class UnitBehavior : BaseBehavior, IEventHandler
         for (int i = 0; i < targets.Count; i++)
         {
             this.targets.Add(targets[i]);
-        }
-    }
-
-    public void ApplyDamage(float dmgPercent, eDamageType dmgType = eDamageType.Normal)
-    {
-        switch (dmgType)
-        {
-            case eDamageType.Normal:
-            default:
-                unitState.curHp -= (long)(unitState.atk * dmgPercent);
-                break;
-            case eDamageType.PerHp:
-                unitState.curHp -= (long)(unitState.curHp * dmgPercent);
-                break;
-            case eDamageType.PerMaxHp:
-                unitState.curHp -= (long)(unitState.hp * dmgPercent);
-                break;
-        }
-
-        if(unitState.curHp <= 0)
-        {
-            unitState.isDead = true;
         }
     }
 }

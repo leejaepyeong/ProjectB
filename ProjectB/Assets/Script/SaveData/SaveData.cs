@@ -71,11 +71,11 @@ public class SaveDataControl<T> : ISaveDataControl where T : SaveData, new()
         {
             string data = JsonUtility.ToJson(saveData);
             if (data != null)
-                fileSave.Save(fileSave.GetPath(path), data);
+                fileSave.Save(path, data);
         }
-        catch
+        catch(Exception ex)
         {
-            Debug.LogError("save error : " + path);
+            Debug.LogError(ex + "save error : " + path);
         }
     }
     public void Load()

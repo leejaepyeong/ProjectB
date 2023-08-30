@@ -29,8 +29,8 @@ public class UIMessageBox : UIBase
     {
         public string title;
         public string dest;
-        public string ok;
-        public string cancle;
+        public string ok = "1";
+        public string cancle = "2";
         public bool isCancleOn = true;
         public bool escapable = true;
         public bool backable = true;
@@ -86,6 +86,7 @@ public class UIMessageBox : UIBase
             return;
         }
         okAction.Invoke();
+        Close();
     }
 
     private void OnClickCancle()
@@ -96,6 +97,7 @@ public class UIMessageBox : UIBase
             return;
         }
         cancleAction.Invoke();
+        Close();
     }
     #endregion
 }

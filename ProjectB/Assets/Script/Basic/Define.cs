@@ -32,6 +32,22 @@ public enum eDamageType
     PerHp,      //현재 체력 퍼센트
     PerMaxHp,   //최대 체력 퍼센트
 }
+
+public enum eStat
+{
+    hp,
+    mp,
+    atk,
+    def,
+    acc,
+    atkSpd,
+    moveSpd,
+    atkRange,
+    criRate,
+    criDmg,
+    END,
+}
+
 #endregion
 
 #region Skill

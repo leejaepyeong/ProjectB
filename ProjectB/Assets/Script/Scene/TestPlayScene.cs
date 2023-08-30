@@ -6,8 +6,9 @@ using Sirenix.OdinInspector;
 
 public class TestPlayScene : BaseScene
 {
-    [SerializeField, FoldoutGroup("User")] private int seed;
+    [SerializeField, FoldoutGroup("User")] private int user_Seed;
     [SerializeField, FoldoutGroup("User")] private Transform trf_user;
+    [SerializeField, FoldoutGroup("User")] public TestPlayerData playerData;
 
     [SerializeField, FoldoutGroup("Enemy")] private int enemy_Seed;
     [SerializeField, FoldoutGroup("Enemy")] private Transform[] trf_spawns;
@@ -25,9 +26,15 @@ public class TestPlayScene : BaseScene
     private UnitBehavior enemyUnit;
 
     [Button]
+    public void SpawnUser()
+    {
+        UnitManager.Instance.SpawnUnit(user_Seed);
+    }
+
+    [Button]
     public void SpawnMonster()
     {
-        UnitManager.Instance.SpawnUnit(seed, out enemyUnit);
+        enemyUnit = UnitManager.Instance.SpawnUnit(enemy_Seed);
         enemyUnit.transform.position = trf_spawns[Random.Range(0,trf_spawns.Length)].position;
     }
 
@@ -37,9 +44,15 @@ public class TestPlayScene : BaseScene
 
     }
 
+    #region Commnad
+    QueueCommand commands = new QueueCommand();
+    IntroCommand_LoadDataFile loadDataFile = new IntroCommand_LoadDataFile();
+    IntroCommand_LoadLocalData loadLocalData = new IntroCommand_LoadLocalData();
+    #endregion
     public override void Init()
     {
-        SpawnUser();
+        commands.Add(loadDataFile);
+        commands.Add(loadLocalData);
     }
 
     public override void UpdateFrame(float deltaTime)
@@ -47,10 +60,5 @@ public class TestPlayScene : BaseScene
         if (isTest == false) return;
 
         this.deltaTime = deltaTime;
-    }
-
-    private void SpawnUser()
-    {
-
     }
 }

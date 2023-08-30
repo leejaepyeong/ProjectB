@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 public class BaseManager : MonoBehaviour
 {
@@ -75,6 +76,16 @@ public class Manager : Singleton<Manager>
     }
 
     private BaseScene curScene;
+    public BaseScene CurScene => curScene;
+    public TestPlayerData playerData 
+    {
+        get
+        {
+            return curScene.isTestScene ? (curScene as TestPlayScene).playerData : null;
+        }
+    }
+    private Camera mainCamera;
+    public Camera MainCamera => mainCamera;
     public void SetUI(BaseScene scene)
     {
         curScene = scene;
@@ -89,6 +100,12 @@ public class Manager : Singleton<Manager>
     {
         managerDic.Clear();
         DontDestroyOnLoad(gameObject);
+        if(mainCamera == null)
+        {
+            GameObject obj = new GameObject("Main Camera");
+            obj.transform.SetParent(transform);
+            mainCamera = obj.AddComponent<Camera>();
+        }
     }
 
     private void Update()
@@ -99,7 +116,8 @@ public class Manager : Singleton<Manager>
         {
             manager.Value.UpdateFrame(deltaTime);
         }
-
+        if (fileData != null)
+            fileData.UpdateFrame();
         if (curScene != null)
             curScene.UpdateFrame(deltaTime);
     }

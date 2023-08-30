@@ -27,11 +27,15 @@ namespace Editor
         public class Info
         {
             [FoldoutGroup("Stat")] public long hp;
+            [FoldoutGroup("Stat")] public long mp;
             [FoldoutGroup("Stat")] public long atk;
             [FoldoutGroup("Stat")] public long def;
+            [FoldoutGroup("Stat")] public float acc;
             [FoldoutGroup("Stat")] public float atkSpd;
             [FoldoutGroup("Stat")] public float moveSpd;
             [FoldoutGroup("Stat")] public float atkRange;
+            [FoldoutGroup("Stat")] public float criRate;
+            [FoldoutGroup("Stat")] public float criDmg;
             [VerticalGroup("Info")] public Texture2D icon;
             [VerticalGroup("Info")] public GameObject modelAssetRef;
             [VerticalGroup("Info")] public RuntimeAnimatorController animatorAssetRef;
@@ -43,6 +47,7 @@ namespace Editor
         [Serializable]
         public class SkillInfo
         {
+            public int skillSeed;
             [FoldoutGroup("Activate")] public eSkillActivate activateType;
             [FoldoutGroup("Activate")] public float activateValue;
             [FoldoutGroup("Duration")] public eSkillDuration durationType;
@@ -53,7 +58,7 @@ namespace Editor
             [FoldoutGroup("Type")] public float typeValue;
             public float maxCoolTime;
 
-            public EventNode skillNode;
+            public EventGraph skillNode;
         }
     }
 

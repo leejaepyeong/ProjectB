@@ -96,7 +96,7 @@ public class IntroCommand_CreateAccount : Command
     private UICreateAccount uICreateAccount;
     public void Execute()
     {
-        if (SaveData_Local.Instance.IsSaveData)
+        if (SaveData_Local.Instance.isSaveData)
         {
             isComplete = true;
             return;

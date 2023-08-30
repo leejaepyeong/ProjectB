@@ -107,5 +107,6 @@ public abstract class Projectile
     public void ApplyDamage(UnitBehavior unit)
     {
         EffectManager.Instance.SpawnEffect(projectileEvent.HitEvent, projectileBehavior.transform.position);
+        unit.UnitBase.ApplyDamage(projectileEvent.damagePercent, projectileEvent.dmgType);
     }
 }

@@ -12,6 +12,18 @@
     "Key": 2
   },
   {
+    "Seed": 3,
+    "Kor": "알림",
+    "Eng": "Alarm",
+    "Key": 3
+  },
+  {
+    "Seed": 4,
+    "Kor": "정보",
+    "Eng": "Information",
+    "Key": 4
+  },
+  {
     "Seed": 1000,
     "Kor": "닉네임",
     "Eng": "Nickname",
@@ -20,7 +32,7 @@
   {
     "Seed": 1001,
     "Kor": "{0}으로 생성하시겠습니까?",
-    "Eng": "Nickname",
+    "Eng": "",
     "Key": 1001
   },
   {

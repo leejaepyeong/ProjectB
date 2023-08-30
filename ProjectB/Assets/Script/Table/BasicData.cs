@@ -67,11 +67,15 @@ namespace Data
         public eUnitType Type;
 
         public long hp;
+        public long mp;
         public long atk;
         public long def;
+        public float acc;
         public float atkSpd;
         public float moveSpd;
         public float atkRange;
+        public float criRate;
+        public float criDmg;
         public Texture2D icon;
         public string modelAssetRef;
         public string animatorAssetRef;
@@ -85,19 +89,26 @@ namespace Data
             Type = data.Type;
 
             hp = data.info.hp;
+            mp = data.info.mp;
             atk = data.info.atk;
             def = data.info.def;
+            acc = data.info.acc;
             atkSpd = data.info.atkSpd;
             moveSpd = data.info.moveSpd;
             atkRange = data.info.atkRange;
+            criRate = data.info.criRate;
+            criDmg = data.info.criDmg;
             icon = data.info.icon;
             modelAssetRef = AssetDatabase.GetAssetPath(data.info.modelAssetRef);
             animatorAssetRef = AssetDatabase.GetAssetPath(data.info.animatorAssetRef);
             atkInfo = new SkillInfo(data.info.atkInfo);
             skillInfoGroup = new List<SkillInfo>();
-            for (int i = 0; i < data.info.skillInfoGroup.Length; i++)
+            if(data.info.skillInfoGroup != null)
             {
-                skillInfoGroup.Add(new SkillInfo(data.info.skillInfoGroup[i]));
+                for (int i = 0; i < data.info.skillInfoGroup.Length; i++)
+                {
+                    skillInfoGroup.Add(new SkillInfo(data.info.skillInfoGroup[i]));
+                }
             }
         }
 
@@ -106,6 +117,7 @@ namespace Data
     }
     public class SkillInfo
     {
+        public int skillSeed;
         public eSkillActivate activateType;
         public float activateValue;
         public eSkillDuration durationType;
@@ -122,6 +134,7 @@ namespace Data
 
         public SkillInfo(Editor.UnitData.SkillInfo skillInfo)
         {
+            skillSeed = skillInfo.skillSeed;
             activateType = skillInfo.activateType;
             activateValue = skillInfo.activateValue;
             durationType = skillInfo.durationType;

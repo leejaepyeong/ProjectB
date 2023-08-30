@@ -1,6 +1,6 @@
 Using pre-set license
 Built from '2022.3/staging' branch; Version is '2022.3.2f1 (d74737c6db50) revision 14108471'; Using compiler version '192829333'; Build Type 'Release'
-OS: 'Windows 10  (10.0.19045) 64bit Core' Language: 'ko' Physical Memory: 3445 MB
+OS: 'Windows 10  (10.0.19045) 64bit Professional' Language: 'ko' Physical Memory: 16280 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
 
 COMMAND LINE ARGUMENTS:
@@ -11,13 +11,13 @@ C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\Unity.exe
 -name
 AssetImportWorker0
 -projectPath
-C:/Users/clpc1/OneDrive/Desktop/Unity/ProjectB/ProjectB
+D:/유니티참고용/Project/ProjectB/ProjectB
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-63232
-Successfully changed project path to: C:/Users/clpc1/OneDrive/Desktop/Unity/ProjectB/ProjectB
-C:/Users/clpc1/OneDrive/Desktop/Unity/ProjectB/ProjectB
+56268
+Successfully changed project path to: D:/유니티참고용/Project/ProjectB/ProjectB
+D:/유니티참고용/Project/ProjectB/ProjectB
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
     "memorysetup-bucket-allocator-granularity=16"
     "memorysetup-bucket-allocator-bucket-count=8"
@@ -49,485 +49,1077 @@ C:/Users/clpc1/OneDrive/Desktop/Unity/ProjectB/ProjectB
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [6924] Host "[IP] 121.131.174.235 [Port] 0 [Flags] 2 [Guid] 3988093376 [EditorId] 3988093376 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-CE31IIH4) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+Player connection [37944] Host "[IP] 10.10.9.32 [Port] 0 [Flags] 2 [Guid] 4165339231 [EditorId] 4165339231 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-horoman) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
 
-Player connection [6924] Host "[IP] 121.131.174.235 [Port] 0 [Flags] 2 [Guid] 3988093376 [EditorId] 3988093376 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-CE31IIH4) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [37944] Host "[IP] 10.10.9.32 [Port] 0 [Flags] 2 [Guid] 4165339231 [EditorId] 4165339231 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-horoman) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
 
-Refreshing native plugins compatible for Editor in 189.54 ms, found 4 plugins.
+Refreshing native plugins compatible for Editor in 262.09 ms, found 4 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2022.3.2f1 (d74737c6db50)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2022.3.2f1/Editor/Data/Resources/UnitySubsystems
-[Subsystems] Discovering subsystems at path C:/Users/clpc1/OneDrive/Desktop/Unity/ProjectB/ProjectB/Assets
+[Subsystems] Discovering subsystems at path D:/유니티참고용/Project/ProjectB/ProjectB/Assets
 GfxDevice: creating device client; threaded=0; jobified=0
 Direct3D:
     Version:  Direct3D 11.0 [level 11.1]
-    Renderer: AMD Radeon(TM) Graphics (ID=0x164c)
-    Vendor:   ATI
-    VRAM:     1722 MB
-    Driver:   27.20.15026.8004
+    Renderer: NVIDIA GeForce GTX 1650 (ID=0x1f82)
+    Vendor:   NVIDIA
+    VRAM:     3949 MB
+    Driver:   31.0.15.3623
 Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2022.3.2f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2022.3.2f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2022.3.2f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56396
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56780
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.2f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.2f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.2f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.044396 seconds.
-- Loaded All Assemblies, in  1.065 seconds
+Registered in 0.037518 seconds.
+- Loaded All Assemblies, in  0.688 seconds
 Native extension for WindowsStandalone target not found
+[usbmuxd] Start listen thread
+[usbmuxd] Listen thread started
+Native extension for iOS target not found
 Native extension for Android target not found
-Android Extension - Scanning For ADB Devices 3122 ms
+Android Extension - Scanning For ADB Devices 5212 ms
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  3.625 seconds
-Domain Reload Profiling: 4682ms
-	BeginReloadAssembly (410ms)
+- Finished resetting the current domain, in  5.717 seconds
+Domain Reload Profiling: 6388ms
+	BeginReloadAssembly (210ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (3ms)
-	RebuildCommonClasses (81ms)
-	RebuildNativeTypeToScriptingClass (17ms)
-	initialDomainReloadingComplete (193ms)
-	LoadAllAssembliesAndSetupDomain (355ms)
-		LoadAssemblies (401ms)
+		CreateAndSetChildDomain (1ms)
+	RebuildCommonClasses (50ms)
+	RebuildNativeTypeToScriptingClass (14ms)
+	initialDomainReloadingComplete (136ms)
+	LoadAllAssembliesAndSetupDomain (261ms)
+		LoadAssemblies (193ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (326ms)
-			TypeCache.Refresh (324ms)
-				TypeCache.ScanAssembly (286ms)
+		AnalyzeDomain (224ms)
+			TypeCache.Refresh (223ms)
+				TypeCache.ScanAssembly (197ms)
 			ScanForSourceGeneratedMonoScriptInfo (1ms)
 			ResolveRequiredComponents (1ms)
-	FinalizeReload (3627ms)
+	FinalizeReload (5718ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (3538ms)
+		SetupLoadedEditorAssemblies (5635ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (3316ms)
-			SetLoadedEditorAssemblies (5ms)
+			InitializePlatformSupportModulesInManaged (5384ms)
+			SetLoadedEditorAssemblies (6ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (6ms)
-			ProcessInitializeOnLoadAttributes (136ms)
-			ProcessInitializeOnLoadMethodAttributes (74ms)
+			BeforeProcessingInitializeOnLoad (4ms)
+			ProcessInitializeOnLoadAttributes (125ms)
+			ProcessInitializeOnLoadMethodAttributes (116ms)
 			AfterProcessingInitializeOnLoad (0ms)
-			EditorAssembliesLoaded (2ms)
+			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
 		AwakeInstancesAfterBackupRestoration (0ms)
 ========================================================================
 Worker process is ready to serve import requests
 Begin MonoManager ReloadAssembly
-OutOfMemoryException: Out of memory
-  at (wrapper managed-to-native) System.Object.__icall_wrapper_ves_icall_array_new_specific(intptr,int)
-  at System.IO.MemoryStream..ctor (System.Int32 capacity) [0x00023] in <605bf8b31fcb444b85176da963870aa7>:0 
-  at (wrapper remoting-invoke-with-check) System.IO.MemoryStream..ctor(int)
-  at Mono.Cecil.ModuleDefinition.ReadModule (System.String fileName, Mono.Cecil.ReaderParameters parameters) [0x0002e] in <a6860a9f6366437387ebdc1f225b7fd4>:0 
-  at Mono.Cecil.BaseAssemblyResolver.GetAssembly (System.String file, Mono.Cecil.ReaderParameters parameters) [0x0000f] in <a6860a9f6366437387ebdc1f225b7fd4>:0 
-  at Mono.Cecil.BaseAssemblyResolver.SearchDirectory (Mono.Cecil.AssemblyNameReference name, System.Collections.Generic.IEnumerable`1[T] directories, Mono.Cecil.ReaderParameters parameters) [0x00073] in <a6860a9f6366437387ebdc1f225b7fd4>:0 
-  at Mono.Cecil.BaseAssemblyResolver.Resolve (Mono.Cecil.AssemblyNameReference name, Mono.Cecil.ReaderParameters parameters) [0x0000c] in <a6860a9f6366437387ebdc1f225b7fd4>:0 
-  at Mono.Cecil.BaseAssemblyResolver.Resolve (Mono.Cecil.AssemblyNameReference name) [0x00007] in <a6860a9f6366437387ebdc1f225b7fd4>:0 
-  at UnityEditor.AssemblyValidation+AssemblyResolver.Resolve (Mono.Cecil.AssemblyNameReference name) [0x0002f] in <ac87b54e58ee4be198261fd5c8030d52>:0 
-  at UnityEditor.AssemblyValidation.ResolveAndSetupReferences (System.Int32 index, UnityEditor.AssemblyValidation+Error[] errors, Mono.Cecil.AssemblyDefinition[] assemblyDefinitions, System.Collections.Generic.Dictionary`2[TKey,TValue] assemblyDefinitionNameToIndex, UnityEditor.AssemblyValidation+AssemblyAndReferences[] assemblyAndReferences, System.String assemblyPath) [0x00084] in <ac87b54e58ee4be198261fd5c8030d52>:0 
-  at UnityEditor.AssemblyValidation.CheckAssemblyReferences (System.String[] assemblyPaths, UnityEditor.AssemblyValidation+Error[] errors, Mono.Cecil.AssemblyDefinition[] assemblyDefinitions, System.Func`2[T,TResult] compatibleWithEditor) [0x00106] in <ac87b54e58ee4be198261fd5c8030d52>:0 
-  at UnityEditor.AssemblyValidation.ValidateAssemblyDefinitions (System.String[] assemblyPaths, Mono.Cecil.AssemblyDefinition[] assemblyDefinitions, System.Func`2[T,TResult] compatibleWithEditor) [0x0000a] in <ac87b54e58ee4be198261fd5c8030d52>:0 
-  at UnityEditor.AssemblyValidation.ValidateAssemblies (System.String[] assemblyPaths, System.Boolean enableLogging) [0x00054] in <ac87b54e58ee4be198261fd5c8030d52>:0 
+Symbol file LoadedFromMemory doesn't match image D:\유니티참고용\Project\ProjectB\ProjectB\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image D:\유니티참고용\Project\ProjectB\ProjectB\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  3.591 seconds
+Refreshing native plugins compatible for Editor in 15.60 ms, found 4 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for iOS target not found
+Native extension for Android target not found
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.11 seconds
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.NullReferenceException: Object reference not set to an instance of an object
+  at XNodeEditor.NodeEditorAssetModProcessor.OnReloadEditor () [0x0004e] in D:\유니티참고용\Project\ProjectB\ProjectB\Assets\xNode-master\Scripts\Editor\NodeEditorAssetModProcessor.cs:55 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <605bf8b31fcb444b85176da963870aa7>:0 
+   --- End of inner exception stack trace ---
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00083] in <605bf8b31fcb444b85176da963870aa7>:0 
+  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <605bf8b31fcb444b85176da963870aa7>:0 
+  at UnityEditor.EditorAssemblies.ProcessInitializeOnLoadMethodAttributes () [0x000a5] in <ac87b54e58ee4be198261fd5c8030d52>:0 
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogError (object)
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
 
-Failed loading assembly Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.dll reason: Not enough space
-Loading assembly failed: "Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.dll" reason: Not enough space
-Failed loading assembly Library/ScriptAssemblies/Unity.Burst.dll reason: Not enough space
-Loading assembly failed: "Library/ScriptAssemblies/Unity.Burst.dll" reason: Not enough space
-Failed loading assembly Library/ScriptAssemblies/Unity.Timeline.Editor.dll reason: Not enough space
-Loading assembly failed: "Library/ScriptAssemblies/Unity.Timeline.Editor.dll" reason: Not enough space
-Failed loading assembly Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll reason: Not enough space
-Loading assembly failed: "Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll" reason: Not enough space
-Failed loading assembly Library/ScriptAssemblies/Unity.VisualScripting.Core.dll reason: Not enough space
-Loading assembly failed: "Library/ScriptAssemblies/Unity.VisualScripting.Core.dll" reason: Not enough space
-Failed loading assembly Library/ScriptAssemblies/Unity.VisualScripting.Core.Editor.dll reason: Not enough space
-Loading assembly failed: "Library/ScriptAssemblies/Unity.VisualScripting.Core.Editor.dll" reason: Not enough space
-Failed loading assembly Library/ScriptAssemblies/UnityEngine.UI.dll reason: Not enough space
-Loading assembly failed: "Library/ScriptAssemblies/UnityEngine.UI.dll" reason: Not enough space
-Failed loading assembly Library/ScriptAssemblies/Unity.VisualScripting.Flow.Editor.dll reason: Not enough space
-Loading assembly failed: "Library/ScriptAssemblies/Unity.VisualScripting.Flow.Editor.dll" reason: Not enough space
-Failed loading assembly Library/ScriptAssemblies/MiniExcelLibs.dll reason: Not enough space
-Loading assembly failed: "Library/ScriptAssemblies/MiniExcelLibs.dll" reason: Not enough space
-Could not allocate 18344 bytes
-Crash!!!
-SymInit: Symbol-SearchPath: 'C:/Program Files/Unity/Hub/Editor/2022.3.2f1/Editor/Data/Mono;.;C:\Users\clpc1\OneDrive\Desktop\Unity\ProjectB\ProjectB;C:\Users\clpc1\OneDrive\Desktop\Unity\ProjectB\ProjectB\Library\BurstCache\JIT;C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor;C:\Windows;C:\Windows\system32;', symOptions: 534, UserName: 'clpc1'
-OS-Version: 10.0.0
-C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\Unity.exe:Unity.exe (00007FF756DD0000), size: 79593472 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 2022.3.2.18231
-C:\Windows\SYSTEM32\ntdll.dll:ntdll.dll (00007FF8316D0000), size: 2064384 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.3324
-C:\Windows\System32\KERNEL32.DLL:KERNEL32.DLL (00007FF82FF20000), size: 782336 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.3155
-C:\Windows\System32\KERNELBASE.dll:KERNELBASE.dll (00007FF82F3A0000), size: 3104768 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 10.0.19041.3324
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\System32\CRYPT32.dll:CRYPT32.dll (00007FF82EE00000), size: 1433600 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.3271
-C:\Windows\System32\ucrtbase.dll:ucrtbase.dll (00007FF82F030000), size: 1048576 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.789
-C:\Windows\System32\USER32.dll:USER32.dll (00007FF830080000), size: 1691648 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2788
-C:\Windows\System32\win32u.dll:win32u.dll (00007FF82F000000), size: 139264 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.3271
-C:\Windows\System32\GDI32.dll:GDI32.dll (00007FF830220000), size: 180224 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2913
-C:\Windows\System32\gdi32full.dll:gdi32full.dll (00007FF82F280000), size: 1134592 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.3271
-C:\Windows\System32\msvcp_win.dll:msvcp_win.dll (00007FF82EF60000), size: 643072 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.789
-C:\Windows\System32\ADVAPI32.dll:ADVAPI32.dll (00007FF8308C0000), size: 716800 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2913
-C:\Windows\System32\msvcrt.dll:msvcrt.dll (00007FF82F860000), size: 647168 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 7.0.19041.546
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\System32\sechost.dll:sechost.dll (00007FF82FFE0000), size: 638976 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2913
-C:\Windows\System32\RPCRT4.dll:RPCRT4.dll (00007FF82F730000), size: 1204224 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.3208
-C:\Windows\System32\SHELL32.dll:SHELL32.dll (00007FF830E40000), size: 7618560 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 10.0.19041.3271
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\libfbxsdk.dll:libfbxsdk.dll (00007FFFDEC60000), size: 10067968 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 2020.3.3.0
-C:\Windows\System32\SHLWAPI.dll:SHLWAPI.dll (00007FF830CB0000), size: 348160 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 10.0.19041.2075
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\System32\ole32.dll:ole32.dll (00007FF830D10000), size: 1220608 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2965
-C:\Windows\System32\combase.dll:combase.dll (00007FF830250000), size: 3489792 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2788
-C:\Windows\System32\IMM32.dll:IMM32.dll (00007FF82FE00000), size: 196608 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2673
-C:\Windows\System32\SETUPAPI.dll:SETUPAPI.dll (00007FF82F990000), size: 4644864 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 10.0.19041.3155
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\System32\cfgmgr32.dll:cfgmgr32.dll (00007FF82EDB0000), size: 319488 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.3155
-C:\Windows\System32\bcrypt.dll:bcrypt.dll (00007FF82F1E0000), size: 159744 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 10.0.19041.3208
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\s3tcompress.dll:s3tcompress.dll (00007FF828A40000), size: 180224 (result: 0), SymType: '-deferred-', PDB: ''
-C:\Windows\System32\WS2_32.dll:WS2_32.dll (00007FF830790000), size: 438272 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.546
-C:\Windows\System32\OLEAUT32.dll:OLEAUT32.dll (00007FF8309D0000), size: 839680 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 10.0.19041.3208
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\etccompress.dll:etccompress.dll (00007FFFE2E00000), size: 5066752 (result: 0), SymType: '-deferred-', PDB: ''
-C:\Windows\System32\WINTRUST.dll:WINTRUST.dll (00007FF82F210000), size: 421888 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.3271
-C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\ispc_texcomp.dll:ispc_texcomp.dll (00007FFFE9000000), size: 1740800 (result: 8), SymType: '-unknown-', PDB: ''
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\FreeImage.dll:FreeImage.dll (0000000180000000), size: 6582272 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 3.18.0.0
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\compress_bc7e.dll:compress_bc7e.dll (00007FFFE54D0000), size: 1441792 (result: 0), SymType: '-deferred-', PDB: ''
-C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\WinPixEventRuntime.dll:WinPixEventRuntime.dll (00007FF829B70000), size: 45056 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 1.0.1812.6001
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\umbraoptimizer64.dll:umbraoptimizer64.dll (00007FFFE5190000), size: 1187840 (result: 8), SymType: '-unknown-', PDB: ''
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\SYSTEM32\IPHLPAPI.DLL:IPHLPAPI.DLL (00007FF82E170000), size: 241664 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 10.0.19041.3271
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\SYSTEM32\GLU32.dll:GLU32.dll (00007FF8287C0000), size: 180224 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 10.0.19041.2193
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\SYSTEM32\OPENGL32.dll:OPENGL32.dll (00007FFFE5060000), size: 1200128 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 10.0.19041.2193
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\SYSTEM32\WINHTTP.dll:WINHTTP.dll (00007FF826F90000), size: 1089536 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 10.0.19041.3031
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\SYSTEM32\HID.DLL:HID.DLL (00007FF82D5D0000), size: 53248 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.546
-C:\Windows\SYSTEM32\WINMM.dll:WINMM.dll (00007FF8228D0000), size: 159744 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.546
-C:\Windows\SYSTEM32\dwmapi.dll:dwmapi.dll (00007FF82C800000), size: 192512 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.746
-C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\SketchUpAPI.dll:SketchUpAPI.dll (00007FFFDA8B0000), size: 8990720 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 23.0.0.0
-C:\Windows\SYSTEM32\VERSION.dll:VERSION.dll (00007FF8222B0000), size: 40960 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.546
-C:\Windows\SYSTEM32\VCRUNTIME140.dll:VCRUNTIME140.dll (00007FFFFED40000), size: 110592 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 14.34.31931.0
-C:\Windows\SYSTEM32\MSVCP140.dll:MSVCP140.dll (00007FFFEA5B0000), size: 581632 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 14.34.31931.0
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\SYSTEM32\WSOCK32.dll:WSOCK32.dll (00007FF829790000), size: 36864 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 10.0.19041.1
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\SketchUpCommonPreferences.dll:SketchUpCommonPreferences.dll (00007FF812780000), size: 499712 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 23.0.0.0
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\SYSTEM32\Secur32.dll:Secur32.dll (00007FF820610000), size: 49152 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 10.0.19041.546
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\SYSTEM32\VCRUNTIME140_1.dll:VCRUNTIME140_1.dll (00007FF829B50000), size: 49152 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 14.34.31931.0
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\SYSTEM32\SSPICLI.DLL:SSPICLI.DLL (00007FF82EC60000), size: 204800 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 10.0.19041.2130
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\OpenRL.dll:OpenRL.dll (0000025AA99D0000), size: 12779520 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 1.5.0.2907
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\SYSTEM32\MSWSOCK.DLL:MSWSOCK.DLL (00007FF82E4E0000), size: 434176 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 10.0.19041.546
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\embree.dll:embree.dll (00007FFFD98C0000), size: 16711680 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 2.14.0.0
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\SYSTEM32\MSVCR100.dll:MSVCR100.dll (0000000067880000), size: 860160 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 10.0.40219.325
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\SYSTEM32\MSVCP100.dll:MSVCP100.dll (0000000067960000), size: 622592 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 10.0.40219.325
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\tbb.dll:tbb.dll (00007FF805630000), size: 413696 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 2017.0.2016.1004
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\SYSTEM32\MSVCP120.dll:MSVCP120.dll (00007FF8011B0000), size: 679936 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 12.0.40664.0
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\SYSTEM32\MSVCR120.dll:MSVCR120.dll (00007FFFE7480000), size: 978944 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 12.0.40664.0
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\OpenRL_pthread.dll:OpenRL_pthread.dll (0000025AAA620000), size: 61440 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 2.9.0.0
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\SYSTEM32\MSASN1.dll:MSASN1.dll (00007FF82E910000), size: 73728 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 10.0.19041.2251
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\System32\bcryptprimitives.dll:bcryptprimitives.dll (00007FF82F6A0000), size: 532480 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 10.0.19041.2486
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\SYSTEM32\kernel.appcore.dll:kernel.appcore.dll (00007FF82D5E0000), size: 73728 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.546
-C:\Windows\system32\uxtheme.dll:uxtheme.dll (00007FF82C2C0000), size: 647168 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2193
-C:\Windows\SYSTEM32\windows.storage.dll:windows.storage.dll (00007FF82CE30000), size: 7942144 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.3271
-C:\Windows\SYSTEM32\Wldp.dll:Wldp.dll (00007FF82E780000), size: 188416 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2788
-C:\Windows\System32\SHCORE.dll:SHCORE.dll (00007FF830810000), size: 708608 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.1865
-C:\Windows\SYSTEM32\profapi.dll:profapi.dll (00007FF82ECE0000), size: 151552 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.3155
-C:\Windows\system32\IconCodecService.dll:IconCodecService.dll (00007FF825EB0000), size: 36864 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.1
-C:\Windows\SYSTEM32\WindowsCodecs.dll:WindowsCodecs.dll (00007FF815DB0000), size: 1785856 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.1706
-C:\Windows\System32\clbcatq.dll:clbcatq.dll (00007FF8305B0000), size: 692224 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 2001.12.10941.16384
-C:\Windows\System32\netprofm.dll:netprofm.dll (00007FF829BE0000), size: 258048 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.3031
-C:\Windows\System32\npmproxy.dll:npmproxy.dll (00007FF825DF0000), size: 65536 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.3031
-C:\Windows\System32\NSI.dll:NSI.dll (00007FF82FE30000), size: 32768 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.610
-C:\Windows\SYSTEM32\dhcpcsvc6.DLL:dhcpcsvc6.DLL (00007FF827310000), size: 94208 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 10.0.19041.2673
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\SYSTEM32\dhcpcsvc.DLL:dhcpcsvc.DLL (00007FF828050000), size: 118784 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 10.0.19041.2673
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\SYSTEM32\DNSAPI.dll:DNSAPI.dll (00007FF82E1B0000), size: 827392 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 10.0.19041.3031
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\system32\napinsp.dll:napinsp.dll (00007FF828EF0000), size: 94208 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.546
-C:\Windows\system32\pnrpnsp.dll:pnrpnsp.dll (00007FF828ED0000), size: 110592 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 10.0.19041.546
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\system32\wshbth.dll:wshbth.dll (00007FF82A340000), size: 86016 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 10.0.19041.546
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\system32\NLAapi.dll:NLAapi.dll (00007FF8273D0000), size: 118784 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.3031
-C:\Windows\System32\winrnr.dll:winrnr.dll (00007FF826480000), size: 73728 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.546
-C:\Windows\System32\fwpuclnt.dll:fwpuclnt.dll (00007FF825030000), size: 532480 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.3271
-C:\Windows\System32\rasadhlp.dll:rasadhlp.dll (00007FF824E80000), size: 40960 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.546
-C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\NVUnityPlugin.DLL:NVUnityPlugin.DLL (00007FFFE4940000), size: 1531904 (result: 0), SymType: '-deferred-', PDB: ''
-C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\Data\Tools\astcenc-avx2.dll:astcenc-avx2.dll (00007FFFE86A0000), size: 540672 (result: 0), SymType: '-deferred-', PDB: ''
-C:\Windows\SYSTEM32\d3d11.dll:d3d11.dll (00007FF82A7D0000), size: 2502656 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2913
-C:\Windows\SYSTEM32\dxgi.dll:dxgi.dll (00007FF82D650000), size: 995328 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 10.0.19041.2311
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\System32\DriverStore\FileRepository\u0369826.inf_amd64_d91a656b5b5a706f\B369681\aticfx64.dll:aticfx64.dll (00007FF8116E0000), size: 1945600 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 27.20.15026.8004
-C:\Windows\System32\DriverStore\FileRepository\u0369826.inf_amd64_d91a656b5b5a706f\B369681\atiuxp64.dll:atiuxp64.dll (00007FF811660000), size: 229376 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 27.20.15026.8004
-C:\Windows\System32\DriverStore\FileRepository\u0369826.inf_amd64_d91a656b5b5a706f\B369681\atidxx64.dll:atidxx64.dll (00007FF80F700000), size: 32845824 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 27.20.15026.8004
-C:\Windows\SYSTEM32\apphelp.dll:apphelp.dll (00007FF82C110000), size: 593920 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 10.0.19041.2913
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\SYSTEM32\amdihk64.dll:amdihk64.dll (00007FF80F6D0000), size: 196608 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 2.0.0.1788
-C:\Windows\SYSTEM32\dxcore.dll:dxcore.dll (00007FF8116A0000), size: 241664 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.546
-C:\Windows\SYSTEM32\D3DSCache.dll:D3DSCache.dll (00007FF80F100000), size: 176128 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.746
-C:\Windows\SYSTEM32\USERENV.dll:USERENV.dll (00007FF82ECA0000), size: 188416 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 10.0.19041.3155
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\system32\wbem\wbemprox.dll:wbemprox.dll (00007FF81D4B0000), size: 69632 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.3271
-C:\Windows\SYSTEM32\wbemcomn.dll:wbemcomn.dll (00007FF823710000), size: 589824 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.1566
-: (00007FF81CE90000), size: 81920 (result: 8), SymType: '-unknown-', PDB: ''
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-: (00007FF81B200000), size: 1093632 (result: 8), SymType: '-unknown-', PDB: ''
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-: (00007FF81B700000), size: 126976 (result: 8), SymType: '-unknown-', PDB: ''
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-: (00007FF818940000), size: 339968 (result: 8), SymType: '-unknown-', PDB: ''
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\SYSTEM32\opencl.dll:opencl.dll (00007FF8282D0000), size: 147456 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 2.2.6.0
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\radeonrays.dll:radeonrays.dll (00007FFFE83B0000), size: 557056 (result: 8), SymType: '-unknown-', PDB: ''
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\Data\MonoBleedingEdge\EmbedRuntime\mono-2.0-bdwgc.dll:mono-2.0-bdwgc.dll (00007FFFCEBF0000), size: 10682368 (result: 0), SymType: '-deferred-', PDB: ''
-C:\Windows\SYSTEM32\PROPSYS.dll:PROPSYS.dll (00007FF82A560000), size: 1007616 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 7.0.19041.1741
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\System32\Windows.FileExplorer.Common.dll:Windows.FileExplorer.Common.dll (00007FF80E780000), size: 397312 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 10.0.19041.1741
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\System32\iertutil.dll:iertutil.dll (00007FF822530000), size: 2867200 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 11.0.19041.3324
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\SYSTEM32\edputil.dll:edputil.dll (00007FF814390000), size: 147456 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 10.0.19041.546
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\System32\Windows.StateRepositoryPS.dll:Windows.StateRepositoryPS.dll (00007FF823810000), size: 1335296 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 10.0.19041.3155
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\SYSTEM32\urlmon.dll:urlmon.dll (00007FF8239F0000), size: 2019328 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 11.0.19041.3324
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\SYSTEM32\netutils.dll:netutils.dll (00007FF82E280000), size: 49152 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 10.0.19041.546
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\SYSTEM32\srvcli.dll:srvcli.dll (00007FF822500000), size: 167936 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 10.0.19041.3155
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\SYSTEM32\virtdisk.dll:virtdisk.dll (00007FFFEBA60000), size: 77824 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 10.0.19041.2311
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\SYSTEM32\FLTLIB.DLL:FLTLIB.DLL (00007FF80DBE0000), size: 45056 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.546
-C:\Windows\System32\cldapi.dll:cldapi.dll (00007FF8152A0000), size: 139264 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 10.0.19041.3324
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\System32\wintypes.dll:wintypes.dll (00007FF82B460000), size: 1392640 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 10.0.19041.2788
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\System32\appresolver.dll:appresolver.dll (00007FF81AA90000), size: 589824 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 10.0.19041.1620
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\System32\SLC.dll:SLC.dll (00007FF82D8D0000), size: 167936 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 10.0.19041.1682
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\System32\Bcp47Langs.dll:Bcp47Langs.dll (00007FF8166E0000), size: 372736 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 10.0.19041.1566
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\System32\sppc.dll:sppc.dll (00007FF82D8A0000), size: 151552 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 10.0.19041.1682
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\System32\OneCoreCommonProxyStub.dll:OneCoreCommonProxyStub.dll (00007FF80D9F0000), size: 520192 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 10.0.19041.2546
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\System32\OneCoreUAPCommonProxyStub.dll:OneCoreUAPCommonProxyStub.dll (00007FF81D4F0000), size: 8179712 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 10.0.19041.3324
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Windows\SYSTEM32\dbghelp.dll:dbghelp.dll (00007FF82CC20000), size: 1982464 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.867
-C:\Windows\System32\psapi.dll:psapi.dll (00007FF830800000), size: 32768 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.546
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  3.139 seconds
+Domain Reload Profiling: 6711ms
+	BeginReloadAssembly (244ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (6ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (27ms)
+	RebuildCommonClasses (50ms)
+	RebuildNativeTypeToScriptingClass (12ms)
+	initialDomainReloadingComplete (93ms)
+	LoadAllAssembliesAndSetupDomain (3172ms)
+		LoadAssemblies (2665ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (621ms)
+			TypeCache.Refresh (544ms)
+				TypeCache.ScanAssembly (496ms)
+			ScanForSourceGeneratedMonoScriptInfo (56ms)
+			ResolveRequiredComponents (21ms)
+	FinalizeReload (3140ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (2756ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (65ms)
+			SetLoadedEditorAssemblies (6ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (205ms)
+			ProcessInitializeOnLoadAttributes (1430ms)
+			ProcessInitializeOnLoadMethodAttributes (1001ms)
+			AfterProcessingInitializeOnLoad (48ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (25ms)
+Refreshing native plugins compatible for Editor in 14.00 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 6589 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 119 unused Assets / (358.5 KB). Loaded Objects now: 7100.
+Memory consumption went from 265.5 MB to 265.2 MB.
+Total: 22.572300 ms (FindLiveObjects: 0.552800 ms CreateObjectMapping: 0.657300 ms MarkObjects: 21.075300 ms  DeleteObjects: 0.285500 ms)
 
-========== OUTPUTTING STACK TRACE ==================
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 465523.232192 seconds.
+  path: Assets/Data/GameResources/Prefab/Entity/Player/skill.asset
+  artifactKey: Guid(8b2c75d581e510041bf5c50747744dad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Data/GameResources/Prefab/Entity/Player/skill.asset using Guid(8b2c75d581e510041bf5c50747744dad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9b3338faf7cf318ad15bab73b955ac5a') in 0.008452 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 37.094914 seconds.
+  path: Assets/Data/GameResources/Prefab/Entity/Player/atk.asset
+  artifactKey: Guid(6976593e6bdd2a746b83b2edca3f9730) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Data/GameResources/Prefab/Entity/Player/atk.asset using Guid(6976593e6bdd2a746b83b2edca3f9730) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b20310c72a8a22f4f36d3558af468644') in 0.001556 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.507700 seconds.
+  path: Assets/Data/GameResources/Prefab/Entity/Player/Player.prefab
+  artifactKey: Guid(c5b7c412cd33aac42bf5f4cfa34fd077) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Data/GameResources/Prefab/Entity/Player/Player.prefab using Guid(c5b7c412cd33aac42bf5f4cfa34fd077) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ac74199c4d955d782ae8a501eb6008bf') in 0.002367 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 6
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image D:\유니티참고용\Project\ProjectB\ProjectB\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image D:\유니티참고용\Project\ProjectB\ProjectB\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  1.428 seconds
+Refreshing native plugins compatible for Editor in 14.97 ms, found 4 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for iOS target not found
+Native extension for Android target not found
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.NullReferenceException: Object reference not set to an instance of an object
+  at XNodeEditor.NodeEditorAssetModProcessor.OnReloadEditor () [0x0004e] in D:\유니티참고용\Project\ProjectB\ProjectB\Assets\xNode-master\Scripts\Editor\NodeEditorAssetModProcessor.cs:55 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <605bf8b31fcb444b85176da963870aa7>:0 
+   --- End of inner exception stack trace ---
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00083] in <605bf8b31fcb444b85176da963870aa7>:0 
+  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <605bf8b31fcb444b85176da963870aa7>:0 
+  at UnityEditor.EditorAssemblies.ProcessInitializeOnLoadMethodAttributes () [0x000a5] in <ac87b54e58ee4be198261fd5c8030d52>:0 
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogError (object)
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
 
-SymInit: Symbol-SearchPath: 'C:/Program Files/Unity/Hub/Editor/2022.3.2f1/Editor/Data/Mono;.;C:\Users\clpc1\OneDrive\Desktop\Unity\ProjectB\ProjectB;C:\Users\clpc1\OneDrive\Desktop\Unity\ProjectB\ProjectB\Library\BurstCache\JIT;C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor;C:\Windows;C:\Windows\system32;', symOptions: 534, UserName: 'clpc1'
-OS-Version: 10.0.0
-C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\Unity.exe:Unity.exe (00007FF756DD0000), size: 79593472 (result: 0), SymType: '-nosymbols-', PDB: 'C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\Unity.exe', fileVersion: 2022.3.2.18231
-C:\Windows\SYSTEM32\ntdll.dll:ntdll.dll (00007FF8316D0000), size: 2064384 (result: 0), SymType: '-nosymbols-', PDB: 'C:\Windows\SYSTEM32\ntdll.dll', fileVersion: 10.0.19041.3324
-C:\Windows\System32\KERNEL32.DLL:KERNEL32.DLL (00007FF82FF20000), size: 782336 (result: 0), SymType: '-nosymbols-', PDB: 'C:\Windows\System32\KERNEL32.DLL', fileVersion: 10.0.19041.3155
-C:\Windows\System32\KERNELBASE.dll:KERNELBASE.dll (00007FF82F3A0000), size: 3104768 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.3324
-C:\Windows\System32\CRYPT32.dll:CRYPT32.dll (00007FF82EE00000), size: 1433600 (result: 0), SymType: '-nosymbols-', PDB: 'C:\Windows\System32\CRYPT32.dll', fileVersion: 10.0.19041.3271
-C:\Windows\System32\ucrtbase.dll:ucrtbase.dll (00007FF82F030000), size: 1048576 (result: 0), SymType: '-nosymbols-', PDB: 'C:\Windows\System32\ucrtbase.dll', fileVersion: 10.0.19041.789
-C:\Windows\System32\USER32.dll:USER32.dll (00007FF830080000), size: 1691648 (result: 0), SymType: '-nosymbols-', PDB: 'C:\Windows\System32\USER32.dll', fileVersion: 10.0.19041.2788
-C:\Windows\System32\win32u.dll:win32u.dll (00007FF82F000000), size: 139264 (result: 0), SymType: '-nosymbols-', PDB: 'C:\Windows\System32\win32u.dll', fileVersion: 10.0.19041.3271
-C:\Windows\System32\GDI32.dll:GDI32.dll (00007FF830220000), size: 180224 (result: 0), SymType: '-nosymbols-', PDB: 'C:\Windows\System32\GDI32.dll', fileVersion: 10.0.19041.2913
-C:\Windows\System32\gdi32full.dll:gdi32full.dll (00007FF82F280000), size: 1134592 (result: 0), SymType: '-nosymbols-', PDB: 'C:\Windows\System32\gdi32full.dll', fileVersion: 10.0.19041.3271
-C:\Windows\System32\msvcp_win.dll:msvcp_win.dll (00007FF82EF60000), size: 643072 (result: 0), SymType: '-nosymbols-', PDB: 'C:\Windows\System32\msvcp_win.dll', fileVersion: 10.0.19041.789
-C:\Windows\System32\ADVAPI32.dll:ADVAPI32.dll (00007FF8308C0000), size: 716800 (result: 0), SymType: '-nosymbols-', PDB: 'C:\Windows\System32\ADVAPI32.dll', fileVersion: 10.0.19041.2913
-C:\Windows\System32\msvcrt.dll:msvcrt.dll (00007FF82F860000), size: 647168 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 7.0.19041.546
-C:\Windows\System32\sechost.dll:sechost.dll (00007FF82FFE0000), size: 638976 (result: 0), SymType: '-nosymbols-', PDB: 'C:\Windows\System32\sechost.dll', fileVersion: 10.0.19041.2913
-C:\Windows\System32\RPCRT4.dll:RPCRT4.dll (00007FF82F730000), size: 1204224 (result: 0), SymType: '-nosymbols-', PDB: 'C:\Windows\System32\RPCRT4.dll', fileVersion: 10.0.19041.3208
-C:\Windows\System32\SHELL32.dll:SHELL32.dll (00007FF830E40000), size: 7618560 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.3271
-C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\libfbxsdk.dll:libfbxsdk.dll (00007FFFDEC60000), size: 10067968 (result: 0), SymType: '-nosymbols-', PDB: 'C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\libfbxsdk.dll', fileVersion: 2020.3.3.0
-C:\Windows\System32\SHLWAPI.dll:SHLWAPI.dll (00007FF830CB0000), size: 348160 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2075
-: (00007FF830D10000), size: 1220608 (result: 0), SymType: '-nosymbols-', PDB: 'C:\Windows\System32\ole32.dll'
-C:\Windows\System32\combase.dll:combase.dll (00007FF830250000), size: 3489792 (result: 0), SymType: '-nosymbols-', PDB: 'C:\Windows\System32\combase.dll', fileVersion: 10.0.19041.2788
-: (00007FF82FE00000), size: 196608 (result: 0), SymType: '-nosymbols-', PDB: 'C:\Windows\System32\IMM32.dll'
-:SETUPAPI.dll (00007FF82F990000), size: 4644864 (result: 0), SymType: '-deferred-', PDB: ''
-C:\Windows\System32\cfgmgr32.dll:cfgmgr32.dll (00007FF82EDB0000), size: 319488 (result: 0), SymType: '-nosymbols-', PDB: 'C:\Windows\System32\cfgmgr32.dll', fileVersion: 10.0.19041.3155
-C:\Windows\System32\bcrypt.dll:bcrypt.dll (00007FF82F1E0000), size: 159744 (result: 8), SymType: '-unknown-', PDB: '', fileVersion: 10.0.19041.3208
-  ERROR: LoadModule, GetLastError: '메모리 리소스가 부족하여 이 명령을 처리할 수 없습니다.' (Address: 0000000000000000)
-C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\s3tcompress.dll:s3tcompress.dll (00007FF828A40000), size: 180224 (result: 0), SymType: '-nosymbols-', PDB: 'C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\s3tcompress.dll'
-C:\Windows\System32\WS2_32.dll:WS2_32.dll (00007FF830790000), size: 438272 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\System32\WS2_32.dll', fileVersion: 10.0.19041.546
-C:\Windows\System32\OLEAUT32.dll:OLEAUT32.dll (00007FF8309D0000), size: 839680 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.3208
-C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\etccompress.dll:etccompress.dll (00007FFFE2E00000), size: 5066752 (result: 0), SymType: '-exported-', PDB: 'C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\etccompress.dll'
-C:\Windows\System32\WINTRUST.dll:WINTRUST.dll (00007FF82F210000), size: 421888 (result: 0), SymType: '-nosymbols-', PDB: 'C:\Windows\System32\WINTRUST.dll', fileVersion: 10.0.19041.3271
-C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\ispc_texcomp.dll:ispc_texcomp.dll (00007FFFE9000000), size: 1740800 (result: 0), SymType: '-deferred-', PDB: ''
-C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\FreeImage.dll:FreeImage.dll (0000000180000000), size: 6582272 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 3.18.0.0
-C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\compress_bc7e.dll:compress_bc7e.dll (00007FFFE54D0000), size: 1441792 (result: 0), SymType: '-exported-', PDB: 'C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\compress_bc7e.dll'
-C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\WinPixEventRuntime.dll:WinPixEventRuntime.dll (00007FF829B70000), size: 45056 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 1.0.1812.6001
-C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\umbraoptimizer64.dll:umbraoptimizer64.dll (00007FFFE5190000), size: 1187840 (result: 0), SymType: '-deferred-', PDB: ''
-C:\Windows\SYSTEM32\IPHLPAPI.DLL:IPHLPAPI.DLL (00007FF82E170000), size: 241664 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.3271
-C:\Windows\SYSTEM32\GLU32.dll:GLU32.dll (00007FF8287C0000), size: 180224 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2193
-C:\Windows\SYSTEM32\OPENGL32.dll:OPENGL32.dll (00007FFFE5060000), size: 1200128 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2193
-C:\Windows\SYSTEM32\WINHTTP.dll:WINHTTP.dll (00007FF826F90000), size: 1089536 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.3031
-C:\Windows\SYSTEM32\HID.DLL:HID.DLL (00007FF82D5D0000), size: 53248 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\HID.DLL', fileVersion: 10.0.19041.546
-C:\Windows\SYSTEM32\WINMM.dll:WINMM.dll (00007FF8228D0000), size: 159744 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\WINMM.dll', fileVersion: 10.0.19041.546
-C:\Windows\SYSTEM32\dwmapi.dll:dwmapi.dll (00007FF82C800000), size: 192512 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\dwmapi.dll', fileVersion: 10.0.19041.746
-C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\SketchUpAPI.dll:SketchUpAPI.dll (00007FFFDA8B0000), size: 8990720 (result: 0), SymType: '-exported-', PDB: 'C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\SketchUpAPI.dll', fileVersion: 23.0.0.0
-C:\Windows\SYSTEM32\VERSION.dll:VERSION.dll (00007FF8222B0000), size: 40960 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\VERSION.dll', fileVersion: 10.0.19041.546
-C:\Windows\SYSTEM32\VCRUNTIME140.dll:VCRUNTIME140.dll (00007FFFFED40000), size: 110592 (result: 0), SymType: '-nosymbols-', PDB: 'C:\Windows\SYSTEM32\VCRUNTIME140.dll', fileVersion: 14.34.31931.0
-C:\Windows\SYSTEM32\MSVCP140.dll:MSVCP140.dll (00007FFFEA5B0000), size: 581632 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 14.34.31931.0
-C:\Windows\SYSTEM32\WSOCK32.dll:WSOCK32.dll (00007FF829790000), size: 36864 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.1
-C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\SketchUpCommonPreferences.dll:SketchUpCommonPreferences.dll (00007FF812780000), size: 499712 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 23.0.0.0
-C:\Windows\SYSTEM32\Secur32.dll:Secur32.dll (00007FF820610000), size: 49152 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.546
-C:\Windows\SYSTEM32\VCRUNTIME140_1.dll:VCRUNTIME140_1.dll (00007FF829B50000), size: 49152 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 14.34.31931.0
-C:\Windows\SYSTEM32\SSPICLI.DLL:SSPICLI.DLL (00007FF82EC60000), size: 204800 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2130
-C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\OpenRL.dll:OpenRL.dll (0000025AA99D0000), size: 12779520 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 1.5.0.2907
-C:\Windows\SYSTEM32\MSWSOCK.DLL:MSWSOCK.DLL (00007FF82E4E0000), size: 434176 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.546
-C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\embree.dll:embree.dll (00007FFFD98C0000), size: 16711680 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 2.14.0.0
-C:\Windows\SYSTEM32\MSVCR100.dll:MSVCR100.dll (0000000067880000), size: 860160 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.40219.325
-C:\Windows\SYSTEM32\MSVCP100.dll:MSVCP100.dll (0000000067960000), size: 622592 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.40219.325
-C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\tbb.dll:tbb.dll (00007FF805630000), size: 413696 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 2017.0.2016.1004
-C:\Windows\SYSTEM32\MSVCP120.dll:MSVCP120.dll (00007FF8011B0000), size: 679936 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 12.0.40664.0
-C:\Windows\SYSTEM32\MSVCR120.dll:MSVCR120.dll (00007FFFE7480000), size: 978944 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 12.0.40664.0
-C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\OpenRL_pthread.dll:OpenRL_pthread.dll (0000025AAA620000), size: 61440 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 2.9.0.0
-C:\Windows\SYSTEM32\MSASN1.dll:MSASN1.dll (00007FF82E910000), size: 73728 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2251
-C:\Windows\System32\bcryptprimitives.dll:bcryptprimitives.dll (00007FF82F6A0000), size: 532480 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2486
-C:\Windows\SYSTEM32\kernel.appcore.dll:kernel.appcore.dll (00007FF82D5E0000), size: 73728 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\kernel.appcore.dll', fileVersion: 10.0.19041.546
-C:\Windows\system32\uxtheme.dll:uxtheme.dll (00007FF82C2C0000), size: 647168 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\uxtheme.dll', fileVersion: 10.0.19041.2193
-C:\Windows\SYSTEM32\windows.storage.dll:windows.storage.dll (00007FF82CE30000), size: 7942144 (result: 0), SymType: '-nosymbols-', PDB: 'C:\Windows\SYSTEM32\windows.storage.dll', fileVersion: 10.0.19041.3271
-C:\Windows\SYSTEM32\Wldp.dll:Wldp.dll (00007FF82E780000), size: 188416 (result: 0), SymType: '-nosymbols-', PDB: 'C:\Windows\SYSTEM32\Wldp.dll', fileVersion: 10.0.19041.2788
-C:\Windows\System32\SHCORE.dll:SHCORE.dll (00007FF830810000), size: 708608 (result: 0), SymType: '-nosymbols-', PDB: 'C:\Windows\System32\SHCORE.dll', fileVersion: 10.0.19041.1865
-C:\Windows\SYSTEM32\profapi.dll:profapi.dll (00007FF82ECE0000), size: 151552 (result: 0), SymType: '-nosymbols-', PDB: 'C:\Windows\SYSTEM32\profapi.dll', fileVersion: 10.0.19041.3155
-C:\Windows\system32\IconCodecService.dll:IconCodecService.dll (00007FF825EB0000), size: 36864 (result: 0), SymType: '-nosymbols-', PDB: 'C:\Windows\system32\IconCodecService.dll', fileVersion: 10.0.19041.1
-C:\Windows\SYSTEM32\WindowsCodecs.dll:WindowsCodecs.dll (00007FF815DB0000), size: 1785856 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\WindowsCodecs.dll', fileVersion: 10.0.19041.1706
-C:\Windows\System32\clbcatq.dll:clbcatq.dll (00007FF8305B0000), size: 692224 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\System32\clbcatq.dll', fileVersion: 2001.12.10941.16384
-C:\Windows\System32\netprofm.dll:netprofm.dll (00007FF829BE0000), size: 258048 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\System32\netprofm.dll', fileVersion: 10.0.19041.3031
-C:\Windows\System32\npmproxy.dll:npmproxy.dll (00007FF825DF0000), size: 65536 (result: 0), SymType: '-nosymbols-', PDB: 'C:\Windows\System32\npmproxy.dll', fileVersion: 10.0.19041.3031
-C:\Windows\System32\NSI.dll:NSI.dll (00007FF82FE30000), size: 32768 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\System32\NSI.dll', fileVersion: 10.0.19041.610
-C:\Windows\SYSTEM32\dhcpcsvc6.DLL:dhcpcsvc6.DLL (00007FF827310000), size: 94208 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2673
-C:\Windows\SYSTEM32\dhcpcsvc.DLL:dhcpcsvc.DLL (00007FF828050000), size: 118784 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2673
-C:\Windows\SYSTEM32\DNSAPI.dll:DNSAPI.dll (00007FF82E1B0000), size: 827392 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.3031
-C:\Windows\system32\napinsp.dll:napinsp.dll (00007FF828EF0000), size: 94208 (result: 0), SymType: '-nosymbols-', PDB: 'C:\Windows\system32\napinsp.dll', fileVersion: 10.0.19041.546
-C:\Windows\system32\pnrpnsp.dll:pnrpnsp.dll (00007FF828ED0000), size: 110592 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.546
-C:\Windows\system32\wshbth.dll:wshbth.dll (00007FF82A340000), size: 86016 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.546
-C:\Windows\system32\NLAapi.dll:NLAapi.dll (00007FF8273D0000), size: 118784 (result: 0), SymType: '-nosymbols-', PDB: 'C:\Windows\system32\NLAapi.dll', fileVersion: 10.0.19041.3031
-C:\Windows\System32\winrnr.dll:winrnr.dll (00007FF826480000), size: 73728 (result: 0), SymType: '-nosymbols-', PDB: 'C:\Windows\System32\winrnr.dll', fileVersion: 10.0.19041.546
-C:\Windows\System32\fwpuclnt.dll:fwpuclnt.dll (00007FF825030000), size: 532480 (result: 0), SymType: '-nosymbols-', PDB: 'C:\Windows\System32\fwpuclnt.dll', fileVersion: 10.0.19041.3271
-C:\Windows\System32\rasadhlp.dll:rasadhlp.dll (00007FF824E80000), size: 40960 (result: 0), SymType: '-nosymbols-', PDB: 'C:\Windows\System32\rasadhlp.dll', fileVersion: 10.0.19041.546
-C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\NVUnityPlugin.DLL:NVUnityPlugin.DLL (00007FFFE4940000), size: 1531904 (result: 0), SymType: '-nosymbols-', PDB: 'C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\NVUnityPlugin.DLL'
-C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\Data\Tools\astcenc-avx2.dll:astcenc-avx2.dll (00007FFFE86A0000), size: 540672 (result: 0), SymType: '-nosymbols-', PDB: 'C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\Data\Tools\astcenc-avx2.dll'
-C:\Windows\SYSTEM32\d3d11.dll:d3d11.dll (00007FF82A7D0000), size: 2502656 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\d3d11.dll', fileVersion: 10.0.19041.2913
-C:\Windows\SYSTEM32\dxgi.dll:dxgi.dll (00007FF82D650000), size: 995328 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2311
-C:\Windows\System32\DriverStore\FileRepository\u0369826.inf_amd64_d91a656b5b5a706f\B369681\aticfx64.dll:aticfx64.dll (00007FF8116E0000), size: 1945600 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\System32\DriverStore\FileRepository\u0369826.inf_amd64_d91a656b5b5a706f\B369681\aticfx64.dll', fileVersion: 27.20.15026.8004
-C:\Windows\System32\DriverStore\FileRepository\u0369826.inf_amd64_d91a656b5b5a706f\B369681\atiuxp64.dll:atiuxp64.dll (00007FF811660000), size: 229376 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\System32\DriverStore\FileRepository\u0369826.inf_amd64_d91a656b5b5a706f\B369681\atiuxp64.dll', fileVersion: 27.20.15026.8004
-C:\Windows\System32\DriverStore\FileRepository\u0369826.inf_amd64_d91a656b5b5a706f\B369681\atidxx64.dll:atidxx64.dll (00007FF80F700000), size: 32845824 (result: 0), SymType: '-nosymbols-', PDB: 'C:\Windows\System32\DriverStore\FileRepository\u0369826.inf_amd64_d91a656b5b5a706f\B369681\atidxx64.dll', fileVersion: 27.20.15026.8004
-C:\Windows\SYSTEM32\apphelp.dll:apphelp.dll (00007FF82C110000), size: 593920 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2913
-C:\Windows\SYSTEM32\amdihk64.dll:amdihk64.dll (00007FF80F6D0000), size: 196608 (result: 0), SymType: '-nosymbols-', PDB: 'C:\Windows\SYSTEM32\amdihk64.dll', fileVersion: 2.0.0.1788
-C:\Windows\SYSTEM32\dxcore.dll:dxcore.dll (00007FF8116A0000), size: 241664 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\dxcore.dll', fileVersion: 10.0.19041.546
-C:\Windows\SYSTEM32\D3DSCache.dll:D3DSCache.dll (00007FF80F100000), size: 176128 (result: 0), SymType: '-nosymbols-', PDB: 'C:\Windows\SYSTEM32\D3DSCache.dll', fileVersion: 10.0.19041.746
-C:\Windows\SYSTEM32\USERENV.dll:USERENV.dll (00007FF82ECA0000), size: 188416 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.3155
-C:\Windows\system32\wbem\wbemprox.dll:wbemprox.dll (00007FF81D4B0000), size: 69632 (result: 0), SymType: '-nosymbols-', PDB: 'C:\Windows\system32\wbem\wbemprox.dll', fileVersion: 10.0.19041.3271
-C:\Windows\SYSTEM32\wbemcomn.dll:wbemcomn.dll (00007FF823710000), size: 589824 (result: 0), SymType: '-nosymbols-', PDB: 'C:\Windows\SYSTEM32\wbemcomn.dll', fileVersion: 10.0.19041.1566
-C:\Windows\system32\wbem\wbemsvc.dll:wbemsvc.dll (00007FF81CE90000), size: 81920 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.3271
-C:\Windows\system32\wbem\fastprox.dll:fastprox.dll (00007FF81B200000), size: 1093632 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.546
-C:\Windows\SYSTEM32\amsi.dll:amsi.dll (00007FF81B700000), size: 126976 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2075
-C:\Program Files\AhnLab\V3Lite40\AMSI\AMSI0001\v3amsi64.dll:v3amsi64.dll (00007FF818940000), size: 339968 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 1.0.0.21
-C:\Windows\SYSTEM32\opencl.dll:opencl.dll (00007FF8282D0000), size: 147456 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 2.2.6.0
-C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\radeonrays.dll:radeonrays.dll (00007FFFE83B0000), size: 557056 (result: 0), SymType: '-deferred-', PDB: ''
-C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\Data\MonoBleedingEdge\EmbedRuntime\mono-2.0-bdwgc.dll:mono-2.0-bdwgc.dll (00007FFFCEBF0000), size: 10682368 (result: -529697949), SymType: '-deferred-', PDB: ''
-  ERROR: LoadModule, GetLastError: 'Unknown error [-529697949]' (Address: 0000000000000000)
-C:\Windows\SYSTEM32\PROPSYS.dll:PROPSYS.dll (00007FF82A560000), size: 1007616 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 7.0.19041.1741
-C:\Windows\System32\Windows.FileExplorer.Common.dll:Windows.FileExplorer.Common.dll (00007FF80E780000), size: 397312 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.1741
-C:\Windows\System32\iertutil.dll:iertutil.dll (00007FF822530000), size: 2867200 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 11.0.19041.3324
-C:\Windows\SYSTEM32\edputil.dll:edputil.dll (00007FF814390000), size: 147456 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.546
-C:\Windows\System32\Windows.StateRepositoryPS.dll:Windows.StateRepositoryPS.dll (00007FF823810000), size: 1335296 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.3155
-C:\Windows\SYSTEM32\urlmon.dll:urlmon.dll (00007FF8239F0000), size: 2019328 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 11.0.19041.3324
-C:\Windows\SYSTEM32\netutils.dll:netutils.dll (00007FF82E280000), size: 49152 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.546
-C:\Windows\SYSTEM32\srvcli.dll:srvcli.dll (00007FF822500000), size: 167936 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.3155
-C:\Windows\SYSTEM32\virtdisk.dll:virtdisk.dll (00007FFFEBA60000), size: 77824 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2311
-C:\Windows\SYSTEM32\FLTLIB.DLL:FLTLIB.DLL (00007FF80DBE0000), size: 45056 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\FLTLIB.DLL', fileVersion: 10.0.19041.546
-C:\Windows\System32\cldapi.dll:cldapi.dll (00007FF8152A0000), size: 139264 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.3324
-C:\Windows\System32\wintypes.dll:wintypes.dll (00007FF82B460000), size: 1392640 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2788
-C:\Windows\System32\appresolver.dll:appresolver.dll (00007FF81AA90000), size: 589824 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.1620
-C:\Windows\System32\SLC.dll:SLC.dll (00007FF82D8D0000), size: 167936 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.1682
-C:\Windows\System32\Bcp47Langs.dll:Bcp47Langs.dll (00007FF8166E0000), size: 372736 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.1566
-C:\Windows\System32\sppc.dll:sppc.dll (00007FF82D8A0000), size: 151552 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.1682
-C:\Windows\System32\OneCoreCommonProxyStub.dll:OneCoreCommonProxyStub.dll (00007FF80D9F0000), size: 520192 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.2546
-C:\Windows\System32\OneCoreUAPCommonProxyStub.dll:OneCoreUAPCommonProxyStub.dll (00007FF81D4F0000), size: 8179712 (result: 0), SymType: '-deferred-', PDB: '', fileVersion: 10.0.19041.3324
-C:\Windows\SYSTEM32\dbghelp.dll:dbghelp.dll (00007FF82CC20000), size: 1982464 (result: 0), SymType: '-nosymbols-', PDB: 'C:\Windows\SYSTEM32\dbghelp.dll', fileVersion: 10.0.19041.867
-C:\Windows\System32\psapi.dll:psapi.dll (00007FF830800000), size: 32768 (result: 0), SymType: '-nosymbols-', PDB: 'C:\Windows\System32\psapi.dll', fileVersion: 10.0.19041.546
-  ERROR: SymGetSymFromAddr64, GetLastError: '지정된 모듈을 찾을 수 없습니다.' (Address: 00007FF82F3CCF19)
-0x00007FF82F3CCF19 (KERNELBASE) (function-name not available)
-  ERROR: SymGetSymFromAddr64, GetLastError: 'Unknown error [-529697949]' (Address: 00007FFFCEC6064C)
-0x00007FFFCEC6064C (mono-2.0-bdwgc) (function-name not available)
-  ERROR: SymGetSymFromAddr64, GetLastError: 'Unknown error [-529697949]' (Address: 00007FFFCEC4C4A2)
-0x00007FFFCEC4C4A2 (mono-2.0-bdwgc) (function-name not available)
-  ERROR: SymGetSymFromAddr64, GetLastError: 'Unknown error [-529697949]' (Address: 00007FFFCEC4C508)
-0x00007FFFCEC4C508 (mono-2.0-bdwgc) (function-name not available)
-  ERROR: SymGetSymFromAddr64, GetLastError: 'Unknown error [-529697949]' (Address: 00007FFFCECD6684)
-0x00007FFFCECD6684 (mono-2.0-bdwgc) (function-name not available)
-  ERROR: SymGetSymFromAddr64, GetLastError: 'Unknown error [-529697949]' (Address: 00007FFFCED984D3)
-0x00007FFFCED984D3 (mono-2.0-bdwgc) (function-name not available)
-  ERROR: SymGetSymFromAddr64, GetLastError: 'Unknown error [-529697949]' (Address: 00007FFFCED9812B)
-0x00007FFFCED9812B (mono-2.0-bdwgc) (function-name not available)
-  ERROR: SymGetSymFromAddr64, GetLastError: '잘못된 주소를 액세스하려고 했습니다.' (Address: 00007FF757E8FCAE)
-0x00007FF757E8FCAE (Unity) (function-name not available)
-  ERROR: SymGetSymFromAddr64, GetLastError: '잘못된 주소를 액세스하려고 했습니다.' (Address: 00007FF757E8EF5E)
-0x00007FF757E8EF5E (Unity) (function-name not available)
-  ERROR: SymGetSymFromAddr64, GetLastError: '잘못된 주소를 액세스하려고 했습니다.' (Address: 00007FF757E8ED0B)
-0x00007FF757E8ED0B (Unity) (function-name not available)
-  ERROR: SymGetSymFromAddr64, GetLastError: '잘못된 주소를 액세스하려고 했습니다.' (Address: 00007FF757E8E23C)
-0x00007FF757E8E23C (Unity) (function-name not available)
-  ERROR: SymGetSymFromAddr64, GetLastError: '잘못된 주소를 액세스하려고 했습니다.' (Address: 00007FF757E9128C)
-0x00007FF757E9128C (Unity) (function-name not available)
-  ERROR: SymGetSymFromAddr64, GetLastError: '잘못된 주소를 액세스하려고 했습니다.' (Address: 00007FF758E18C62)
-0x00007FF758E18C62 (Unity) (function-name not available)
-  ERROR: SymGetSymFromAddr64, GetLastError: '잘못된 주소를 액세스하려고 했습니다.' (Address: 00007FF758E19214)
-0x00007FF758E19214 (Unity) (function-name not available)
-  ERROR: SymGetSymFromAddr64, GetLastError: '잘못된 주소를 액세스하려고 했습니다.' (Address: 00007FF75931946F)
-0x00007FF75931946F (Unity) (function-name not available)
-  ERROR: SymGetSymFromAddr64, GetLastError: '잘못된 주소를 액세스하려고 했습니다.' (Address: 00007FF759352B42)
-0x00007FF759352B42 (Unity) (function-name not available)
-  ERROR: SymGetSymFromAddr64, GetLastError: '잘못된 주소를 액세스하려고 했습니다.' (Address: 00007FF75933EAEE)
-0x00007FF75933EAEE (Unity) (function-name not available)
-  ERROR: SymGetSymFromAddr64, GetLastError: '잘못된 주소를 액세스하려고 했습니다.' (Address: 00007FF75934071E)
-0x00007FF75934071E (Unity) (function-name not available)
-  ERROR: SymGetSymFromAddr64, GetLastError: '잘못된 주소를 액세스하려고 했습니다.' (Address: 00007FF759350EEC)
-0x00007FF759350EEC (Unity) (function-name not available)
-  ERROR: SymGetSymFromAddr64, GetLastError: '잘못된 주소를 액세스하려고 했습니다.' (Address: 00007FF7593256AF)
-0x00007FF7593256AF (Unity) (function-name not available)
-  ERROR: SymGetSymFromAddr64, GetLastError: '잘못된 주소를 액세스하려고 했습니다.' (Address: 00007FF7592F03B7)
-0x00007FF7592F03B7 (Unity) (function-name not available)
-  ERROR: SymGetSymFromAddr64, GetLastError: '잘못된 주소를 액세스하려고 했습니다.' (Address: 00007FF7592F043B)
-0x00007FF7592F043B (Unity) (function-name not available)
-  ERROR: SymGetSymFromAddr64, GetLastError: '잘못된 주소를 액세스하려고 했습니다.' (Address: 00007FF758AF6B41)
-0x00007FF758AF6B41 (Unity) (function-name not available)
-  ERROR: SymGetSymFromAddr64, GetLastError: '잘못된 주소를 액세스하려고 했습니다.' (Address: 00007FF758F7A4D5)
-0x00007FF758F7A4D5 (Unity) (function-name not available)
-  ERROR: SymGetSymFromAddr64, GetLastError: '잘못된 주소를 액세스하려고 했습니다.' (Address: 00007FF75A35F34E)
-0x00007FF75A35F34E (Unity) (function-name not available)
-  ERROR: SymGetSymFromAddr64, GetLastError: '잘못된 주소를 액세스하려고 했습니다.' (Address: 00007FF82FF37614)
-0x00007FF82FF37614 (KERNEL32) (function-name not available)
-  ERROR: SymGetSymFromAddr64, GetLastError: '잘못된 주소를 액세스하려고 했습니다.' (Address: 00007FF8317226B1)
-0x00007FF8317226B1 (ntdll) (function-name not available)
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  3.190 seconds
+Domain Reload Profiling: 4603ms
+	BeginReloadAssembly (271ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (14ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (71ms)
+	RebuildCommonClasses (49ms)
+	RebuildNativeTypeToScriptingClass (13ms)
+	initialDomainReloadingComplete (66ms)
+	LoadAllAssembliesAndSetupDomain (1013ms)
+		LoadAssemblies (654ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (461ms)
+			TypeCache.Refresh (448ms)
+				TypeCache.ScanAssembly (427ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (13ms)
+	FinalizeReload (3191ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (1684ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (62ms)
+			SetLoadedEditorAssemblies (8ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (229ms)
+			ProcessInitializeOnLoadAttributes (992ms)
+			ProcessInitializeOnLoadMethodAttributes (352ms)
+			AfterProcessingInitializeOnLoad (41ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (35ms)
+Refreshing native plugins compatible for Editor in 13.16 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 6397 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 71 unused Assets / (328.3 KB). Loaded Objects now: 7107.
+Memory consumption went from 234.5 MB to 234.2 MB.
+Total: 20.513000 ms (FindLiveObjects: 0.642300 ms CreateObjectMapping: 0.874600 ms MarkObjects: 18.781600 ms  DeleteObjects: 0.213300 ms)
 
-========== END OF STACKTRACE ===========
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image D:\유니티참고용\Project\ProjectB\ProjectB\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image D:\유니티참고용\Project\ProjectB\ProjectB\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  1.448 seconds
+Refreshing native plugins compatible for Editor in 14.60 ms, found 4 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for iOS target not found
+Native extension for Android target not found
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.NullReferenceException: Object reference not set to an instance of an object
+  at XNodeEditor.NodeEditorAssetModProcessor.OnReloadEditor () [0x0004e] in D:\유니티참고용\Project\ProjectB\ProjectB\Assets\xNode-master\Scripts\Editor\NodeEditorAssetModProcessor.cs:55 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <605bf8b31fcb444b85176da963870aa7>:0 
+   --- End of inner exception stack trace ---
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00083] in <605bf8b31fcb444b85176da963870aa7>:0 
+  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <605bf8b31fcb444b85176da963870aa7>:0 
+  at UnityEditor.EditorAssemblies.ProcessInitializeOnLoadMethodAttributes () [0x000a5] in <ac87b54e58ee4be198261fd5c8030d52>:0 
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogError (object)
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
 
-A crash has been intercepted by the crash handler. For call stack and other details, see the latest crash report generated in:
- * C:/Users/clpc1/AppData/Local/Temp/Unity/Editor/Crashes
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  3.452 seconds
+Domain Reload Profiling: 4882ms
+	BeginReloadAssembly (271ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (14ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (72ms)
+	RebuildCommonClasses (52ms)
+	RebuildNativeTypeToScriptingClass (19ms)
+	initialDomainReloadingComplete (71ms)
+	LoadAllAssembliesAndSetupDomain (1016ms)
+		LoadAssemblies (633ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (483ms)
+			TypeCache.Refresh (467ms)
+				TypeCache.ScanAssembly (446ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (16ms)
+	FinalizeReload (3453ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (1881ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (69ms)
+			SetLoadedEditorAssemblies (8ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (263ms)
+			ProcessInitializeOnLoadAttributes (1171ms)
+			ProcessInitializeOnLoadMethodAttributes (329ms)
+			AfterProcessingInitializeOnLoad (40ms)
+			EditorAssembliesLoaded (1ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (35ms)
+Refreshing native plugins compatible for Editor in 15.84 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 6397 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 71 unused Assets / (328.5 KB). Loaded Objects now: 7112.
+Memory consumption went from 234.6 MB to 234.3 MB.
+Total: 24.507900 ms (FindLiveObjects: 1.300500 ms CreateObjectMapping: 1.098700 ms MarkObjects: 21.937900 ms  DeleteObjects: 0.169400 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image D:\유니티참고용\Project\ProjectB\ProjectB\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image D:\유니티참고용\Project\ProjectB\ProjectB\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  1.482 seconds
+Refreshing native plugins compatible for Editor in 13.69 ms, found 4 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for iOS target not found
+Native extension for Android target not found
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.NullReferenceException: Object reference not set to an instance of an object
+  at XNodeEditor.NodeEditorAssetModProcessor.OnReloadEditor () [0x0004e] in D:\유니티참고용\Project\ProjectB\ProjectB\Assets\xNode-master\Scripts\Editor\NodeEditorAssetModProcessor.cs:55 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <605bf8b31fcb444b85176da963870aa7>:0 
+   --- End of inner exception stack trace ---
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00083] in <605bf8b31fcb444b85176da963870aa7>:0 
+  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <605bf8b31fcb444b85176da963870aa7>:0 
+  at UnityEditor.EditorAssemblies.ProcessInitializeOnLoadMethodAttributes () [0x000a5] in <ac87b54e58ee4be198261fd5c8030d52>:0 
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogError (object)
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
+
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  3.276 seconds
+Domain Reload Profiling: 4742ms
+	BeginReloadAssembly (274ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (14ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (70ms)
+	RebuildCommonClasses (38ms)
+	RebuildNativeTypeToScriptingClass (12ms)
+	initialDomainReloadingComplete (71ms)
+	LoadAllAssembliesAndSetupDomain (1071ms)
+		LoadAssemblies (683ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (495ms)
+			TypeCache.Refresh (480ms)
+				TypeCache.ScanAssembly (453ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (15ms)
+	FinalizeReload (3276ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (1773ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (62ms)
+			SetLoadedEditorAssemblies (5ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (240ms)
+			ProcessInitializeOnLoadAttributes (1085ms)
+			ProcessInitializeOnLoadMethodAttributes (339ms)
+			AfterProcessingInitializeOnLoad (42ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (37ms)
+Refreshing native plugins compatible for Editor in 15.07 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 6397 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 71 unused Assets / (328.5 KB). Loaded Objects now: 7117.
+Memory consumption went from 234.6 MB to 234.3 MB.
+Total: 25.585900 ms (FindLiveObjects: 0.776600 ms CreateObjectMapping: 0.763100 ms MarkObjects: 23.810900 ms  DeleteObjects: 0.233900 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image D:\유니티참고용\Project\ProjectB\ProjectB\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image D:\유니티참고용\Project\ProjectB\ProjectB\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  1.439 seconds
+Refreshing native plugins compatible for Editor in 11.87 ms, found 4 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for iOS target not found
+Native extension for Android target not found
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.NullReferenceException: Object reference not set to an instance of an object
+  at XNodeEditor.NodeEditorAssetModProcessor.OnReloadEditor () [0x0004e] in D:\유니티참고용\Project\ProjectB\ProjectB\Assets\xNode-master\Scripts\Editor\NodeEditorAssetModProcessor.cs:55 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <605bf8b31fcb444b85176da963870aa7>:0 
+   --- End of inner exception stack trace ---
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00083] in <605bf8b31fcb444b85176da963870aa7>:0 
+  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <605bf8b31fcb444b85176da963870aa7>:0 
+  at UnityEditor.EditorAssemblies.ProcessInitializeOnLoadMethodAttributes () [0x000a5] in <ac87b54e58ee4be198261fd5c8030d52>:0 
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogError (object)
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
+
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  3.308 seconds
+Domain Reload Profiling: 4731ms
+	BeginReloadAssembly (298ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (15ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (74ms)
+	RebuildCommonClasses (43ms)
+	RebuildNativeTypeToScriptingClass (13ms)
+	initialDomainReloadingComplete (78ms)
+	LoadAllAssembliesAndSetupDomain (990ms)
+		LoadAssemblies (663ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (438ms)
+			TypeCache.Refresh (416ms)
+				TypeCache.ScanAssembly (392ms)
+			ScanForSourceGeneratedMonoScriptInfo (10ms)
+			ResolveRequiredComponents (13ms)
+	FinalizeReload (3309ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (1768ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (67ms)
+			SetLoadedEditorAssemblies (6ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (229ms)
+			ProcessInitializeOnLoadAttributes (1079ms)
+			ProcessInitializeOnLoadMethodAttributes (344ms)
+			AfterProcessingInitializeOnLoad (41ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (39ms)
+Refreshing native plugins compatible for Editor in 15.41 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 6397 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 71 unused Assets / (328.6 KB). Loaded Objects now: 7122.
+Memory consumption went from 234.6 MB to 234.3 MB.
+Total: 24.674800 ms (FindLiveObjects: 0.944600 ms CreateObjectMapping: 0.671700 ms MarkObjects: 22.772900 ms  DeleteObjects: 0.283900 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image D:\유니티참고용\Project\ProjectB\ProjectB\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image D:\유니티참고용\Project\ProjectB\ProjectB\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  1.480 seconds
+Refreshing native plugins compatible for Editor in 15.50 ms, found 4 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for iOS target not found
+Native extension for Android target not found
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.NullReferenceException: Object reference not set to an instance of an object
+  at XNodeEditor.NodeEditorAssetModProcessor.OnReloadEditor () [0x0004e] in D:\유니티참고용\Project\ProjectB\ProjectB\Assets\xNode-master\Scripts\Editor\NodeEditorAssetModProcessor.cs:55 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <605bf8b31fcb444b85176da963870aa7>:0 
+   --- End of inner exception stack trace ---
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00083] in <605bf8b31fcb444b85176da963870aa7>:0 
+  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <605bf8b31fcb444b85176da963870aa7>:0 
+  at UnityEditor.EditorAssemblies.ProcessInitializeOnLoadMethodAttributes () [0x000a5] in <ac87b54e58ee4be198261fd5c8030d52>:0 
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogError (object)
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
+
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  3.368 seconds
+Domain Reload Profiling: 4833ms
+	BeginReloadAssembly (267ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (13ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (74ms)
+	RebuildCommonClasses (39ms)
+	RebuildNativeTypeToScriptingClass (12ms)
+	initialDomainReloadingComplete (68ms)
+	LoadAllAssembliesAndSetupDomain (1078ms)
+		LoadAssemblies (675ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (490ms)
+			TypeCache.Refresh (475ms)
+				TypeCache.ScanAssembly (451ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (15ms)
+	FinalizeReload (3369ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (1809ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (67ms)
+			SetLoadedEditorAssemblies (7ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (251ms)
+			ProcessInitializeOnLoadAttributes (1111ms)
+			ProcessInitializeOnLoadMethodAttributes (333ms)
+			AfterProcessingInitializeOnLoad (40ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (34ms)
+Refreshing native plugins compatible for Editor in 13.17 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 6397 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 71 unused Assets / (328.4 KB). Loaded Objects now: 7127.
+Memory consumption went from 234.6 MB to 234.3 MB.
+Total: 21.365400 ms (FindLiveObjects: 0.843000 ms CreateObjectMapping: 1.013700 ms MarkObjects: 19.233600 ms  DeleteObjects: 0.273200 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image D:\유니티참고용\Project\ProjectB\ProjectB\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image D:\유니티참고용\Project\ProjectB\ProjectB\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  1.378 seconds
+Refreshing native plugins compatible for Editor in 13.25 ms, found 4 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for iOS target not found
+Native extension for Android target not found
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.NullReferenceException: Object reference not set to an instance of an object
+  at XNodeEditor.NodeEditorAssetModProcessor.OnReloadEditor () [0x0004e] in D:\유니티참고용\Project\ProjectB\ProjectB\Assets\xNode-master\Scripts\Editor\NodeEditorAssetModProcessor.cs:55 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <605bf8b31fcb444b85176da963870aa7>:0 
+   --- End of inner exception stack trace ---
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00083] in <605bf8b31fcb444b85176da963870aa7>:0 
+  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <605bf8b31fcb444b85176da963870aa7>:0 
+  at UnityEditor.EditorAssemblies.ProcessInitializeOnLoadMethodAttributes () [0x000a5] in <ac87b54e58ee4be198261fd5c8030d52>:0 
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogError (object)
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
+
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  2.892 seconds
+Domain Reload Profiling: 4255ms
+	BeginReloadAssembly (266ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (16ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (69ms)
+	RebuildCommonClasses (43ms)
+	RebuildNativeTypeToScriptingClass (17ms)
+	initialDomainReloadingComplete (73ms)
+	LoadAllAssembliesAndSetupDomain (963ms)
+		LoadAssemblies (676ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (391ms)
+			TypeCache.Refresh (372ms)
+				TypeCache.ScanAssembly (351ms)
+			ScanForSourceGeneratedMonoScriptInfo (7ms)
+			ResolveRequiredComponents (13ms)
+	FinalizeReload (2893ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (1544ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (63ms)
+			SetLoadedEditorAssemblies (8ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (244ms)
+			ProcessInitializeOnLoadAttributes (915ms)
+			ProcessInitializeOnLoadMethodAttributes (281ms)
+			AfterProcessingInitializeOnLoad (34ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (30ms)
+Refreshing native plugins compatible for Editor in 12.41 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 6397 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 71 unused Assets / (328.5 KB). Loaded Objects now: 7132.
+Memory consumption went from 234.6 MB to 234.3 MB.
+Total: 18.565000 ms (FindLiveObjects: 0.611700 ms CreateObjectMapping: 0.637100 ms MarkObjects: 17.039900 ms  DeleteObjects: 0.274500 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image D:\유니티참고용\Project\ProjectB\ProjectB\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image D:\유니티참고용\Project\ProjectB\ProjectB\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  1.431 seconds
+Refreshing native plugins compatible for Editor in 16.32 ms, found 4 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for iOS target not found
+Native extension for Android target not found
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.NullReferenceException: Object reference not set to an instance of an object
+  at XNodeEditor.NodeEditorAssetModProcessor.OnReloadEditor () [0x0004e] in D:\유니티참고용\Project\ProjectB\ProjectB\Assets\xNode-master\Scripts\Editor\NodeEditorAssetModProcessor.cs:55 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <605bf8b31fcb444b85176da963870aa7>:0 
+   --- End of inner exception stack trace ---
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00083] in <605bf8b31fcb444b85176da963870aa7>:0 
+  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <605bf8b31fcb444b85176da963870aa7>:0 
+  at UnityEditor.EditorAssemblies.ProcessInitializeOnLoadMethodAttributes () [0x000a5] in <ac87b54e58ee4be198261fd5c8030d52>:0 
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogError (object)
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
+
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  3.396 seconds
+Domain Reload Profiling: 4812ms
+	BeginReloadAssembly (263ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (14ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (64ms)
+	RebuildCommonClasses (45ms)
+	RebuildNativeTypeToScriptingClass (16ms)
+	initialDomainReloadingComplete (73ms)
+	LoadAllAssembliesAndSetupDomain (1018ms)
+		LoadAssemblies (676ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (447ms)
+			TypeCache.Refresh (433ms)
+				TypeCache.ScanAssembly (407ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (14ms)
+	FinalizeReload (3397ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (1929ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (62ms)
+			SetLoadedEditorAssemblies (12ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (282ms)
+			ProcessInitializeOnLoadAttributes (1257ms)
+			ProcessInitializeOnLoadMethodAttributes (281ms)
+			AfterProcessingInitializeOnLoad (34ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (31ms)
+Refreshing native plugins compatible for Editor in 14.17 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 6397 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 71 unused Assets / (328.5 KB). Loaded Objects now: 7137.
+Memory consumption went from 234.6 MB to 234.3 MB.
+Total: 21.647800 ms (FindLiveObjects: 0.593300 ms CreateObjectMapping: 0.673600 ms MarkObjects: 19.941600 ms  DeleteObjects: 0.437900 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image D:\유니티참고용\Project\ProjectB\ProjectB\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image D:\유니티참고용\Project\ProjectB\ProjectB\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  1.542 seconds
+Refreshing native plugins compatible for Editor in 11.96 ms, found 4 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for iOS target not found
+Native extension for Android target not found
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.NullReferenceException: Object reference not set to an instance of an object
+  at XNodeEditor.NodeEditorAssetModProcessor.OnReloadEditor () [0x0004e] in D:\유니티참고용\Project\ProjectB\ProjectB\Assets\xNode-master\Scripts\Editor\NodeEditorAssetModProcessor.cs:55 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <605bf8b31fcb444b85176da963870aa7>:0 
+   --- End of inner exception stack trace ---
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00083] in <605bf8b31fcb444b85176da963870aa7>:0 
+  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <605bf8b31fcb444b85176da963870aa7>:0 
+  at UnityEditor.EditorAssemblies.ProcessInitializeOnLoadMethodAttributes () [0x000a5] in <ac87b54e58ee4be198261fd5c8030d52>:0 
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogError (object)
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
+
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  3.514 seconds
+Domain Reload Profiling: 5041ms
+	BeginReloadAssembly (305ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (14ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (84ms)
+	RebuildCommonClasses (59ms)
+	RebuildNativeTypeToScriptingClass (16ms)
+	initialDomainReloadingComplete (77ms)
+	LoadAllAssembliesAndSetupDomain (1069ms)
+		LoadAssemblies (760ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (427ms)
+			TypeCache.Refresh (405ms)
+				TypeCache.ScanAssembly (380ms)
+			ScanForSourceGeneratedMonoScriptInfo (10ms)
+			ResolveRequiredComponents (12ms)
+	FinalizeReload (3515ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (1893ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (61ms)
+			SetLoadedEditorAssemblies (9ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (271ms)
+			ProcessInitializeOnLoadAttributes (1203ms)
+			ProcessInitializeOnLoadMethodAttributes (314ms)
+			AfterProcessingInitializeOnLoad (34ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (31ms)
+Refreshing native plugins compatible for Editor in 13.64 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 6397 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 71 unused Assets / (328.7 KB). Loaded Objects now: 7142.
+Memory consumption went from 234.6 MB to 234.3 MB.
+Total: 19.957700 ms (FindLiveObjects: 0.649900 ms CreateObjectMapping: 0.727500 ms MarkObjects: 18.307900 ms  DeleteObjects: 0.271200 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image D:\유니티참고용\Project\ProjectB\ProjectB\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image D:\유니티참고용\Project\ProjectB\ProjectB\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  1.448 seconds
+Refreshing native plugins compatible for Editor in 12.34 ms, found 4 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for iOS target not found
+Native extension for Android target not found
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.NullReferenceException: Object reference not set to an instance of an object
+  at XNodeEditor.NodeEditorAssetModProcessor.OnReloadEditor () [0x0004e] in D:\유니티참고용\Project\ProjectB\ProjectB\Assets\xNode-master\Scripts\Editor\NodeEditorAssetModProcessor.cs:55 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <605bf8b31fcb444b85176da963870aa7>:0 
+   --- End of inner exception stack trace ---
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00083] in <605bf8b31fcb444b85176da963870aa7>:0 
+  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <605bf8b31fcb444b85176da963870aa7>:0 
+  at UnityEditor.EditorAssemblies.ProcessInitializeOnLoadMethodAttributes () [0x000a5] in <ac87b54e58ee4be198261fd5c8030d52>:0 
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogError (object)
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
+
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  2.946 seconds
+Domain Reload Profiling: 4378ms
+	BeginReloadAssembly (272ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (18ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (64ms)
+	RebuildCommonClasses (47ms)
+	RebuildNativeTypeToScriptingClass (12ms)
+	initialDomainReloadingComplete (76ms)
+	LoadAllAssembliesAndSetupDomain (1025ms)
+		LoadAssemblies (655ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (476ms)
+			TypeCache.Refresh (457ms)
+				TypeCache.ScanAssembly (432ms)
+			ScanForSourceGeneratedMonoScriptInfo (7ms)
+			ResolveRequiredComponents (12ms)
+	FinalizeReload (2947ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (1580ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (53ms)
+			SetLoadedEditorAssemblies (6ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (239ms)
+			ProcessInitializeOnLoadAttributes (954ms)
+			ProcessInitializeOnLoadMethodAttributes (286ms)
+			AfterProcessingInitializeOnLoad (42ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (30ms)
+Refreshing native plugins compatible for Editor in 13.54 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 6397 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 71 unused Assets / (328.5 KB). Loaded Objects now: 7147.
+Memory consumption went from 223.4 MB to 223.0 MB.
+Total: 17.228000 ms (FindLiveObjects: 0.508300 ms CreateObjectMapping: 0.573400 ms MarkObjects: 15.983900 ms  DeleteObjects: 0.161100 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image D:\유니티참고용\Project\ProjectB\ProjectB\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image D:\유니티참고용\Project\ProjectB\ProjectB\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  1.462 seconds
+Refreshing native plugins compatible for Editor in 15.21 ms, found 4 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for iOS target not found
+Native extension for Android target not found
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.NullReferenceException: Object reference not set to an instance of an object
+  at XNodeEditor.NodeEditorAssetModProcessor.OnReloadEditor () [0x0004e] in D:\유니티참고용\Project\ProjectB\ProjectB\Assets\xNode-master\Scripts\Editor\NodeEditorAssetModProcessor.cs:55 
+  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <605bf8b31fcb444b85176da963870aa7>:0 
+   --- End of inner exception stack trace ---
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00083] in <605bf8b31fcb444b85176da963870aa7>:0 
+  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <605bf8b31fcb444b85176da963870aa7>:0 
+  at UnityEditor.EditorAssemblies.ProcessInitializeOnLoadMethodAttributes () [0x000a5] in <ac87b54e58ee4be198261fd5c8030d52>:0 
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogError (object)
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
+
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  3.297 seconds
+Domain Reload Profiling: 4741ms
+	BeginReloadAssembly (252ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (13ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (67ms)
+	RebuildCommonClasses (37ms)
+	RebuildNativeTypeToScriptingClass (19ms)
+	initialDomainReloadingComplete (72ms)
+	LoadAllAssembliesAndSetupDomain (1062ms)
+		LoadAssemblies (671ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (486ms)
+			TypeCache.Refresh (468ms)
+				TypeCache.ScanAssembly (445ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (18ms)
+	FinalizeReload (3298ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (1785ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (64ms)
+			SetLoadedEditorAssemblies (7ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (232ms)
+			ProcessInitializeOnLoadAttributes (1104ms)
+			ProcessInitializeOnLoadMethodAttributes (335ms)
+			AfterProcessingInitializeOnLoad (41ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (36ms)
+Refreshing native plugins compatible for Editor in 17.06 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 6397 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 71 unused Assets / (328.4 KB). Loaded Objects now: 7152.
+Memory consumption went from 234.6 MB to 234.3 MB.
+Total: 24.558000 ms (FindLiveObjects: 0.741000 ms CreateObjectMapping: 0.847600 ms MarkObjects: 22.659400 ms  DeleteObjects: 0.306400 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 1293.928587 seconds.
+  path: Assets/Data/GameResources/Prefab/Entity/MonsterA/skill.asset
+  artifactKey: Guid(44f12a20996bf7143a2a60e0a68a9855) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Data/GameResources/Prefab/Entity/MonsterA/skill.asset using Guid(44f12a20996bf7143a2a60e0a68a9855) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f9acc2e595e7d69fda7654f0beb34927') in 0.049504 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 10.967578 seconds.
+  path: Assets/Data/GameResources/Prefab/Entity/MonsterA/Event
+  artifactKey: Guid(7b6cac876a05a2b499516f287769ef7f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Data/GameResources/Prefab/Entity/MonsterA/Event using Guid(7b6cac876a05a2b499516f287769ef7f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7dc57f42cfd8f3c9ab7343edbcd52fe3') in 0.000504 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 9.093564 seconds.
+  path: Assets/Data/GameResources/Prefab/Entity/MonsterA/Animation
+  artifactKey: Guid(8a73fba99a9b2bd4387e346707bf84e1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Data/GameResources/Prefab/Entity/MonsterA/Animation using Guid(8a73fba99a9b2bd4387e346707bf84e1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '216782c9ceb35ca367c865f515cfa708') in 0.000494 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 15.842265 seconds.
+  path: Assets/Data/GameResources/Prefab/Entity/MonsterA/MonsterA.prefab
+  artifactKey: Guid(1c0c070baa2774b478b817ada04b67d9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Data/GameResources/Prefab/Entity/MonsterA/MonsterA.prefab using Guid(1c0c070baa2774b478b817ada04b67d9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'da7f7078305f5ad2e4fc511aec26d371') in 0.002327 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 20.767479 seconds.
+  path: Assets/Data/GameResources/Animation
+  artifactKey: Guid(f6ed231003949d242a9d1dc4e329f2d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Data/GameResources/Animation using Guid(f6ed231003949d242a9d1dc4e329f2d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c3d55d6f24abcd8c757b03221e22b53e') in 0.000782 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 9.226288 seconds.
+  path: Assets/Data/GameResources/Animation/Monster.controller
+  artifactKey: Guid(2cc961cb21477fc49aad7b72a1b869fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Data/GameResources/Animation/Monster.controller using Guid(2cc961cb21477fc49aad7b72a1b869fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e6b30e6ab4a2f398b9a7c653648bdfae') in 0.002130 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 9.464298 seconds.
+  path: Assets/Data/GameResources/Animation/Player.controller
+  artifactKey: Guid(a272f7d72d7079547a3459b7688c3566) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Data/GameResources/Animation/Player.controller using Guid(a272f7d72d7079547a3459b7688c3566) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '489a1b7628644ae5168d367d675422e3') in 0.001187 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 62.122194 seconds.
+  path: Assets/Data/GameResources/Animation/MonsterA.overrideController
+  artifactKey: Guid(d5fa9a3f8326c9c409cb984989787860) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Data/GameResources/Animation/MonsterA.overrideController using Guid(d5fa9a3f8326c9c409cb984989787860) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b3461bc61782ca2ebde25e80b0bb303e') in 0.001602 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 138.874472 seconds.
+  path: Assets/Data/GameResources/Animation/Monster.controller
+  artifactKey: Guid(2cc961cb21477fc49aad7b72a1b869fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Data/GameResources/Animation/Monster.controller using Guid(2cc961cb21477fc49aad7b72a1b869fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9802b3d7371e73d5371764efb327b5df') in 0.002138 seconds
+Number of updated asset objects reloaded before import = 2
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 8.963850 seconds.
+  path: Assets/Data/GameResources/Animation/Clip
+  artifactKey: Guid(818329ca79b92b6408cf0a658da95219) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Data/GameResources/Animation/Clip using Guid(818329ca79b92b6408cf0a658da95219) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '687dbe67ce02a63feab8a4f6b145dd82') in 0.000617 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 198.207718 seconds.
+  path: Assets/Data/GameResources/Animation/Clip/Idle.anim
+  artifactKey: Guid(9c541084676f16348b6944002a1b46e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Data/GameResources/Animation/Clip/Idle.anim using Guid(9c541084676f16348b6944002a1b46e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ad6e7e8d6f61b56f81fc5f5a04fbffe3') in 0.001895 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 8.530588 seconds.
+  path: Assets/Data/GameResources/Animation/Clip/Atk.anim
+  artifactKey: Guid(ccc4f8ae4209a244da0970e5eac9ff19) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Data/GameResources/Animation/Clip/Atk.anim using Guid(ccc4f8ae4209a244da0970e5eac9ff19) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '876d744ef250c849f65e3cd3b25fd314') in 0.001328 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 6.222366 seconds.
+  path: Assets/Data/GameResources/Animation/Clip/Death.anim
+  artifactKey: Guid(de836ebbab810a74b897bc1f90e8883d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Data/GameResources/Animation/Clip/Death.anim using Guid(de836ebbab810a74b897bc1f90e8883d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9928111abfbad4155577f4ea6b91ad32') in 0.001236 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 8.094403 seconds.
+  path: Assets/Data/GameResources/Animation/Clip/Move.anim
+  artifactKey: Guid(c2efa490e20cfdc40aab1db8278f84d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Data/GameResources/Animation/Clip/Move.anim using Guid(c2efa490e20cfdc40aab1db8278f84d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '320bb2ceb450019b055c99604332a98e') in 0.001193 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1

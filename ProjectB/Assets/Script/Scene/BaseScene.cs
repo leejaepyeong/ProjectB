@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BaseScene : MonoBase
 {
+    public bool isTestScene;
     private void Awake()
     {
         Manager.Instance.SetUI(this);

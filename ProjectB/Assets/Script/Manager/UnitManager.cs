@@ -23,6 +23,7 @@ public class UnitManager : BaseManager
         base.Init();
         unitId = 1;
         unitDic = new Dictionary<int, UnitBehavior>();
+        unitActiveList = new List<UnitBehavior>();
     }
 
     public override void UnInit()
@@ -48,10 +49,10 @@ public class UnitManager : BaseManager
         return unitId;
     }
 
-    public void SpawnUnit(int seed, out UnitBehavior unit)
+    public UnitBehavior SpawnUnit(int seed)
     {
         Manager.Instance.GetManager<UnitManager>().GameObjectPool.TryGet(UNITBEHAVIOR_ASSET_KEY, out var unitObject);
-        unit = unitObject.GetComponent<UnitBehavior>();
+        UnitBehavior unit = unitObject.GetComponent<UnitBehavior>();
         unit.transform.SetParent(transform);
 
         Data.DataManager.Instance.UnitData.TryGet(seed, out var unitData);
@@ -59,6 +60,8 @@ public class UnitManager : BaseManager
         unitDic.Add(unitId, unit);
         UnitActive(unit, true);
         unitId += 1;
+
+        return unit;
     }
 
     public void RemoveUnit(UnitBehavior unit)

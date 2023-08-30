@@ -29,6 +29,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Remote
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d95c7577627da014a8f3f3a3ed829c61
+    m_Address: Assets/Data/GameResources/Prefab/Widget/UIMessageBox.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 0b85ada165676584a86a5d299cec6c75, type: 2}
   m_SchemaSet:

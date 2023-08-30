@@ -59,6 +59,8 @@ public class ProjectileEvent : EventNodeData
 {
     public Projectiles.eProjectileType projectileType;
     public Projectiles.eProjectileHit projectileHit;
+    public float damagePercent;
+    public eDamageType dmgType;
 
     [SerializeField] private AssetReferenceGameObject projectileEffect;
     [SerializeField] private ParticleEvent hitEvent;
@@ -73,6 +75,8 @@ public class ProjectileEvent : EventNodeData
     private Projectiles.StraightFollow straightFollow;
     [SerializeField, ShowIf("@projectileType == Projectiles.eProjectileType.Parabolic")] 
     private Projectiles.Parabolic parabolic;
+
+    public int skillSeed;
 
     public int MaxHitCount => maxHitCount;
 

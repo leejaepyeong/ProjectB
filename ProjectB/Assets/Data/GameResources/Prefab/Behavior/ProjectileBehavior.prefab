@@ -145,3 +145,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scaleTransform: {fileID: 2896377636358628893}
+  col: {fileID: 1620327799558675302}

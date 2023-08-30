@@ -251,8 +251,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aebc73ca1fc4d864c8600e7c872aef8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTestScene: 0
   seed: 0
   trf_user: {fileID: 966684930}
+  playerData: {fileID: 11400000, guid: d7e1e74f3089ea940b8805a8a6392cfa, type: 2}
   enemy_Seed: 0
   trf_spawns:
   - {fileID: 713696175}

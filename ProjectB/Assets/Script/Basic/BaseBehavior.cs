@@ -6,6 +6,8 @@ public class BaseBehavior : MonoBehaviour
 {
     [SerializeField]
     protected Transform scaleTransform;
+    [SerializeField]
+    protected CircleCollider2D col;
 
     protected float elaspedTime;
     protected float deltaTime;

@@ -58,4 +58,12 @@ public class FileData : MonoBehaviour
 
         isLoadDone = true;
     }
+
+    public void UpdateFrame()
+    {
+        for (int i = 0; i < saveDataList.Count; i++)
+        {
+            saveDataList[i].Update();
+        }
+    }
 }

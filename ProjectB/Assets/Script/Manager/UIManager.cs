@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class Parameter
 {
@@ -52,8 +53,10 @@ public class UIManager : BaseManager
 
     public override void Init()
     {
-        uiBases = new();
         base.Init();
+        uiBases = new();
+        var cameraData = Manager.Instance.MainCamera.GetUniversalAdditionalCameraData();
+        cameraData.cameraStack.Add(uiCamera);
     }
 
     public void DeInit()
