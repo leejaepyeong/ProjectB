@@ -37,9 +37,8 @@ namespace Editor
             [FoldoutGroup("Stat")] public float criRate;
             [FoldoutGroup("Stat")] public float criDmg;
             [VerticalGroup("Info")] public Texture2D icon;
-            [VerticalGroup("Info")] public GameObject modelAssetRef;
-            [VerticalGroup("Info")] public RuntimeAnimatorController animatorAssetRef;
-            public AssetReference test;
+            [VerticalGroup("Info")] public string modelAssetRef;
+            [VerticalGroup("Info")] public string animatorAssetRef;
             [VerticalGroup("Info")] public SkillInfo atkInfo;
             [VerticalGroup("Info")] public SkillInfo[] skillInfoGroup;
         }
@@ -58,7 +57,7 @@ namespace Editor
             [FoldoutGroup("Type")] public float typeValue;
             public float maxCoolTime;
 
-            public EventGraph skillNode;
+            public string skillNodeRef;
         }
     }
 

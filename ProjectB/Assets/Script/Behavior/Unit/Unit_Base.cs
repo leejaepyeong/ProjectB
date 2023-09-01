@@ -57,7 +57,9 @@ public class Unit_Base : MonoBehaviour
             isAtkAble = true;
         }
 
-        var targets = Physics2D.OverlapCircleAll(unitBehavior.GetPos(), unitState.atkRange);
+        int layer = unitState.team == eTeam.user ? 9 : 10;
+
+        var targets = Physics2D.OverlapCircleAll(unitBehavior.GetPos(), unitState.atkRange, layer);
         if (targets.Length <= 0) return;
 
         atkCool = unitState.atkSpd;

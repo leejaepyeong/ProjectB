@@ -24,6 +24,7 @@ public enum eUnitType
     Normal,
     Uniq,
     Boss,
+    Player,
 }
 
 public enum eDamageType

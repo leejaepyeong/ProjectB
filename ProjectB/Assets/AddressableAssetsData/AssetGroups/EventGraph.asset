@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: EventGraph
+  m_EditorClassIdentifier: 
+  m_GroupName: EventGraph
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 0de063ab133460e409eef63773b097ee
+  m_SerializeEntries:
+  - m_GUID: adaa8af7f8e92794db9292b15c4248e8
+    m_Address: Assets/Data/GameResources/Prefab/Entity/MonsterA/Event/atk.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 44f12a20996bf7143a2a60e0a68a9855
+    m_Address: Assets/Data/GameResources/Prefab/Entity/MonsterA/Event/skill.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6976593e6bdd2a746b83b2edca3f9730
+    m_Address: Assets/Data/GameResources/Prefab/Entity/Player/atk.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8b2c75d581e510041bf5c50747744dad
+    m_Address: Assets/Data/GameResources/Prefab/Entity/Player/skill.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 0b85ada165676584a86a5d299cec6c75, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 9b10db7fa5a9fac498ad6246db04b457, type: 2}
+    - {fileID: 11400000, guid: bfdfd811d609e6a489cd5b7b122c298f, type: 2}

@@ -49,11 +49,28 @@ public class UnitManager : BaseManager
         return unitId;
     }
 
-    public UnitBehavior SpawnUnit(int seed)
+    public UnitBehavior SpawnPlayer(int seed)
     {
         Manager.Instance.GetManager<UnitManager>().GameObjectPool.TryGet(UNITBEHAVIOR_ASSET_KEY, out var unitObject);
         UnitBehavior unit = unitObject.GetComponent<UnitBehavior>();
         unit.transform.SetParent(transform);
+
+        Data.DataManager.Instance.UnitData.TryGet(seed, out var unitData);
+        unit.Init(unitData, GetUnitId());
+        unitDic.Add(unitId, unit);
+        UnitActive(unit, true);
+        unitId += 1;
+
+        player = unit;
+        return unit;
+    }
+
+    public UnitBehavior SpawnUnit(int seed, Vector2 spawnPos)
+    {
+        Manager.Instance.GetManager<UnitManager>().GameObjectPool.TryGet(UNITBEHAVIOR_ASSET_KEY, out var unitObject);
+        UnitBehavior unit = unitObject.GetComponent<UnitBehavior>();
+        unit.transform.SetParent(transform);
+        if (spawnPos != default) unit.transform.localPosition = spawnPos;
 
         Data.DataManager.Instance.UnitData.TryGet(seed, out var unitData);
         unit.Init(unitData, GetUnitId());

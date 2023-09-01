@@ -18,7 +18,6 @@ public class TestPlayScene : BaseScene
     [SerializeField, FoldoutGroup("Enemy/Setting")] private float atkSpd;
     [SerializeField, FoldoutGroup("Enemy/Setting")] private float moveSpd;
 
-    [SerializeField, FoldoutGroup("Setting")] private bool isTest;
     [SerializeField, FoldoutGroup("Setting")] private float timer;
 
     private float deltaTime;
@@ -28,14 +27,14 @@ public class TestPlayScene : BaseScene
     [Button]
     public void SpawnUser()
     {
-        UnitManager.Instance.SpawnUnit(user_Seed);
+        UnitManager.Instance.SpawnPlayer(user_Seed);
     }
 
     [Button]
     public void SpawnMonster()
     {
-        enemyUnit = UnitManager.Instance.SpawnUnit(enemy_Seed);
-        enemyUnit.transform.position = trf_spawns[Random.Range(0,trf_spawns.Length)].position;
+        Vector3 randomPos = trf_spawns[Random.Range(0, trf_spawns.Length)].position;
+        enemyUnit = UnitManager.Instance.SpawnUnit(enemy_Seed, randomPos);
     }
 
     [Button]
@@ -57,8 +56,7 @@ public class TestPlayScene : BaseScene
 
     public override void UpdateFrame(float deltaTime)
     {
-        if (isTest == false) return;
-
         this.deltaTime = deltaTime;
+        commands.UpdateFrame(deltaTime);
     }
 }

@@ -13,8 +13,4 @@ public class Unit_Player : Unit_Base
         }
     }
 
-    public override void SearchTarget()
-    {
-
-    }
 }

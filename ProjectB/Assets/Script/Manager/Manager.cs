@@ -85,7 +85,18 @@ public class Manager : Singleton<Manager>
         }
     }
     private Camera mainCamera;
-    public Camera MainCamera => mainCamera;
+    public Camera MainCamera
+    {
+        get
+        {
+            if (mainCamera == null)
+            {
+                mainCamera = curScene.GetComponentInChildren<Camera>();
+                mainCamera.transform.SetParent(transform);
+            }
+            return mainCamera;
+        }
+    }
     public void SetUI(BaseScene scene)
     {
         curScene = scene;
@@ -100,12 +111,6 @@ public class Manager : Singleton<Manager>
     {
         managerDic.Clear();
         DontDestroyOnLoad(gameObject);
-        if(mainCamera == null)
-        {
-            GameObject obj = new GameObject("Main Camera");
-            obj.transform.SetParent(transform);
-            mainCamera = obj.AddComponent<Camera>();
-        }
     }
 
     private void Update()

@@ -19,11 +19,13 @@ MonoBehaviour:
     values: []
   TimeBase: 1
   FrameElapsed: 0
-  FrameCount: 15
+  FrameCount: 0
   Memo: 
   ProjectileEvent:
     projectileType: 0
     projectileHit: 0
+    damagePercent: 50
+    dmgType: 0
     projectileEffect:
       m_AssetGUID: bec6a5ab43e709d4d971197df77ab201
       m_SubObjectName: 
@@ -31,21 +33,20 @@ MonoBehaviour:
       m_EditorAssetChanged: 0
     hitEvent:
       paricleObject:
-        m_AssetGUID: 
+        m_AssetGUID: 77ffef51616c9ac4eb2d36e7ddc1e47f
         m_SubObjectName: 
         m_SubObjectType: 
         m_EditorAssetChanged: 0
       referenceBone: 
-      boneBinding: 0
       localPosition: {x: 0, y: 0, z: 0}
       localEular: {x: 0, y: 0, z: 0}
-      localScale: {x: 0, y: 0, z: 0}
+      localScale: {x: 1, y: 1, z: 1}
       duration: 5
       smoothStop: 2
       gameTime: 0
     maxHitCount: 0
     straight:
-      maxDistance: 5
+      maxDistance: 10
       radius: 1.5
       speed: 3
       curveSpeed:
@@ -87,6 +88,7 @@ MonoBehaviour:
         m_SubObjectName: 
         m_SubObjectType: 
         m_EditorAssetChanged: 0
+    skillSeed: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0

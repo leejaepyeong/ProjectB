@@ -6,6 +6,7 @@ using UnityEngine;
 public class UnitState
 {
     private Data.UnitData data;
+    public eTeam team; 
     #region stat
     public long hp;
     public long mp;
@@ -29,6 +30,7 @@ public class UnitState
     public void Init(Data.UnitData data)
     {
         this.data = data;
+        team = data.Type == eUnitType.Player ? eTeam.player : eTeam.monster;
         isDead = false;
         isStun = false;
         isSlow = false;
@@ -93,7 +95,7 @@ public class UnitBehavior : BaseBehavior, IEventHandler
     private Data.UnitData unitData;
     public Data.UnitData UnitData => unitData;
     private UnitState unitState = new UnitState();
-    private Unit_Base unitBase = new Unit_Base();
+    private Unit_Base unitBase;
     public UnitState UnitState => unitState;
     public Unit_Base UnitBase => unitBase;
 
@@ -115,6 +117,9 @@ public class UnitBehavior : BaseBehavior, IEventHandler
 
         Model = manager.GameObjectPool.Get(data.modelAssetRef);
         Model.transform.SetParent(scaleTransform.transform);
+        Model.transform.localPosition = Vector3.zero;
+        Model.transform.localScale = Vector3.one;
+        Animator = Model.GetComponent<Animator>();
         if(string.IsNullOrEmpty(data.animatorAssetRef) == false)
         {
             animatorContorller = manager.ResourcePool.Load<AnimatorOverrideController>(data.animatorAssetRef);
@@ -129,7 +134,14 @@ public class UnitBehavior : BaseBehavior, IEventHandler
         }
 
         unitState.Init(data);
+        if(data.Type == eUnitType.Player)
+            unitBase = new Unit_Player();
+        else
+            unitBase = new Unit_Monster();
         unitBase.Init(this);
+        int layer = data.Type == eUnitType.Player ? LayerMask.NameToLayer("Player") : LayerMask.NameToLayer("Monster");
+        gameObject.layer = layer;
+        col.gameObject.layer = layer;
 
         isInit = true;
     }

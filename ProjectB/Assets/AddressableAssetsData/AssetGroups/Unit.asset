@@ -41,20 +41,20 @@ MonoBehaviour:
     m_SerializedLabels:
     - Remote
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 6976593e6bdd2a746b83b2edca3f9730
-    m_Address: Assets/Data/GameResources/Prefab/Entity/Player/atk.asset
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Remote
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 8b2c75d581e510041bf5c50747744dad
-    m_Address: Assets/Data/GameResources/Prefab/Entity/Player/skill.asset
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Remote
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c5b7c412cd33aac42bf5f4cfa34fd077
     m_Address: Assets/Data/GameResources/Prefab/Entity/Player/Player.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2cc961cb21477fc49aad7b72a1b869fa
+    m_Address: Assets/Data/GameResources/Animation/Monster.controller
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d5fa9a3f8326c9c409cb984989787860
+    m_Address: Assets/Data/GameResources/Animation/MonsterA.overrideController
     m_ReadOnly: 0
     m_SerializedLabels:
     - Remote

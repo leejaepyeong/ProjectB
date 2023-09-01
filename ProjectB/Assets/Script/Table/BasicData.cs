@@ -99,8 +99,8 @@ namespace Data
             criRate = data.info.criRate;
             criDmg = data.info.criDmg;
             icon = data.info.icon;
-            modelAssetRef = AssetDatabase.GetAssetPath(data.info.modelAssetRef);
-            animatorAssetRef = AssetDatabase.GetAssetPath(data.info.animatorAssetRef);
+            modelAssetRef = data.info.modelAssetRef;
+            animatorAssetRef =data.info.animatorAssetRef;
             atkInfo = new SkillInfo(data.info.atkInfo);
             skillInfoGroup = new List<SkillInfo>();
             if(data.info.skillInfoGroup != null)
@@ -145,7 +145,7 @@ namespace Data
             typeValue = skillInfo.typeValue;
             maxCoolTime = skillInfo.maxCoolTime;
 
-            skillNode = AssetDatabase.GetAssetPath(skillInfo.skillNode);
+            skillNode = skillInfo.skillNodeRef;
         }
 
         public void UpdateFrame(float deltaTime)

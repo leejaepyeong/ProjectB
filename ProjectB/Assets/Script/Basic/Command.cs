@@ -49,6 +49,11 @@ public class QueueCommand
         else
             Execute();
     }
+
+    public bool CommandEnd()
+    {
+        return commandList.Count == 0;
+    }
 }
 
 #region Intro Command
