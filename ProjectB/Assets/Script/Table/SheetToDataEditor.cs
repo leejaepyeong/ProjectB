@@ -20,8 +20,8 @@ public class SheetToDataEditor : OdinEditorWindow
     }
 
     [TitleGroup("Input Sheet File"), Sirenix.OdinInspector.FilePath, SerializeField] public string[] SheetAssetPathList;
-    [TitleGroup("Output MessagePack Data"), FolderPath, SerializeField] public string BinaryOutputFolder;
-    [TitleGroup("Output Json Data"), FolderPath, SerializeField] public string JsonOutputFolder;
+    private string BinaryOutputFolder = "Assets/Data/GameResources/DataBinary";
+    private string JsonOutputFolder = "Assets/Data/GameResources/DataJsons";
 
     [TitleGroup("Export"), Button(ButtonSizes.Large)]
     public void SheetToData()

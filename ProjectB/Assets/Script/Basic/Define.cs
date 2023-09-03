@@ -15,8 +15,6 @@ public enum eTeam
 {
     player,
     monster,
-    user,
-    enemy,
 }
 
 public enum eUnitType

@@ -38,6 +38,8 @@ public class PlayLogic : BaseScene
         if(curFsm == ePlayLogicFsm.none) ChangeFsm(ePlayLogicFsm.setting);
 
         UpdateFsm();
+        if (BattleManager.Instance.CheckEndGame())
+            ChangeFsm(ePlayLogicFsm.result);
     }
 
     protected virtual void UpdateFsm()
@@ -92,6 +94,7 @@ public class PlayLogic : BaseScene
     #region Setting
     protected virtual void EnterSetting()
     {
+        BattleManager.Instance.SetGame(30f);
         coFsmSetting = StartCoroutine(GameSettingCo());
     }
 

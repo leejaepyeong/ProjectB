@@ -57,8 +57,7 @@ public class Unit_Base : MonoBehaviour
             isAtkAble = true;
         }
 
-        int layer = unitState.team == eTeam.user ? 9 : 10;
-
+        int layer = unitState.team == eTeam.player ? LayerMask.GetMask("Monster") : LayerMask.GetMask("Player");
         var targets = Physics2D.OverlapCircleAll(unitBehavior.GetPos(), unitState.atkRange, layer);
         if (targets.Length <= 0) return;
 

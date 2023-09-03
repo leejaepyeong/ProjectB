@@ -40,6 +40,7 @@ public class ProjectileManager : BaseManager
         if (!GameObjectPool.TryGet(PROJECTILE_BEHAVIOR_ASSETKEY, out var projectileObj)) return null;
         ProjectileBehavior projectile = projectileObj.GetComponent<ProjectileBehavior>();
 
+        projectile.transform.SetParent(transform);
         projectile.Init(projectileEvent, caster, target);
         projectileList.Add(projectile);
 

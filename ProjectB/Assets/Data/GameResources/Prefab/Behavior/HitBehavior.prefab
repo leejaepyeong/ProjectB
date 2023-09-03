@@ -108,7 +108,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3509788766021653690}
-  - component: {fileID: -4178518841474497345}
+  - component: {fileID: 8836058080940417072}
   m_Layer: 0
   m_Name: HitBehavior
   m_TagString: Untagged
@@ -132,7 +132,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-4178518841474497345
+--- !u!114 &8836058080940417072
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,8 +141,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 7534710036132835543}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b3fb70fe353f904a88649ce21582485, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d3a7b1c8e98ac147b305007375b6a97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scaleTransform: {fileID: 0}
+  scaleTransform: {fileID: 2896377636358628893}
   col: {fileID: 1620327799558675302}
