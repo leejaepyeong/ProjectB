@@ -22,7 +22,7 @@ public class Unit_Base : MonoBehaviour
         unitBehavior = behavior;
         unitState = unitBehavior.UnitState;
         unitData = unitBehavior.UnitData;
-        atkCool = unitState.atkSpd;
+        atkCool = 1 / unitState.atkSpd;
         isAtkAble = true;
         curHp = unitState.hp;
         curMp = unitState.mp;
@@ -61,7 +61,7 @@ public class Unit_Base : MonoBehaviour
         var targets = Physics2D.OverlapCircleAll(unitBehavior.GetPos(), unitState.atkRange, layer);
         if (targets.Length <= 0) return;
 
-        atkCool = unitState.atkSpd;
+        atkCool = 1 / unitState.atkSpd;
         Attack();
     }
 
@@ -101,6 +101,7 @@ public class Unit_Base : MonoBehaviour
         if (curHp <= 0)
         {
             unitState.isDead = true;
+            UnitManager.Instance.RemoveUnit(unitBehavior);
         }
     }
 }

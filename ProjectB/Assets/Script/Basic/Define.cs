@@ -8,6 +8,19 @@ public class Define
     public const int MaxNickName = 12;
 
     public static string privateKey = "FHWqa8jt0hNf7e78";
+
+    public static T Load<T>(string _path) where T : Object
+    {
+        if (null == _path || 0 >= _path.Length)
+        {
+            Debug.LogError("ResUtil::Load() [ null == _path ] : ");
+            return null;
+        }
+
+        if (UIManager.Instance.ResourcePool.TryLoad<T>(_path, out var temp) == false) return null;
+
+        return temp;
+    }
 }
 
 #region Game System

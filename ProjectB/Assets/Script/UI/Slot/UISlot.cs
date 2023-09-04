@@ -18,6 +18,11 @@ public class UISlot : UIBehaviour, IDynamicScrollViewItem
         RectTransform.localScale = Vector3.one;
     }
 
+    public virtual void UnInit()
+    {
+
+    }
+
     public virtual void Clear()
     { 
     }
@@ -36,6 +41,18 @@ public class UISlot : UIBehaviour, IDynamicScrollViewItem
     public void onUpdateItem(int index)
     {
         this.index = index;
+    }
+
+    public virtual void UpdateFrame(float deltaTime)
+    { 
+    }
+
+    protected void SetIcon(Image img, string path)
+    {
+        if (img == null) return;
+        if (string.IsNullOrEmpty(path)) return;
+
+        img.sprite = Define.Load<Sprite>(path);
     }
 }
 

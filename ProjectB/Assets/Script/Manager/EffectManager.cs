@@ -22,14 +22,18 @@ public class EffectManager : BaseManager
     public override void UpdateFrame(float deltaTime)
     {
         base.UpdateFrame(deltaTime);
+        for (int i = 0; i < effectList.Count; i++)
+        {
+            effectList[i].UpdateFrame(deltaTime);
+        }
     }
 
     public void SpawnEffect(ParticleEvent particleEvent, Transform spawnTrf)
     {
         if (!GameObjectPool.TryGet(EFFECT_BEHAVIOR_ASSETKEY, out var effect)) return;
         EffectBehavior effectBehavior = effect.GetComponent<EffectBehavior>();
+        effectBehavior.transform.SetParent(transform);
 
-        effectBehavior.transform.SetParent(spawnTrf);
         effectBehavior.transform.position = spawnTrf.position + particleEvent.localPosition;
         effectBehavior.transform.localEulerAngles = particleEvent.localEular;
         effectBehavior.transform.localScale = particleEvent.localScale;
@@ -41,8 +45,8 @@ public class EffectManager : BaseManager
     {
         if (!GameObjectPool.TryGet(EFFECT_BEHAVIOR_ASSETKEY, out var effect)) return;
         EffectBehavior effectBehavior = effect.GetComponent<EffectBehavior>();
+        effectBehavior.transform.SetParent(transform);
 
-        effectBehavior.transform.SetParent(null);
         effectBehavior.transform.position = hitPos;
         effectBehavior.transform.localEulerAngles = particleEvent.localEular;
         effectBehavior.transform.localScale = particleEvent.localScale;

@@ -10,10 +10,6 @@ public class BaseManager : MonoBehaviour
 
     protected float DeltaTime;
 
-    #region MANAGER_ASSETKEY
-    protected const string UI_MANAGER_ASSET_KEY = "Assets/GameResources/Prefab/Manager/UIManager.prefab";
-    #endregion
-
     public virtual void Init()
     {
         ResourcePool = new();
@@ -36,6 +32,7 @@ public class Manager : Singleton<Manager>
 {
     #region Manager
     private Dictionary<string, BaseManager> managerDic = new Dictionary<string, BaseManager>();
+    private List<string> managerKeys = new List<string>(); 
     private SkillManager sm;
     public SkillManager skillManager
     {
@@ -81,7 +78,7 @@ public class Manager : Singleton<Manager>
     {
         get
         {
-            return curScene.isTestScene ? (curScene as TestPlayScene).playerData : null;
+            return curScene.isTestScene ? curScene.playerData : null;
         }
     }
     private Camera mainCamera;
@@ -110,6 +107,7 @@ public class Manager : Singleton<Manager>
     private void Init()
     {
         managerDic.Clear();
+        managerKeys.Clear();
         DontDestroyOnLoad(gameObject);
     }
 
@@ -117,10 +115,11 @@ public class Manager : Singleton<Manager>
     {
         float deltaTime = Time.deltaTime;
 
-        foreach (var manager in managerDic)
+        for (int i = 0; i < managerKeys.Count; i++)
         {
-            manager.Value.UpdateFrame(deltaTime);
+            managerDic[managerKeys[i]].UpdateFrame(deltaTime);
         }
+
         if (fileData != null)
             fileData.UpdateFrame();
         if (curScene != null)
@@ -136,6 +135,7 @@ public class Manager : Singleton<Manager>
             manager = CreateComponent<T>(transform);
             manager.Init();
             managerDic.Add(name, manager);
+            managerKeys.Add(name);
         }
         return manager as T;
     }

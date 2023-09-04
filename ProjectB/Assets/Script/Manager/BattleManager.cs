@@ -9,6 +9,8 @@ public class BattleManager : BaseManager
     private bool isInit;
     private bool isGameEnd;
 
+    public float getCurTime { get { return elaspedTime; } }
+
     public static BattleManager Instance
     {
         get { return Manager.Instance.GetManager<BattleManager>(); }
@@ -28,12 +30,14 @@ public class BattleManager : BaseManager
         if (isGameEnd) return;
 
         elaspedTime += DeltaTime;
+        if (elaspedTime > stageTime) elaspedTime = stageTime;
+
     }
 
     public bool CheckEndGame()
     {
-        if (elaspedTime > stageTime) { isGameEnd = true; return true; }
-        if (UnitManager.Instance.Player.UnitState.isDead) { isGameEnd = true; return true; }
+        if (elaspedTime >= stageTime) { isGameEnd = true; return true; }
+        if (UnitManager.Instance.Player != null && UnitManager.Instance.Player.UnitState.isDead) { isGameEnd = true; return true; }
 
         return false;
     }

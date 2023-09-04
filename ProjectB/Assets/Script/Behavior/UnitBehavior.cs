@@ -115,7 +115,8 @@ public class UnitBehavior : BaseBehavior, IEventHandler
         eventDispatcher = Utilities.StaticeObjectPool.Pop<EventDispatcher>();
         eventDispatcher.Init();
 
-        Model = manager.GameObjectPool.Get(data.modelAssetRef);
+        if (UnitManager.Instance.GameObjectPool.TryGet(data.modelAssetRef, out var model) == false) return;
+        Model = model;
         Model.transform.SetParent(scaleTransform.transform);
         Model.transform.localPosition = Vector3.zero;
         Model.transform.localScale = Vector3.one;

@@ -17,7 +17,8 @@ MonoBehaviour:
   atk: 20
   def: 0
   acc: 85
-  atkSpd: 1
+  moveSpd: 0
+  atkSpd: 2
   atkRange: 10
   criRate: 25
   criDmg: 100

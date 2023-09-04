@@ -80,9 +80,9 @@ public class ResourcePool
         }
     }
 
-    public bool TryLoad<E>(object key, out EventGraph graph) where E : Object
+    public bool TryLoad<E>(object key, out E obj) where E : Object
     {
-        graph = null;
+        obj = null;
         if (key == null) return false;
 
         try
@@ -94,7 +94,8 @@ public class ResourcePool
             InternalCacheOperation(key, handle);
             InternalCacheKey(handle.Result,key);
 
-            return handle.Result;
+            obj = handle.Result;
+            return true;
         }
         catch(Exception e)
         {

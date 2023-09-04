@@ -47,8 +47,8 @@ MonoBehaviour:
     maxHitCount: 0
     straight:
       maxDistance: 10
-      radius: 1.5
-      speed: 3
+      radius: 1
+      speed: 6
       curveSpeed:
         serializedVersion: 2
         m_Curve:

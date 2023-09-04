@@ -56,4 +56,11 @@ public class UIBase : MonoBase
         textPro.gameObject.SetActive(string.IsNullOrEmpty(text) == false);
         textPro.SetText(text);
     }
+    protected void SetIcon(Image img, string path)
+    {
+        if (img == null) return;
+        if (string.IsNullOrEmpty(path)) return;
+
+        img.sprite = Define.Load<Sprite>(path);
+    }
 }

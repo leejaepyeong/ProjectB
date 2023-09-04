@@ -41,6 +41,7 @@ public class ProjectileManager : BaseManager
         ProjectileBehavior projectile = projectileObj.GetComponent<ProjectileBehavior>();
 
         projectile.transform.SetParent(transform);
+        projectile.transform.position = caster.GetPos();
         projectile.Init(projectileEvent, caster, target);
         projectileList.Add(projectile);
 
@@ -50,13 +51,15 @@ public class ProjectileManager : BaseManager
     public void RemoveProjectile(ProjectileBehavior projectile)
     {
         projectileList.Remove(projectile);
+        GameObjectPool.Return(projectile.Model);
+        GameObjectPool.Return(projectile.gameObject);
     }
 
     public void RemoveAllProjectile()
     {
         while(projectileList.Count > 0)
         {
-            projectileList[0].Close();
+            RemoveProjectile(projectileList[0]);
         }
     }
 }

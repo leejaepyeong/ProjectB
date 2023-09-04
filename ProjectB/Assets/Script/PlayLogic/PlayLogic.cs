@@ -15,6 +15,8 @@ public enum ePlayLogicFsm
 public class PlayLogic : BaseScene
 {
     [FoldoutGroup("Setting"), SerializeField] protected SpawnLogic spawnLogic;
+    [FoldoutGroup("Setting"), SerializeField] protected UIPlayLogic uiPlayLogic;
+    public UIPlayLogic UIPlayLogic => uiPlayLogic;
 
     protected ePlayLogicFsm curFsm;
     protected Coroutine coFsmSetting;
@@ -37,6 +39,7 @@ public class PlayLogic : BaseScene
         if (commands.CommandEnd() == false) return;
         if(curFsm == ePlayLogicFsm.none) ChangeFsm(ePlayLogicFsm.setting);
 
+        uiPlayLogic.UpdateFrame(deltaTime);
         UpdateFsm();
         if (BattleManager.Instance.CheckEndGame())
             ChangeFsm(ePlayLogicFsm.result);

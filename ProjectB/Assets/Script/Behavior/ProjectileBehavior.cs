@@ -34,8 +34,10 @@ public class ProjectileBehavior : BaseBehavior
 
     private void SpawnProjectile()
     {
-        Model = ProjectileManager.Instance.GameObjectPool.Get(projectileEvent.projectileEffectKey);
+        if (ProjectileManager.Instance.GameObjectPool.TryGet(projectileEvent.projectileEffectKey, out var model) == false) return;
+        Model = model;
         Model.transform.SetParent(scaleTransform.transform);
+        Model.transform.localPosition = Vector3.zero;
 
         switch (projectileEvent.projectileType)
         {
@@ -50,26 +52,6 @@ public class ProjectileBehavior : BaseBehavior
                 break;
         }
 
-        projectile.Init(this, projectileEvent, caster.transform, target.transform);
+        projectile.Init(this, projectileEvent,caster.UnitState.team, caster.transform, target.transform);
     }
-
-    #region Collision
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.tag == "Unit")
-        {
-            UnitBehavior hitUnit = other.GetComponent<UnitBehavior>();
-            projectile.AddHitTarget(hitUnit);
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if(other.tag == "Unit")
-        {
-            UnitBehavior hitUnit = other.GetComponent<UnitBehavior>();
-            projectile.RemoveHitTarget(hitUnit);
-        }
-    }
-    #endregion
 }

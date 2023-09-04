@@ -5,7 +5,6 @@ using UnityEngine;
 public class EffectBehavior : BaseBehavior
 {
     private EffectManager manager;
-    private GameObject particle;
     private float duration;
     public void Init(ParticleEvent particleEvent)
     {
@@ -15,9 +14,9 @@ public class EffectBehavior : BaseBehavior
         var assetKey = particleEvent.paricleObject.RuntimeKey;
         if (!manager.GameObjectPool.TryGet(assetKey, out var particleObject)) return;
 
-        particle = particleObject;
-        particle.transform.SetParent(transform);
-        particle.transform.localPosition = Vector3.zero;
+        Model = particleObject;
+        Model.transform.SetParent(transform);
+        Model.transform.localPosition = Vector3.zero;
         duration = particleEvent.duration;
         elaspedTime = 0;
         isInit = true;
@@ -26,9 +25,9 @@ public class EffectBehavior : BaseBehavior
     private void UnInit()
     {
         isInit = false;
-        manager.GameObjectPool.Return(particle);
+        manager.GameObjectPool.Return(Model);
         manager.GameObjectPool.Return(gameObject);
-        particle = null;
+        Model = null;
     }
 
     public override void UpdateFrame(float deltaTime)
@@ -36,7 +35,7 @@ public class EffectBehavior : BaseBehavior
         if (isInit == false)
             return;
         base.UpdateFrame(deltaTime);
-        
+        elaspedTime += deltaTime;
         if (elaspedTime > duration)
             UnInit();
     }

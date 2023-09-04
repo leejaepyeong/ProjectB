@@ -12,7 +12,7 @@ public class BaseBehavior : MonoBehaviour
     protected float elaspedTime;
     protected float deltaTime;
 
-    protected GameObject Model;
+    public GameObject Model;
     protected bool isInit;
     public bool IsInit => isInit;
 

@@ -8,7 +8,6 @@ public class TestPlayScene : BaseScene
 {
     [SerializeField, FoldoutGroup("User")] private int user_Seed;
     [SerializeField, FoldoutGroup("User")] private Transform trf_user;
-    [SerializeField, FoldoutGroup("User")] public TestPlayerData playerData;
 
     [SerializeField, FoldoutGroup("Enemy")] private int enemy_Seed;
     [SerializeField, FoldoutGroup("Enemy")] private Transform[] trf_spawns;
