@@ -63,6 +63,9 @@ public class SheetToDataEditor : OdinEditorWindow
                 case "StringText":
                     CreateDataFile<Data.StringText>(tableName, table, ConvertTableToString);
                     break;
+                case "SkillInfo":
+                    CreateDataFile<Data.SkillInfoData>(tableName, table, ConvertTableToSkillInfo);
+                    break;
                 default:
                     break;
             }
@@ -189,6 +192,86 @@ public class SheetToDataEditor : OdinEditorWindow
             }
             if (seed == 0) continue;
             listData.Add(new Data.StringText(seed, kor, eng));
+        }
+
+        return listData.OrderBy(r => r.Seed).ToArray();
+    }
+    #endregion
+    #region SkillInfo
+    public Data.SkillInfoData[] ConvertTableToSkillInfo(IEnumerable<IDictionary<string, object>> table)
+    {
+        List<Data.SkillInfoData> listData = new();
+
+        foreach (var row in table)
+        {
+            int seed = 0;
+            string type = "";
+            string tag = "";
+            int nameIdx = 0;
+            int destIdx = 0;
+            float coolTIme = 0;
+            string activateType = "";
+            float activateValue = 0;
+            string targetType = "";
+            int targetValue = 0;
+            string damagePerType = "";
+            float damagePerValue = 0;
+            string eventNodePath = "";
+
+            foreach (var data in row)
+            {
+                string header = data.Key;
+                if (string.IsNullOrEmpty(header)) continue;
+                if (string.IsNullOrWhiteSpace(header)) continue;
+                var numberValue = data.Value is double ? Convert.ToDouble(data.Value) : 0;
+                var boolValue = data.Value is bool && Convert.ToBoolean(data.Value);
+                var stringValue = data.Value is string ? Convert.ToString(data.Value) : string.Empty;
+
+                switch (header)
+                {
+                    case "Seed":
+                        seed = (int)numberValue;
+                        break;
+                    case "Type":
+                        type = stringValue;
+                        break;
+                    case "Tag":
+                        tag = stringValue;
+                        break;
+                    case "NameIdx":
+                        nameIdx = (int)numberValue;
+                        break;
+                    case "DestIdx":
+                        destIdx = (int)numberValue;
+                        break;
+                    case "CoolTime":
+                        coolTIme = (int)numberValue;
+                        break;
+                    case "ActivateType":
+                        activateType = stringValue;
+                        break;
+                    case "ActivateValue":
+                        activateValue = (float)numberValue;
+                        break;
+                    case "TargetType":
+                        targetType = stringValue;
+                        break;
+                    case "TargetValue":
+                        targetValue = (int)numberValue;
+                        break;
+                    case "DmgType":
+                        damagePerType = stringValue;
+                        break;
+                    case "DmgValue":
+                        damagePerValue = (float)numberValue;
+                        break;
+                    case "EventNode":
+                        eventNodePath = stringValue;
+                        break;
+                }
+            }
+            if (seed == 0) continue;
+            listData.Add(new Data.SkillInfoData(seed, type, tag, nameIdx, destIdx, coolTIme, activateType, activateValue, targetType, targetValue, damagePerType, damagePerValue, eventNodePath));
         }
 
         return listData.OrderBy(r => r.Seed).ToArray();

@@ -48,6 +48,13 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 13102f24851f8b6499c3953949ad2d43
+    m_Address: Assets/Data/GameResources/DataJsons/SkillInfo.bytes
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - JsonData
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 0b85ada165676584a86a5d299cec6c75, type: 2}
   m_SchemaSet:

@@ -21,6 +21,14 @@ public class Define
 
         return temp;
     }
+
+    public static T GetEnum<T>(string key)
+    {
+        if (typeof(T).IsEnum == false)
+            return default;
+
+        return (T)System.Enum.Parse(typeof(T), key, true);
+    }
 }
 
 #region Game System
@@ -63,20 +71,39 @@ public enum eStat
 #endregion
 
 #region Skill
+public enum eDamagePerType
+{
+    Atk,
+    Def,
+    AtkSpd,
+}
+public enum eSkillType
+{
+    Normal,
+    Active,
+    Passive,
+
+    normalAtk,
+    skillDamage,
+}
+public enum eSkillTag
+{
+    Normal,
+}
+
 public enum eSkillActivate
 {
+    None,
+
     hitRate,
     passive,
 }
 public enum eSkillTarget
 {
+    Target,
+
     normal,
     self,
-}
-public enum eSkillType
-{
-    normalAtk,
-    skillDamage,
 }
 public enum eSkillDuration
 {

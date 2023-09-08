@@ -8,6 +8,12 @@ using TMPro;
 public class UIPlayLogic : MonoBehaviour
 {
     [SerializeField, FoldoutGroup("Top")] private UIWaveInfo uiWaveInfo; 
+
+    public void Init()
+    {
+
+    }
+
     public void UpdateFrame(float deltaTime)
     {
         uiWaveInfo.UpdateFrame(deltaTime);

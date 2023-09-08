@@ -47,16 +47,19 @@ namespace MessagePack.Resolvers
 
         static GeneratedResolverGetFormatterHelper()
         {
-            lookup = new global::System.Collections.Generic.Dictionary<global::System.Type, int>(8)
+            lookup = new global::System.Collections.Generic.Dictionary<global::System.Type, int>(11)
             {
                 { typeof(global::Data.Dummy[]), 0 },
-                { typeof(global::Data.StringText[]), 1 },
-                { typeof(global::System.Collections.Generic.List<global::Data.Dummy>), 2 },
-                { typeof(global::System.Collections.Generic.List<global::Data.StringText>), 3 },
-                { typeof(global::Data.ArrayMeta), 4 },
-                { typeof(global::Data.Dummy), 5 },
-                { typeof(global::Data.ListMeta), 6 },
-                { typeof(global::Data.StringText), 7 },
+                { typeof(global::Data.SkillInfoData[]), 1 },
+                { typeof(global::Data.StringText[]), 2 },
+                { typeof(global::System.Collections.Generic.List<global::Data.Dummy>), 3 },
+                { typeof(global::System.Collections.Generic.List<global::Data.SkillInfoData>), 4 },
+                { typeof(global::System.Collections.Generic.List<global::Data.StringText>), 5 },
+                { typeof(global::Data.ArrayMeta), 6 },
+                { typeof(global::Data.Dummy), 7 },
+                { typeof(global::Data.ListMeta), 8 },
+                { typeof(global::Data.SkillInfoData), 9 },
+                { typeof(global::Data.StringText), 10 },
             };
         }
 
@@ -71,13 +74,16 @@ namespace MessagePack.Resolvers
             switch (key)
             {
                 case 0: return new global::MessagePack.Formatters.ArrayFormatter<global::Data.Dummy>();
-                case 1: return new global::MessagePack.Formatters.ArrayFormatter<global::Data.StringText>();
-                case 2: return new global::MessagePack.Formatters.ListFormatter<global::Data.Dummy>();
-                case 3: return new global::MessagePack.Formatters.ListFormatter<global::Data.StringText>();
-                case 4: return new MessagePack.Formatters.Data.ArrayMetaFormatter();
-                case 5: return new MessagePack.Formatters.Data.DummyFormatter();
-                case 6: return new MessagePack.Formatters.Data.ListMetaFormatter();
-                case 7: return new MessagePack.Formatters.Data.StringTextFormatter();
+                case 1: return new global::MessagePack.Formatters.ArrayFormatter<global::Data.SkillInfoData>();
+                case 2: return new global::MessagePack.Formatters.ArrayFormatter<global::Data.StringText>();
+                case 3: return new global::MessagePack.Formatters.ListFormatter<global::Data.Dummy>();
+                case 4: return new global::MessagePack.Formatters.ListFormatter<global::Data.SkillInfoData>();
+                case 5: return new global::MessagePack.Formatters.ListFormatter<global::Data.StringText>();
+                case 6: return new MessagePack.Formatters.Data.ArrayMetaFormatter();
+                case 7: return new MessagePack.Formatters.Data.DummyFormatter();
+                case 8: return new MessagePack.Formatters.Data.ListMetaFormatter();
+                case 9: return new MessagePack.Formatters.Data.SkillInfoDataFormatter();
+                case 10: return new MessagePack.Formatters.Data.StringTextFormatter();
                 default: return null;
             }
         }
@@ -119,6 +125,8 @@ namespace MessagePack.Formatters.Data
         private static global::System.ReadOnlySpan<byte> GetSpan_Dummy() => new byte[1 + 5] { 165, 68, 117, 109, 109, 121 };
         // StringText
         private static global::System.ReadOnlySpan<byte> GetSpan_StringText() => new byte[1 + 10] { 170, 83, 116, 114, 105, 110, 103, 84, 101, 120, 116 };
+        // SkillInfoData
+        private static global::System.ReadOnlySpan<byte> GetSpan_SkillInfoData() => new byte[1 + 13] { 173, 83, 107, 105, 108, 108, 73, 110, 102, 111, 68, 97, 116, 97 };
 
         public void Serialize(ref global::MessagePack.MessagePackWriter writer, global::Data.ArrayMeta value, global::MessagePack.MessagePackSerializerOptions options)
         {
@@ -129,11 +137,13 @@ namespace MessagePack.Formatters.Data
             }
 
             var formatterResolver = options.Resolver;
-            writer.WriteMapHeader(2);
+            writer.WriteMapHeader(3);
             writer.WriteRaw(GetSpan_Dummy());
             global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<global::Data.Dummy[]>(formatterResolver).Serialize(ref writer, value.Dummy, options);
             writer.WriteRaw(GetSpan_StringText());
             global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<global::Data.StringText[]>(formatterResolver).Serialize(ref writer, value.StringText, options);
+            writer.WriteRaw(GetSpan_SkillInfoData());
+            global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<global::Data.SkillInfoData[]>(formatterResolver).Serialize(ref writer, value.SkillInfoData, options);
         }
 
         public global::Data.ArrayMeta Deserialize(ref global::MessagePack.MessagePackReader reader, global::MessagePack.MessagePackSerializerOptions options)
@@ -164,6 +174,11 @@ namespace MessagePack.Formatters.Data
                         continue;
                     case 10:
                         if (!global::System.MemoryExtensions.SequenceEqual(stringKey, GetSpan_StringText().Slice(1))) { goto FAIL; }
+
+                        reader.Skip();
+                        continue;
+                    case 13:
+                        if (!global::System.MemoryExtensions.SequenceEqual(stringKey, GetSpan_SkillInfoData().Slice(1))) { goto FAIL; }
 
                         reader.Skip();
                         continue;
@@ -245,6 +260,8 @@ namespace MessagePack.Formatters.Data
         private static global::System.ReadOnlySpan<byte> GetSpan_Dummy() => new byte[1 + 5] { 165, 68, 117, 109, 109, 121 };
         // StringText
         private static global::System.ReadOnlySpan<byte> GetSpan_StringText() => new byte[1 + 10] { 170, 83, 116, 114, 105, 110, 103, 84, 101, 120, 116 };
+        // SkillInfoData
+        private static global::System.ReadOnlySpan<byte> GetSpan_SkillInfoData() => new byte[1 + 13] { 173, 83, 107, 105, 108, 108, 73, 110, 102, 111, 68, 97, 116, 97 };
 
         public void Serialize(ref global::MessagePack.MessagePackWriter writer, global::Data.ListMeta value, global::MessagePack.MessagePackSerializerOptions options)
         {
@@ -255,11 +272,13 @@ namespace MessagePack.Formatters.Data
             }
 
             var formatterResolver = options.Resolver;
-            writer.WriteMapHeader(2);
+            writer.WriteMapHeader(3);
             writer.WriteRaw(GetSpan_Dummy());
             global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<global::System.Collections.Generic.List<global::Data.Dummy>>(formatterResolver).Serialize(ref writer, value.Dummy, options);
             writer.WriteRaw(GetSpan_StringText());
             global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<global::System.Collections.Generic.List<global::Data.StringText>>(formatterResolver).Serialize(ref writer, value.StringText, options);
+            writer.WriteRaw(GetSpan_SkillInfoData());
+            global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<global::System.Collections.Generic.List<global::Data.SkillInfoData>>(formatterResolver).Serialize(ref writer, value.SkillInfoData, options);
         }
 
         public global::Data.ListMeta Deserialize(ref global::MessagePack.MessagePackReader reader, global::MessagePack.MessagePackSerializerOptions options)
@@ -293,10 +312,200 @@ namespace MessagePack.Formatters.Data
 
                         reader.Skip();
                         continue;
+                    case 13:
+                        if (!global::System.MemoryExtensions.SequenceEqual(stringKey, GetSpan_SkillInfoData().Slice(1))) { goto FAIL; }
+
+                        reader.Skip();
+                        continue;
 
                 }
             }
 
+            reader.Depth--;
+            return ____result;
+        }
+    }
+
+    public sealed class SkillInfoDataFormatter : global::MessagePack.Formatters.IMessagePackFormatter<global::Data.SkillInfoData>
+    {
+        // Seed
+        private static global::System.ReadOnlySpan<byte> GetSpan_Seed() => new byte[1 + 4] { 164, 83, 101, 101, 100 };
+        // Type
+        private static global::System.ReadOnlySpan<byte> GetSpan_Type() => new byte[1 + 4] { 164, 84, 121, 112, 101 };
+        // Tag
+        private static global::System.ReadOnlySpan<byte> GetSpan_Tag() => new byte[1 + 3] { 163, 84, 97, 103 };
+        // NameIdx
+        private static global::System.ReadOnlySpan<byte> GetSpan_NameIdx() => new byte[1 + 7] { 167, 78, 97, 109, 101, 73, 100, 120 };
+        // DestIdx
+        private static global::System.ReadOnlySpan<byte> GetSpan_DestIdx() => new byte[1 + 7] { 167, 68, 101, 115, 116, 73, 100, 120 };
+        // CoolTIme
+        private static global::System.ReadOnlySpan<byte> GetSpan_CoolTIme() => new byte[1 + 8] { 168, 67, 111, 111, 108, 84, 73, 109, 101 };
+        // ActivateType
+        private static global::System.ReadOnlySpan<byte> GetSpan_ActivateType() => new byte[1 + 12] { 172, 65, 99, 116, 105, 118, 97, 116, 101, 84, 121, 112, 101 };
+        // ActivateValue
+        private static global::System.ReadOnlySpan<byte> GetSpan_ActivateValue() => new byte[1 + 13] { 173, 65, 99, 116, 105, 118, 97, 116, 101, 86, 97, 108, 117, 101 };
+        // TargetType
+        private static global::System.ReadOnlySpan<byte> GetSpan_TargetType() => new byte[1 + 10] { 170, 84, 97, 114, 103, 101, 116, 84, 121, 112, 101 };
+        // TargetValue
+        private static global::System.ReadOnlySpan<byte> GetSpan_TargetValue() => new byte[1 + 11] { 171, 84, 97, 114, 103, 101, 116, 86, 97, 108, 117, 101 };
+        // DamagePerType
+        private static global::System.ReadOnlySpan<byte> GetSpan_DamagePerType() => new byte[1 + 13] { 173, 68, 97, 109, 97, 103, 101, 80, 101, 114, 84, 121, 112, 101 };
+        // DamagePerValue
+        private static global::System.ReadOnlySpan<byte> GetSpan_DamagePerValue() => new byte[1 + 14] { 174, 68, 97, 109, 97, 103, 101, 80, 101, 114, 86, 97, 108, 117, 101 };
+        // EventNodePath
+        private static global::System.ReadOnlySpan<byte> GetSpan_EventNodePath() => new byte[1 + 13] { 173, 69, 118, 101, 110, 116, 78, 111, 100, 101, 80, 97, 116, 104 };
+
+        public void Serialize(ref global::MessagePack.MessagePackWriter writer, global::Data.SkillInfoData value, global::MessagePack.MessagePackSerializerOptions options)
+        {
+            if (value is null)
+            {
+                writer.WriteNil();
+                return;
+            }
+
+            var formatterResolver = options.Resolver;
+            writer.WriteMapHeader(13);
+            writer.WriteRaw(GetSpan_Seed());
+            writer.Write(value.Seed);
+            writer.WriteRaw(GetSpan_Type());
+            global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<string>(formatterResolver).Serialize(ref writer, value.Type, options);
+            writer.WriteRaw(GetSpan_Tag());
+            global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<string>(formatterResolver).Serialize(ref writer, value.Tag, options);
+            writer.WriteRaw(GetSpan_NameIdx());
+            writer.Write(value.NameIdx);
+            writer.WriteRaw(GetSpan_DestIdx());
+            writer.Write(value.DestIdx);
+            writer.WriteRaw(GetSpan_CoolTIme());
+            writer.Write(value.CoolTIme);
+            writer.WriteRaw(GetSpan_ActivateType());
+            global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<string>(formatterResolver).Serialize(ref writer, value.ActivateType, options);
+            writer.WriteRaw(GetSpan_ActivateValue());
+            writer.Write(value.ActivateValue);
+            writer.WriteRaw(GetSpan_TargetType());
+            global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<string>(formatterResolver).Serialize(ref writer, value.TargetType, options);
+            writer.WriteRaw(GetSpan_TargetValue());
+            writer.Write(value.TargetValue);
+            writer.WriteRaw(GetSpan_DamagePerType());
+            global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<string>(formatterResolver).Serialize(ref writer, value.DamagePerType, options);
+            writer.WriteRaw(GetSpan_DamagePerValue());
+            writer.Write(value.DamagePerValue);
+            writer.WriteRaw(GetSpan_EventNodePath());
+            global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<string>(formatterResolver).Serialize(ref writer, value.EventNodePath, options);
+        }
+
+        public global::Data.SkillInfoData Deserialize(ref global::MessagePack.MessagePackReader reader, global::MessagePack.MessagePackSerializerOptions options)
+        {
+            if (reader.TryReadNil())
+            {
+                return null;
+            }
+
+            options.Security.DepthStep(ref reader);
+            var formatterResolver = options.Resolver;
+            var length = reader.ReadMapHeader();
+            var __Seed__ = default(int);
+            var __Type__ = default(string);
+            var __Tag__ = default(string);
+            var __NameIdx__ = default(int);
+            var __DestIdx__ = default(int);
+            var __CoolTIme__ = default(float);
+            var __ActivateType__ = default(string);
+            var __ActivateValue__ = default(float);
+            var __TargetType__ = default(string);
+            var __TargetValue__ = default(int);
+            var __DamagePerType__ = default(string);
+            var __DamagePerValue__ = default(float);
+            var __EventNodePath__ = default(string);
+
+            for (int i = 0; i < length; i++)
+            {
+                var stringKey = global::MessagePack.Internal.CodeGenHelpers.ReadStringSpan(ref reader);
+                switch (stringKey.Length)
+                {
+                    default:
+                    FAIL:
+                      reader.Skip();
+                      continue;
+                    case 4:
+                        switch (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey))
+                        {
+                            default: goto FAIL;
+                            case 1684366675UL:
+                                __Seed__ = reader.ReadInt32();
+                                continue;
+                            case 1701869908UL:
+                                __Type__ = global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<string>(formatterResolver).Deserialize(ref reader, options);
+                                continue;
+                        }
+                    case 3:
+                        if (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey) != 6775124UL) { goto FAIL; }
+
+                        __Tag__ = global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<string>(formatterResolver).Deserialize(ref reader, options);
+                        continue;
+                    case 7:
+                        switch (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey))
+                        {
+                            default: goto FAIL;
+                            case 33887263602336078UL:
+                                __NameIdx__ = reader.ReadInt32();
+                                continue;
+                            case 33887263854388548UL:
+                                __DestIdx__ = reader.ReadInt32();
+                                continue;
+                        }
+                    case 8:
+                        if (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey) != 7308578397237505859UL) { goto FAIL; }
+
+                        __CoolTIme__ = reader.ReadSingle();
+                        continue;
+                    case 12:
+                        if (!global::System.MemoryExtensions.SequenceEqual(stringKey, GetSpan_ActivateType().Slice(1))) { goto FAIL; }
+
+                        __ActivateType__ = global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<string>(formatterResolver).Deserialize(ref reader, options);
+                        continue;
+                    case 13:
+                        switch (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey))
+                        {
+                            default: goto FAIL;
+                            case 7310575256332428097UL:
+                                if (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey) != 435761733974UL) { goto FAIL; }
+
+                                __ActivateValue__ = reader.ReadSingle();
+                                continue;
+
+                            case 7300446490658169156UL:
+                                if (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey) != 435678696562UL) { goto FAIL; }
+
+                                __DamagePerType__ = global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<string>(formatterResolver).Deserialize(ref reader, options);
+                                continue;
+
+                            case 7237089388182992453UL:
+                                if (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey) != 448629133413UL) { goto FAIL; }
+
+                                __EventNodePath__ = global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<string>(formatterResolver).Deserialize(ref reader, options);
+                                continue;
+
+                        }
+                    case 10:
+                        if (!global::System.MemoryExtensions.SequenceEqual(stringKey, GetSpan_TargetType().Slice(1))) { goto FAIL; }
+
+                        __TargetType__ = global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<string>(formatterResolver).Deserialize(ref reader, options);
+                        continue;
+                    case 11:
+                        if (!global::System.MemoryExtensions.SequenceEqual(stringKey, GetSpan_TargetValue().Slice(1))) { goto FAIL; }
+
+                        __TargetValue__ = reader.ReadInt32();
+                        continue;
+                    case 14:
+                        if (!global::System.MemoryExtensions.SequenceEqual(stringKey, GetSpan_DamagePerValue().Slice(1))) { goto FAIL; }
+
+                        __DamagePerValue__ = reader.ReadSingle();
+                        continue;
+
+                }
+            }
+
+            var ____result = new global::Data.SkillInfoData(__Seed__, __Type__, __Tag__, __NameIdx__, __DestIdx__, __CoolTIme__, __ActivateType__, __ActivateValue__, __TargetType__, __TargetValue__, __DamagePerType__, __DamagePerValue__, __EventNodePath__);
             reader.Depth--;
             return ____result;
         }

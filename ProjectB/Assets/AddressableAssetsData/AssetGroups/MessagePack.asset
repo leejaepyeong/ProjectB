@@ -31,6 +31,13 @@ MonoBehaviour:
     - MessagePackData
     - Remote
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9b3289d336deb354eb5287d8a9d38c94
+    m_Address: Assets/Data/GameResources/DataBinary/SkillInfo.bytes
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MessagePackData
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 0b85ada165676584a86a5d299cec6c75, type: 2}
   m_SchemaSet:

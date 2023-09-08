@@ -89,6 +89,7 @@ namespace Data
         public SingleData<int, Dummy> Dummy { get; private set; }
         public SingleData<int, StringText> StringText { get; private set; }
         public SingleData<int, UnitData> UnitData { get; private set; }
+        public SingleData<int, SkillInfoData> SkillInfoData { get; private set; }
         #endregion
 
         private bool isEncryptFileDone;
@@ -159,6 +160,10 @@ namespace Data
                         UnitData.ReadEncrptData(saveData.dataList[i].Seed, data);
                     }
                     break;
+                case "SkillInfo":
+                    SkillInfoData = new();
+                    SkillInfoData.ReadData(jsonText);
+                    break;
                 default:
                     break;
             }
@@ -206,6 +211,10 @@ namespace Data
                 case "StringText":
                     StringText = new();
                     StringText.ReadData(bytes);
+                    break;
+                case "SkillInfo":
+                    SkillInfoData = new();
+                    SkillInfoData.ReadData(bytes);
                     break;
                 default:
                     break;

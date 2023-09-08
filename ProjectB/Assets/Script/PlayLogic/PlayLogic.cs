@@ -21,6 +21,7 @@ public class PlayLogic : BaseScene
     protected ePlayLogicFsm curFsm;
     protected Coroutine coFsmSetting;
     protected float deltaTime;
+    protected bool isSettingOn;
 
     QueueCommand commands = new QueueCommand();
     IntroCommand_LoadDataFile loadDataFile = new IntroCommand_LoadDataFile();
@@ -28,6 +29,8 @@ public class PlayLogic : BaseScene
 
     public override void Init()
     {
+        isSettingOn = false;
+
         commands.Add(loadDataFile);
         commands.Add(loadLocalData);
     }
@@ -38,6 +41,7 @@ public class PlayLogic : BaseScene
         commands.UpdateFrame(deltaTime);
         if (commands.CommandEnd() == false) return;
         if(curFsm == ePlayLogicFsm.none) ChangeFsm(ePlayLogicFsm.setting);
+        if (isSettingOn == false) return;
 
         uiPlayLogic.UpdateFrame(deltaTime);
         UpdateFsm();
@@ -49,8 +53,6 @@ public class PlayLogic : BaseScene
     {
         switch (curFsm)
         {
-            case ePlayLogicFsm.setting:
-                break;
             case ePlayLogicFsm.ready:
                 break;
             case ePlayLogicFsm.play:
@@ -98,12 +100,14 @@ public class PlayLogic : BaseScene
     protected virtual void EnterSetting()
     {
         BattleManager.Instance.SetGame(30f);
+        uiPlayLogic.Init();
         coFsmSetting = StartCoroutine(GameSettingCo());
     }
 
     protected IEnumerator GameSettingCo()
     {
         yield return new WaitForEndOfFrame();
+        isSettingOn = true;
         ChangeFsm(ePlayLogicFsm.ready);
         coFsmSetting = null;
     }

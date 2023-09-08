@@ -18,12 +18,14 @@ namespace Data
     {
         public Dummy[] Dummy { get; }
         public StringText[] StringText { get; }
+        public SkillInfoData[] SkillInfoData { get; }
     }
     [MessagePackObject(true)]
     public class ListMeta
     {
         public List<Dummy> Dummy { get; }
         public List<StringText> StringText { get; }
+        public List<SkillInfoData> SkillInfoData { get; }
     }
 
 
@@ -59,6 +61,55 @@ namespace Data
         [IgnoreMember]
         public int Key => Seed;
     }
+    [MessagePackObject(true)]
+    public class SkillInfoData : IDataKey<int>
+    {
+        public int Seed;
+        public string Type;
+        public string Tag;
+        public int NameIdx;
+        public int DestIdx;
+        public float CoolTIme;
+        public string ActivateType;
+        public float ActivateValue;
+        public string TargetType;
+        public int TargetValue;
+        public string DamagePerType;
+        public float DamagePerValue;
+        public string EventNodePath;
+
+        [IgnoreMember]
+        public eSkillType type => Define.GetEnum<eSkillType>(Type);
+        [IgnoreMember]
+        public eSkillTag tag => Define.GetEnum<eSkillTag>(Tag);
+        [IgnoreMember]
+        public eSkillActivate activateType => Define.GetEnum<eSkillActivate>(ActivateType);
+        [IgnoreMember]
+        public eSkillTarget targetType => Define.GetEnum<eSkillTarget>(TargetType);
+        [IgnoreMember]
+        public eDamagePerType damagePerType => Define.GetEnum<eDamagePerType>(DamagePerType);
+
+        public SkillInfoData(int seed, string type, string tag, int nameIdx, int destIdx, float coolTime, string activateType, float activateValue, 
+            string targetType,int targetValue, string damagePerType, float damagePerValue, string eventNodePath)
+        {
+            Seed = seed;
+            Type = type;
+            Tag = tag;
+            NameIdx = nameIdx;
+            DestIdx = destIdx;
+            CoolTIme = coolTime;
+            ActivateType = activateType;
+            ActivateValue = activateValue;
+            TargetType = targetType;
+            TargetValue = targetValue;
+            DamagePerType = damagePerType;
+            DamagePerValue = damagePerValue;
+            EventNodePath = eventNodePath;
+        }
+        [IgnoreMember]
+        public int Key => Seed;
+    }
+
 
     public class UnitData : IDataKey<int>
     {
