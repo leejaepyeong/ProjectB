@@ -67,6 +67,7 @@ namespace Data
         public int Seed;
         public string Type;
         public string Tag;
+        public int SkillGroup;
         public int NameIdx;
         public int DestIdx;
         public float CoolTIme;
@@ -80,6 +81,8 @@ namespace Data
 
         [IgnoreMember]
         public eSkillType type => Define.GetEnum<eSkillType>(Type);
+        [IgnoreMember]
+        public eSkillDetailType detailType => Define.GetEnum<eSkillDetailType>(Type);
         [IgnoreMember]
         public eSkillTag tag => Define.GetEnum<eSkillTag>(Tag);
         [IgnoreMember]

@@ -9,8 +9,20 @@ public class SkillManager
 
     public void UseSkill(UnitBehavior caster, Data.SkillInfo skillInfo)
     {
+        if (CheckSkill(caster, skillInfo) == false) return;
 
     }
+
+    private void ApplySkill()
+    {
+
+    }
+
+    private void ApplyBuff()
+    {
+
+    }
+
 
     public bool CheckSkill(UnitBehavior caster, Data.SkillInfo skillInfo)
     {

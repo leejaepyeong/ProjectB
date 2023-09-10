@@ -24,6 +24,7 @@ public class FileData : MonoBehaviour
         StringFileSave fileSave = new StringFileSave();
 
         saveDataList.Add(new SaveDataControl<SaveData_Local>(fileSave.GetPath("local"), fileSave));
+        saveDataList.Add(new SaveDataControl<SaveData_PlayerSkill>(fileSave.GetPath("playerSkill"), fileSave));
 
         LoadFile();
     }

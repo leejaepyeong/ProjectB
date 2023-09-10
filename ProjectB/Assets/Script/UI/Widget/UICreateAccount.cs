@@ -66,7 +66,7 @@ public class UICreateAccount : UIBase
                 parameter.title = Manager.Instance.GetString(1000);
                 parameter.dest = string.Format(Manager.Instance.GetString(1001), textInputNick);
                 UserInfo userInfo = new UserInfo(textInputNick.text);
-                parameter.okAction = () => SaveData_Local.Instance.SetUserInfo(userInfo); Close();
+                parameter.okAction = () => SaveData_Local.Instance.SetUserInfo(userInfo); SaveData_PlayerSkill.Instance.SetSkillInfo(); Close();
                 break;
             case eNickDeny.empty:
                 parameter.title = Manager.Instance.GetString(1000);

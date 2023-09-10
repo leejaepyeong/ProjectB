@@ -86,6 +86,14 @@ public enum eSkillType
     normalAtk,
     skillDamage,
 }
+
+public enum eSkillDetailType
+{
+    None,
+    Single,
+    Boom,
+    Chain,
+}
 public enum eSkillTag
 {
     Normal,

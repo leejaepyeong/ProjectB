@@ -9,11 +9,13 @@ public class SkillInfo
 {
     private float elaspedTIme;
     private float coolTime;
+    private Data.SkillInfoData skillData;
 
-    public SkillInfo(float cool)
+    public SkillInfo(int seed)
     {
         elaspedTIme = 0;
-        coolTime = cool;
+        if (Data.DataManager.Instance.SkillInfoData.TryGet(seed, out var data) == false) return;
+        skillData = data;
     }
 
     public float getTime { get { return elaspedTIme; } }
@@ -45,11 +47,13 @@ public class UISkillSlot : UISlot
     [SerializeField, FoldoutGroup("Block")] private TextMeshProUGUI textCoolTime;
 
     private SkillInfo skillInfo;
+    private int slotIndex;
 
-    public override void Init()
+    public virtual void Init(int index)
     {
         buttonClick.onClick.AddListener(OnClickSkill);
-        skillInfo = new SkillInfo(10f);
+        slotIndex = index;
+        skillInfo = new SkillInfo(0);
     }
 
     public override void UnInit()
