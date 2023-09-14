@@ -53,6 +53,7 @@ public class UISkillSlot : UISlot
     {
         buttonClick.onClick.AddListener(OnClickSkill);
         slotIndex = index;
+        SaveData_PlayerSkill.Instance.GetSkill(index);
         skillInfo = new SkillInfo(0);
     }
 

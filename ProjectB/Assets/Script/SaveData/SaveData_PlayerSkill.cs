@@ -20,6 +20,8 @@ public class SkillSaveInfo
         index = idx;
         equipIndex = -1;
     }
+
+    public Data.SkillInfoData getSkillData { get { Data.DataManager.Instance.SkillInfoData.TryGet(index, out var data); return data; } }
 }
 [System.Serializable]
 public class RuneSaveInfo
@@ -32,12 +34,17 @@ public class RuneSaveInfo
     {
         this.id = id;
         this.runeIdx = runeIdx;
+        isEquip = false;
     }
 }
 public class SaveData_PlayerSkill : SaveData
 {
-    public SkillSaveInfo[] skillSaveInfoGroup = new SkillSaveInfo[999];
+    //ÀüÃ¼ ½ºÅ³, ·é
+    public List<SkillSaveInfo> skillSaveInfoGroup = new List<SkillSaveInfo>();
     public List<RuneSaveInfo> runeSaveInfoGroup = new List<RuneSaveInfo>();
+    //ÀåÂø ½ºÅ³, ·é
+    public List<SkillSaveInfo> equipSkillInfo = new List<SkillSaveInfo>(Define.MaxEquipSkill);
+    public Dictionary<int, RuneSaveInfo> equipRuneInfo = new Dictionary<int, RuneSaveInfo>();
     public static SaveData_PlayerSkill Instance
     {
         get
@@ -46,17 +53,28 @@ public class SaveData_PlayerSkill : SaveData
         }
     }
 
+    public void Init()
+    {
+        for (int i = 0; i < runeSaveInfoGroup.Count; i++)
+        {
+            if(runeSaveInfoGroup[i].isEquip)
+                equipRuneInfo.Add(runeSaveInfoGroup[i].id, runeSaveInfoGroup[i]);
+        }
+    }
+
     #region SkillInfo
     public void SetSkillInfo()
     {
-        for (int i = 0; i < skillSaveInfoGroup.Length; i++)
+        for (int i = 0; i < Data.DataManager.Instance.SkillInfoData.DataList.Count; i++)
         {
-            if (skillSaveInfoGroup[i].isInit == false)
-                skillSaveInfoGroup[i].Init(i + 1);
-        }
+            var data = Data.DataManager.Instance.SkillInfoData.DataList[i];
 
-        RuneSaveInfo info = new RuneSaveInfo(1,2);
-        SetRune(info);
+            if (skillSaveInfoGroup.Count <= i)
+                skillSaveInfoGroup.Add(new SkillSaveInfo());
+            if (skillSaveInfoGroup[i].isInit) continue;
+                
+            skillSaveInfoGroup[i].Init(data.Seed);
+        }
 
         SetChange();
         SetNotify();
@@ -88,14 +106,20 @@ public class SaveData_PlayerSkill : SaveData
 
     public void ChangeSkillEquip(int slotIdx, int skillIdx)
     {
-        skillSaveInfoGroup[skillIdx].equipIndex = slotIdx;
+        var preSkillData = skillSaveInfoGroup.Find(a => a.equipIndex == slotIdx);
+        if (preSkillData != null) preSkillData.equipIndex = -1;
+
+        var skillData = skillSaveInfoGroup.Find(a => a.index == skillIdx);
+        skillData.equipIndex = slotIdx;
+        equipSkillInfo[slotIdx] = skillData;
 
         SetChange();
         SetNotify();
     }
     public void ChangeSkillIRune(int skillIdx, int equipIdx, int runeId)
     {
-        skillSaveInfoGroup[skillIdx].equipRuneGroup[equipIdx] = runeId;
+        var skillData = skillSaveInfoGroup.Find(a => a.index == skillIdx);
+        skillData.equipRuneGroup[equipIdx] = runeId;
 
         SetChange();
         SetNotify();

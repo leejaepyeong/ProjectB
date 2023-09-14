@@ -11,10 +11,13 @@ namespace Data
     {
         public readonly E DEFAULT = default(E);
         protected Dictionary<K, E> dicData;
+        protected List<E> dataList;
         public IReadOnlyDictionary<K, E> Dictonary => dicData;
+        public List<E> DataList => dataList;
         public SingleData()
         {
             dicData = new Dictionary<K, E>();
+            dataList = new List<E>();
         }
 
         public void ReadData(string json)
@@ -32,6 +35,7 @@ namespace Data
                 try
                 {
                     dicData.Add(data.Key, data);
+                    dataList.Add(data);
                 }
                 catch(Exception e)
                 {
@@ -53,6 +57,7 @@ namespace Data
                 try
                 {
                     dicData.Add(data.Key, data);
+                    dataList.Add(data);
                 }
                 catch (Exception e)
                 {
