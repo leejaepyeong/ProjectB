@@ -7,10 +7,15 @@ public class SkillManager
     private List<UnitBehavior> unitList = new List<UnitBehavior>();
     private List<UnitBehavior> tempUnitList = new List<UnitBehavior>();
 
-    public void UseSkill(UnitBehavior caster, Data.SkillInfo skillInfo)
+    public void UseSkill(UnitBehavior caster, Data.SkillInfoData skillInfo)
     {
         if (CheckSkill(caster, skillInfo) == false) return;
 
+        skillInfo.SetCoolTime();
+    }
+
+    public void UseSkill(UnitBehavior caster, SkillInfo skillInfo)
+    {
     }
 
     private void ApplySkill()
@@ -24,9 +29,8 @@ public class SkillManager
     }
 
 
-    public bool CheckSkill(UnitBehavior caster, Data.SkillInfo skillInfo)
+    public bool CheckSkill(UnitBehavior caster, Data.SkillInfoData skillInfo)
     {
-        if (skillInfo.CheckCoolTime()) return false;
 
         switch (skillInfo.activateType)
         {
@@ -40,7 +44,7 @@ public class SkillManager
     }
 
     #region Search Target List
-    public List<UnitBehavior> GetTargetList(UnitBehavior caster, Data.SkillInfo skillInfo)
+    public List<UnitBehavior> GetTargetList(UnitBehavior caster, Data.SkillInfoData skillInfo)
     {
         unitList.Clear();
         tempUnitList.Clear();
@@ -58,7 +62,7 @@ public class SkillManager
         return unitList;
     }
 
-    private List<UnitBehavior> GetTargetList_Normal(UnitBehavior caster, Data.SkillInfo skillInfo)
+    private List<UnitBehavior> GetTargetList_Normal(UnitBehavior caster, Data.SkillInfoData skillInfo)
     {
         var list = UnitManager.Instance.UnitActiveList;
 
@@ -70,7 +74,7 @@ public class SkillManager
             return distanceA.CompareTo(distanceB);
         });
 
-        for (int i = 0; i < skillInfo.targetValue; i++)
+        for (int i = 0; i < skillInfo.TargetValue; i++)
         {
             if (list.Count <= i) break;
             tempUnitList.Add(list[i]);

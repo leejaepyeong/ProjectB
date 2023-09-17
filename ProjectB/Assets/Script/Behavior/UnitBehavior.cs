@@ -192,12 +192,11 @@ public class UnitBehavior : BaseBehavior, IEventHandler
     }
 
     #region NodeEvent
-    public void Action(string eventGraphPath)
+    public void Action(EventGraph eventGraph)
     {
         eventDispatcher.Clear();
-        var graph = manager.ResourcePool.Load<EventGraph>(eventGraphPath);
-        eventDispatcher.Add(graph);
-        Animator.CrossFadeInFixedTime(graph.name, 0.05f);
+        eventDispatcher.Add(eventGraph);
+        Animator.CrossFadeInFixedTime(eventGraph.name, 0.05f);
     }
 
     private void OnHandleSoundEvent(SoundEvent soundEvent)

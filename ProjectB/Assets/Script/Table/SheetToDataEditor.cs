@@ -205,6 +205,7 @@ public class SheetToDataEditor : OdinEditorWindow
         foreach (var row in table)
         {
             int seed = 0;
+            int skillGroupSeed = 0;
             string type = "";
             string tag = "";
             int nameIdx = 0;
@@ -231,6 +232,9 @@ public class SheetToDataEditor : OdinEditorWindow
                 {
                     case "Seed":
                         seed = (int)numberValue;
+                        break;
+                    case "skillGroupSeed":
+                        skillGroupSeed = (int)numberValue;
                         break;
                     case "Type":
                         type = stringValue;

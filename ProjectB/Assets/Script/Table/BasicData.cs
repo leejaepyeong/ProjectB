@@ -67,7 +67,7 @@ namespace Data
         public int Seed;
         public string Type;
         public string Tag;
-        public int SkillGroup;
+        public int SkillGroupSeed;
         public int NameIdx;
         public int DestIdx;
         public float CoolTIme;
@@ -91,6 +91,8 @@ namespace Data
         public eSkillTarget targetType => Define.GetEnum<eSkillTarget>(TargetType);
         [IgnoreMember]
         public eDamagePerType damagePerType => Define.GetEnum<eDamagePerType>(DamagePerType);
+        [IgnoreMember]
+        public EventGraph skillNode => BattleManager.Instance.ResourcePool.Load<EventGraph>(EventNodePath);
 
         public SkillInfoData(int seed, string type, string tag, int nameIdx, int destIdx, float coolTime, string activateType, float activateValue, 
             string targetType,int targetValue, string damagePerType, float damagePerValue, string eventNodePath)
@@ -111,8 +113,49 @@ namespace Data
         }
         [IgnoreMember]
         public int Key => Seed;
-    }
 
+        [IgnoreMember]
+        private float elaspedTime;
+        public void UpdateFrame(float deltaTime)
+        {
+            if (elaspedTime <= 0) return;
+            elaspedTime -= deltaTime;
+        }
+        public void SetCoolTime(float time = 0)
+        {
+            if (time == 0) elaspedTime = CoolTIme;
+            else elaspedTime = time;
+        }
+        public bool IsReadyCoolTime()
+        {
+            return elaspedTime <= 0;
+        }
+    }
+    [MessagePackObject(true)]
+    public class RuneInfoData : IDataKey<int>
+    {
+        public int Seed;
+        public int GroupSeed;
+        public int NameIdx;
+        public int DestIdx;
+        public string[] RuneType;
+        public float[] RuneValue;
+        public string[] RuneTag;
+
+        public RuneInfoData(int seed, int groupSeed, int nameIdx, int destIdx, string[] runeType, float[] runeValues, string[] runeTag)
+        {
+            Seed = seed;
+            GroupSeed = groupSeed;
+            NameIdx = nameIdx;
+            DestIdx = destIdx;
+            RuneType = runeType;
+            RuneValue = runeValues;
+            RuneTag = runeTag;
+        }
+        [IgnoreMember]
+        public int Key => Seed;
+
+    }
 
     public class UnitData : IDataKey<int>
     {
@@ -133,8 +176,8 @@ namespace Data
         public Texture2D icon;
         public string modelAssetRef;
         public string animatorAssetRef;
-        public SkillInfo atkInfo;
-        public List<SkillInfo> skillInfoGroup;
+        public Data.SkillInfoData atkInfo;
+        public List<Data.SkillInfoData> skillInfoGroup;
 
         public UnitData(Editor.UnitData data)
         {
@@ -155,70 +198,10 @@ namespace Data
             icon = data.info.icon;
             modelAssetRef = data.info.modelAssetRef;
             animatorAssetRef =data.info.animatorAssetRef;
-            atkInfo = new SkillInfo(data.info.atkInfo);
-            skillInfoGroup = new List<SkillInfo>();
-            if(data.info.skillInfoGroup != null)
-            {
-                for (int i = 0; i < data.info.skillInfoGroup.Length; i++)
-                {
-                    skillInfoGroup.Add(new SkillInfo(data.info.skillInfoGroup[i]));
-                }
-            }
+            skillInfoGroup = new List<Data.SkillInfoData>();
         }
 
         [IgnoreMember]
         public int Key => Seed;
-    }
-    public class SkillInfo
-    {
-        public int skillSeed;
-        public eSkillActivate activateType;
-        public float activateValue;
-        public eSkillDuration durationType;
-        public float durationValue;
-        public eSkillTarget targetType;
-        public float targetValue;
-        public eSkillType skillType;
-        public float typeValue;
-        public float maxCoolTime;
-
-        public string skillNode;
-
-        private float coolTime;
-
-        public SkillInfo(Editor.UnitData.SkillInfo skillInfo)
-        {
-            skillSeed = skillInfo.skillSeed;
-            activateType = skillInfo.activateType;
-            activateValue = skillInfo.activateValue;
-            durationType = skillInfo.durationType;
-            durationValue = skillInfo.durationValue;
-            targetType = skillInfo.targetType;
-            targetValue = skillInfo.targetValue;
-            skillType = skillInfo.skillType;
-            typeValue = skillInfo.typeValue;
-            maxCoolTime = skillInfo.maxCoolTime;
-
-            skillNode = skillInfo.skillNodeRef;
-        }
-
-        public void UpdateFrame(float deltaTime)
-        {
-            if (coolTime > 0)
-                coolTime -= deltaTime;
-        }
-
-        public bool CheckCoolTime()
-        {
-            return coolTime > 0;
-        }
-
-        public void ResetSkill(float cool = 0)
-        {
-            if (cool == 0)
-                coolTime = maxCoolTime;
-            else
-                coolTime = cool;
-        }
     }
 }

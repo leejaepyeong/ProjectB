@@ -10,12 +10,15 @@ public class SkillInfo
     private float elaspedTIme;
     private float coolTime;
     private Data.SkillInfoData skillData;
+    public Data.SkillInfoData SkillData => skillData;
 
     public SkillInfo(int seed)
     {
         elaspedTIme = 0;
-        if (Data.DataManager.Instance.SkillInfoData.TryGet(seed, out var data) == false) return;
+        var playerSkill = SaveData_PlayerSkill.Instance.GetSkill(seed);
+        if (Data.DataManager.Instance.SkillInfoData.TryGet(playerSkill.index, out var data) == false) return;
         skillData = data;
+
     }
 
     public float getTime { get { return elaspedTIme; } }
@@ -36,6 +39,16 @@ public class SkillInfo
     {
         elaspedTIme = coolTime;
     }
+
+    private void SetRuneEffect()
+    {
+
+    }
+
+    public void UseSkill()
+    {
+        Manager.Instance.skillManager.UseSkill(UnitManager.Instance.Player, this);
+    }
 }
 
 public class UISkillSlot : UISlot
@@ -53,8 +66,7 @@ public class UISkillSlot : UISlot
     {
         buttonClick.onClick.AddListener(OnClickSkill);
         slotIndex = index;
-        SaveData_PlayerSkill.Instance.GetSkill(index);
-        skillInfo = new SkillInfo(0);
+        skillInfo = new SkillInfo(slotIndex);
     }
 
     public override void UnInit()

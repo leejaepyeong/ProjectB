@@ -37,7 +37,7 @@ public class Unit_Base : MonoBehaviour
 
         Move();
         SearchTarget();
-        PassiveSkill();
+        SkillUpdate();
     }
 
     public virtual void Move()
@@ -73,12 +73,15 @@ public class Unit_Base : MonoBehaviour
         unitBehavior.Action(unitData.atkInfo.skillNode);
     }
 
-    public virtual void PassiveSkill()
+    public virtual void SkillUpdate()
     {
         for (int i = 0; i < unitData.skillInfoGroup.Count; i++)
         {
+            var skill = unitData.skillInfoGroup[i];
             Manager.Instance.skillManager.UseSkill(unitBehavior, unitData.skillInfoGroup[i]);
             unitData.skillInfoGroup[i].UpdateFrame(deltaTime);
+            if (skill.type == eSkillType.Passive && skill.IsReadyCoolTime())
+                Manager.Instance.skillManager.UseSkill(unitBehavior, skill);
         }
     }
 
