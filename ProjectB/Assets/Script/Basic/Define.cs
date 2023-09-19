@@ -110,6 +110,9 @@ public enum eSkillActivate
 }
 public enum eSkillTarget
 {
+    Near,
+    NonTarget,
+
     Target,
 
     normal,
@@ -119,5 +122,31 @@ public enum eSkillDuration
 {
     time,
     casterAlive,
+}
+#endregion
+
+#region Rune
+public enum eRuneType
+{
+    None,
+
+    Burn,
+    Freeze,
+
+    CoolTime,
+    BurnTime,
+    FreezingTime,
+
+    BoomRange,
+}
+
+public enum eRuneDetailType
+{
+    None,
+
+    TimeAdd,
+
+    Add,
+    Atk,
 }
 #endregion

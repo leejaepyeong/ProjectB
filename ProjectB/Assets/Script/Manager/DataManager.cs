@@ -95,6 +95,7 @@ namespace Data
         public SingleData<int, StringText> StringText { get; private set; }
         public SingleData<int, UnitData> UnitData { get; private set; }
         public SingleData<int, SkillInfoData> SkillInfoData { get; private set; }
+        public SingleData<int, RuneInfoData> RuneInfoData { get; private set; }
         #endregion
 
         private bool isEncryptFileDone;
@@ -169,6 +170,10 @@ namespace Data
                     SkillInfoData = new();
                     SkillInfoData.ReadData(jsonText);
                     break;
+                case "Rune_Effect_Info":
+                    RuneInfoData = new();
+                    RuneInfoData.ReadData(jsonText);
+                    break;
                 default:
                     break;
             }
@@ -220,6 +225,10 @@ namespace Data
                 case "SkillInfo":
                     SkillInfoData = new();
                     SkillInfoData.ReadData(bytes);
+                    break;
+                case "Rune_Effect_Info":
+                    RuneInfoData = new();
+                    RuneInfoData.ReadData(bytes);
                     break;
                 default:
                     break;

@@ -11,14 +11,19 @@ public class SkillInfo
     private float coolTime;
     private Data.SkillInfoData skillData;
     public Data.SkillInfoData SkillData => skillData;
+    public List<Data.RuneInfoData> runeDataList = new List<Data.RuneInfoData>();
 
-    public SkillInfo(int seed)
+    public SkillInfo(int slotIdx)
     {
         elaspedTIme = 0;
-        var playerSkill = SaveData_PlayerSkill.Instance.GetSkill(seed);
-        if (Data.DataManager.Instance.SkillInfoData.TryGet(playerSkill.index, out var data) == false) return;
-        skillData = data;
-
+        var playerSkill = SaveData_PlayerSkill.Instance.GetEquipSkill(slotIdx);
+        skillData = playerSkill.getSkillData;
+        runeDataList.Clear();
+        for (int i = 0; i < playerSkill.equipRuneGroup.Length; i++)
+        {
+            if (playerSkill.equipRuneGroup[i] == 0) continue;
+            runeDataList.Add(playerSkill.GetRuneData(playerSkill.equipRuneGroup[i]));
+        }
     }
 
     public float getTime { get { return elaspedTIme; } }
