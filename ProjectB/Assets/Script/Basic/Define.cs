@@ -79,6 +79,14 @@ public enum eDamagePerType
     Def,
     AtkSpd,
 }
+public enum eSkillState
+{
+    Burn,
+
+    Freeze,
+
+    AtkBuff,
+}
 public enum eSkillType
 {
     Normal,
@@ -123,12 +131,23 @@ public enum eSkillDuration
     time,
     casterAlive,
 }
+public enum eBuffType
+{
+    None,
+    Buff,
+    DeBuff,
+}
 #endregion
 
 #region Rune
 public enum eRuneType
 {
     None,
+
+    AddEffect,
+    AddTime,
+    CoolTimeDown,
+    AddTarget,
 
     Burn,
     Freeze,

@@ -253,6 +253,38 @@ namespace Data
             }
         }
     }
+    [MessagePackObject(true)]
+    public class SkillEffectInfo : IDataKey<int>
+    {
+        public int Seed;
+        public int GroupSeed;
+        public int NameIdx;
+        public int DestIdx;
+        public string SkillState;
+        public string BuffType;
+        public float SkillValue;
+        public float SkillDuration;
+
+        [IgnoreMember]
+        public eSkillState skillState => Define.GetEnum<eSkillState>(SkillState);
+        [IgnoreMember]
+        public eBuffType buffType => Define.GetEnum<eBuffType>(BuffType);
+
+        public SkillEffectInfo(int seed, int groupSeed, int nameIdx, int destIdx, string skillState, string buffType, float skillValue, float skillDuration)
+        {
+            Seed = seed;
+            GroupSeed = groupSeed;
+            NameIdx = nameIdx;
+            DestIdx = destIdx;
+            SkillState = skillState;
+            BuffType = buffType;
+            SkillValue = skillValue;
+            SkillDuration = skillDuration;
+        }
+        [IgnoreMember]
+        public int Key => Seed;
+    }
+
 
     public class UnitData : IDataKey<int>
     {

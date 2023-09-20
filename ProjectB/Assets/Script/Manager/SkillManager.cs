@@ -10,8 +10,9 @@ public class SkillManager
     public void UseSkill(UnitBehavior caster, Data.SkillInfoData skillInfo)
     {
         if (CheckSkill(caster, skillInfo) == false) return;
-
         skillInfo.SetCoolTime();
+
+
     }
 
     public void UseSkill(UnitBehavior caster, SkillInfo skillInfo)

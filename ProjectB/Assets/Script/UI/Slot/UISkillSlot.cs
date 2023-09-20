@@ -24,6 +24,7 @@ public class SkillInfo
             if (playerSkill.equipRuneGroup[i] == 0) continue;
             runeDataList.Add(playerSkill.GetRuneData(playerSkill.equipRuneGroup[i]));
         }
+        SetRuneEffect();
     }
 
     public float getTime { get { return elaspedTIme; } }
@@ -98,7 +99,8 @@ public class UISkillSlot : UISlot
     #region Button Click
     private void OnClickSkill()
     {
-
+        if (skillInfo.SkillData.type != eSkillType.Active) return;
+        skillInfo.UseSkill();
     }
     #endregion
 }
