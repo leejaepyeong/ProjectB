@@ -145,18 +145,29 @@ public enum eRuneType
     None,
 
     AddEffect,
-    AddTime,
+    AddEffectTime,
     CoolTimeDown,
+    AddProjectilenum,
+    AddProjectilesize,
+    AddProjectilespd,
+    AddProjectiledmg,
+    MinProjectilenum,
+    MinProjectilesize,
+    MinProjectilespd,
+    MinProjectiledmg,
+    AddRange,
     AddTarget,
-
-    Burn,
-    Freeze,
-
-    CoolTime,
-    BurnTime,
-    FreezingTime,
-
-    BoomRange,
+    AddAtk,
+    AddAtkspd,
+    AddCrirate,
+    AddCridmg,
+    MinAtk,
+    MinAtkspd,
+    MinCrirate,
+    MinCridmg,
+    GetBonusExp,
+    AddDmg,
+    MinDmg,
 }
 
 public enum eRuneDetailType

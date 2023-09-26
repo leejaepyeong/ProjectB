@@ -5,6 +5,10 @@ using UnityEngine.UI;
 using Sirenix.OdinInspector;
 using TMPro;
 
+public class RuneInfo
+{
+
+}
 public class SkillInfo
 {
     private float elaspedTIme;
@@ -12,18 +16,20 @@ public class SkillInfo
     private Data.SkillInfoData skillData;
     public Data.SkillInfoData SkillData => skillData;
     public List<Data.RuneInfoData> runeDataList = new List<Data.RuneInfoData>();
+    public List<Data.SkillEffectInfo> skillEffectList = new List<Data.SkillEffectInfo>();
 
     public SkillInfo(int slotIdx)
     {
         elaspedTIme = 0;
         var playerSkill = SaveData_PlayerSkill.Instance.GetEquipSkill(slotIdx);
-        skillData = playerSkill.getSkillData;
+        skillData = playerSkill.GetSkillData();
         runeDataList.Clear();
         for (int i = 0; i < playerSkill.equipRuneGroup.Length; i++)
         {
             if (playerSkill.equipRuneGroup[i] == 0) continue;
             runeDataList.Add(playerSkill.GetRuneData(playerSkill.equipRuneGroup[i]));
         }
+        skillEffectList.Clear();
         SetRuneEffect();
     }
 
@@ -49,6 +55,15 @@ public class SkillInfo
     private void SetRuneEffect()
     {
 
+        for (int i = 0; i < runeDataList.Count; i++)
+        {
+            runeDataList[i].AddSkillEffectToSkill(skillEffectList);
+        }
+
+        for (int i = 0; i < skillEffectList.Count; i++)
+        {
+            runeDataList[i].SetRuneEffectToSkill(skillData, skillEffectList[i]);
+        }
     }
 
     public void UseSkill()

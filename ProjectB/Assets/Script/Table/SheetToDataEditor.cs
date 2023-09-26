@@ -315,7 +315,6 @@ public class SheetToDataEditor : OdinEditorWindow
             int runeTag2 = 0;
             int runeTag3 = 0;
             int runeTag4 = 0;
-            int runeTag5 = 0;
 
             foreach (var data in row)
             {
@@ -376,14 +375,11 @@ public class SheetToDataEditor : OdinEditorWindow
                     case "Tag4":
                         runeTag4 = (int)numberValue;
                         break;
-                    case "Tag5":
-                        runeTag5 = (int)numberValue;
-                        break;
                 }
             }
             if (seed == 0) continue;
             listData.Add(new Data.RuneInfoData(seed, groupSeed, nameIdx, destIdx, runeType1, runeType2, runeType3, runeType4, runeValue1, runeValue2, runeValue3, runeValue4,
-                runeTag1, runeTag2, runeTag3, runeTag4, runeTag5));
+                runeTag1, runeTag2, runeTag3, runeTag4));
         }
 
         return listData.OrderBy(r => r.Seed).ToArray();

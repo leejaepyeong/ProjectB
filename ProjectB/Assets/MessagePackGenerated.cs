@@ -47,7 +47,7 @@ namespace MessagePack.Resolvers
 
         static GeneratedResolverGetFormatterHelper()
         {
-            lookup = new global::System.Collections.Generic.Dictionary<global::System.Type, int>(12)
+            lookup = new global::System.Collections.Generic.Dictionary<global::System.Type, int>(13)
             {
                 { typeof(global::Data.Dummy[]), 0 },
                 { typeof(global::Data.SkillInfoData[]), 1 },
@@ -59,8 +59,9 @@ namespace MessagePack.Resolvers
                 { typeof(global::Data.Dummy), 7 },
                 { typeof(global::Data.ListMeta), 8 },
                 { typeof(global::Data.RuneInfoData), 9 },
-                { typeof(global::Data.SkillInfoData), 10 },
-                { typeof(global::Data.StringText), 11 },
+                { typeof(global::Data.SkillEffectInfo), 10 },
+                { typeof(global::Data.SkillInfoData), 11 },
+                { typeof(global::Data.StringText), 12 },
             };
         }
 
@@ -84,8 +85,9 @@ namespace MessagePack.Resolvers
                 case 7: return new MessagePack.Formatters.Data.DummyFormatter();
                 case 8: return new MessagePack.Formatters.Data.ListMetaFormatter();
                 case 9: return new MessagePack.Formatters.Data.RuneInfoDataFormatter();
-                case 10: return new MessagePack.Formatters.Data.SkillInfoDataFormatter();
-                case 11: return new MessagePack.Formatters.Data.StringTextFormatter();
+                case 10: return new MessagePack.Formatters.Data.SkillEffectInfoFormatter();
+                case 11: return new MessagePack.Formatters.Data.SkillInfoDataFormatter();
+                case 12: return new MessagePack.Formatters.Data.StringTextFormatter();
                 default: return null;
             }
         }
@@ -362,8 +364,6 @@ namespace MessagePack.Formatters.Data
         private static global::System.ReadOnlySpan<byte> GetSpan_RuneTag3() => new byte[1 + 8] { 168, 82, 117, 110, 101, 84, 97, 103, 51 };
         // RuneTag4
         private static global::System.ReadOnlySpan<byte> GetSpan_RuneTag4() => new byte[1 + 8] { 168, 82, 117, 110, 101, 84, 97, 103, 52 };
-        // RuneTag5
-        private static global::System.ReadOnlySpan<byte> GetSpan_RuneTag5() => new byte[1 + 8] { 168, 82, 117, 110, 101, 84, 97, 103, 53 };
 
         public void Serialize(ref global::MessagePack.MessagePackWriter writer, global::Data.RuneInfoData value, global::MessagePack.MessagePackSerializerOptions options)
         {
@@ -374,7 +374,7 @@ namespace MessagePack.Formatters.Data
             }
 
             var formatterResolver = options.Resolver;
-            writer.WriteMapHeader(17);
+            writer.WriteMapHeader(16);
             writer.WriteRaw(GetSpan_Seed());
             writer.Write(value.Seed);
             writer.WriteRaw(GetSpan_GroupSeed());
@@ -407,8 +407,6 @@ namespace MessagePack.Formatters.Data
             writer.Write(value.RuneTag3);
             writer.WriteRaw(GetSpan_RuneTag4());
             writer.Write(value.RuneTag4);
-            writer.WriteRaw(GetSpan_RuneTag5());
-            writer.Write(value.RuneTag5);
         }
 
         public global::Data.RuneInfoData Deserialize(ref global::MessagePack.MessagePackReader reader, global::MessagePack.MessagePackSerializerOptions options)
@@ -437,7 +435,6 @@ namespace MessagePack.Formatters.Data
             var __RuneTag2__ = default(int);
             var __RuneTag3__ = default(int);
             var __RuneTag4__ = default(int);
-            var __RuneTag5__ = default(int);
 
             for (int i = 0; i < length; i++)
             {
@@ -532,15 +529,155 @@ namespace MessagePack.Formatters.Data
                             case 3776093827680335186UL:
                                 __RuneTag4__ = reader.ReadInt32();
                                 continue;
-                            case 3848151421718263122UL:
-                                __RuneTag5__ = reader.ReadInt32();
-                                continue;
                         }
 
                 }
             }
 
-            var ____result = new global::Data.RuneInfoData(__Seed__, __GroupSeed__, __NameIdx__, __DestIdx__, __RuneType1__, __RuneType2__, __RuneType3__, __RuneType4__, __RuneValue1__, __RuneValue2__, __RuneValue3__, __RuneValue4__, __RuneTag1__, __RuneTag2__, __RuneTag3__, __RuneTag4__, __RuneTag5__);
+            var ____result = new global::Data.RuneInfoData(__Seed__, __GroupSeed__, __NameIdx__, __DestIdx__, __RuneType1__, __RuneType2__, __RuneType3__, __RuneType4__, __RuneValue1__, __RuneValue2__, __RuneValue3__, __RuneValue4__, __RuneTag1__, __RuneTag2__, __RuneTag3__, __RuneTag4__);
+            reader.Depth--;
+            return ____result;
+        }
+    }
+
+    public sealed class SkillEffectInfoFormatter : global::MessagePack.Formatters.IMessagePackFormatter<global::Data.SkillEffectInfo>
+    {
+        // Seed
+        private static global::System.ReadOnlySpan<byte> GetSpan_Seed() => new byte[1 + 4] { 164, 83, 101, 101, 100 };
+        // GroupSeed
+        private static global::System.ReadOnlySpan<byte> GetSpan_GroupSeed() => new byte[1 + 9] { 169, 71, 114, 111, 117, 112, 83, 101, 101, 100 };
+        // NameIdx
+        private static global::System.ReadOnlySpan<byte> GetSpan_NameIdx() => new byte[1 + 7] { 167, 78, 97, 109, 101, 73, 100, 120 };
+        // DestIdx
+        private static global::System.ReadOnlySpan<byte> GetSpan_DestIdx() => new byte[1 + 7] { 167, 68, 101, 115, 116, 73, 100, 120 };
+        // Tag
+        private static global::System.ReadOnlySpan<byte> GetSpan_Tag() => new byte[1 + 3] { 163, 84, 97, 103 };
+        // SkillState
+        private static global::System.ReadOnlySpan<byte> GetSpan_SkillState() => new byte[1 + 10] { 170, 83, 107, 105, 108, 108, 83, 116, 97, 116, 101 };
+        // BuffType
+        private static global::System.ReadOnlySpan<byte> GetSpan_BuffType() => new byte[1 + 8] { 168, 66, 117, 102, 102, 84, 121, 112, 101 };
+        // SkillValue
+        private static global::System.ReadOnlySpan<byte> GetSpan_SkillValue() => new byte[1 + 10] { 170, 83, 107, 105, 108, 108, 86, 97, 108, 117, 101 };
+        // SkillDuration
+        private static global::System.ReadOnlySpan<byte> GetSpan_SkillDuration() => new byte[1 + 13] { 173, 83, 107, 105, 108, 108, 68, 117, 114, 97, 116, 105, 111, 110 };
+
+        public void Serialize(ref global::MessagePack.MessagePackWriter writer, global::Data.SkillEffectInfo value, global::MessagePack.MessagePackSerializerOptions options)
+        {
+            if (value is null)
+            {
+                writer.WriteNil();
+                return;
+            }
+
+            var formatterResolver = options.Resolver;
+            writer.WriteMapHeader(9);
+            writer.WriteRaw(GetSpan_Seed());
+            writer.Write(value.Seed);
+            writer.WriteRaw(GetSpan_GroupSeed());
+            writer.Write(value.GroupSeed);
+            writer.WriteRaw(GetSpan_NameIdx());
+            writer.Write(value.NameIdx);
+            writer.WriteRaw(GetSpan_DestIdx());
+            writer.Write(value.DestIdx);
+            writer.WriteRaw(GetSpan_Tag());
+            writer.Write(value.Tag);
+            writer.WriteRaw(GetSpan_SkillState());
+            global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<string>(formatterResolver).Serialize(ref writer, value.SkillState, options);
+            writer.WriteRaw(GetSpan_BuffType());
+            global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<string>(formatterResolver).Serialize(ref writer, value.BuffType, options);
+            writer.WriteRaw(GetSpan_SkillValue());
+            writer.Write(value.SkillValue);
+            writer.WriteRaw(GetSpan_SkillDuration());
+            writer.Write(value.SkillDuration);
+        }
+
+        public global::Data.SkillEffectInfo Deserialize(ref global::MessagePack.MessagePackReader reader, global::MessagePack.MessagePackSerializerOptions options)
+        {
+            if (reader.TryReadNil())
+            {
+                return null;
+            }
+
+            options.Security.DepthStep(ref reader);
+            var formatterResolver = options.Resolver;
+            var length = reader.ReadMapHeader();
+            var __Seed__ = default(int);
+            var __GroupSeed__ = default(int);
+            var __NameIdx__ = default(int);
+            var __DestIdx__ = default(int);
+            var __Tag__ = default(int);
+            var __SkillState__ = default(string);
+            var __BuffType__ = default(string);
+            var __SkillValue__ = default(float);
+            var __SkillDuration__ = default(float);
+
+            for (int i = 0; i < length; i++)
+            {
+                var stringKey = global::MessagePack.Internal.CodeGenHelpers.ReadStringSpan(ref reader);
+                switch (stringKey.Length)
+                {
+                    default:
+                    FAIL:
+                      reader.Skip();
+                      continue;
+                    case 4:
+                        if (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey) != 1684366675UL) { goto FAIL; }
+
+                        __Seed__ = reader.ReadInt32();
+                        continue;
+                    case 9:
+                        if (!global::System.MemoryExtensions.SequenceEqual(stringKey, GetSpan_GroupSeed().Slice(1))) { goto FAIL; }
+
+                        __GroupSeed__ = reader.ReadInt32();
+                        continue;
+                    case 7:
+                        switch (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey))
+                        {
+                            default: goto FAIL;
+                            case 33887263602336078UL:
+                                __NameIdx__ = reader.ReadInt32();
+                                continue;
+                            case 33887263854388548UL:
+                                __DestIdx__ = reader.ReadInt32();
+                                continue;
+                        }
+                    case 3:
+                        if (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey) != 6775124UL) { goto FAIL; }
+
+                        __Tag__ = reader.ReadInt32();
+                        continue;
+                    case 10:
+                        switch (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey))
+                        {
+                            default: goto FAIL;
+                            case 7022329444117867347UL:
+                                if (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey) != 25972UL) { goto FAIL; }
+
+                                __SkillState__ = global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<string>(formatterResolver).Deserialize(ref reader, options);
+                                continue;
+
+                            case 7809618252512455507UL:
+                                if (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey) != 25973UL) { goto FAIL; }
+
+                                __SkillValue__ = reader.ReadSingle();
+                                continue;
+
+                        }
+                    case 8:
+                        if (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey) != 7309475598624519490UL) { goto FAIL; }
+
+                        __BuffType__ = global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<string>(formatterResolver).Deserialize(ref reader, options);
+                        continue;
+                    case 13:
+                        if (!global::System.MemoryExtensions.SequenceEqual(stringKey, GetSpan_SkillDuration().Slice(1))) { goto FAIL; }
+
+                        __SkillDuration__ = reader.ReadSingle();
+                        continue;
+
+                }
+            }
+
+            var ____result = new global::Data.SkillEffectInfo(__Seed__, __GroupSeed__, __NameIdx__, __DestIdx__, __Tag__, __SkillState__, __BuffType__, __SkillValue__, __SkillDuration__);
             reader.Depth--;
             return ____result;
         }
@@ -560,20 +697,20 @@ namespace MessagePack.Formatters.Data
         private static global::System.ReadOnlySpan<byte> GetSpan_Type() => new byte[1 + 4] { 164, 84, 121, 112, 101 };
         // DetailType
         private static global::System.ReadOnlySpan<byte> GetSpan_DetailType() => new byte[1 + 10] { 170, 68, 101, 116, 97, 105, 108, 84, 121, 112, 101 };
-        // ActivateType
-        private static global::System.ReadOnlySpan<byte> GetSpan_ActivateType() => new byte[1 + 12] { 172, 65, 99, 116, 105, 118, 97, 116, 101, 84, 121, 112, 101 };
-        // ActivateValue
-        private static global::System.ReadOnlySpan<byte> GetSpan_ActivateValue() => new byte[1 + 13] { 173, 65, 99, 116, 105, 118, 97, 116, 101, 86, 97, 108, 117, 101 };
         // CoolTIme
         private static global::System.ReadOnlySpan<byte> GetSpan_CoolTIme() => new byte[1 + 8] { 168, 67, 111, 111, 108, 84, 73, 109, 101 };
         // TargetType
         private static global::System.ReadOnlySpan<byte> GetSpan_TargetType() => new byte[1 + 10] { 170, 84, 97, 114, 103, 101, 116, 84, 121, 112, 101 };
-        // TargetValue
-        private static global::System.ReadOnlySpan<byte> GetSpan_TargetValue() => new byte[1 + 11] { 171, 84, 97, 114, 103, 101, 116, 86, 97, 108, 117, 101 };
         // DamagePerType
         private static global::System.ReadOnlySpan<byte> GetSpan_DamagePerType() => new byte[1 + 13] { 173, 68, 97, 109, 97, 103, 101, 80, 101, 114, 84, 121, 112, 101 };
         // DamagePerValue
         private static global::System.ReadOnlySpan<byte> GetSpan_DamagePerValue() => new byte[1 + 14] { 174, 68, 97, 109, 97, 103, 101, 80, 101, 114, 86, 97, 108, 117, 101 };
+        // SkillBulletTargetNum
+        private static global::System.ReadOnlySpan<byte> GetSpan_SkillBulletTargetNum() => new byte[1 + 20] { 180, 83, 107, 105, 108, 108, 66, 117, 108, 108, 101, 116, 84, 97, 114, 103, 101, 116, 78, 117, 109 };
+        // SkillBulletSpd
+        private static global::System.ReadOnlySpan<byte> GetSpan_SkillBulletSpd() => new byte[1 + 14] { 174, 83, 107, 105, 108, 108, 66, 117, 108, 108, 101, 116, 83, 112, 100 };
+        // SkillBulletSize
+        private static global::System.ReadOnlySpan<byte> GetSpan_SkillBulletSize() => new byte[1 + 15] { 175, 83, 107, 105, 108, 108, 66, 117, 108, 108, 101, 116, 83, 105, 122, 101 };
         // EquipRuneCount
         private static global::System.ReadOnlySpan<byte> GetSpan_EquipRuneCount() => new byte[1 + 14] { 174, 69, 113, 117, 105, 112, 82, 117, 110, 101, 67, 111, 117, 110, 116 };
         // SkillTag1
@@ -611,20 +748,20 @@ namespace MessagePack.Formatters.Data
             global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<string>(formatterResolver).Serialize(ref writer, value.Type, options);
             writer.WriteRaw(GetSpan_DetailType());
             global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<string>(formatterResolver).Serialize(ref writer, value.DetailType, options);
-            writer.WriteRaw(GetSpan_ActivateType());
-            global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<string>(formatterResolver).Serialize(ref writer, value.ActivateType, options);
-            writer.WriteRaw(GetSpan_ActivateValue());
-            writer.Write(value.ActivateValue);
             writer.WriteRaw(GetSpan_CoolTIme());
             writer.Write(value.CoolTIme);
             writer.WriteRaw(GetSpan_TargetType());
             global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<string>(formatterResolver).Serialize(ref writer, value.TargetType, options);
-            writer.WriteRaw(GetSpan_TargetValue());
-            writer.Write(value.TargetValue);
             writer.WriteRaw(GetSpan_DamagePerType());
             global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<string>(formatterResolver).Serialize(ref writer, value.DamagePerType, options);
             writer.WriteRaw(GetSpan_DamagePerValue());
             writer.Write(value.DamagePerValue);
+            writer.WriteRaw(GetSpan_SkillBulletTargetNum());
+            writer.Write(value.SkillBulletTargetNum);
+            writer.WriteRaw(GetSpan_SkillBulletSpd());
+            writer.Write(value.SkillBulletSpd);
+            writer.WriteRaw(GetSpan_SkillBulletSize());
+            writer.Write(value.SkillBulletSize);
             writer.WriteRaw(GetSpan_EquipRuneCount());
             writer.Write(value.EquipRuneCount);
             writer.WriteRaw(GetSpan_SkillTag1());
@@ -657,16 +794,16 @@ namespace MessagePack.Formatters.Data
             var __DestIdx__ = default(int);
             var __Type__ = default(string);
             var __DetailType__ = default(string);
-            var __ActivateType__IsInitialized = false;
-            var __ActivateType__ = default(string);
-            var __ActivateValue__IsInitialized = false;
-            var __ActivateValue__ = default(float);
             var __CoolTIme__ = default(float);
             var __TargetType__ = default(string);
-            var __TargetValue__IsInitialized = false;
-            var __TargetValue__ = default(int);
             var __DamagePerType__ = default(string);
             var __DamagePerValue__ = default(float);
+            var __SkillBulletTargetNum__IsInitialized = false;
+            var __SkillBulletTargetNum__ = default(int);
+            var __SkillBulletSpd__IsInitialized = false;
+            var __SkillBulletSpd__ = default(float);
+            var __SkillBulletSize__IsInitialized = false;
+            var __SkillBulletSize__ = default(float);
             var __EquipRuneCount__ = default(int);
             var __SkillTag1__ = default(int);
             var __SkillTag2__ = default(int);
@@ -711,6 +848,13 @@ namespace MessagePack.Formatters.Data
                                 __DamagePerValue__ = reader.ReadSingle();
                                 continue;
 
+                            case 7815225761814113107UL:
+                                if (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey) != 110433599251820UL) { goto FAIL; }
+
+                                __SkillBulletSpd__IsInitialized = true;
+                                __SkillBulletSpd__ = reader.ReadSingle();
+                                continue;
+
                             case 7959358559206338885UL:
                                 if (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey) != 128017765450597UL) { goto FAIL; }
 
@@ -746,23 +890,15 @@ namespace MessagePack.Formatters.Data
                                 continue;
 
                         }
-                    case 12:
-                        if (!global::System.MemoryExtensions.SequenceEqual(stringKey, GetSpan_ActivateType().Slice(1))) { goto FAIL; }
+                    case 8:
+                        if (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey) != 7308578397237505859UL) { goto FAIL; }
 
-                        __ActivateType__IsInitialized = true;
-                        __ActivateType__ = global::MessagePack.FormatterResolverExtensions.GetFormatterWithVerify<string>(formatterResolver).Deserialize(ref reader, options);
+                        __CoolTIme__ = reader.ReadSingle();
                         continue;
                     case 13:
                         switch (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey))
                         {
                             default: goto FAIL;
-                            case 7310575256332428097UL:
-                                if (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey) != 435761733974UL) { goto FAIL; }
-
-                                __ActivateValue__IsInitialized = true;
-                                __ActivateValue__ = reader.ReadSingle();
-                                continue;
-
                             case 7300446490658169156UL:
                                 if (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey) != 435678696562UL) { goto FAIL; }
 
@@ -776,16 +912,17 @@ namespace MessagePack.Formatters.Data
                                 continue;
 
                         }
-                    case 8:
-                        if (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey) != 7308578397237505859UL) { goto FAIL; }
+                    case 20:
+                        if (!global::System.MemoryExtensions.SequenceEqual(stringKey, GetSpan_SkillBulletTargetNum().Slice(1))) { goto FAIL; }
 
-                        __CoolTIme__ = reader.ReadSingle();
+                        __SkillBulletTargetNum__IsInitialized = true;
+                        __SkillBulletTargetNum__ = reader.ReadInt32();
                         continue;
-                    case 11:
-                        if (!global::System.MemoryExtensions.SequenceEqual(stringKey, GetSpan_TargetValue().Slice(1))) { goto FAIL; }
+                    case 15:
+                        if (!global::System.MemoryExtensions.SequenceEqual(stringKey, GetSpan_SkillBulletSize().Slice(1))) { goto FAIL; }
 
-                        __TargetValue__IsInitialized = true;
-                        __TargetValue__ = reader.ReadInt32();
+                        __SkillBulletSize__IsInitialized = true;
+                        __SkillBulletSize__ = reader.ReadSingle();
                         continue;
                     case 9:
                         switch (global::MessagePack.Internal.AutomataKeyGen.GetKey(ref stringKey))
@@ -818,19 +955,19 @@ namespace MessagePack.Formatters.Data
             }
 
             var ____result = new global::Data.SkillInfoData(__Seed__, __SkillGroupSeed__, __Type__, __DetailType__, __NameIdx__, __DestIdx__, __CoolTIme__, __TargetType__, __DamagePerType__, __DamagePerValue__, __EquipRuneCount__, __SkillTag1__, __SkillTag2__, __SkillTag3__, __SkillTag4__, __SkillTag5__, __EventNodePath__);
-            if (__ActivateType__IsInitialized)
+            if (__SkillBulletTargetNum__IsInitialized)
             {
-                ____result.ActivateType = __ActivateType__;
+                ____result.SkillBulletTargetNum = __SkillBulletTargetNum__;
             }
 
-            if (__ActivateValue__IsInitialized)
+            if (__SkillBulletSpd__IsInitialized)
             {
-                ____result.ActivateValue = __ActivateValue__;
+                ____result.SkillBulletSpd = __SkillBulletSpd__;
             }
 
-            if (__TargetValue__IsInitialized)
+            if (__SkillBulletSize__IsInitialized)
             {
-                ____result.TargetValue = __TargetValue__;
+                ____result.SkillBulletSize = __SkillBulletSize__;
             }
 
             reader.Depth--;

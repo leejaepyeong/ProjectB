@@ -32,16 +32,7 @@ public class SkillManager
 
     public bool CheckSkill(UnitBehavior caster, Data.SkillInfoData skillInfo)
     {
-
-        switch (skillInfo.activateType)
-        {
-            case eSkillActivate.hitRate:
-                break;
-            case eSkillActivate.passive:
-                return true;
-        }
-
-        return false;
+        return true;
     }
 
     #region Search Target List
@@ -75,7 +66,7 @@ public class SkillManager
             return distanceA.CompareTo(distanceB);
         });
 
-        for (int i = 0; i < skillInfo.TargetValue; i++)
+        for (int i = 0; i < skillInfo.SkillBulletTargetNum; i++)
         {
             if (list.Count <= i) break;
             tempUnitList.Add(list[i]);

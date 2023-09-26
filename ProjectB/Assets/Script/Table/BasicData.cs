@@ -71,14 +71,13 @@ namespace Data
         public string Type;
         public string DetailType;
 
-        public string ActivateType;
-        public float ActivateValue;
-
         public float CoolTIme;
         public string TargetType;
-        public int TargetValue;
         public string DamagePerType;
         public float DamagePerValue;
+        public int SkillBulletTargetNum;
+        public float SkillBulletSpd;
+        public float SkillBulletSize;
         public int EquipRuneCount;
         public int SkillTag1;
         public int SkillTag2;
@@ -91,8 +90,6 @@ namespace Data
         public eSkillType type => Define.GetEnum<eSkillType>(Type);
         [IgnoreMember]
         public eSkillDetailType detailType => Define.GetEnum<eSkillDetailType>(DetailType);
-        [IgnoreMember]
-        public eSkillActivate activateType => Define.GetEnum<eSkillActivate>(ActivateType);
         [IgnoreMember]
         public eSkillTarget targetType => Define.GetEnum<eSkillTarget>(TargetType);
         [IgnoreMember]
@@ -158,6 +155,10 @@ namespace Data
                 return skilLTags;
             }
         }
+        public bool CheckTag(int tag)
+        {
+            return SkillTags.Contains(tag);
+        }
     }
     [MessagePackObject(true)]
     public class RuneInfoData : IDataKey<int>
@@ -166,11 +167,13 @@ namespace Data
         {
             public eRuneType runeType;
             public float value;
+            public int runeTag;
 
-            public RuneTypeInfo(eRuneType runeType, float value)
+            public RuneTypeInfo(eRuneType runeType, float value, int runeTag)
             {
                 this.runeType = runeType;
                 this.value = value;
+                this.runeTag = runeTag;
             }
         }
 
@@ -190,10 +193,9 @@ namespace Data
         public int RuneTag2;
         public int RuneTag3;
         public int RuneTag4;
-        public int RuneTag5;
 
         public RuneInfoData(int seed, int groupSeed, int nameIdx, int destIdx, string runeType1, string runeType2, string runeType3, string runeType4, 
-            float runeValue1, float runeValue2, float runeValue3, float runeValue4, int runeTag1, int runeTag2, int runeTag3, int runeTag4, int runeTag5)
+            float runeValue1, float runeValue2, float runeValue3, float runeValue4, int runeTag1, int runeTag2, int runeTag3, int runeTag4)
         {
             Seed = seed;
             GroupSeed = groupSeed;
@@ -211,7 +213,6 @@ namespace Data
             RuneTag2 = runeTag2;
             RuneTag3 = runeTag3;
             RuneTag4 = runeTag4;
-            RuneTag5 = runeTag5;
         }
         [IgnoreMember]
         public int Key => Seed;
@@ -225,31 +226,86 @@ namespace Data
                 if(runeTypeInfoList == null)
                 {
                     runeTypeInfoList = new List<RuneTypeInfo>();
-                    runeTypeInfoList.Add(new RuneTypeInfo(Define.GetEnum<eRuneType>(RuneType1) ,RuneValue1));
-                    runeTypeInfoList.Add(new RuneTypeInfo(Define.GetEnum<eRuneType>(RuneType2), RuneValue2));
-                    runeTypeInfoList.Add(new RuneTypeInfo(Define.GetEnum<eRuneType>(RuneType3), RuneValue3));
-                    runeTypeInfoList.Add(new RuneTypeInfo(Define.GetEnum<eRuneType>(RuneType4), RuneValue4));
+                    runeTypeInfoList.Add(new RuneTypeInfo(Define.GetEnum<eRuneType>(RuneType1) ,RuneValue1, RuneTag1));
+                    runeTypeInfoList.Add(new RuneTypeInfo(Define.GetEnum<eRuneType>(RuneType2), RuneValue2, RuneTag2));
+                    runeTypeInfoList.Add(new RuneTypeInfo(Define.GetEnum<eRuneType>(RuneType3), RuneValue3, RuneTag3));
+                    runeTypeInfoList.Add(new RuneTypeInfo(Define.GetEnum<eRuneType>(RuneType4), RuneValue4, RuneTag4));
                 }
 
                 return runeTypeInfoList;
             }
         }
-        private List<int> runeTags;
-        [IgnoreMember]
-        public List<int> RuneTags
+
+        public void AddSkillEffectToSkill(List<Data.SkillEffectInfo> skillEffectInfo)
         {
-            get
+            for (int i = 0; i < runeTypeInfoList.Count; i++)
             {
-                if(runeTags == null)
+                if (runeTypeInfoList[i].runeType != eRuneType.AddEffect) continue;
+                if (DataManager.Instance.SkillEffectInfo.TryGet((int)runeTypeInfoList[i].value, out var skillEffect))
                 {
-                    runeTags = new List<int>();
-                    runeTags.Add(RuneTag1);
-                    runeTags.Add(RuneTag2);
-                    runeTags.Add(RuneTag3);
-                    runeTags.Add(RuneTag4);
-                    runeTags.Add(RuneTag5);
+                    var temp = skillEffect.GetCopyInfo();
+                    skillEffectInfo.Add(temp);
                 }
-                return runeTags;
+            } 
+        }
+        public void SetRuneEffectToSkill(SkillInfoData skillData, SkillEffectInfo skillEffect)
+        {
+            for (int i = 0; i < runeTypeInfoList.Count; i++)
+            {
+                switch (runeTypeInfoList[i].runeType)
+                {
+                    case eRuneType.AddEffectTime:
+                        skillEffect.SkillDuration += runeTypeInfoList[i].value;
+                        break;
+                    case eRuneType.CoolTimeDown:
+                        skillData.CoolTIme -= runeTypeInfoList[i].value;
+                        break;
+                    case eRuneType.AddProjectilenum:
+                        break;
+                    case eRuneType.AddProjectilesize:
+                        break;
+                    case eRuneType.AddProjectilespd:
+                        break;
+                    case eRuneType.AddProjectiledmg:
+                        break;
+                    case eRuneType.MinProjectilenum:
+                        break;
+                    case eRuneType.MinProjectilesize:
+                        break;
+                    case eRuneType.MinProjectilespd:
+                        break;
+                    case eRuneType.MinProjectiledmg:
+                        break;
+                    case eRuneType.AddRange:
+                        break;
+                    case eRuneType.AddTarget:
+                        skillData.SkillBulletTargetNum += (int)runeTypeInfoList[i].value;
+                        break;
+                    case eRuneType.AddAtk:
+                        break;
+                    case eRuneType.AddAtkspd:
+                        break;
+                    case eRuneType.AddCrirate:
+                        break;
+                    case eRuneType.AddCridmg:
+                        break;
+                    case eRuneType.MinAtk:
+                        break;
+                    case eRuneType.MinAtkspd:
+                        break;
+                    case eRuneType.MinCrirate:
+                        break;
+                    case eRuneType.MinCridmg:
+                        break;
+                    case eRuneType.GetBonusExp:
+                        break;
+                    case eRuneType.AddDmg:
+                        break;
+                    case eRuneType.MinDmg:
+                        break;
+                    default:
+                        break;
+                }
             }
         }
     }
@@ -260,6 +316,7 @@ namespace Data
         public int GroupSeed;
         public int NameIdx;
         public int DestIdx;
+        public int Tag;
         public string SkillState;
         public string BuffType;
         public float SkillValue;
@@ -270,12 +327,13 @@ namespace Data
         [IgnoreMember]
         public eBuffType buffType => Define.GetEnum<eBuffType>(BuffType);
 
-        public SkillEffectInfo(int seed, int groupSeed, int nameIdx, int destIdx, string skillState, string buffType, float skillValue, float skillDuration)
+        public SkillEffectInfo(int seed, int groupSeed, int nameIdx, int destIdx, int tag, string skillState, string buffType, float skillValue, float skillDuration)
         {
             Seed = seed;
             GroupSeed = groupSeed;
             NameIdx = nameIdx;
             DestIdx = destIdx;
+            Tag = tag;
             SkillState = skillState;
             BuffType = buffType;
             SkillValue = skillValue;
@@ -283,6 +341,12 @@ namespace Data
         }
         [IgnoreMember]
         public int Key => Seed;
+
+        public SkillEffectInfo GetCopyInfo()
+        {
+            SkillEffectInfo copy = new SkillEffectInfo(Seed, GroupSeed, NameIdx, DestIdx, Tag, SkillState, BuffType, SkillValue, SkillDuration);
+            return copy;
+        }
     }
 
 

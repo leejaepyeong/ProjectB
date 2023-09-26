@@ -21,7 +21,15 @@ public class SkillSaveInfo
         equipIndex = -1;
     }
 
-    public Data.SkillInfoData getSkillData { get { Data.DataManager.Instance.SkillInfoData.TryGet(index, out var data); return data; } }
+    public Data.SkillInfoData GetSkillData()
+    {
+        if (Data.DataManager.Instance.SkillInfoData.TryGet(index, out var data) == false) return null;
+
+        Data.SkillInfoData skillData = new Data.SkillInfoData(data.Seed, data.SkillGroupSeed, data.Type, data.DetailType, data.NameIdx, data.DestIdx, data.CoolTIme, data.TargetType, data.DamagePerType, data.DamagePerValue, 
+            data.EquipRuneCount, data.SkillTag1, data.SkillTag2, data.SkillTag3, data.SkillTag4, data.SkillTag5, data.EventNodePath);
+
+        return skillData;
+    }
     public Data.RuneInfoData GetRuneData(int runeId)
     {
         int seed = SaveData_PlayerSkill.Instance.equipRuneInfo[runeId].runeSeed;
