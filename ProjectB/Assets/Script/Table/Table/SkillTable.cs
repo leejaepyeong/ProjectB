@@ -32,10 +32,10 @@ public class SkillRecord : RecordBase
     {
         base.LoadExcel(_data);
         groupIdx = FileUtil.Get<int>(_data, "Skill_Group");
-        nameIdx = FileUtil.Get<int>(_data, "Skill_Type");
-        destIdx = FileUtil.Get<int>(_data, "Skill_DetailType");
-        type = FileUtil.Get<eSkillType>(_data, "Skill_Name");
-        detailType = FileUtil.Get<eSkillDetailType>(_data, "Skill_Desc");
+        nameIdx = FileUtil.Get<int>(_data, "Skill_Name");
+        destIdx = FileUtil.Get<int>(_data, "Skill_Desc");
+        type = FileUtil.Get<eSkillType>(_data, "Skill_Type");
+        detailType = FileUtil.Get<eSkillDetailType>(_data, "Skill_DetailType");
         coolTIme = FileUtil.Get<float>(_data, "Skill_Cooltime");
         targetType = FileUtil.Get<eSkillTarget>(_data, "Skill_Target");
         damagePerType = FileUtil.Get<eDamagePerType>(_data, "Skill_Dmg_Type");
@@ -48,12 +48,12 @@ public class SkillRecord : RecordBase
         {
             skillTags[i] = FileUtil.Get<int>(_data, $"Tag{i + 1}");
         }
-        eventNodePath = FileUtil.Get<string>(_data, "EventNode");
+        eventNodePath = FileUtil.Get<string>(_data, "SkillNode");
     }
 }
 public class SkillTable : TTableBase<SkillRecord>
 {
-    public SkillTable(ClassFileSave save, string path) : base(path, save)
+    public SkillTable(ClassFileSave save, string path) : base(save, path)
     {
 
     }

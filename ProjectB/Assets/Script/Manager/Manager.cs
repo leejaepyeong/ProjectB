@@ -71,6 +71,19 @@ public class Manager : Singleton<Manager>
             return dataManager;
         }
     }
+    private TableManager tableManager;
+    public TableManager getTableManager
+    {
+        get
+        {
+            if (null == tableManager)
+            {
+                tableManager = new TableManager();
+            }
+
+            return tableManager;
+        }
+    }
 
     private BaseScene curScene;
     public BaseScene CurScene => curScene;
@@ -109,6 +122,7 @@ public class Manager : Singleton<Manager>
         managerDic.Clear();
         managerKeys.Clear();
         DontDestroyOnLoad(gameObject);
+        getTableManager.Load();
     }
 
     private void Update()

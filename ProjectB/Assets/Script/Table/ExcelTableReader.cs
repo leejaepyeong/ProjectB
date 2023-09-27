@@ -149,7 +149,9 @@ public class ExcelTableReader : EditorWindow
 
         m_excel = new List<ExcelFileGroup>();
 
-        AddLoadExcelGroup("/../../Table/Skill.xlsx", new SkillTable(_fileSave, "Table/Skill"), "Skill");
+        AddLoadExcelGroup("/../../Table/String.xlsx", new StringTable(_fileSave, "Table/String_Info"), "String_Info");
+        AddLoadExcelGroup("/../../Table/Skill.xlsx", new SkillTable(_fileSave, "Table/Skill_Info"), "Skill_Info");
+        AddLoadExcelGroup("/../../Table/Rune.xlsx", new RuneTable(_fileSave, "Table/Rune_Effect_Info"), "Rune_Effect_Info");
     }
 
     void OnGUI()

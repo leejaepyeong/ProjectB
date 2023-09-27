@@ -70,6 +70,12 @@ public enum eStat
     END,
 }
 
+public enum eLanguage
+{
+    Kor,
+    Eng,
+}
+
 #endregion
 
 #region Skill

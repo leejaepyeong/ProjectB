@@ -18,7 +18,7 @@ public abstract class TableBase
     protected string m_path;
     protected ClassFileSave m_fileSave;
 
-    public TableBase(string _path, ClassFileSave _fileSave)
+    public TableBase(ClassFileSave _fileSave, string _path)
     {
         m_path = _path;
         m_fileSave = _fileSave;
@@ -41,8 +41,8 @@ public class TTableBase<T> : TableBase where T : RecordBase, new()
     protected RecordList<T> m_recordList = new RecordList<T>();
     public UnityEngine.Events.UnityAction<T, Dictionary<string, string>> m_loadExcelAction;
 
-    public TTableBase(string path, ClassFileSave fileSave)
-        : base(path, fileSave)
+    public TTableBase(ClassFileSave fileSave, string path)
+        : base(fileSave, path)
     {
 
     }
