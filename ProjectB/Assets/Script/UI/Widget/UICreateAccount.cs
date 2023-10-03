@@ -63,18 +63,18 @@ public class UICreateAccount : UIBase
         switch (nickState)
         {
             case eNickDeny.none:
-                parameter.title = Manager.Instance.GetString(1000);
-                parameter.dest = string.Format(Manager.Instance.GetString(1001), textInputNick);
+                parameter.title = TableManager.Instance.stringTable.GetText(1000);
+                parameter.dest = string.Format(TableManager.Instance.stringTable.GetText(1001), textInputNick);
                 UserInfo userInfo = new UserInfo(textInputNick.text);
                 parameter.okAction = () => SaveData_Local.Instance.SetUserInfo(userInfo); SaveData_PlayerSkill.Instance.SetSkillInfo(); Close();
                 break;
             case eNickDeny.empty:
-                parameter.title = Manager.Instance.GetString(1000);
-                parameter.dest = Manager.Instance.GetString(1002);
+                parameter.title = TableManager.Instance.stringTable.GetText(1000);
+                parameter.dest = TableManager.Instance.stringTable.GetText(1002);
                 break;
             case eNickDeny.maxLength:
-                parameter.title = Manager.Instance.GetString(1000);
-                parameter.dest = Manager.Instance.GetString(1003);
+                parameter.title = TableManager.Instance.stringTable.GetText(1000);
+                parameter.dest = TableManager.Instance.stringTable.GetText(1003);
                 break;
         }
         uiManager.OpenUI<UIMessageBox>(parameter);

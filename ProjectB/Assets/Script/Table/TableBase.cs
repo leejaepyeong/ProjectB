@@ -158,6 +158,17 @@ public class TTableBase<T> : TableBase where T : RecordBase, new()
         return _record;
     }
 
+    public bool TryGetRecord(int index, out T record)
+    {
+        record = m_recordList.GetRecord(index);
+        if (null == record && typeof(T).ToString() != "StringRecord")
+        {
+            Debug.LogWarning(typeof(T).ToString() + " : " + index.ToString());
+            return false;
+        }
+        return true;
+    }
+
     public bool IsHasRecord(int _index)
     {
         return m_recordList.IsHasRecord(_index);

@@ -67,6 +67,23 @@ public class UnitState
             case eStat.criDmg: criDmg += isTestScene ? Manager.Instance.playerData.criDmg : SaveData_Local.Instance.userStat.criDmg; break;
         }
     }
+
+    public void AddStat(eStat statType, double value)
+    {
+        switch (statType)
+        {
+            case eStat.hp: hp += (long)value; break;
+            case eStat.mp: mp += (long)value; break;
+            case eStat.atk: atk += (long)value; break;
+            case eStat.def: def += (long)value; break;
+            case eStat.acc: acc += (float)value; break;
+            case eStat.moveSpd: moveSpd += (float)value; break;
+            case eStat.atkSpd: atkSpd += (float)value; break;
+            case eStat.atkRange: atkRange += (float)value; break;
+            case eStat.criRate: criRate += (float)value; break;
+            case eStat.criDmg: criDmg += (float)value; break;
+        }
+    }
 }
 
 public class UnitBehavior : BaseBehavior, IEventHandler

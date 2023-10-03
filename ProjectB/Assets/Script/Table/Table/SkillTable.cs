@@ -27,6 +27,7 @@ public class SkillRecord : RecordBase
     public int skillTag5;
     private string eventNodePath;
     public EventGraph skillNode => BattleManager.Instance.ResourcePool.Load<EventGraph>(eventNodePath);
+    public int[] skillEffects = new int[3];
 
     public override void LoadExcel(Dictionary<string, string> _data)
     {
@@ -49,7 +50,57 @@ public class SkillRecord : RecordBase
             skillTags[i] = FileUtil.Get<int>(_data, $"Tag{i + 1}");
         }
         eventNodePath = FileUtil.Get<string>(_data, "SkillNode");
+        for (int i = 0; i < skillEffects.Length; i++)
+        {
+            skillEffects[i] = FileUtil.Get<int>(_data, $"Skill_Effect{i + 1}");
+        }
     }
+
+    public SkillRecord GetCopyRecord()
+    {
+        SkillRecord copy = new SkillRecord();
+        copy.groupIdx = groupIdx;
+        copy.nameIdx = nameIdx;
+        copy.destIdx = destIdx;
+        copy.type = type;
+        copy.detailType = detailType;
+        copy.coolTIme = coolTIme;
+        copy.targetType = targetType;
+        copy.damagePerType = damagePerType;
+        copy.damagePerValue = damagePerValue;
+        copy.skillBulletTargetNum = skillBulletTargetNum;
+        copy.skillBulletSpd = skillBulletSpd;
+        copy.skillBulletSize = skillBulletSize;
+        copy.equipRuneCount = equipRuneCount;
+        for (int i = 0; i < copy.skillTags.Length; i++)
+        {
+            copy.skillTags[i] = skillTags[i];
+        }
+        copy.eventNodePath = eventNodePath;
+        for (int i = 0; i < copy.skillEffects.Length; i++)
+        {
+            copy.skillEffects[i] = skillEffects[i];
+        }
+        return copy;
+    }
+
+    #region Logic
+    private float elaspedTime;
+    public void UpdateFrame(float deltaTime)
+    {
+        if (elaspedTime <= 0) return;
+        elaspedTime -= deltaTime;
+    }
+    public void SetCoolTime(float time = 0)
+    {
+        if (time == 0) elaspedTime = coolTIme;
+        else elaspedTime = time;
+    }
+    public bool IsReadyCoolTime()
+    {
+        return elaspedTime <= 0;
+    }
+    #endregion
 }
 public class SkillTable : TTableBase<SkillRecord>
 {

@@ -21,20 +21,16 @@ public class SkillSaveInfo
         equipIndex = -1;
     }
 
-    public Data.SkillInfoData GetSkillData()
+    public SkillRecord GetSkillData()
     {
-        if (Data.DataManager.Instance.SkillInfoData.TryGet(index, out var data) == false) return null;
-
-        Data.SkillInfoData skillData = new Data.SkillInfoData(data.Seed, data.SkillGroupSeed, data.Type, data.DetailType, data.NameIdx, data.DestIdx, data.CoolTIme, data.TargetType, data.DamagePerType, data.DamagePerValue, 
-            data.EquipRuneCount, data.SkillTag1, data.SkillTag2, data.SkillTag3, data.SkillTag4, data.SkillTag5, data.EventNodePath);
-
-        return skillData;
+        if (TableManager.Instance.skillTable.TryGetRecord(index, out var data) == false) return null;
+        return data.GetCopyRecord();
     }
-    public Data.RuneInfoData GetRuneData(int runeId)
+    public RuneRecord GetRuneData(int runeId)
     {
         int seed = SaveData_PlayerSkill.Instance.equipRuneInfo[runeId].runeSeed;
-        Data.DataManager.Instance.RuneInfoData.TryGet(seed, out var data); 
-        return data;
+        TableManager.Instance.runeTable.TryGetRecord(seed, out var data); 
+        return data.GetCopyRecord();
     }
 }
 [System.Serializable]
@@ -81,15 +77,15 @@ public class SaveData_PlayerSkill : SaveData
     #region SkillInfo
     public void SetSkillInfo()
     {
-        for (int i = 0; i < Data.DataManager.Instance.SkillInfoData.DataList.Count; i++)
+        for (int i = 0; i < TableManager.Instance.skillTable.getRecordList.Count; i++)
         {
-            var data = Data.DataManager.Instance.SkillInfoData.DataList[i];
+            var data = TableManager.Instance.skillTable.getRecordList[i];
 
             if (skillSaveInfoGroup.Count <= i)
                 skillSaveInfoGroup.Add(new SkillSaveInfo());
             if (skillSaveInfoGroup[i].isInit) continue;
                 
-            skillSaveInfoGroup[i].Init(data.Seed);
+            skillSaveInfoGroup[i].Init(data.index);
         }
 
         if (RuneId == 0) RuneId = 1;

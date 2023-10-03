@@ -48,23 +48,6 @@ namespace Data
         {
             dicData.Add(key, data);
         }
-        public void ReadData(byte[] bytes)
-        {
-            E[] dataSet = MessagePack.MessagePackSerializer.Deserialize<E[]>(bytes);
-
-            foreach (var data in dataSet)
-            {
-                try
-                {
-                    dicData.Add(data.Key, data);
-                    dataList.Add(data);
-                }
-                catch (Exception e)
-                {
-                    Debug.LogError(e + "ID : " + data.Key);
-                }
-            }
-        }
 
         public bool TryGet(in K key, out E data)
         {
@@ -91,12 +74,7 @@ namespace Data
             }
         }
         #region Datas
-        public SingleData<int, Dummy> Dummy { get; private set; }
-        public SingleData<int, StringText> StringText { get; private set; }
         public SingleData<int, UnitData> UnitData { get; private set; }
-        public SingleData<int, SkillInfoData> SkillInfoData { get; private set; }
-        public SingleData<int, RuneInfoData> RuneInfoData { get; private set; }
-        public SingleData<int, SkillEffectInfo> SkillEffectInfo { get; set; }
         #endregion
 
         private bool isEncryptFileDone;
@@ -110,8 +88,6 @@ namespace Data
         {
             if (Application.isEditor)
                 StartCoroutine(LoadAllJsonCo());
-            else
-                StartCoroutine(LoadAllMessagePackCo());
             StartCoroutine(LoadAllEncrypFileCo());
         }
         #region Read Json
@@ -148,14 +124,6 @@ namespace Data
         {
             switch (fileName)
             {
-                case "Dummy":
-                    Dummy = new();
-                    Dummy.ReadData(jsonText);
-                    break;
-                case "StringText":
-                    StringText = new();
-                    StringText.ReadData(jsonText);
-                    break;
                 case "UnitDataEditor":
                     UnitData = new();
 
@@ -166,78 +134,6 @@ namespace Data
                         UnitData data = new UnitData(saveData.dataList[i]);
                         UnitData.ReadEncrptData(saveData.dataList[i].Seed, data);
                     }
-                    break;
-                case "SkillInfo":
-                    SkillInfoData = new();
-                    SkillInfoData.ReadData(jsonText);
-                    break;
-                case "Rune_Effect_Info":
-                    RuneInfoData = new();
-                    RuneInfoData.ReadData(jsonText);
-                    break;
-                case "SkillEffectInfo":
-                    SkillEffectInfo = new();
-                    SkillEffectInfo.ReadData(jsonText);
-                    break;
-                default:
-                    break;
-            }
-        }
-        #endregion
-        #region Read MessagePack
-        private IEnumerator LoadAllMessagePackCo()
-        {
-            var assetLocationHandle = Addressables.LoadResourceLocationsAsync("MessagePackData", typeof(TextAsset));
-            while (assetLocationHandle.IsDone == false)
-            {
-                yield return new WaitForEndOfFrame();
-            }
-            var assetLocations = assetLocationHandle.Result;
-
-            var textAssetHandle = Addressables.LoadAssetsAsync<TextAsset>(assetLocations, null);
-            while (textAssetHandle.IsDone == false)
-            {
-                yield return new WaitForEndOfFrame();
-            }
-            var textAssets = textAssetHandle.Result;
-
-            for (int i = 0; i < textAssets.Count; i++)
-            {
-                var jsonFile = textAssets[i];
-                string fileName = string.Copy(jsonFile.name);
-                byte[] bytes = new byte[jsonFile.bytes.Length];
-                Buffer.BlockCopy(jsonFile.bytes, 0, bytes, 0, jsonFile.bytes.Length);
-
-                LoadMessagePackText(fileName, bytes);
-                yield return new WaitForEndOfFrame();
-            }
-
-            isReadDataDone = true;
-        }
-
-        private void LoadMessagePackText(string fileName, byte[] bytes)
-        {
-            switch (fileName)
-            {
-                case "Dummy":
-                    Dummy = new();
-                    Dummy.ReadData(bytes);
-                    break;
-                case "StringText":
-                    StringText = new();
-                    StringText.ReadData(bytes);
-                    break;
-                case "SkillInfo":
-                    SkillInfoData = new();
-                    SkillInfoData.ReadData(bytes);
-                    break;
-                case "Rune_Effect_Info":
-                    RuneInfoData = new();
-                    RuneInfoData.ReadData(bytes);
-                    break;
-                case "SkillEffectInfo":
-                    SkillEffectInfo = new();
-                    SkillEffectInfo.ReadData(bytes);
                     break;
                 default:
                     break;

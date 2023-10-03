@@ -9,6 +9,6 @@ public class SettingText : MonoBehaviour
     [SerializeField] int seed;
     private void Start()
     {
-        tmp.SetText(Manager.Instance.GetString(seed));
+        tmp.SetText(TableManager.Instance.stringTable.GetText(seed));
     }
 }

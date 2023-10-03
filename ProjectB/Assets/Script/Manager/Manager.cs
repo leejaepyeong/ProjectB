@@ -175,11 +175,4 @@ public class Manager : Singleton<Manager>
 
         }
     }
-
-    public string GetString(int seed)
-    {
-        if (!Data.DataManager.Instance.StringText.TryGet(seed, out var str)) return "";
-
-        return str.Kor;
-    }
 }

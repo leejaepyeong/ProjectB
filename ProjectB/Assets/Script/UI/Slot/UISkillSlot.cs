@@ -13,23 +13,30 @@ public class SkillInfo
 {
     private float elaspedTIme;
     private float coolTime;
-    private Data.SkillInfoData skillData;
-    public Data.SkillInfoData SkillData => skillData;
-    public List<Data.RuneInfoData> runeDataList = new List<Data.RuneInfoData>();
-    public List<Data.SkillEffectInfo> skillEffectList = new List<Data.SkillEffectInfo>();
+    public SkillRecord skillRecord;
+    public List<RuneRecord> runeList = new List<RuneRecord>();
+    public List<SkillEffectRecord> skillEffectList = new List<SkillEffectRecord>();
 
     public SkillInfo(int slotIdx)
     {
         elaspedTIme = 0;
         var playerSkill = SaveData_PlayerSkill.Instance.GetEquipSkill(slotIdx);
-        skillData = playerSkill.GetSkillData();
-        runeDataList.Clear();
+        skillRecord = playerSkill.GetSkillData();
+        skillEffectList.Clear();
+        for (int i = 0; i < skillRecord.skillEffects.Length; i++)
+        {
+            if (TableManager.Instance.skillEffectTable.TryGetRecord(skillRecord.skillEffects[i], out var skillEffect) == false)
+                continue;
+            var copy = skillEffect.GetCopyRecord();
+            skillEffectList.Add(copy);
+        }
+        runeList.Clear();
         for (int i = 0; i < playerSkill.equipRuneGroup.Length; i++)
         {
             if (playerSkill.equipRuneGroup[i] == 0) continue;
-            runeDataList.Add(playerSkill.GetRuneData(playerSkill.equipRuneGroup[i]));
+            runeList.Add(playerSkill.GetRuneData(playerSkill.equipRuneGroup[i]));
         }
-        skillEffectList.Clear();
+        
         SetRuneEffect();
     }
 
@@ -55,20 +62,25 @@ public class SkillInfo
     private void SetRuneEffect()
     {
 
-        for (int i = 0; i < runeDataList.Count; i++)
+        for (int i = 0; i < runeList.Count; i++)
         {
-            runeDataList[i].AddSkillEffectToSkill(skillEffectList);
+            runeList[i].AddSkillEffectToSkill(skillEffectList);
         }
 
-        for (int i = 0; i < skillEffectList.Count; i++)
+        for (int i = 0; i < runeList.Count; i++)
         {
-            runeDataList[i].SetRuneEffectToSkill(skillData, skillEffectList[i]);
+            for (int j = 0; j < skillEffectList.Count; j++)
+            {
+                runeList[i].SetRuneEffectToSkillEffect(skillEffectList[j]);
+            }
         }
     }
 
     public void UseSkill()
     {
-        Manager.Instance.skillManager.UseSkill(UnitManager.Instance.Player, this);
+        var targetList = Manager.Instance.skillManager.GetTargetList(UnitManager.Instance.Player, skillRecord);
+        UnitManager.Instance.Player.SetTargets(targetList);
+        UnitManager.Instance.Player.Action(skillRecord.skillNode);
     }
 }
 
@@ -114,7 +126,7 @@ public class UISkillSlot : UISlot
     #region Button Click
     private void OnClickSkill()
     {
-        if (skillInfo.SkillData.type != eSkillType.Active) return;
+        if (skillInfo.skillRecord.type != eSkillType.Active) return;
         skillInfo.UseSkill();
     }
     #endregion

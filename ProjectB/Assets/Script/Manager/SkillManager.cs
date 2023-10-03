@@ -7,44 +7,54 @@ public class SkillManager
     private List<UnitBehavior> unitList = new List<UnitBehavior>();
     private List<UnitBehavior> tempUnitList = new List<UnitBehavior>();
 
-    public void UseSkill(UnitBehavior caster, Data.SkillInfoData skillInfo)
+    public void UseSkill(UnitBehavior caster, SkillRecord skillRecord)
     {
-        if (CheckSkill(caster, skillInfo) == false) return;
-        skillInfo.SetCoolTime();
+        if (CheckSkill(caster, skillRecord) == false) return;
+        skillRecord.SetCoolTime();
 
 
     }
 
-    public void UseSkill(UnitBehavior caster, SkillInfo skillInfo)
+    public void UseSkillPlayer(UnitBehavior caster, SkillInfo skillInfo)
     {
+        var targetList = GetTargetList(caster, skillInfo.skillRecord);
+
+        for (int i = 0; i < targetList.Count; i++)
+        {
+            ApplySkill(skillInfo.skillRecord);
+            for (int j = 0; j < skillInfo.skillEffectList.Count; j++)
+            {
+                ApplySkillEffect(skillInfo.skillEffectList[j]);
+            }
+        }
     }
 
-    private void ApplySkill()
+    private void ApplySkill(SkillRecord skill)
     {
 
     }
 
-    private void ApplyBuff()
+    private void ApplySkillEffect(SkillEffectRecord skillEffect)
     {
 
     }
 
 
-    public bool CheckSkill(UnitBehavior caster, Data.SkillInfoData skillInfo)
+    public bool CheckSkill(UnitBehavior caster, SkillRecord skillRecord)
     {
         return true;
     }
 
     #region Search Target List
-    public List<UnitBehavior> GetTargetList(UnitBehavior caster, Data.SkillInfoData skillInfo)
+    public List<UnitBehavior> GetTargetList(UnitBehavior caster, SkillRecord skillRecord)
     {
         unitList.Clear();
         tempUnitList.Clear();
 
-        switch (skillInfo.targetType)
+        switch (skillRecord.targetType)
         {
             case eSkillTarget.normal:
-                unitList = GetTargetList_Normal(caster, skillInfo);
+                unitList = GetTargetList_Normal(caster, skillRecord);
                 break;
             case eSkillTarget.self:
                 unitList.Add(caster);
@@ -54,7 +64,7 @@ public class SkillManager
         return unitList;
     }
 
-    private List<UnitBehavior> GetTargetList_Normal(UnitBehavior caster, Data.SkillInfoData skillInfo)
+    private List<UnitBehavior> GetTargetList_Normal(UnitBehavior caster, SkillRecord skillRecord)
     {
         var list = UnitManager.Instance.UnitActiveList;
 
@@ -66,7 +76,7 @@ public class SkillManager
             return distanceA.CompareTo(distanceB);
         });
 
-        for (int i = 0; i < skillInfo.SkillBulletTargetNum; i++)
+        for (int i = 0; i < skillRecord.skillBulletTargetNum; i++)
         {
             if (list.Count <= i) break;
             tempUnitList.Add(list[i]);
