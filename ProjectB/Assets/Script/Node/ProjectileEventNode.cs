@@ -11,7 +11,6 @@ namespace Projectiles
     {
         Straight,
         StraightFollow,
-        Parabolic,
     }
 
     public enum eProjectileHit
@@ -66,12 +65,6 @@ namespace Projectiles
         public object hitEffectKey => hitEffect.RuntimeKey;
 
         public eProjectileType projectileType => eProjectileType.StraightFollow;
-    }
-
-    [Serializable]
-    public class Parabolic : IProjectileData
-    {
-        public eProjectileType projectileType => eProjectileType.Parabolic;
     }
 
 

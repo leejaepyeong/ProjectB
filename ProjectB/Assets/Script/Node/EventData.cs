@@ -21,8 +21,6 @@ public class ParticleEvent : EventNodeData
     public Vector3 localEular;
     public Vector3 localScale;
     public float duration = 5f;
-    public float smoothStop = 2f;
-    public eGameTime gameTime = eGameTime.Local;
 
     public override string TitleName { get; } = "Particle Event";
     public override string SubjectName { get; } = string.Empty;
@@ -59,8 +57,6 @@ public class ProjectileEvent : EventNodeData
 {
     public Projectiles.eProjectileType projectileType;
     public Projectiles.eProjectileHit projectileHit;
-    public float damagePercent;
-    public eDamageType dmgType;
 
     [SerializeField] private AssetReferenceGameObject projectileEffect;
     [SerializeField] private ParticleEvent hitEvent;
@@ -73,10 +69,6 @@ public class ProjectileEvent : EventNodeData
     private Projectiles.Straight straight;
     [SerializeField, ShowIf("@projectileType == Projectiles.eProjectileType.StraightFollow")] 
     private Projectiles.StraightFollow straightFollow;
-    [SerializeField, ShowIf("@projectileType == Projectiles.eProjectileType.Parabolic")] 
-    private Projectiles.Parabolic parabolic;
-
-    public int skillSeed;
 
     public int MaxHitCount => maxHitCount;
 
@@ -88,8 +80,6 @@ public class ProjectileEvent : EventNodeData
                 return straight;
             case Projectiles.eProjectileType.StraightFollow:
                 return straightFollow;
-            case Projectiles.eProjectileType.Parabolic:
-                return parabolic;
             default:
                 return null;
         }

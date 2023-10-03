@@ -21,9 +21,11 @@ public class EventDispatcher
 
     private List<EventNode> listEventNode;
     private HashSet<EventNode> availabeNodes;
+    private UnitBehavior unitBehavior;
 
-    public void Init()
+    public void Init(UnitBehavior unitBehavior)
     {
+        this.unitBehavior = unitBehavior;
         elasped = 0;
         listEventNode = Utilities.StaticeObjectPool.Pop<List<EventNode>>();
         listEventNode.Clear();
@@ -72,5 +74,11 @@ public class EventDispatcher
             handler.OnHandleEvent(eventNode.EventData);
             availabeNodes.Remove(eventNode);
         }
+
+        if(availabeNodes.Count == 0)
+        {
+            unitBehavior.isUseSkill = false;
+            Clear();
+        }    
     }
 }

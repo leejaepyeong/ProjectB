@@ -47,6 +47,7 @@ public class Unit_Base : MonoBehaviour
 
     public virtual void SearchTarget()
     {
+        if (unitBehavior.isUseSkill) return;
         if(isAtkAble == false)
         {
             if (atkCool > 0)

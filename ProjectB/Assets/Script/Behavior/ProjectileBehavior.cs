@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class ProjectileBehavior : BaseBehavior
 {
+    public SkillInfo skillInfo;
+
     private ProjectileEvent projectileEvent;
     private Projectile projectile;
 
     private UnitBehavior caster;
     private UnitBehavior target;
 
-    public void Init(ProjectileEvent projectileEvent, UnitBehavior caster, UnitBehavior target)
+    public void Init(SkillInfo skillInfo, ProjectileEvent projectileEvent, UnitBehavior caster, UnitBehavior target)
     {
+        this.skillInfo = skillInfo;
         this.projectileEvent = projectileEvent;
         this.caster = caster;
         this.target = target;
@@ -45,9 +48,6 @@ public class ProjectileBehavior : BaseBehavior
                 projectile = Utilities.StaticeObjectPool.Pop<Projectile_Straight>();
                 break;
             case Projectiles.eProjectileType.StraightFollow:
-                projectile = Utilities.StaticeObjectPool.Pop<Projectile>();
-                break;
-            case Projectiles.eProjectileType.Parabolic:
                 projectile = Utilities.StaticeObjectPool.Pop<Projectile>();
                 break;
         }

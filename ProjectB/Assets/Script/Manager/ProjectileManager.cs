@@ -35,14 +35,14 @@ public class ProjectileManager : BaseManager
         }
     }
 
-    public ProjectileBehavior SpawnProjectile(ProjectileEvent projectileEvent, UnitBehavior caster = null, UnitBehavior target = null)
+    public ProjectileBehavior SpawnProjectile(SkillInfo skillInfo, ProjectileEvent projectileEvent, UnitBehavior caster = null, UnitBehavior target = null)
     {
         if (!GameObjectPool.TryGet(PROJECTILE_BEHAVIOR_ASSETKEY, out var projectileObj)) return null;
         ProjectileBehavior projectile = projectileObj.GetComponent<ProjectileBehavior>();
 
         projectile.transform.SetParent(transform);
         projectile.transform.position = caster.GetPos();
-        projectile.Init(projectileEvent, caster, target);
+        projectile.Init(skillInfo, projectileEvent, caster, target);
         projectileList.Add(projectile);
 
         return projectile;

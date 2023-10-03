@@ -17,6 +17,18 @@ public class SkillInfo
     public List<RuneRecord> runeList = new List<RuneRecord>();
     public List<SkillEffectRecord> skillEffectList = new List<SkillEffectRecord>();
 
+    public SkillInfo(SkillRecord skill)
+    {
+        skillRecord = skill.GetCopyRecord();
+        skillEffectList.Clear();
+        for (int i = 0; i < skillRecord.skillEffects.Length; i++)
+        {
+            if (TableManager.Instance.skillEffectTable.TryGetRecord(skillRecord.skillEffects[i], out var skillEffect) == false)
+                continue;
+            var copy = skillEffect.GetCopyRecord();
+            skillEffectList.Add(copy);
+        }
+    }
     public SkillInfo(int slotIdx)
     {
         elaspedTIme = 0;
@@ -80,6 +92,8 @@ public class SkillInfo
     {
         var targetList = Manager.Instance.skillManager.GetTargetList(UnitManager.Instance.Player, skillRecord);
         UnitManager.Instance.Player.SetTargets(targetList);
+        UnitManager.Instance.Player.isUseSkill = true;
+        UnitManager.Instance.Player.skillInfo = this;
         UnitManager.Instance.Player.Action(skillRecord.skillNode);
     }
 }
@@ -127,6 +141,8 @@ public class UISkillSlot : UISlot
     private void OnClickSkill()
     {
         if (skillInfo.skillRecord.type != eSkillType.Active) return;
+        if (UnitManager.Instance.Player.isUseSkill) return;
+
         skillInfo.UseSkill();
     }
     #endregion

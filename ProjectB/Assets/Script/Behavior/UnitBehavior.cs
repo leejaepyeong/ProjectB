@@ -19,6 +19,7 @@ public class UnitState
     public float criRate;
     public float criDmg;
     #endregion
+    public SkillInfo atkInfo;
 
     #region state
     public bool isDead;
@@ -36,6 +37,8 @@ public class UnitState
         isSlow = false;
 
         SetStat();
+        atkInfo = null;
+        atkInfo = new SkillInfo(data.atkInfo.GetCopyRecord());
     }
 
     public void SetStat()
@@ -117,8 +120,11 @@ public class UnitBehavior : BaseBehavior, IEventHandler
     public Unit_Base UnitBase => unitBase;
 
     #region AssetKey
-    private const string SOUND_BEHAVIOR_ASSETKEY = "Assets/Data/GameResources/Prefab/Behavior/SoundBehavior.prefab";    
+    private const string SOUND_BEHAVIOR_ASSETKEY = "Assets/Data/GameResources/Prefab/Behavior/SoundBehavior.prefab";
     #endregion
+
+    public bool isUseSkill;
+    public SkillInfo skillInfo;
 
     //Monster
     public void Init(Data.UnitData data, int id)
@@ -127,10 +133,12 @@ public class UnitBehavior : BaseBehavior, IEventHandler
         unitData = data;
         this.id = id;
         ElapsedTime = 0;
+        isUseSkill = false;
+        skillInfo = null;
 
         timeScaleBehavior = Utilities.StaticeObjectPool.Pop<TimeScaleBehavior>();
         eventDispatcher = Utilities.StaticeObjectPool.Pop<EventDispatcher>();
-        eventDispatcher.Init();
+        eventDispatcher.Init(this);
 
         if (UnitManager.Instance.GameObjectPool.TryGet(data.modelAssetRef, out var model) == false) return;
         Model = model;
@@ -213,7 +221,7 @@ public class UnitBehavior : BaseBehavior, IEventHandler
     {
         eventDispatcher.Clear();
         eventDispatcher.Add(eventGraph);
-        Animator.CrossFadeInFixedTime(eventGraph.name, 0.05f);
+        Animator.CrossFadeInFixedTime(eventGraph.name, 0f);
     }
 
     private void OnHandleSoundEvent(SoundEvent soundEvent)
@@ -248,7 +256,7 @@ public class UnitBehavior : BaseBehavior, IEventHandler
     {
         for (int i = 0; i < targets.Count; i++)
         {
-            ProjectileManager.Instance.SpawnProjectile(projectileEvent, this, targets[i]);
+            ProjectileManager.Instance.SpawnProjectile(isUseSkill ? unitState.atkInfo : skillInfo, projectileEvent, this, targets[i]);
         }
     }
     #endregion
