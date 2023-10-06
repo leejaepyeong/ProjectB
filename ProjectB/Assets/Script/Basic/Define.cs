@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Define
 {
-    public const int UNIT_LAYER = 12;
-    public const int MaxNickName = 12;
-    public const int MaxEquipSkill = 5;
-    public const int MaxEquipRune = 3;
+    public const int UNIT_LAYER = 12;   //레이어
+    public const int MaxNickName = 12;  //닉네임 최대 길이
+    public const int MaxEquipSkill = 5; //스킬 장착 최대갯수
+    public const int MaxEquipRune = 3;  //룬 장착 최대갯수
 
     public static string privateKey = "FHWqa8jt0hNf7e78";
 
@@ -57,6 +57,7 @@ public enum eDamageType
 
 public enum eStat
 {
+    none,
     hp,
     mp,
     atk,
@@ -91,7 +92,7 @@ public enum eSkillState
 
     Freeze,
 
-    AtkBuff,
+    AddStat,
 }
 public enum eSkillType
 {
@@ -128,20 +129,28 @@ public enum eSkillTarget
     NonTarget,
 
     Target,
+    Team,
 
     normal,
     self,
 }
 public enum eSkillDuration
 {
-    time,
-    casterAlive,
+    Time,
+    Alive,
 }
 public enum eBuffType
 {
     None,
     Buff,
     DeBuff,
+}
+public enum eAddType
+{
+    AddPer,
+    AddNum,
+    MinPer,
+    MinNum,
 }
 #endregion
 

@@ -19,12 +19,7 @@ public class SkillRecord : RecordBase
     public float skillBulletSpd;
     public float skillBulletSize;
     public int equipRuneCount;
-    public int[] skillTags = new int[5];
-    public int skillTag1;
-    public int skillTag2;
-    public int skillTag3;
-    public int skillTag4;
-    public int skillTag5;
+    public List<int> skillTags = new List<int>();
     private string eventNodePath;
     public EventGraph skillNode => BattleManager.Instance.ResourcePool.Load<EventGraph>(eventNodePath);
     public int[] skillEffects = new int[3];
@@ -45,9 +40,9 @@ public class SkillRecord : RecordBase
         skillBulletSpd = FileUtil.Get<int>(_data, "Skill_Bullet_Spd");
         skillBulletSize = FileUtil.Get<int>(_data, "Skill_Bullet_Size");
         equipRuneCount = FileUtil.Get<int>(_data, "Skill_Equip_Rune");
-        for (int i = 0; i < skillTags.Length; i++)
+        for (int i = 0; i < 5; i++)
         {
-            skillTags[i] = FileUtil.Get<int>(_data, $"Tag{i + 1}");
+            skillTags.Add(FileUtil.Get<int>(_data, $"Tag{i + 1}"));
         }
         eventNodePath = FileUtil.Get<string>(_data, "SkillNode");
         for (int i = 0; i < skillEffects.Length; i++)
@@ -72,9 +67,9 @@ public class SkillRecord : RecordBase
         copy.skillBulletSpd = skillBulletSpd;
         copy.skillBulletSize = skillBulletSize;
         copy.equipRuneCount = equipRuneCount;
-        for (int i = 0; i < copy.skillTags.Length; i++)
+        for (int i = 0; i < copy.skillTags.Count; i++)
         {
-            copy.skillTags[i] = skillTags[i];
+            copy.skillTags.Add(skillTags[i]);
         }
         copy.eventNodePath = eventNodePath;
         for (int i = 0; i < copy.skillEffects.Length; i++)

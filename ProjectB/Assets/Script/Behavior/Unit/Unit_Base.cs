@@ -17,6 +17,8 @@ public class Unit_Base : MonoBehaviour
     protected bool isAtkAble;
     protected float atkCool;
 
+    protected List<BuffBase> buffList = new List<BuffBase>();
+
     public virtual void Init(UnitBehavior behavior)
     {
         unitBehavior = behavior;
@@ -38,6 +40,13 @@ public class Unit_Base : MonoBehaviour
         Move();
         SearchTarget();
         SkillUpdate();
+
+        for (int i = 0; i < buffList.Count; i++)
+        {
+            buffList[i].UpdateFrame(deltaTime);
+            if (buffList[i].CheckEndBuff())
+                RemoveBuff(buffList[i]);
+        }
     }
 
     public virtual void Move()
@@ -79,7 +88,6 @@ public class Unit_Base : MonoBehaviour
         for (int i = 0; i < unitData.skillInfoGroup.Count; i++)
         {
             var skill = unitData.skillInfoGroup[i];
-            Manager.Instance.skillManager.UseSkill(unitBehavior, unitData.skillInfoGroup[i]);
             unitData.skillInfoGroup[i].UpdateFrame(deltaTime);
             if (skill.type == eSkillType.Passive && skill.IsReadyCoolTime())
                 Manager.Instance.skillManager.UseSkill(unitBehavior, skill);
@@ -108,4 +116,11 @@ public class Unit_Base : MonoBehaviour
             UnitManager.Instance.RemoveUnit(unitBehavior);
         }
     }
+
+    #region Buff
+    public void RemoveBuff(BuffBase buff)
+    {
+        buffList.Remove(buff);
+    }
+    #endregion
 }

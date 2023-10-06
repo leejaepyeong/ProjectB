@@ -37,6 +37,8 @@ public class PlayLogic : BaseScene
 
     public override void UpdateFrame(float deltaTime)
     {
+        if (BattleManager.Instance.isPause) return;
+
         this.deltaTime = deltaTime;
         commands.UpdateFrame(deltaTime);
         if (commands.CommandEnd() == false) return;

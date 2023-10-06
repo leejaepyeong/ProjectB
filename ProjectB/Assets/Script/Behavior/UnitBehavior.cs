@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+public class BuffState
+{
+
+}
+
 public class UnitState
 {
     private Data.UnitData data;
@@ -18,6 +23,7 @@ public class UnitState
     public float atkRange;
     public float criRate;
     public float criDmg;
+    public Dictionary<eStat, long> statDic = new Dictionary<eStat, long>();
     #endregion
     public SkillInfo atkInfo;
 
@@ -26,6 +32,10 @@ public class UnitState
     public bool isStun;
     public bool isSlow;
     public bool isMoveAble { get { return isStun == false; } }
+    #endregion
+
+    #region Buff
+    public BuffState buffState;
     #endregion
 
     public void Init(Data.UnitData data)
@@ -37,7 +47,6 @@ public class UnitState
         isSlow = false;
 
         SetStat();
-        atkInfo = null;
         atkInfo = new SkillInfo(data.atkInfo.GetCopyRecord());
     }
 
@@ -86,6 +95,27 @@ public class UnitState
             case eStat.criRate: criRate += (float)value; break;
             case eStat.criDmg: criDmg += (float)value; break;
         }
+    }
+
+    public double GetStat(eStat statType)
+    {
+        double value = 0;
+
+        switch (statType)
+        {
+            case eStat.hp: value = hp; break;
+            case eStat.mp: value = mp; break;
+            case eStat.atk: value = atk; break;
+            case eStat.def: value = def; break;
+            case eStat.acc: value = acc; break;
+            case eStat.moveSpd: value = moveSpd; break;
+            case eStat.atkSpd: value = atkSpd; break;
+            case eStat.atkRange: value = atkRange; break;
+            case eStat.criRate: value = criRate; break;
+            case eStat.criDmg: value = criDmg; break;
+        }
+
+        return 0;
     }
 }
 
@@ -254,9 +284,15 @@ public class UnitBehavior : BaseBehavior, IEventHandler
 
     private void OnHandleProjectileEvent(ProjectileEvent projectileEvent)
     {
+        if(isUseSkill && skillInfo == null)
+        {
+            isUseSkill = false;
+            return;
+        }
+
         for (int i = 0; i < targets.Count; i++)
         {
-            ProjectileManager.Instance.SpawnProjectile(isUseSkill ? unitState.atkInfo : skillInfo, projectileEvent, this, targets[i]);
+            ProjectileManager.Instance.SpawnProjectile(isUseSkill ? skillInfo : unitState.atkInfo, projectileEvent, this, targets[i]);
         }
     }
     #endregion

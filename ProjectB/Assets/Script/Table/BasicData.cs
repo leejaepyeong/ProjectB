@@ -31,6 +31,9 @@ namespace Data
         public Texture2D icon;
         public string modelAssetRef;
         public string animatorAssetRef;
+        public int atkIdx;
+        public List<int> skillGroup = new List<int>();
+
         public SkillRecord atkInfo;
         public List<SkillRecord> skillInfoGroup;
 

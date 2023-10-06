@@ -7,15 +7,43 @@ using TMPro;
 
 public class UIPlayLogic : MonoBehaviour
 {
-    [SerializeField, FoldoutGroup("Top")] private UIWaveInfo uiWaveInfo; 
+    [SerializeField, FoldoutGroup("Top")] private UIWaveInfo uiWaveInfo;
+    [SerializeField, FoldoutGroup("Top_Right")] private Button btnOption;
+    [SerializeField, FoldoutGroup("Top_Right")] private Button btnInven;
+    [SerializeField, FoldoutGroup("Top_Left")] private Button btnStat;
 
     public void Init()
     {
-
+        btnOption.onClick.AddListener(OnClickGamePause);
+        btnInven.onClick.AddListener(OnClickInventory);
+        btnStat.onClick.AddListener(OnClickStatInfo);
     }
 
     public void UpdateFrame(float deltaTime)
     {
         uiWaveInfo.UpdateFrame(deltaTime);
+        CheckGamePause();
     }
+
+    private void CheckGamePause()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+            OnClickGamePause();
+    }
+
+    #region Button Click
+    private void OnClickGamePause()
+    {
+
+    }
+
+    private void OnClickStatInfo()
+    {
+
+    }
+    private void OnClickInventory()
+    {
+
+    }
+    #endregion
 }

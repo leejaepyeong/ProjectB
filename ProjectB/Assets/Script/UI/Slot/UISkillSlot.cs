@@ -5,10 +5,6 @@ using UnityEngine.UI;
 using Sirenix.OdinInspector;
 using TMPro;
 
-public class RuneInfo
-{
-
-}
 public class SkillInfo
 {
     private float elaspedTIme;
@@ -59,6 +55,7 @@ public class SkillInfo
         if (IsReadySkill()) return;
 
         elaspedTIme -= deltaTime;
+        if (elaspedTIme < 0) elaspedTIme = 0;
     }
 
     public bool IsReadySkill()
@@ -81,6 +78,7 @@ public class SkillInfo
 
         for (int i = 0; i < runeList.Count; i++)
         {
+            runeList[i].SetRuneEffectToSkill(skillRecord);
             for (int j = 0; j < skillEffectList.Count; j++)
             {
                 runeList[i].SetRuneEffectToSkillEffect(skillEffectList[j]);
@@ -134,11 +132,14 @@ public class UISkillSlot : UISlot
 
     public void SetCoolTime()
     {
-        textCoolTime.SetText(skillInfo.getTime.ToString("F1"));
+        if (skillInfo.getTime == 0)
+            textCoolTime.SetText("");
+        else
+            textCoolTime.SetText(skillInfo.getTime.ToString("F1"));
     }
 
     #region Button Click
-    private void OnClickSkill()
+    protected void OnClickSkill()
     {
         if (skillInfo.skillRecord.type != eSkillType.Active) return;
         if (UnitManager.Instance.Player.isUseSkill) return;

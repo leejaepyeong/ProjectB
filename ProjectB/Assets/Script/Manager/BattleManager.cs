@@ -8,6 +8,7 @@ public class BattleManager : BaseManager
     private float elaspedTime;
     private bool isInit;
     private bool isGameEnd;
+    public bool isPause;
 
     public float getCurTime { get { return elaspedTime; } }
 
