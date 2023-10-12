@@ -39,25 +39,8 @@ namespace Editor
             [VerticalGroup("Info")] public Texture2D icon;
             [VerticalGroup("Info")] public string modelAssetRef;
             [VerticalGroup("Info")] public string animatorAssetRef;
-            [VerticalGroup("Info")] public SkillInfo atkInfo;
-            [VerticalGroup("Info")] public SkillInfo[] skillInfoGroup;
-        }
-    
-        [Serializable]
-        public class SkillInfo
-        {
-            public int skillSeed;
-            [FoldoutGroup("Activate")] public eSkillActivate activateType;
-            [FoldoutGroup("Activate")] public float activateValue;
-            [FoldoutGroup("Duration")] public eSkillDuration durationType;
-            [FoldoutGroup("Duration")] public float durationValue;
-            [FoldoutGroup("Target")] public eSkillTarget targetType;
-            [FoldoutGroup("Target")] public float targetValue;
-            [FoldoutGroup("Type")] public eSkillType skillType;
-            [FoldoutGroup("Type")] public float typeValue;
-            public float maxCoolTime;
-
-            public string skillNodeRef;
+            [VerticalGroup("Info")] public int atkInfoIdx;
+            [VerticalGroup("Info")] public int[] skillInfoIdxGroup;
         }
     }
 

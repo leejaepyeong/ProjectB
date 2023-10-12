@@ -35,7 +35,7 @@ namespace Data
         public List<int> skillGroup = new List<int>();
 
         public SkillRecord atkInfo;
-        public List<SkillRecord> skillInfoGroup;
+        public List<SkillRecord> skillInfoGroup = new List<SkillRecord>();
 
         public UnitData(Editor.UnitData data)
         {
@@ -56,6 +56,11 @@ namespace Data
             icon = data.info.icon;
             modelAssetRef = data.info.modelAssetRef;
             animatorAssetRef =data.info.animatorAssetRef;
+            atkInfo = TableManager.Instance.skillTable.GetRecord(data.info.atkInfoIdx);
+            for (int i = 0; i < data.info.skillInfoIdxGroup.Length; i++)
+            {
+                skillInfoGroup.Add(TableManager.Instance.skillTable.GetRecord(data.info.skillInfoIdxGroup[i]));
+            }
         }
         public int Key => Seed;
     }

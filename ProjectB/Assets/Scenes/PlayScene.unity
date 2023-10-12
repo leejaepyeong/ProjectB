@@ -2100,7 +2100,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiWaveInfo: {fileID: 933850340}
   btnOption: {fileID: 1786581195}
-  btnInven: {fileID: 0}
+  btnInven: {fileID: 110263852}
+  btnStat: {fileID: 1954183940}
 --- !u!1001 &1004441359
 PrefabInstance:
   m_ObjectHideFlags: 0

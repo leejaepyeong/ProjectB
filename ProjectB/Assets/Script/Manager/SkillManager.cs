@@ -46,15 +46,15 @@ public class SkillManager
     }
 
     #region Search Target List
-    public List<UnitBehavior> GetTargetList(UnitBehavior caster, SkillRecord skillRecord)
+    public List<UnitBehavior> GetTargetList(UnitBehavior caster, SkillRecord skillRecord, List<UnitBehavior> targetList = null)
     {
         unitList.Clear();
         tempUnitList.Clear();
 
         switch (skillRecord.targetType)
         {
-            case eSkillTarget.normal:
-                unitList = GetTargetList_Normal(caster, skillRecord);
+            case eSkillTarget.Near:
+                unitList = GetTargetList_Near(caster, skillRecord, targetList);
                 break;
             case eSkillTarget.self:
                 unitList.Add(caster);
@@ -64,9 +64,19 @@ public class SkillManager
         return unitList;
     }
 
-    private List<UnitBehavior> GetTargetList_Normal(UnitBehavior caster, SkillRecord skillRecord)
+    private List<UnitBehavior> GetTargetList_Near(UnitBehavior caster, SkillRecord skillRecord, List<UnitBehavior> targetList = null)
     {
-        var list = UnitManager.Instance.UnitActiveList;
+        List<UnitBehavior> list = new List<UnitBehavior>();
+
+        if (targetList == null)
+            list = UnitManager.Instance.UnitActiveList;
+        else
+        {
+            for (int i = 0; i < targetList.Count; i++)
+            {
+                list.Add(targetList[i]);
+            }
+        }
 
         list.Sort(delegate(UnitBehavior a, UnitBehavior b) 
         {

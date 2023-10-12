@@ -45,10 +45,10 @@ public class SkillRecord : RecordBase
             skillTags.Add(FileUtil.Get<int>(_data, $"Tag{i + 1}"));
         }
         eventNodePath = FileUtil.Get<string>(_data, "SkillNode");
-        for (int i = 0; i < skillEffects.Length; i++)
-        {
-            skillEffects[i] = FileUtil.Get<int>(_data, $"Skill_Effect{i + 1}");
-        }
+        //for (int i = 0; i < skillEffects.Length; i++)
+        //{
+        //    skillEffects[i] = FileUtil.Get<int>(_data, $"Skill_Effect{i + 1}");
+        //}
     }
 
     public SkillRecord GetCopyRecord()

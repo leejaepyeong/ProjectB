@@ -18,6 +18,7 @@ public class Unit_Base : MonoBehaviour
     protected float atkCool;
 
     protected List<BuffBase> buffList = new List<BuffBase>();
+    protected List<UnitBehavior> targetList = new List<UnitBehavior>();
 
     public virtual void Init(UnitBehavior behavior)
     {
@@ -70,6 +71,13 @@ public class Unit_Base : MonoBehaviour
         int layer = unitState.team == eTeam.player ? LayerMask.GetMask("Monster") : LayerMask.GetMask("Player");
         var targets = Physics2D.OverlapCircleAll(unitBehavior.GetPos(), unitState.atkRange, layer);
         if (targets.Length <= 0) return;
+        targetList.Clear();
+        for (int i = 0; i < targets.Length; i++)
+        {
+            UnitBehavior target = targets[i].GetComponentInParent<UnitBehavior>();
+            if (target != null)
+                targetList.Add(target);
+        }
 
         atkCool = 1 / unitState.atkSpd;
         Attack();
