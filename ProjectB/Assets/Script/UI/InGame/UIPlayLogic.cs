@@ -12,21 +12,25 @@ public class UIPlayLogic : MonoBehaviour
     [SerializeField, FoldoutGroup("Top_Right")] private Button btnInven;
     [SerializeField, FoldoutGroup("Top_Left")] private Button btnStat;
 
+    [SerializeField, FoldoutGroup("Bottom")] private UISkillGroup uiSkillGroup;
+
     public void Init()
     {
         btnOption.onClick.AddListener(OnClickGamePause);
         btnInven.onClick.AddListener(OnClickInventory);
         btnStat.onClick.AddListener(OnClickStatInfo);
+        uiSkillGroup.Init();
     }
 
     public void UpdateFrame(float deltaTime)
     {
         uiWaveInfo.UpdateFrame(deltaTime);
-        CheckGamePause();
+        CheckKeyCode();
     }
 
-    private void CheckGamePause()
+    private void CheckKeyCode()
     {
+        //Pause
         if (Input.GetKeyDown(KeyCode.Escape))
             OnClickGamePause();
     }
@@ -34,7 +38,9 @@ public class UIPlayLogic : MonoBehaviour
     #region Button Click
     private void OnClickGamePause()
     {
-
+        if (BattleManager.Instance.isPause) return;
+        UIManager.Instance.OpenUI<UIPauseDlg>();
+        BattleManager.Instance.isPause = true;
     }
 
     private void OnClickStatInfo()
@@ -43,7 +49,7 @@ public class UIPlayLogic : MonoBehaviour
     }
     private void OnClickInventory()
     {
-
+        UIManager.Instance.OpenUI<UIInGameInventory>();
     }
     #endregion
 }

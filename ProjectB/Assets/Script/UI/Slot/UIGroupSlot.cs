@@ -59,7 +59,7 @@ namespace Mosframe
 
         public void onUpdateItem(int index)
         {
-            Init();
+            //Init();
 
             for (int i = 0; i < constraintCount; i++)
             {

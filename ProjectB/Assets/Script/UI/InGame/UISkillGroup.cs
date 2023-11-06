@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UISkillGroup
+public class UISkillGroup : MonoBehaviour
 {
     [SerializeField] private List<UISkillSlot> uiSkillSlots;
 

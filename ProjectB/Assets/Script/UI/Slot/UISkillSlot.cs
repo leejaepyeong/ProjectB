@@ -28,8 +28,19 @@ public class SkillInfo
     public SkillInfo(int slotIdx)
     {
         elaspedTIme = 0;
-        var playerSkill = SaveData_PlayerSkill.Instance.GetEquipSkill(slotIdx);
-        skillRecord = playerSkill.GetSkillData();
+        skillRecord = null;
+
+        if (Manager.Instance.CurScene.isTestScene)
+        {
+            skillRecord = TableManager.Instance.skillTable.GetRecord(Manager.Instance.playerData.equipSkill[slotIdx]);
+        }
+        else
+        {
+            var playerSkill = SaveData_PlayerSkill.Instance.GetEquipSkill(slotIdx);
+            if (playerSkill == null) return;
+            skillRecord = playerSkill.GetSkillData();
+        }
+
         skillEffectList.Clear();
         for (int i = 0; i < skillRecord.skillEffects.Length; i++)
         {
@@ -39,13 +50,6 @@ public class SkillInfo
             skillEffectList.Add(copy);
         }
         runeList.Clear();
-        for (int i = 0; i < playerSkill.equipRuneGroup.Length; i++)
-        {
-            if (playerSkill.equipRuneGroup[i] == 0) continue;
-            runeList.Add(playerSkill.GetRuneData(playerSkill.equipRuneGroup[i]));
-        }
-        
-        SetRuneEffect();
     }
 
     public float getTime { get { return elaspedTIme; } }
@@ -68,22 +72,29 @@ public class SkillInfo
         elaspedTIme = coolTime;
     }
 
-    private void SetRuneEffect()
+    public void AddRune(RuneRecord runeRecord, int equipIdx)
     {
-
-        for (int i = 0; i < runeList.Count; i++)
+        var copy = runeRecord.GetCopyRecord();
+        copy.AddSkillEffectToSkill(skillEffectList);
+        copy.SetRuneEffectToSkill(skillRecord);
+        for (int j = 0; j < skillEffectList.Count; j++)
         {
-            runeList[i].AddSkillEffectToSkill(skillEffectList);
+            copy.SetRuneEffectToSkillEffect(skillEffectList[j]);
         }
 
-        for (int i = 0; i < runeList.Count; i++)
+        if (equipIdx == -1)
         {
-            runeList[i].SetRuneEffectToSkill(skillRecord);
-            for (int j = 0; j < skillEffectList.Count; j++)
-            {
-                runeList[i].SetRuneEffectToSkillEffect(skillEffectList[j]);
-            }
+            runeList.Add(copy);
         }
+        else
+        {
+            runeList[equipIdx] = copy;
+        }
+    }
+
+    public void RemoveRune(int runeIdx)
+    {
+        runeList[runeIdx] = null;
     }
 
     public void UseSkill()
@@ -141,10 +152,27 @@ public class UISkillSlot : UISlot
     #region Button Click
     protected void OnClickSkill()
     {
+        if (skillInfo.skillRecord == null) return;
         if (skillInfo.skillRecord.type != eSkillType.Active) return;
         if (UnitManager.Instance.Player.isUseSkill) return;
 
         skillInfo.UseSkill();
     }
     #endregion
+
+    public void ChangeRune(RuneRecord runeRecord, int equipIdx)
+    {
+        UnEquipRune(equipIdx);
+        EquipRune(runeRecord, equipIdx);
+    }
+
+    public void EquipRune(RuneRecord runeRecord, int equipIdx = -1)
+    {
+        skillInfo.AddRune(runeRecord, equipIdx);
+    }
+
+    public void UnEquipRune(int equipIdx)
+    {
+        skillInfo.RemoveRune(equipIdx);
+    }
 }
