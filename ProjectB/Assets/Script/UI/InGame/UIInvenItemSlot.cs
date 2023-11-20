@@ -9,10 +9,28 @@ public class UIInvenItemSlot : UISlot
 {
     [SerializeField, FoldoutGroup("")] private Image itemIcon;
     [SerializeField, FoldoutGroup("")] private Image equipIcon;
+    [SerializeField, FoldoutGroup("")] private Button btnEquip;
+    [SerializeField, FoldoutGroup("")] private Button btnUnEquip;
 
-    public override void Open(int index)
+    private UIInGameInventory uiInGameInventory;
+    private int slotIdx;
+
+    protected override void Awake()
     {
-        base.Open(index);
+        btnEquip.onClick.AddListener(Equip);
+        btnUnEquip.onClick.AddListener(UnEquip);
+    }
+
+    public virtual void Open(InvenItemInfo itemInfo)
+    {
+        base.Open();
+        if (uiInGameInventory == null) return;
+
+    }
+
+    public void Set(UIInGameInventory uiInGameInventory)
+    {
+        this.uiInGameInventory = uiInGameInventory;
     }
 
     public void Equip()

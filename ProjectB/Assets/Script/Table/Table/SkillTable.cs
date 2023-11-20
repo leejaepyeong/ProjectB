@@ -9,6 +9,7 @@ public class SkillRecord : RecordBase
     public int groupIdx;
     public int nameIdx;
     public int destIdx;
+    public string iconPath;
     public eSkillType type;
     public eSkillDetailType detailType;
     public float coolTIme;
@@ -30,6 +31,7 @@ public class SkillRecord : RecordBase
         groupIdx = FileUtil.Get<int>(_data, "Skill_Group");
         nameIdx = FileUtil.Get<int>(_data, "Skill_Name");
         destIdx = FileUtil.Get<int>(_data, "Skill_Desc");
+        iconPath = FileUtil.Get<string>(_data, "Skill_IconPath");
         type = FileUtil.Get<eSkillType>(_data, "Skill_Type");
         detailType = FileUtil.Get<eSkillDetailType>(_data, "Skill_DetailType");
         coolTIme = FileUtil.Get<float>(_data, "Skill_Cooltime");

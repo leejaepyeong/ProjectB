@@ -27,6 +27,10 @@ public class UISlot : UIBehaviour, IDynamicScrollViewItem
     { 
     }
 
+    public virtual void Open()
+    {
+        gameObject.SetActive(true);
+    }
     public virtual void Open(int index)
     {
         this.index = index;
