@@ -16,28 +16,7 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: b01b5a114252af3498afb965755da392
-  m_SerializeEntries:
-  - m_GUID: a1fb926f469ff2d45ac42260bae2d79b
-    m_Address: Assets/Data/GameResources/DataBinary/Dummy.bytes
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - MessagePackData
-    - Remote
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: fa051a72bba31bc479f14b622a65e592
-    m_Address: Assets/Data/GameResources/DataBinary/String.bytes
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - MessagePackData
-    - Remote
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9b3289d336deb354eb5287d8a9d38c94
-    m_Address: Assets/Data/GameResources/DataBinary/SkillInfo.bytes
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - MessagePackData
-    - Remote
-    FlaggedDuringContentUpdateRestriction: 0
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 0b85ada165676584a86a5d299cec6c75, type: 2}
   m_SchemaSet:

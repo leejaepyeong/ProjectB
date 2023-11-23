@@ -11,7 +11,7 @@ public class InvenItemInfo
     public int itemIndex;
     public bool isEquip;
 
-    private bool isRune;
+    public bool isRune;
 
     public InvenItemInfo(int id, int idx, bool isRune)
     {
@@ -35,6 +35,8 @@ public class InvenItemInfo
 
         return rune;
     }
+
+    public ItemRecord getItemRecord => TableManager.Instance.itemTable.GetRecord(itemIndex);
 }
 
 public class UIInGameInventory : UIBase, LoopScrollPrefabSource, LoopScrollDataSource
@@ -48,8 +50,9 @@ public class UIInGameInventory : UIBase, LoopScrollPrefabSource, LoopScrollDataS
 
     private Stack<Transform> pool = new Stack<Transform>();
 
-    public override void Init()
+    protected override void Awake()
     {
+        base.Awake();
         for (int i = 1; i <= Define.MaxEquipSkill; i++)
         {
             equipSkillDic.Add(i, new EquipSkill());
@@ -62,21 +65,26 @@ public class UIInGameInventory : UIBase, LoopScrollPrefabSource, LoopScrollDataS
         ResetData();
     }
 
-    public void ResetData()
+    public override void ResetData()
     {
-
+        loopScrollRect.prefabSource = this;
+        loopScrollRect.dataSource = this;
+        loopScrollRect.totalCount = invenItemList.Count;
+        loopScrollRect.RefillCells();
     }
 
     public void AddSkillItem(int itemId, int skillIdx)
     {
         InvenItemInfo itemInfo = new InvenItemInfo(itemId, skillIdx, false);
         invenItemInfoDic.Add(itemId, itemInfo);
+        invenItemList.Add(itemInfo);
     }
 
     public void AddRuneItem(int itemId, int runeIdx)
     {
         InvenItemInfo itemInfo = new InvenItemInfo(itemId, runeIdx, true);
         invenItemInfoDic.Add(itemId, itemInfo);
+        invenItemList.Add(itemInfo);
     }
 
     public void EquipSkill(int itemId, int slotIdx)
@@ -118,7 +126,7 @@ public class UIInGameInventory : UIBase, LoopScrollPrefabSource, LoopScrollDataS
     {
         if (pool.Count == 0)
         {
-            GameObject obj = uiManager.OpenUI("").gameObject;
+            GameObject obj = uiManager.OpenUI("Assets/Data/GameResources/Prefab/Slot/UIInvenItemSlot.prefab").gameObject;
             dicPrefab.Add(obj.transform, obj.GetComponent<UIInvenItemSlot>());
             return obj;
         }
@@ -140,7 +148,7 @@ public class UIInGameInventory : UIBase, LoopScrollPrefabSource, LoopScrollDataS
     {
         var invenItem = invenItemList[idx];
         UIInvenItemSlot slot = dicPrefab[transform];
-        slot.Open(invenItem);
+        slot.Open(invenItem, this);
         slot.name = idx.ToString();
     }
 }

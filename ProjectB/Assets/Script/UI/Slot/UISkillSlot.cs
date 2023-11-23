@@ -118,16 +118,16 @@ public class UISkillSlot : UISlot
     private SkillInfo skillInfo;
     private int slotIndex;
 
-    public virtual void Init(int index)
+    protected override void Awake()
     {
+        base.Awake();
         buttonClick.onClick.AddListener(OnClickSkill);
-        slotIndex = index;
-        skillInfo = new SkillInfo(slotIndex);
     }
 
-    public override void UnInit()
+    public void Init(int index)
     {
-        buttonClick.onClick.RemoveAllListeners();
+        slotIndex = index;
+        skillInfo = new SkillInfo(slotIndex);
     }
 
     public virtual void Open()

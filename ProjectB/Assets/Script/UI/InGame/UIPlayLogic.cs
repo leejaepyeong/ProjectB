@@ -39,7 +39,7 @@ public class UIPlayLogic : MonoBehaviour
     private void OnClickGamePause()
     {
         if (BattleManager.Instance.isPause) return;
-        UIManager.Instance.OpenUI<UIPauseDlg>();
+        UIManager.Instance.OpenWidget<UIPauseDlg>();
         BattleManager.Instance.isPause = true;
     }
 
@@ -49,7 +49,7 @@ public class UIPlayLogic : MonoBehaviour
     }
     private void OnClickInventory()
     {
-        UIManager.Instance.OpenUI<UIInGameInventory>();
+        UIManager.Instance.OpenWidget<UIInGameInventory>();
     }
     #endregion
 }

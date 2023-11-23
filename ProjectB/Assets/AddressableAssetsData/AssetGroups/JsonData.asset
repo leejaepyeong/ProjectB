@@ -16,45 +16,7 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: f8a0a2819bbfc0d459aeff0108ace3ce
-  m_SerializeEntries:
-  - m_GUID: a56a29ac5b60fa849b1101933a1594db
-    m_Address: Assets/Data/GameResources/DataJsons/Dummy.bytes
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - JsonData
-    - Remote
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3c79ab9b52d8d424c8f6184ba33cf251
-    m_Address: Assets/Data/GameResources/DataJsons/StringText.bytes
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - JsonData
-    - Remote
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1f01bb0c9d15cfa4489d05bb3458eecf
-    m_Address: Assets/Data/GameResources/DataJsons/UnitDataEditor.json
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Encryp
-    - Remote
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: bec6a5ab43e709d4d971197df77ab201
-    m_Address: Assets/Data/GameResources/Prefab/Effect/Projectile/Projectile.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 77ffef51616c9ac4eb2d36e7ddc1e47f
-    m_Address: Assets/Data/GameResources/Prefab/Effect/Hit/Hit.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 13102f24851f8b6499c3953949ad2d43
-    m_Address: Assets/Data/GameResources/DataJsons/SkillInfo.bytes
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - JsonData
-    - Remote
-    FlaggedDuringContentUpdateRestriction: 0
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 0b85ada165676584a86a5d299cec6c75, type: 2}
   m_SchemaSet:

@@ -107,7 +107,8 @@ public class IntroCommand_CreateAccount : Command
             return;
         }
 
-        uICreateAccount = UIManager.Instance.OpenUI<UICreateAccount>();
+        uICreateAccount = UIManager.Instance.OpenWidget<UICreateAccount>();
+        uICreateAccount.Open();
     }
 
     public bool IsFinished()

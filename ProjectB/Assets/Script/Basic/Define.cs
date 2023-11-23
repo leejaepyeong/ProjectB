@@ -195,3 +195,11 @@ public enum eRuneDetailType
     Atk,
 }
 #endregion
+
+#region Item
+public enum eItemType
+{
+    Skill,
+    Rune,
+}
+#endregion

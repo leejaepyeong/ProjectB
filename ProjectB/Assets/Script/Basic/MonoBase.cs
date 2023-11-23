@@ -17,14 +17,14 @@ public class MonoBase : MonoBehaviour
         gameObject.SetActive(true);
     }
 
+    public virtual void ResetData()
+    {
+
+    }
+
     public virtual void Close()
     {
         gameObject.SetActive(false);
-    }
-
-    public virtual void Init()
-    {
-
     }
 
     public virtual void UpdateFrame(float deltaTime)

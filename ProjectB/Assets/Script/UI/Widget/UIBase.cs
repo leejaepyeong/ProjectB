@@ -2,23 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using TMPro;
 
 public class UIBase : MonoBase
 {
+    public Button btnClick;
+    public Button[] btnCloseGroup;
     public RectTransform RectTransform => transform as RectTransform;
     protected UIManager uiManager => UIManager.Instance;
 
     protected bool escapable;
     protected bool backable;
+    protected UnityAction onClickAction;
 
-    public virtual void SetParam(Parameter param)
+    protected virtual void Awake()
     {
-
-    }
-
-    public override void Init()
-    {
+        btnClick.onClick.AddListener(onClickAction);
+        for (int i = 0; i < btnCloseGroup.Length; i++)
+        {
+            btnCloseGroup[i].onClick.AddListener(Close);
+        }
     }
 
     public virtual void DeInit()
@@ -63,4 +67,5 @@ public class UIBase : MonoBase
 
         img.sprite = Define.Load<Sprite>(path);
     }
+
 }

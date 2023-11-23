@@ -16,25 +16,7 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: aed49bb3e90a4dc42b0da282a2c34763
-  m_SerializeEntries:
-  - m_GUID: 559a6d9d3b12ce04e93091332ae0dec1
-    m_Address: Assets/Data/GameResources/Prefab/Widget/UICreateAccount.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Remote
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 5d701b21f7a55ca429d018c62d46ca77
-    m_Address: Assets/Data/GameResources/Prefab/Widget/UICanvas.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Remote
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d95c7577627da014a8f3f3a3ed829c61
-    m_Address: Assets/Data/GameResources/Prefab/Widget/UIMessageBox.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Remote
-    FlaggedDuringContentUpdateRestriction: 0
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 0b85ada165676584a86a5d299cec6c75, type: 2}
   m_SchemaSet:
