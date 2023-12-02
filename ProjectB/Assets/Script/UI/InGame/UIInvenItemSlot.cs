@@ -14,6 +14,7 @@ public class UIInvenItemSlot : UISlot
     private InvenItemInfo invenItemInfo;
     private ItemRecord itemRecord;
     private int slotIdx;
+    private int runeIdx;
     private bool isEquip;
 
     protected override void Awake()
@@ -34,6 +35,7 @@ public class UIInvenItemSlot : UISlot
     public override void ResetData()
     {
         SetIcon(itemIcon, itemRecord.iconPath);
+        equipIcon.gameObject.SetActive(isEquip);
     }
 
     private void OnClickItem()
@@ -47,16 +49,25 @@ public class UIInvenItemSlot : UISlot
         isEquip = true;
         if(invenItemInfo.isRune)
         {
-            uiInGameInventory.EquipRune();
+            uiInGameInventory.OpenEquipRunePage(this);
         }
         else
         {
-            uiInGameInventory.EquipSkill();
+            uiInGameInventory.OpenEquipSkillPage(this);
         }
     }
 
     public void UnEquip()
     {
         isEquip = false;
+        if (invenItemInfo.isRune)
+        {
+            uiInGameInventory.UnEquipRune(slotIdx, runeIdx);
+        }
+        else
+        {
+            uiInGameInventory.UnEquipSkill(slotIdx);
+        }
+        ResetData();
     }
 }

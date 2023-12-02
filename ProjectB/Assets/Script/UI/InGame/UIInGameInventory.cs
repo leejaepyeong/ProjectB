@@ -87,19 +87,25 @@ public class UIInGameInventory : UIBase, LoopScrollPrefabSource, LoopScrollDataS
         invenItemList.Add(itemInfo);
     }
 
-    public void EquipSkill(int itemId, int slotIdx)
+    public void OpenEquipRunePage(UIInvenItemSlot invenItemSlot)
     {
-        var itemInfo = invenItemInfoDic[itemId];
 
+    }
+
+    public void OpenEquipSkillPage(UIInvenItemSlot invenItemSlot)
+    {
+
+    }
+
+    public void EquipSkill(InvenItemInfo itemInfo, int slotIdx)
+    {
         if (equipSkillDic.TryGetValue(slotIdx, out var equipSkill) == false) return;
 
         equipSkill.SetSkill(itemInfo.GetSkillRecord());
     }
 
-    public void EquipRune(int itemId, int slotIdx, int runeSlotIdx)
+    public void EquipRune(InvenItemInfo itemInfo, int slotIdx, int runeSlotIdx)
     {
-        var itemInfo = invenItemInfoDic[itemId];
-
         if (equipSkillDic.TryGetValue(slotIdx, out var equipSkill) == false) return;
         if (equipSkill.CanEquipRune(itemInfo.GetRuneRecord()) == false) return;
 
@@ -151,4 +157,5 @@ public class UIInGameInventory : UIBase, LoopScrollPrefabSource, LoopScrollDataS
         slot.Open(invenItem, this);
         slot.name = idx.ToString();
     }
+
 }

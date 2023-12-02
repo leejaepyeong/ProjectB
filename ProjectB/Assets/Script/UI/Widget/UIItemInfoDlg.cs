@@ -12,6 +12,7 @@ public class UIItemInfoDlg : UIBase
     [SerializeField, FoldoutGroup("Center")] private TextMeshProUGUI textItemCondition;
     [SerializeField, FoldoutGroup("Center")] private Image itemIcon;
     [SerializeField, FoldoutGroup("Bottom")] private Button buttonEquip;
+    [SerializeField, FoldoutGroup("Bottom")] private Button buttonUnEquip;
 
     private InvenItemInfo invenItemInfo;
     private UIInvenItemSlot uiInvenItemSlot;
@@ -20,6 +21,7 @@ public class UIItemInfoDlg : UIBase
     {
         base.Awake();
         buttonEquip.onClick.AddListener(OnClickEquip);
+        buttonUnEquip.onClick.AddListener(OnClickUnEquip);
     }
 
     public virtual void Open(InvenItemInfo itemInfo, UIInvenItemSlot invenItemSlot)
@@ -41,5 +43,9 @@ public class UIItemInfoDlg : UIBase
     private void OnClickEquip()
     {
         uiInvenItemSlot.Equip();
+    }
+    private void OnClickUnEquip()
+    {
+        uiInvenItemSlot.UnEquip();
     }
 }

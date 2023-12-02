@@ -109,9 +109,12 @@ public class SkillInfo
 
 public class UISkillSlot : UISlot
 {
-    [SerializeField] private Button buttonClick;
-    [SerializeField] private Image skillIcon;
-    [SerializeField] private Image OutLineIcon;
+    [SerializeField, FoldoutGroup("Info")] private Image skillIcon;
+    [SerializeField, FoldoutGroup("Info")] private Image OutLineIcon;
+    [SerializeField, FoldoutGroup("Info")] private int slotIdx;
+    [SerializeField, FoldoutGroup("Info")] private bool isMainSkillSlot;
+    [SerializeField, FoldoutGroup("Info")] private bool isPlacement;
+
     [SerializeField, FoldoutGroup("Block")] private Image blockIcon;
     [SerializeField, FoldoutGroup("Block")] private TextMeshProUGUI textCoolTime;
 
@@ -121,7 +124,7 @@ public class UISkillSlot : UISlot
     protected override void Awake()
     {
         base.Awake();
-        buttonClick.onClick.AddListener(OnClickSkill);
+        onClickAction = OnClickSkill;
     }
 
     public void Init(int index)

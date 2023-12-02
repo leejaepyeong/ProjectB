@@ -1,18 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+using Sirenix.OdinInspector;
 
-public class UISkillInven : MonoBehaviour
+public class UISkillInven : UIBase
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField, FoldoutGroup("Info")] UISkillSlot[] activeSkillGroup;
+    [SerializeField, FoldoutGroup("Info")] UISkillSlot[] passiveGroup;
+
+    public override void Open()
     {
-        
+        base.Open();
+        ResetData();
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void ResetData()
     {
-        
+        base.ResetData();
     }
 }

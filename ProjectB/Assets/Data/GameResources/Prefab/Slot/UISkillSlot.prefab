@@ -426,6 +426,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   btnClick: {fileID: 0}
+  btnCloseGroup: []
   buttonClick: {fileID: 2119541207323411191}
   skillIcon: {fileID: 3173799891750908852}
   OutLineIcon: {fileID: 7497903983490191987}
@@ -491,7 +492,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
