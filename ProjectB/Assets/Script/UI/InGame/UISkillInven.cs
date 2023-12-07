@@ -7,9 +7,14 @@ using Sirenix.OdinInspector;
 
 public class UISkillInven : UIBase
 {
-    [SerializeField, FoldoutGroup("Info")] UISkillSlot[] activeSkillGroup;
-    [SerializeField, FoldoutGroup("Info")] UISkillSlot[] passiveGroup;
+    [FoldoutGroup("Info")] public UISkillGroup mainSkillGroup;
+    [FoldoutGroup("Info")] public SkillInven activeSkillInven;
+    [FoldoutGroup("Info")] public SkillInven passiveSkillInven;
 
+    public virtual void Init()
+    {
+        mainSkillGroup.Init();
+    }
     public override void Open()
     {
         base.Open();
@@ -19,5 +24,10 @@ public class UISkillInven : UIBase
     public override void ResetData()
     {
         base.ResetData();
+    }
+
+    public override void UpdateFrame(float deltaTime)
+    {
+        base.UpdateFrame(deltaTime);
     }
 }

@@ -38,6 +38,10 @@ public class RuneRecord : RecordBase
             runeTypeInfoList.Add(new RuneTypeInfo(FileUtil.Get<eRuneType>(_data, $"Rune_effect{i+1}"), FileUtil.Get<float>(_data, $"Rune_effect{i + 1}_Value"), FileUtil.Get<int>(_data, $"Rune_Tag{ i + 1 }")));
         }
     }
+
+    public string getName => TableManager.Instance.stringTable.GetText(nameIdx);
+    public string getDest => TableManager.Instance.stringTable.GetText(destIdx);
+
     public RuneRecord GetCopyRecord()
     {
         RuneRecord copy = new RuneRecord();

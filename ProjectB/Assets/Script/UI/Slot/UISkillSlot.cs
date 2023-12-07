@@ -10,7 +10,7 @@ public class SkillInfo
     private float elaspedTIme;
     private float coolTime;
     public SkillRecord skillRecord;
-    public List<RuneRecord> runeList = new List<RuneRecord>();
+    public Dictionary<int, RuneRecord> runeDic = new Dictionary<int, RuneRecord>();
     public List<SkillEffectRecord> skillEffectList = new List<SkillEffectRecord>();
 
     public SkillInfo(SkillRecord skill)
@@ -32,7 +32,7 @@ public class SkillInfo
 
         if (Manager.Instance.CurScene.isTestScene)
         {
-            skillRecord = TableManager.Instance.skillTable.GetRecord(Manager.Instance.playerData.equipSkill[slotIdx]);
+            skillRecord = TableManager.Instance.skillTable.GetRecord(Manager.Instance.playerData.equipSkill[slotIdx]).GetCopyRecord();
         }
         else
         {
@@ -49,7 +49,11 @@ public class SkillInfo
             var copy = skillEffect.GetCopyRecord();
             skillEffectList.Add(copy);
         }
-        runeList.Clear();
+        runeDic.Clear();
+        for (int i = 0; i < Define.MaxEquipRune; i++)
+        {
+            runeDic.Add(i, null);
+        }
     }
 
     public float getTime { get { return elaspedTIme; } }
@@ -82,19 +86,12 @@ public class SkillInfo
             copy.SetRuneEffectToSkillEffect(skillEffectList[j]);
         }
 
-        if (equipIdx == -1)
-        {
-            runeList.Add(copy);
-        }
-        else
-        {
-            runeList[equipIdx] = copy;
-        }
+        runeDic[equipIdx] = copy;
     }
 
     public void RemoveRune(int runeIdx)
     {
-        runeList[runeIdx] = null;
+        runeDic[runeIdx] = null;
     }
 
     public void UseSkill()
@@ -109,22 +106,34 @@ public class SkillInfo
 
 public class UISkillSlot : UISlot
 {
-    [SerializeField, FoldoutGroup("Info")] private Image skillIcon;
-    [SerializeField, FoldoutGroup("Info")] private Image OutLineIcon;
-    [SerializeField, FoldoutGroup("Info")] private int slotIdx;
-    [SerializeField, FoldoutGroup("Info")] private bool isMainSkillSlot;
-    [SerializeField, FoldoutGroup("Info")] private bool isPlacement;
+    [SerializeField, FoldoutGroup("Info")] protected Image skillIcon;
+    [SerializeField, FoldoutGroup("Info")] protected Image OutLineIcon;
+    [SerializeField, FoldoutGroup("Info")] protected int slotIdx;
+    [SerializeField, FoldoutGroup("Info")] protected bool isMainSkillSlot;
+    [SerializeField, FoldoutGroup("Info")] protected bool isPlacement;
 
-    [SerializeField, FoldoutGroup("Block")] private Image blockIcon;
-    [SerializeField, FoldoutGroup("Block")] private TextMeshProUGUI textCoolTime;
+    [SerializeField, FoldoutGroup("Block")] protected Image blockIcon;
+    [SerializeField, FoldoutGroup("Block")] protected TextMeshProUGUI textCoolTime;
 
-    private SkillInfo skillInfo;
-    private int slotIndex;
+    protected SkillInfo skillInfo;
+    protected int slotIndex;
+    protected UIInvenItemSlot curInvenItemSlot;
+    protected UISkillInven_Placement uiSkillInvenPlacement;
+
+    public SkillInfo SkillInfo => skillInfo;
 
     protected override void Awake()
     {
         base.Awake();
-        onClickAction = OnClickSkill;
+        if(isPlacement)
+        {
+            if (isMainSkillSlot)
+                onClickAction = OnClickMainSkill_Placement;
+            else
+                onClickAction = OnClickActiveSkill_Placement;
+        }
+        else
+            onClickAction = OnClickSkill;
     }
 
     public void Init(int index)
@@ -133,13 +142,22 @@ public class UISkillSlot : UISlot
         skillInfo = new SkillInfo(slotIndex);
     }
 
-    public virtual void Open()
+    public virtual void Open(UISkillInven_Placement uiSkillInvenPlacement = null)
     {
-        SetIcon(skillIcon, "");
+        base.Open();
+        ResetData();
+        this.uiSkillInvenPlacement = uiSkillInvenPlacement;
+    }
+
+    public override void ResetData()
+    {
+        SetIcon(skillIcon, skillInfo.skillRecord.iconPath);
     }
 
     public override void UpdateFrame(float deltaTime)
     {
+        if (isPlacement) return;
+
         skillInfo.Update(deltaTime);
         SetCoolTime();
     }
@@ -155,11 +173,29 @@ public class UISkillSlot : UISlot
     #region Button Click
     protected void OnClickSkill()
     {
+        if (isMainSkillSlot == false) return;
         if (skillInfo.skillRecord == null) return;
         if (skillInfo.skillRecord.type != eSkillType.Active) return;
         if (UnitManager.Instance.Player.isUseSkill) return;
 
         skillInfo.UseSkill();
+    }
+
+    protected void OnClickActiveSkill_Placement()
+    {
+        if (curInvenItemSlot != null)
+            curInvenItemSlot.UnEquip();
+
+        curInvenItemSlot = uiSkillInvenPlacement.selectSlot;
+        curInvenItemSlot.Equip();
+        skillInfo = new SkillInfo(curInvenItemSlot.getSkillRecord);
+        ResetData();
+    }
+
+    protected void OnClickMainSkill_Placement()
+    {
+        var dlg = uiManager.OpenWidget<UIRuneChangeDlg>();
+        dlg.Open(this ,uiSkillInvenPlacement.selectSlot);
     }
     #endregion
 

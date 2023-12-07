@@ -1,18 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+using Sirenix.OdinInspector;
 
 public class SkillInven : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [FoldoutGroup("Info")] public List<UISkillSlot> skillSlots;
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateFrame(float deltaTime)
     {
-        
+        for (int i = 0; i < skillSlots.Count; i++)
+        {
+            skillSlots[i].UpdateFrame(deltaTime);
+        }
     }
 }

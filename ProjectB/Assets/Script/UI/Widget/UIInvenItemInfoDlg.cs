@@ -5,14 +5,13 @@ using UnityEngine.UI;
 using Sirenix.OdinInspector;
 using TMPro;
 
-public class UIItemInfoDlg : UIBase
+public class UIInvenItemInfoDlg : UIBase
 {
     [SerializeField, FoldoutGroup("Center")] private TextMeshProUGUI textItemName;
     [SerializeField, FoldoutGroup("Center")] private TextMeshProUGUI textItemDest;
     [SerializeField, FoldoutGroup("Center")] private TextMeshProUGUI textItemCondition;
+    [SerializeField, FoldoutGroup("Center")] private TextMeshProUGUI textEquip;
     [SerializeField, FoldoutGroup("Center")] private Image itemIcon;
-    [SerializeField, FoldoutGroup("Bottom")] private Button buttonEquip;
-    [SerializeField, FoldoutGroup("Bottom")] private Button buttonUnEquip;
 
     private InvenItemInfo invenItemInfo;
     private UIInvenItemSlot uiInvenItemSlot;
@@ -20,8 +19,7 @@ public class UIItemInfoDlg : UIBase
     protected override void Awake()
     {
         base.Awake();
-        buttonEquip.onClick.AddListener(OnClickEquip);
-        buttonUnEquip.onClick.AddListener(OnClickUnEquip);
+        onClickAction = OnClickEquip;
     }
 
     public virtual void Open(InvenItemInfo itemInfo, UIInvenItemSlot invenItemSlot)
@@ -34,18 +32,19 @@ public class UIItemInfoDlg : UIBase
 
     public override void ResetData()
     {
-        SetText(textItemName, invenItemInfo.getItemRecord.getName);
-        SetText(textItemDest, invenItemInfo.getItemRecord.getDest);
+        SetText(textItemName, invenItemInfo.GetName());
+        SetText(textItemDest, invenItemInfo.GetDest());
         SetText(textItemCondition, "");
-        SetIcon(itemIcon, invenItemInfo.getItemRecord.iconPath);
+        SetIcon(itemIcon, invenItemInfo.GetIcon());
+
+        SetText(textEquip, TableManager.Instance.stringTable.GetText(invenItemInfo.isEquip ? 1 : 2));
     }
 
     private void OnClickEquip()
     {
-        uiInvenItemSlot.Equip();
-    }
-    private void OnClickUnEquip()
-    {
-        uiInvenItemSlot.UnEquip();
+        if (invenItemInfo.isEquip)
+            uiInvenItemSlot.Equip();
+        else
+            uiInvenItemSlot.UnEquip();
     }
 }

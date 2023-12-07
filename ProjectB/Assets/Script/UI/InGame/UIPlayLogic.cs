@@ -12,14 +12,16 @@ public class UIPlayLogic : MonoBehaviour
     [SerializeField, FoldoutGroup("Top_Right")] private Button btnInven;
     [SerializeField, FoldoutGroup("Top_Left")] private Button btnStat;
 
-    [SerializeField, FoldoutGroup("Bottom")] private UISkillGroup uiSkillGroup;
+    [FoldoutGroup("Bottom")] public UISkillInven uiSkillInven;
+    [FoldoutGroup("Bottom")] public UISkillInven_Placement uiSkillInven_Placement;
 
     public void Init()
     {
         btnOption.onClick.AddListener(OnClickGamePause);
         btnInven.onClick.AddListener(OnClickInventory);
         btnStat.onClick.AddListener(OnClickStatInfo);
-        uiSkillGroup.Init();
+        uiSkillInven.Init();
+        uiSkillInven_Placement.Init();
     }
 
     public void UpdateFrame(float deltaTime)

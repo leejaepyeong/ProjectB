@@ -202,4 +202,12 @@ public enum eItemType
     Skill,
     Rune,
 }
+
+public enum eItemGrade
+{
+    N,
+    R,
+    SR,
+    SSR,
+}
 #endregion

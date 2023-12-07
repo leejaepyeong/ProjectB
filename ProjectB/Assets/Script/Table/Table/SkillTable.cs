@@ -52,6 +52,8 @@ public class SkillRecord : RecordBase
         //    skillEffects[i] = FileUtil.Get<int>(_data, $"Skill_Effect{i + 1}");
         //}
     }
+    public string getName => TableManager.Instance.stringTable.GetText(nameIdx);
+    public string getDest => TableManager.Instance.stringTable.GetText(destIdx);
 
     public SkillRecord GetCopyRecord()
     {

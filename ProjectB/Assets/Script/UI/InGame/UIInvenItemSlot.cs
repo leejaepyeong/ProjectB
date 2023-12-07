@@ -12,7 +12,6 @@ public class UIInvenItemSlot : UISlot
 
     private UIInGameInventory uiInGameInventory;
     private InvenItemInfo invenItemInfo;
-    private ItemRecord itemRecord;
     private int slotIdx;
     private int runeIdx;
     private bool isEquip;
@@ -23,51 +22,45 @@ public class UIInvenItemSlot : UISlot
         onClickAction = OnClickItem;
     }
 
+    public bool isRune => invenItemInfo.isRune;
+
     public virtual void Open(InvenItemInfo itemInfo, UIInGameInventory uiInGameInventory)
     {
         base.Open();
         this.uiInGameInventory = uiInGameInventory;
         invenItemInfo = itemInfo;
-        itemRecord = invenItemInfo.getItemRecord;
         ResetData();
     }
 
     public override void ResetData()
     {
-        SetIcon(itemIcon, itemRecord.iconPath);
+        SetIcon(itemIcon, invenItemInfo.GetIcon());
         equipIcon.gameObject.SetActive(isEquip);
     }
 
     private void OnClickItem()
     {
-        var dlg = uiManager.OpenWidget<UIItemInfoDlg>();
+        var dlg = uiManager.OpenWidget<UIInvenItemInfoDlg>();
         dlg.Open(invenItemInfo, this);
+    }
+
+    public void TryEquip()
+    {
+        PlayLogic.Instance.uiPlayLogic.uiSkillInven_Placement.Open(this);
     }
 
     public void Equip()
     {
         isEquip = true;
-        if(invenItemInfo.isRune)
-        {
-            uiInGameInventory.OpenEquipRunePage(this);
-        }
-        else
-        {
-            uiInGameInventory.OpenEquipSkillPage(this);
-        }
+        ResetData();
     }
 
     public void UnEquip()
     {
         isEquip = false;
-        if (invenItemInfo.isRune)
-        {
-            uiInGameInventory.UnEquipRune(slotIdx, runeIdx);
-        }
-        else
-        {
-            uiInGameInventory.UnEquipSkill(slotIdx);
-        }
         ResetData();
     }
+
+    public SkillRecord getSkillRecord => invenItemInfo.GetSkillRecord();
+    public RuneRecord getRuneRecord => invenItemInfo.GetRuneRecord();
 }

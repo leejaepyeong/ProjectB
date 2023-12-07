@@ -14,9 +14,10 @@ public enum ePlayLogicFsm
 }
 public class PlayLogic : BaseScene
 {
-    [FoldoutGroup("Setting"), SerializeField] protected SpawnLogic spawnLogic;
-    [FoldoutGroup("Setting"), SerializeField] protected UIPlayLogic uiPlayLogic;
-    public UIPlayLogic UIPlayLogic => uiPlayLogic;
+    public static PlayLogic Instance;
+
+    [FoldoutGroup("Setting")] public SpawnLogic spawnLogic;
+    [FoldoutGroup("Setting")] public UIPlayLogic uiPlayLogic;
 
     protected ePlayLogicFsm curFsm;
     protected Coroutine coFsmSetting;
@@ -29,6 +30,9 @@ public class PlayLogic : BaseScene
 
     public override void Init()
     {
+        if (Instance == null)
+            Instance = this;
+
         isSettingOn = false;
 
         commands.Add(loadDataFile);

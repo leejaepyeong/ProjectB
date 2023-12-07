@@ -1,18 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
-using Sirenix.OdinInspector;
 
-public class UISkillInven_Placement : UIBase
+public class UISkillInven_Placement : UISkillInven
 {
-    [SerializeField, FoldoutGroup("Info")] UISkillSlot[] mainSkillGroup;
-    [SerializeField, FoldoutGroup("Info")] UISkillSlot[] activeSkillGroup;
-    [SerializeField, FoldoutGroup("Info")] UISkillSlot[] passiveGroup;
+    public UIInvenItemSlot selectSlot;
+    private UISkillInven uiSkillInven;
 
-    private UIInvenItemSlot selectSlot;
-
+    public override void Init()
+    {
+        for (int i = 0; i < mainSkillGroup.uiSkillSlots.Count; i++)
+        {
+            mainSkillGroup.uiSkillSlots[i] = uiSkillInven.mainSkillGroup.uiSkillSlots[i];
+        }
+        Close();
+    }
     public virtual void Open(UIInvenItemSlot invenSlot)
     {
         base.Open();
@@ -22,6 +24,27 @@ public class UISkillInven_Placement : UIBase
 
     public override void ResetData()
     {
-        
+        mainSkillGroup.gameObject.SetActive(selectSlot.isRune);
+        activeSkillInven.gameObject.SetActive(selectSlot.isRune == false);
+        passiveSkillInven.gameObject.SetActive(selectSlot.isRune == false);
+
+        if(selectSlot.isRune)
+        {
+            for (int i = 0; i < mainSkillGroup.uiSkillSlots.Count; i++)
+            {
+                mainSkillGroup.uiSkillSlots[i].Open(this);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < activeSkillInven.skillSlots.Count; i++)
+            {
+                activeSkillInven.skillSlots[i].Open(this);
+            }
+            for (int i = 0; i < passiveSkillInven.skillSlots.Count; i++)
+            {
+                passiveSkillInven.skillSlots[i].Open(this);
+            }
+        }
     }
 }

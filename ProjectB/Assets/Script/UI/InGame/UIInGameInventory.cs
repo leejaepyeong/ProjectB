@@ -8,22 +8,26 @@ using TMPro;
 public class InvenItemInfo
 {
     public int itemId;
-    public int itemIndex;
     public bool isEquip;
 
     public bool isRune;
 
+    private int skillIndex;
+    private int runeIndex;
     public InvenItemInfo(int id, int idx, bool isRune)
     {
         itemId = id;
-        itemIndex = idx;
+        if (isRune)
+            runeIndex = idx;
+        else
+            skillIndex = idx;
         this.isRune = isRune;
     }
 
     public SkillRecord GetSkillRecord()
     {
         if (isRune) return null;
-        var skill = TableManager.Instance.skillTable.GetRecord(itemIndex);
+        var skill = TableManager.Instance.skillTable.GetRecord(skillIndex);
 
         return skill;
     }
@@ -31,19 +35,29 @@ public class InvenItemInfo
     public RuneRecord GetRuneRecord()
     {
         if (isRune == false) return null;
-        var rune = TableManager.Instance.runeTable.GetRecord(itemIndex);
+        var rune = TableManager.Instance.runeTable.GetRecord(runeIndex);
 
         return rune;
     }
 
-    public ItemRecord getItemRecord => TableManager.Instance.itemTable.GetRecord(itemIndex);
+    public string GetName()
+    {
+        return isRune ? GetRuneRecord().getName : GetSkillRecord().getName;
+    }
+    public string GetDest()
+    {
+        return isRune ? GetRuneRecord().getDest : GetSkillRecord().getDest;
+    }
+    public string GetIcon()
+    {
+        return isRune ? GetRuneRecord().iconPath : GetSkillRecord().iconPath;
+    }
 }
 
 public class UIInGameInventory : UIBase, LoopScrollPrefabSource, LoopScrollDataSource
 {
     public LoopScrollRect loopScrollRect;
 
-    private Dictionary<int, EquipSkill> equipSkillDic = new Dictionary<int, EquipSkill>();
     private Dictionary<int, InvenItemInfo> invenItemInfoDic = new Dictionary<int, InvenItemInfo>();
     private List<InvenItemInfo> invenItemList = new List<InvenItemInfo>();
     private Dictionary<Transform, UIInvenItemSlot> dicPrefab = new Dictionary<Transform, UIInvenItemSlot>();
@@ -53,10 +67,6 @@ public class UIInGameInventory : UIBase, LoopScrollPrefabSource, LoopScrollDataS
     protected override void Awake()
     {
         base.Awake();
-        for (int i = 1; i <= Define.MaxEquipSkill; i++)
-        {
-            equipSkillDic.Add(i, new EquipSkill());
-        }
     }
 
     public override void Open()
@@ -95,37 +105,6 @@ public class UIInGameInventory : UIBase, LoopScrollPrefabSource, LoopScrollDataS
     public void OpenEquipSkillPage(UIInvenItemSlot invenItemSlot)
     {
 
-    }
-
-    public void EquipSkill(InvenItemInfo itemInfo, int slotIdx)
-    {
-        if (equipSkillDic.TryGetValue(slotIdx, out var equipSkill) == false) return;
-
-        equipSkill.SetSkill(itemInfo.GetSkillRecord());
-    }
-
-    public void EquipRune(InvenItemInfo itemInfo, int slotIdx, int runeSlotIdx)
-    {
-        if (equipSkillDic.TryGetValue(slotIdx, out var equipSkill) == false) return;
-        if (equipSkill.CanEquipRune(itemInfo.GetRuneRecord()) == false) return;
-
-        equipSkill.SetRune(itemInfo.GetRuneRecord(), runeSlotIdx);
-    }
-
-    public void UnEquipSkill(int slotIdx)
-    {
-        if (equipSkillDic.TryGetValue(slotIdx, out var equipSkill) == false) return;
-        if (equipSkill.skillRecord == null) return;
-
-        equipSkill.skillRecord = null;
-    }
-
-    public void UnEquipRune(int slotIdx, int runeSlotIdx)
-    {
-        if (equipSkillDic.TryGetValue(slotIdx, out var equipSkill) == false) return;
-        if (equipSkill.skillRecord == null) return;
-
-        equipSkill.runeDic[runeSlotIdx] = null;
     }
 
     public GameObject GetObject(int index)
