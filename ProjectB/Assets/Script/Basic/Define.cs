@@ -199,8 +199,7 @@ public enum eRuneDetailType
 #region Item
 public enum eItemType
 {
-    Skill,
-    Rune,
+    None,
 }
 
 public enum eItemGrade

@@ -18,7 +18,8 @@ public class UIBase : MonoBase
 
     protected virtual void Awake()
     {
-        btnClick.onClick.AddListener(onClickAction);
+        if(btnClick != null)
+            btnClick.onClick.AddListener(onClickAction);
         for (int i = 0; i < btnCloseGroup.Length; i++)
         {
             btnCloseGroup[i].onClick.AddListener(Close);
