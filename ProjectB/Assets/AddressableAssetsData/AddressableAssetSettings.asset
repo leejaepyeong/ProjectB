@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 468a46d0ae32c3544b7d98094e6448a9, type: 3}
   m_Name: AddressableAssetSettings
   m_EditorClassIdentifier: 
-  m_DefaultGroup: f8a0a2819bbfc0d459aeff0108ace3ce
+  m_DefaultGroup: aed49bb3e90a4dc42b0da282a2c34763
   m_currentHash:
     serializedVersion: 2
-    Hash: 4212ac07cfd3262ffe0573808ed7d78e
+    Hash: e7644cc88dbc42a081822e2d139e0875
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_BundleLocalCatalog: 0
@@ -46,10 +46,14 @@ MonoBehaviour:
   m_GroupAssets:
   - {fileID: 11400000, guid: 6cc55b5d1f790a04cb29f34f2c72dd37, type: 2}
   - {fileID: 11400000, guid: abb2223568120924189403dbf392b007, type: 2}
-  - {fileID: 11400000, guid: 8c84b69a3101171488282ec294b9855c, type: 2}
-  - {fileID: 11400000, guid: 58924c9f13739f24792153b32c16427c, type: 2}
   - {fileID: 11400000, guid: 610111109bd597b48a9ecbdcfc56afc6, type: 2}
   - {fileID: 11400000, guid: da70196ed60c1ba4fa00a5af85ac983b, type: 2}
+  - {fileID: 11400000, guid: 3b6b3296fe68e034a862d08de1661fa7, type: 2}
+  - {fileID: 11400000, guid: 9ed7d85276166eb4e813c1cbf46ccc23, type: 2}
+  - {fileID: 11400000, guid: e38495c92eb2d6543b70feb2d7f530bd, type: 2}
+  - {fileID: 11400000, guid: ab09aba64c20ab9498916bb2ea23f765, type: 2}
+  - {fileID: 11400000, guid: a20f5281edf4fba409281d742a9f5b44, type: 2}
+  - {fileID: 11400000, guid: a22dca44495583e47bcd04d64ed0a9f5, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
     m_CleanupStreamingAssetsAfterBuilds: 1
@@ -93,7 +97,11 @@ MonoBehaviour:
     - Remote
     - JsonData
     - Encryp
-    - MessagePackData
+    - UI
+    - Unit
+    - Animation
+    - Table
+    - EventGraph
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 2b0bf11a6e4a2a248901412c7b10789a, type: 2}

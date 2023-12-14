@@ -199,6 +199,6 @@ public class EditorUtil
 {
     static public string GetResPath_digimon(string _filename)
     {
-        return string.Format("{0}/Resources/{1}.bytes", Application.dataPath, _filename);
+        return string.Format("{0}/{1}.bytes", Application.dataPath, _filename);
     }
 }

@@ -79,16 +79,14 @@ namespace Data
 
         private bool isEncryptFileDone;
         private bool isReadDataDone;
-        public bool IsReadDone => isEncryptFileDone && isReadDataDone;
+        public bool IsReadDone => isReadDataDone;
 
         private bool isDownLoadLeft;
         public bool IsDownLoadLeft => isDownLoadLeft;
 
         public void ReadData()
         {
-            if (Application.isEditor)
-                StartCoroutine(LoadAllJsonCo());
-            StartCoroutine(LoadAllEncrypFileCo());
+            StartCoroutine(LoadAllJsonCo());
         }
         #region Read Json
         private IEnumerator LoadAllJsonCo()
@@ -111,7 +109,7 @@ namespace Data
             {
                 var jsonFile = textAssets[i];
                 string fileName = string.Copy(jsonFile.name);
-                string jsonText = string.Copy(jsonFile.text);
+                string jsonText = Decrypt(string.Copy(jsonFile.text));
 
                 LoadJsonText(fileName, jsonText);
                 yield return new WaitForEndOfFrame();

@@ -78,7 +78,6 @@ public class EventDispatcher
         if(availabeNodes.Count == 0)
         {
             unitBehavior.isUseSkill = false;
-            unitBehavior.skillInfo = null;
             Clear();
         }    
     }

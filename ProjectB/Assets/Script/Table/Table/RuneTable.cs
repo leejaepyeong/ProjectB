@@ -84,26 +84,8 @@ public class RuneRecord : RecordBase
                 case eRuneType.CoolTimeDown:
                     skill.coolTIme -= runeTypeInfoList[i].value;
                     break;
-                case eRuneType.AddProjectilenum:
-                    skill.skillBulletTargetNum += (int)runeTypeInfoList[i].value;
-                    break;
-                case eRuneType.AddProjectilesize:
-                    skill.skillBulletSize += runeTypeInfoList[i].value;
-                    break;
-                case eRuneType.AddProjectilespd:
-                    skill.skillBulletSpd += runeTypeInfoList[i].value;
-                    break;
                 case eRuneType.AddProjectiledmg:
                     skill.damagePerValue += runeTypeInfoList[i].value;
-                    break;
-                case eRuneType.MinProjectilenum:
-                    skill.skillBulletTargetNum -= (int)runeTypeInfoList[i].value;
-                    break;
-                case eRuneType.MinProjectilesize:
-                    skill.skillBulletSize -= runeTypeInfoList[i].value;
-                    break;
-                case eRuneType.MinProjectilespd:
-                    skill.skillBulletSpd -= runeTypeInfoList[i].value;
                     break;
                 case eRuneType.MinProjectiledmg:
                     skill.damagePerValue -= runeTypeInfoList[i].value;

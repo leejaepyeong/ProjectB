@@ -125,7 +125,6 @@ public class UnitBehavior : BaseBehavior, IEventHandler
     private AnimatorOverrideController animatorContorller;
     private int id;
     public int ID => id;
-    private List<UnitBehavior> targets = new List<UnitBehavior>();
 
     private EventDispatcher eventDispatcher;
     private Dictionary<string, Transform> dicBoneTrf;
@@ -154,7 +153,6 @@ public class UnitBehavior : BaseBehavior, IEventHandler
     #endregion
 
     public bool isUseSkill;
-    public SkillInfo skillInfo;
 
     //Monster
     public void Init(Data.UnitData data, int id)
@@ -164,7 +162,6 @@ public class UnitBehavior : BaseBehavior, IEventHandler
         this.id = id;
         ElapsedTime = 0;
         isUseSkill = false;
-        skillInfo = null;
 
         timeScaleBehavior = Utilities.StaticeObjectPool.Pop<TimeScaleBehavior>();
         eventDispatcher = Utilities.StaticeObjectPool.Pop<EventDispatcher>();
@@ -284,25 +281,18 @@ public class UnitBehavior : BaseBehavior, IEventHandler
 
     private void OnHandleProjectileEvent(ProjectileEvent projectileEvent)
     {
-        if(isUseSkill && skillInfo == null)
+        if(isUseSkill && projectileEvent.SkillInfo == null)
         {
             isUseSkill = false;
             return;
         }
 
-        for (int i = 0; i < targets.Count; i++)
+        var targetList = Manager.Instance.skillManager.GetTargetList(this, isUseSkill ? projectileEvent.SkillInfo.skillRecord : unitData.atkInfo);
+
+        for (int i = 0; i < targetList.Count; i++)
         {
-            ProjectileManager.Instance.SpawnProjectile(isUseSkill ? skillInfo : unitState.atkInfo, projectileEvent, this, targets[i]);
+            ProjectileManager.Instance.SpawnProjectile(isUseSkill ? projectileEvent.SkillInfo : unitState.atkInfo, projectileEvent, this, targetList[i]);
         }
     }
     #endregion
-
-    public void SetTargets(List<UnitBehavior> targets)
-    {
-        this.targets.Clear();
-        for (int i = 0; i < targets.Count; i++)
-        {
-            this.targets.Add(targets[i]);
-        }
-    }
 }

@@ -8,7 +8,7 @@ using TMPro;
 public class SkillInfo
 {
     private float elaspedTIme;
-    private float coolTime;
+    public float coolTime;
     public SkillRecord skillRecord;
     public Dictionary<int, RuneRecord> runeDic = new Dictionary<int, RuneRecord>();
     public List<SkillEffectRecord> skillEffectList = new List<SkillEffectRecord>();
@@ -17,7 +17,7 @@ public class SkillInfo
     {
         skillRecord = skill.GetCopyRecord();
         skillEffectList.Clear();
-        for (int i = 0; i < skillRecord.skillEffects.Length; i++)
+        for (int i = 0; i < skillRecord.skillEffects.Count; i++)
         {
             if (TableManager.Instance.skillEffectTable.TryGetRecord(skillRecord.skillEffects[i], out var skillEffect) == false)
                 continue;
@@ -32,7 +32,8 @@ public class SkillInfo
 
         if (Manager.Instance.CurScene.isTestScene)
         {
-            skillRecord = TableManager.Instance.skillTable.GetRecord(Manager.Instance.playerData.equipSkill[slotIdx]).GetCopyRecord();
+            if(TableManager.Instance.skillTable.GetRecord(Manager.Instance.playerData.equipSkill[slotIdx]) != null)
+                skillRecord = TableManager.Instance.skillTable.GetRecord(Manager.Instance.playerData.equipSkill[slotIdx]).GetCopyRecord();
         }
         else
         {
@@ -42,14 +43,18 @@ public class SkillInfo
         }
 
         skillEffectList.Clear();
-        for (int i = 0; i < skillRecord.skillEffects.Length; i++)
+        runeDic.Clear();
+        if (skillRecord == null) return;
+
+        coolTime = skillRecord.coolTIme;
+        SetCoolTime();
+        for (int i = 0; i < skillRecord.skillEffects.Count; i++)
         {
             if (TableManager.Instance.skillEffectTable.TryGetRecord(skillRecord.skillEffects[i], out var skillEffect) == false)
                 continue;
             var copy = skillEffect.GetCopyRecord();
             skillEffectList.Add(copy);
         }
-        runeDic.Clear();
         for (int i = 0; i < Define.MaxEquipRune; i++)
         {
             runeDic.Add(i, null);
@@ -96,11 +101,11 @@ public class SkillInfo
 
     public void UseSkill()
     {
-        var targetList = Manager.Instance.skillManager.GetTargetList(UnitManager.Instance.Player, skillRecord);
-        UnitManager.Instance.Player.SetTargets(targetList);
         UnitManager.Instance.Player.isUseSkill = true;
-        UnitManager.Instance.Player.skillInfo = this;
+        skillRecord.skillNode.SetSkill(this);
         UnitManager.Instance.Player.Action(skillRecord.skillNode);
+
+        SetCoolTime();
     }
 }
 
@@ -124,7 +129,6 @@ public class UISkillSlot : UISlot
 
     protected override void Awake()
     {
-        base.Awake();
         if(isPlacement)
         {
             if (isMainSkillSlot)
@@ -134,6 +138,7 @@ public class UISkillSlot : UISlot
         }
         else
             onClickAction = OnClickSkill;
+        base.Awake();
     }
 
     public void Init(int index)
@@ -151,7 +156,7 @@ public class UISkillSlot : UISlot
 
     public override void ResetData()
     {
-        SetIcon(skillIcon, skillInfo.skillRecord.iconPath);
+        SetIcon(skillIcon, skillInfo.skillRecord != null ? skillInfo.skillRecord.iconPath : "");
     }
 
     public override void UpdateFrame(float deltaTime)
@@ -164,10 +169,17 @@ public class UISkillSlot : UISlot
 
     public void SetCoolTime()
     {
+        blockIcon.gameObject.SetActive(skillInfo.IsReadySkill() == false);
         if (skillInfo.getTime == 0)
+        {
             textCoolTime.SetText("");
+            blockIcon.fillAmount = 0;
+        }
         else
+        {
             textCoolTime.SetText(skillInfo.getTime.ToString("F1"));
+            blockIcon.fillAmount = skillInfo.getTime/ skillInfo.coolTime;
+        }
     }
 
     #region Button Click

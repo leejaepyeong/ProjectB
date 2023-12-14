@@ -15,11 +15,18 @@ MonoBehaviour:
   m_GroupName: JsonData
   m_Data:
     m_SerializedData: []
-  m_GUID: f8a0a2819bbfc0d459aeff0108ace3ce
-  m_SerializeEntries: []
+  m_GUID: 024a4e9afa48c3746a97f3c48ea83049
+  m_SerializeEntries:
+  - m_GUID: 1f01bb0c9d15cfa4489d05bb3458eecf
+    m_Address: Assets/Data/GameResources/DataJsons/UnitDataEditor.json
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Remote
+    - JsonData
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 0b85ada165676584a86a5d299cec6c75, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: e25d68dc203378e479f147b4026a2f69, type: 2}
-    - {fileID: 11400000, guid: 7bd462459f17f644f85389c84fbf52ce, type: 2}
+    - {fileID: 11400000, guid: b19fb34927171624088dc546bbc90164, type: 2}
+    - {fileID: 11400000, guid: 78cbfe01316a5ec4a823b17dcec4ad58, type: 2}

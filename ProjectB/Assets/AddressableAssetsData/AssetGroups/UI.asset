@@ -16,7 +16,49 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: aed49bb3e90a4dc42b0da282a2c34763
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: c225e4f35b8c7c141ab5521318c00a88
+    m_Address: Assets/Data/GameResources/Prefab/Slot
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f4e051863ec9ccd49ac5d83cc5f38c8f
+    m_Address: Assets/Data/Texture/Monk/Icons/Monk_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 256a155d28cc1d44aac1b3696e1bcc7d
+    m_Address: Assets/Data/Texture/Monk/Icons/Monk_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 23fe8c9cd42652c458bce3f14d40e28f
+    m_Address: Assets/Data/Texture/Monk/Icons/Monk_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3095abd356d88d74bb187cd57099617a
+    m_Address: Assets/Data/Texture/Monk/Icons/Monk_4.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1cd9067f56f526b4780b23958c282ddd
+    m_Address: Assets/Data/Texture/Monk/Icons/Monk_5.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 0b85ada165676584a86a5d299cec6c75, type: 2}
   m_SchemaSet:

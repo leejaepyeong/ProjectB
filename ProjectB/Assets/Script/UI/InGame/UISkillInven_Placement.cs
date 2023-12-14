@@ -5,7 +5,7 @@ using UnityEngine;
 public class UISkillInven_Placement : UISkillInven
 {
     public UIInvenItemSlot selectSlot;
-    private UISkillInven uiSkillInven;
+    public UISkillInven uiSkillInven;
 
     public override void Init()
     {
@@ -13,7 +13,6 @@ public class UISkillInven_Placement : UISkillInven
         {
             mainSkillGroup.uiSkillSlots[i] = uiSkillInven.mainSkillGroup.uiSkillSlots[i];
         }
-        Close();
     }
     public virtual void Open(UIInvenItemSlot invenSlot)
     {

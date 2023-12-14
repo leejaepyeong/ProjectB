@@ -16,7 +16,14 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 0de063ab133460e409eef63773b097ee
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 36810ca5946467f48b3c15fdf6476b35
+    m_Address: Assets/Data/GameResources/EventGraph
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Remote
+    - EventGraph
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 0b85ada165676584a86a5d299cec6c75, type: 2}
   m_SchemaSet:

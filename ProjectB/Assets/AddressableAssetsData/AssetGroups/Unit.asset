@@ -16,7 +16,21 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: d7b956c50242ae140a4ced54b2b61e9e
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: c5b7c412cd33aac42bf5f4cfa34fd077
+    m_Address: Assets/Data/GameResources/Prefab/Entity/Player/Player.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Remote
+    - Unit
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1c0c070baa2774b478b817ada04b67d9
+    m_Address: Assets/Data/GameResources/Prefab/Entity/MonsterA/MonsterA.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Remote
+    - Unit
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 0b85ada165676584a86a5d299cec6c75, type: 2}
   m_SchemaSet:

@@ -27,6 +27,8 @@ public class UIPlayLogic : MonoBehaviour
     public void UpdateFrame(float deltaTime)
     {
         uiWaveInfo.UpdateFrame(deltaTime);
+        uiSkillInven.UpdateFrame(deltaTime);
+        uiSkillInven_Placement.UpdateFrame(deltaTime);
         CheckKeyCode();
     }
 

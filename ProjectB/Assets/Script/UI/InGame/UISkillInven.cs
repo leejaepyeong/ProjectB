@@ -29,5 +29,6 @@ public class UISkillInven : UIBase
     public override void UpdateFrame(float deltaTime)
     {
         base.UpdateFrame(deltaTime);
+        mainSkillGroup.UpdateFrame(deltaTime);
     }
 }
