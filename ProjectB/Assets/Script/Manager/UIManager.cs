@@ -3,11 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-public class Parameter
-{
-
-}
-
 public class UIManager : BaseManager
 {
     private const string UICANVAS_PATH = "Assets/Data/GameResources/Prefab/Widget/UICanvas.prefab";
@@ -73,7 +68,7 @@ public class UIManager : BaseManager
         uiBases.Add(uibase);
     }
 
-    public UIBase OpenUI(string path, Parameter param = default)
+    public UIBase OpenUI(string path)
     {
         UIBase uiBase = GameObjectPool.Get(path).GetComponent<UIBase>();
         uiBase.transform.SetParent(canvas.transform);
@@ -82,10 +77,6 @@ public class UIManager : BaseManager
         uiBase.RectTransform.offsetMax = Vector2.zero;
         uiBase.RectTransform.localRotation = Quaternion.identity;
         uiBase.RectTransform.localScale = Vector3.one;
-
-        uiBase.SetParam(param);
-        uiBase.Init();
-        uiBase.Open();
 
         if (uiBase == null)
         {
@@ -96,7 +87,7 @@ public class UIManager : BaseManager
         return uiBase;
     }
 
-    public T OpenUI<T>(Parameter param = default) where T : UIBase
+    public T OpenWidget<T>() where T : UIBase
     {
         T uiBase = GameObjectPool.Get(GetUIPath<T>()).GetComponent<T>();
         uiBase.transform.SetParent(canvas.transform);
@@ -105,10 +96,6 @@ public class UIManager : BaseManager
         uiBase.RectTransform.offsetMax = Vector2.zero;
         uiBase.RectTransform.localRotation = Quaternion.identity;
         uiBase.RectTransform.localScale = Vector3.one;
-
-        uiBase.SetParam(param);
-        uiBase.Init();
-        uiBase.Open();
 
         if (uiBase == null)
         {
@@ -173,5 +160,22 @@ public class UIManager : BaseManager
     {
         System.Type _key = typeof(T);
         return string.Format("Assets/Data/GameResources/Prefab/Widget/" + _key.Name + ".prefab");
+    }
+
+    public UIMessageBox OpenMessageBox_Ok(string title = null, string dest = null, string okText = null, UnityEngine.Events.UnityAction okAction = null)
+    {
+        UIMessageBox msg = GetUI<UIMessageBox>();
+        msg.Open(title, dest, okText, okAction, null, null);
+
+        return msg;
+    }
+
+    public UIMessageBox OpenMessageBox_OkCancle(string title = null, string dest = null, string okText = null, UnityEngine.Events.UnityAction okAction = null,
+        string cancleText = null, UnityEngine.Events.UnityAction cancleAction = null)
+    {
+        UIMessageBox msg = GetUI<UIMessageBox>();
+        msg.Open(title, dest, okText, okAction, cancleText, cancleAction);
+
+        return msg;
     }
 }

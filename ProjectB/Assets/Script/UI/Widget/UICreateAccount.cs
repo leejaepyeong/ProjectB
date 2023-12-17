@@ -12,6 +12,7 @@ public class UICreateAccount : UIBase
         none,
         empty,
         maxLength,
+        noUseText,
     }
 
     [SerializeField, FoldoutGroup("Center")] private TMP_InputField textInputNick;
@@ -20,64 +21,43 @@ public class UICreateAccount : UIBase
 
     private eNickDeny nickState;
 
-    public class UIParameter : Parameter
+    protected override void Awake()
     {
-        public string ok;
-        public string cancle;
-        public bool escapable = true;
-        public bool backable = true;
-    }
-
-    public override void SetParam(Parameter param)
-    {
-        if (param is UIParameter parameter)
-        {
-            escapable = parameter.escapable;
-            backable = parameter.backable;
-        }
-    }
-
-    public override void Init()
-    {
-        base.Init();
+        base.Awake();
         buttonOk.onClick.AddListener(OnClickConfirm);
         buttonCancle.onClick.AddListener(OnClickCancle);
-    }
-
-    public override void DeInit()
-    {
-        buttonOk.onClick.RemoveAllListeners();
-        buttonCancle.onClick.RemoveAllListeners();
-    }
-    public override void Open()
-    {
-        base.Open();
     }
 
     #region Button Click
     private void OnClickConfirm()
     {
-        UIMessageBox.UIParameter parameter = new UIMessageBox.UIParameter();
         CheckNickName(textInputNick.text);
+        string title = "";
+        string dest = "";
+        UnityEngine.Events.UnityAction okAction = null;
 
         switch (nickState)
         {
             case eNickDeny.none:
-                parameter.title = TableManager.Instance.stringTable.GetText(1000);
-                parameter.dest = string.Format(TableManager.Instance.stringTable.GetText(1001), textInputNick);
+                title = TableManager.Instance.stringTable.GetText(1000);
+                dest = string.Format(TableManager.Instance.stringTable.GetText(1001), textInputNick);
                 UserInfo userInfo = new UserInfo(textInputNick.text);
-                parameter.okAction = () => SaveData_Local.Instance.SetUserInfo(userInfo); SaveData_PlayerSkill.Instance.SetSkillInfo(); Close();
+                okAction = () => SaveData_Local.Instance.SetUserInfo(userInfo); SaveData_PlayerSkill.Instance.SetSkillInfo(); Close();
                 break;
             case eNickDeny.empty:
-                parameter.title = TableManager.Instance.stringTable.GetText(1000);
-                parameter.dest = TableManager.Instance.stringTable.GetText(1002);
+                title = TableManager.Instance.stringTable.GetText(1000);
+                dest = TableManager.Instance.stringTable.GetText(1002);
                 break;
             case eNickDeny.maxLength:
-                parameter.title = TableManager.Instance.stringTable.GetText(1000);
-                parameter.dest = TableManager.Instance.stringTable.GetText(1003);
+                title = TableManager.Instance.stringTable.GetText(1000);
+                dest = TableManager.Instance.stringTable.GetText(1003);
+                break;
+            case eNickDeny.noUseText:
+                title = TableManager.Instance.stringTable.GetText(1000);
+                dest = TableManager.Instance.stringTable.GetText(1004);
                 break;
         }
-        uiManager.OpenUI<UIMessageBox>(parameter);
+        uiManager.OpenMessageBox_Ok(title, dest, okAction: okAction);
     }
 
     private void OnClickCancle()
@@ -90,8 +70,15 @@ public class UICreateAccount : UIBase
     {
         if (string.IsNullOrEmpty(name)) { nickState = eNickDeny.empty; return; };
         if (name.Length > Define.MaxNickName) {nickState = eNickDeny.maxLength ; return; };
+        if(IsVaildString(name) == false) { nickState = eNickDeny.noUseText; return; };
 
         nickState = eNickDeny.none;
         return;
+    }
+
+    private bool IsVaildString(string name)
+    {
+        string pattern = @"[a-zA-Z0-9°¡-ÆR]$";
+        return System.Text.RegularExpressions.Regex.IsMatch(name, pattern);
     }
 }

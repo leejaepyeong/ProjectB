@@ -8,16 +8,16 @@ using TMPro;
 public class SkillInfo
 {
     private float elaspedTIme;
-    private float coolTime;
+    public float coolTime;
     public SkillRecord skillRecord;
-    public List<RuneRecord> runeList = new List<RuneRecord>();
+    public Dictionary<int, RuneRecord> runeDic = new Dictionary<int, RuneRecord>();
     public List<SkillEffectRecord> skillEffectList = new List<SkillEffectRecord>();
 
     public SkillInfo(SkillRecord skill)
     {
         skillRecord = skill.GetCopyRecord();
         skillEffectList.Clear();
-        for (int i = 0; i < skillRecord.skillEffects.Length; i++)
+        for (int i = 0; i < skillRecord.skillEffects.Count; i++)
         {
             if (TableManager.Instance.skillEffectTable.TryGetRecord(skillRecord.skillEffects[i], out var skillEffect) == false)
                 continue;
@@ -28,24 +28,37 @@ public class SkillInfo
     public SkillInfo(int slotIdx)
     {
         elaspedTIme = 0;
-        var playerSkill = SaveData_PlayerSkill.Instance.GetEquipSkill(slotIdx);
-        skillRecord = playerSkill.GetSkillData();
+        skillRecord = null;
+
+        if (Manager.Instance.CurScene.isTestScene)
+        {
+            if(TableManager.Instance.skillTable.GetRecord(Manager.Instance.playerData.equipSkill[slotIdx]) != null)
+                skillRecord = TableManager.Instance.skillTable.GetRecord(Manager.Instance.playerData.equipSkill[slotIdx]).GetCopyRecord();
+        }
+        else
+        {
+            var playerSkill = SaveData_PlayerSkill.Instance.GetEquipSkill(slotIdx);
+            if (playerSkill == null) return;
+            skillRecord = playerSkill.GetSkillData();
+        }
+
         skillEffectList.Clear();
-        for (int i = 0; i < skillRecord.skillEffects.Length; i++)
+        runeDic.Clear();
+        if (skillRecord == null) return;
+
+        coolTime = skillRecord.coolTIme;
+        SetCoolTime();
+        for (int i = 0; i < skillRecord.skillEffects.Count; i++)
         {
             if (TableManager.Instance.skillEffectTable.TryGetRecord(skillRecord.skillEffects[i], out var skillEffect) == false)
                 continue;
             var copy = skillEffect.GetCopyRecord();
             skillEffectList.Add(copy);
         }
-        runeList.Clear();
-        for (int i = 0; i < playerSkill.equipRuneGroup.Length; i++)
+        for (int i = 0; i < Define.MaxEquipRune; i++)
         {
-            if (playerSkill.equipRuneGroup[i] == 0) continue;
-            runeList.Add(playerSkill.GetRuneData(playerSkill.equipRuneGroup[i]));
+            runeDic.Add(i, null);
         }
-        
-        SetRuneEffect();
     }
 
     public float getTime { get { return elaspedTIme; } }
@@ -68,83 +81,149 @@ public class SkillInfo
         elaspedTIme = coolTime;
     }
 
-    private void SetRuneEffect()
+    public void AddRune(RuneRecord runeRecord, int equipIdx)
     {
-
-        for (int i = 0; i < runeList.Count; i++)
+        var copy = runeRecord.GetCopyRecord();
+        copy.AddSkillEffectToSkill(skillEffectList);
+        copy.SetRuneEffectToSkill(skillRecord);
+        for (int j = 0; j < skillEffectList.Count; j++)
         {
-            runeList[i].AddSkillEffectToSkill(skillEffectList);
+            copy.SetRuneEffectToSkillEffect(skillEffectList[j]);
         }
 
-        for (int i = 0; i < runeList.Count; i++)
-        {
-            runeList[i].SetRuneEffectToSkill(skillRecord);
-            for (int j = 0; j < skillEffectList.Count; j++)
-            {
-                runeList[i].SetRuneEffectToSkillEffect(skillEffectList[j]);
-            }
-        }
+        runeDic[equipIdx] = copy;
+    }
+
+    public void RemoveRune(int runeIdx)
+    {
+        runeDic[runeIdx] = null;
     }
 
     public void UseSkill()
     {
-        var targetList = Manager.Instance.skillManager.GetTargetList(UnitManager.Instance.Player, skillRecord);
-        UnitManager.Instance.Player.SetTargets(targetList);
         UnitManager.Instance.Player.isUseSkill = true;
-        UnitManager.Instance.Player.skillInfo = this;
+        skillRecord.skillNode.SetSkill(this);
         UnitManager.Instance.Player.Action(skillRecord.skillNode);
+
+        SetCoolTime();
     }
 }
 
 public class UISkillSlot : UISlot
 {
-    [SerializeField] private Button buttonClick;
-    [SerializeField] private Image skillIcon;
-    [SerializeField] private Image OutLineIcon;
-    [SerializeField, FoldoutGroup("Block")] private Image blockIcon;
-    [SerializeField, FoldoutGroup("Block")] private TextMeshProUGUI textCoolTime;
+    [SerializeField, FoldoutGroup("Info")] protected Image skillIcon;
+    [SerializeField, FoldoutGroup("Info")] protected Image OutLineIcon;
+    [SerializeField, FoldoutGroup("Info")] protected int slotIdx;
+    [SerializeField, FoldoutGroup("Info")] protected bool isMainSkillSlot;
+    [SerializeField, FoldoutGroup("Info")] protected bool isPlacement;
 
-    private SkillInfo skillInfo;
-    private int slotIndex;
+    [SerializeField, FoldoutGroup("Block")] protected Image blockIcon;
+    [SerializeField, FoldoutGroup("Block")] protected TextMeshProUGUI textCoolTime;
 
-    public virtual void Init(int index)
+    protected SkillInfo skillInfo;
+    protected int slotIndex;
+    protected UIInvenItemSlot curInvenItemSlot;
+    protected UISkillInven_Placement uiSkillInvenPlacement;
+
+    public SkillInfo SkillInfo => skillInfo;
+
+    protected override void Awake()
     {
-        buttonClick.onClick.AddListener(OnClickSkill);
+        if(isPlacement)
+        {
+            if (isMainSkillSlot)
+                onClickAction = OnClickMainSkill_Placement;
+            else
+                onClickAction = OnClickActiveSkill_Placement;
+        }
+        else
+            onClickAction = OnClickSkill;
+        base.Awake();
+    }
+
+    public void Init(int index)
+    {
         slotIndex = index;
         skillInfo = new SkillInfo(slotIndex);
     }
 
-    public override void UnInit()
+    public virtual void Open(UISkillInven_Placement uiSkillInvenPlacement = null)
     {
-        buttonClick.onClick.RemoveAllListeners();
+        base.Open();
+        ResetData();
+        this.uiSkillInvenPlacement = uiSkillInvenPlacement;
     }
 
-    public virtual void Open()
+    public override void ResetData()
     {
-        SetIcon(skillIcon, "");
+        SetIcon(skillIcon, skillInfo.skillRecord != null ? skillInfo.skillRecord.iconPath : "");
     }
 
     public override void UpdateFrame(float deltaTime)
     {
+        if (isPlacement) return;
+
         skillInfo.Update(deltaTime);
         SetCoolTime();
     }
 
     public void SetCoolTime()
     {
+        blockIcon.gameObject.SetActive(skillInfo.IsReadySkill() == false);
         if (skillInfo.getTime == 0)
+        {
             textCoolTime.SetText("");
+            blockIcon.fillAmount = 0;
+        }
         else
+        {
             textCoolTime.SetText(skillInfo.getTime.ToString("F1"));
+            blockIcon.fillAmount = skillInfo.getTime/ skillInfo.coolTime;
+        }
     }
 
     #region Button Click
     protected void OnClickSkill()
     {
+        if (isMainSkillSlot == false) return;
+        if (skillInfo.skillRecord == null) return;
         if (skillInfo.skillRecord.type != eSkillType.Active) return;
         if (UnitManager.Instance.Player.isUseSkill) return;
 
         skillInfo.UseSkill();
     }
+
+    protected void OnClickActiveSkill_Placement()
+    {
+        if (curInvenItemSlot != null)
+            curInvenItemSlot.UnEquip();
+
+        curInvenItemSlot = uiSkillInvenPlacement.selectSlot;
+        curInvenItemSlot.Equip();
+        skillInfo = new SkillInfo(curInvenItemSlot.getSkillRecord);
+        ResetData();
+    }
+
+    protected void OnClickMainSkill_Placement()
+    {
+        var dlg = uiManager.OpenWidget<UIRuneChangeDlg>();
+        dlg.Open(this ,uiSkillInvenPlacement.selectSlot);
+    }
     #endregion
+
+    public void ChangeRune(RuneRecord runeRecord, int equipIdx)
+    {
+        UnEquipRune(equipIdx);
+        EquipRune(runeRecord, equipIdx);
+    }
+
+    public void EquipRune(RuneRecord runeRecord, int equipIdx = -1)
+    {
+        skillInfo.AddRune(runeRecord, equipIdx);
+    }
+
+    public void UnEquipRune(int equipIdx)
+    {
+        skillInfo.RemoveRune(equipIdx);
+    }
 }

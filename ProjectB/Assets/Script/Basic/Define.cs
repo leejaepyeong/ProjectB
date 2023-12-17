@@ -162,13 +162,7 @@ public enum eRuneType
     AddEffect,
     AddEffectTime,
     CoolTimeDown,
-    AddProjectilenum,
-    AddProjectilesize,
-    AddProjectilespd,
     AddProjectiledmg,
-    MinProjectilenum,
-    MinProjectilesize,
-    MinProjectilespd,
     MinProjectiledmg,
     AddRange,
     AddTarget,
@@ -193,5 +187,20 @@ public enum eRuneDetailType
 
     Add,
     Atk,
+}
+#endregion
+
+#region Item
+public enum eItemType
+{
+    None,
+}
+
+public enum eItemGrade
+{
+    N,
+    R,
+    SR,
+    SSR,
 }
 #endregion

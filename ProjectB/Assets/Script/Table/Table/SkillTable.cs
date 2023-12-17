@@ -9,6 +9,7 @@ public class SkillRecord : RecordBase
     public int groupIdx;
     public int nameIdx;
     public int destIdx;
+    public string iconPath;
     public eSkillType type;
     public eSkillDetailType detailType;
     public float coolTIme;
@@ -16,13 +17,11 @@ public class SkillRecord : RecordBase
     public eDamagePerType damagePerType;
     public float damagePerValue;
     public int skillBulletTargetNum;
-    public float skillBulletSpd;
-    public float skillBulletSize;
     public int equipRuneCount;
     public List<int> skillTags = new List<int>();
     private string eventNodePath;
     public EventGraph skillNode => BattleManager.Instance.ResourcePool.Load<EventGraph>(eventNodePath);
-    public int[] skillEffects = new int[3];
+    public List<int> skillEffects = new List<int>();
 
     public override void LoadExcel(Dictionary<string, string> _data)
     {
@@ -30,33 +29,45 @@ public class SkillRecord : RecordBase
         groupIdx = FileUtil.Get<int>(_data, "Skill_Group");
         nameIdx = FileUtil.Get<int>(_data, "Skill_Name");
         destIdx = FileUtil.Get<int>(_data, "Skill_Desc");
+        iconPath = FileUtil.Get<string>(_data, "Skill_IconPath");
         type = FileUtil.Get<eSkillType>(_data, "Skill_Type");
         detailType = FileUtil.Get<eSkillDetailType>(_data, "Skill_DetailType");
         coolTIme = FileUtil.Get<float>(_data, "Skill_Cooltime");
         targetType = FileUtil.Get<eSkillTarget>(_data, "Skill_Target");
         damagePerType = FileUtil.Get<eDamagePerType>(_data, "Skill_Dmg_Type");
         damagePerValue = FileUtil.Get<float>(_data, "Skill_Dmg_num");
-        skillBulletTargetNum = FileUtil.Get<int>(_data, "Skill_Bullet");
-        skillBulletSpd = FileUtil.Get<int>(_data, "Skill_Bullet_Spd");
-        skillBulletSize = FileUtil.Get<int>(_data, "Skill_Bullet_Size");
+        skillBulletTargetNum = FileUtil.Get<int>(_data, "Skill_Target");
         equipRuneCount = FileUtil.Get<int>(_data, "Skill_Equip_Rune");
         for (int i = 0; i < 5; i++)
         {
             skillTags.Add(FileUtil.Get<int>(_data, $"Tag{i + 1}"));
         }
         eventNodePath = FileUtil.Get<string>(_data, "SkillNode");
-        //for (int i = 0; i < skillEffects.Length; i++)
-        //{
-        //    skillEffects[i] = FileUtil.Get<int>(_data, $"Skill_Effect{i + 1}");
-        //}
+        SetSkillEffectList(FileUtil.Get<string>(_data, "SkillEffects"));
     }
+
+    private void SetSkillEffectList(string effectString)
+    {
+        if (string.IsNullOrEmpty(effectString) || effectString == "0") return;
+
+        string[] effectSplits = effectString.Split('/');
+        for (int i = 0; i < effectSplits.Length; i++)
+        {
+            skillEffects.Add(int.Parse(effectSplits[i]));
+        }
+    }
+
+    public string getName => TableManager.Instance.stringTable.GetText(nameIdx);
+    public string getDest => TableManager.Instance.stringTable.GetText(destIdx);
 
     public SkillRecord GetCopyRecord()
     {
         SkillRecord copy = new SkillRecord();
+        copy.index = index;
         copy.groupIdx = groupIdx;
         copy.nameIdx = nameIdx;
         copy.destIdx = destIdx;
+        copy.iconPath = iconPath;
         copy.type = type;
         copy.detailType = detailType;
         copy.coolTIme = coolTIme;
@@ -64,17 +75,15 @@ public class SkillRecord : RecordBase
         copy.damagePerType = damagePerType;
         copy.damagePerValue = damagePerValue;
         copy.skillBulletTargetNum = skillBulletTargetNum;
-        copy.skillBulletSpd = skillBulletSpd;
-        copy.skillBulletSize = skillBulletSize;
         copy.equipRuneCount = equipRuneCount;
         for (int i = 0; i < copy.skillTags.Count; i++)
         {
             copy.skillTags.Add(skillTags[i]);
         }
         copy.eventNodePath = eventNodePath;
-        for (int i = 0; i < copy.skillEffects.Length; i++)
+        for (int i = 0; i < copy.skillEffects.Count; i++)
         {
-            copy.skillEffects[i] = skillEffects[i];
+            copy.skillEffects.Add(skillEffects[i]);
         }
         return copy;
     }

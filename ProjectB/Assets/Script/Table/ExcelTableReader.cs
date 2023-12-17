@@ -149,10 +149,11 @@ public class ExcelTableReader : EditorWindow
 
         m_excel = new List<ExcelFileGroup>();
 
-        AddLoadExcelGroup("/../../Table/String.xlsx", new StringTable(_fileSave, "Table/String_Info"), "String_Info");
-        AddLoadExcelGroup("/../../Table/Skill.xlsx", new SkillTable(_fileSave, "Table/Skill_Info"), "Skill_Info");
-        AddLoadExcelGroup("/../../Table/Rune.xlsx", new RuneTable(_fileSave, "Table/Rune_Effect_Info"), "Rune_Effect_Info");
-        AddLoadExcelGroup("/../../Table/SkillEffect.xlsx", new SkillEffectTable(_fileSave, "Table/Skill_Effect_Info"), "Skill_Effect_Info");
+        AddLoadExcelGroup("/../../Table/String.xlsx", new StringTable(_fileSave, "Resources/Table/String_Info"), "String_Info");
+        AddLoadExcelGroup("/../../Table/Skill.xlsx", new SkillTable(_fileSave, "Resources/Table/Skill_Info"), "Skill_Info");
+        AddLoadExcelGroup("/../../Table/Rune.xlsx", new RuneTable(_fileSave, "Resources/Table/Rune_Effect_Info"), "Rune_Effect_Info");
+        AddLoadExcelGroup("/../../Table/SkillEffect.xlsx", new SkillEffectTable(_fileSave, "Resources/Table/Skill_Effect_Info"), "Skill_Effect_Info");
+        AddLoadExcelGroup("/../../Table/Item.xlsx", new ItemTable(_fileSave, "Resources/Table/Item_Info"), "Item_Info");
     }
 
     void OnGUI()

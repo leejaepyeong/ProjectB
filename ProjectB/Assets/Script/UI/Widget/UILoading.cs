@@ -12,20 +12,6 @@ public class UILoading : UIBase
     private float guage;
     private float maxGuage;
 
-    public class UIParameter : Parameter
-    {
-    }
-
-    public override void SetParam(Parameter param)
-    {
-
-    }
-
-    public override void Init()
-    {
-        base.Init();
-    }
-
     public override void Open()
     {
         base.Open();

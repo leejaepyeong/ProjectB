@@ -10,7 +10,6 @@ public class SkillSaveInfo
     public int lv;
     public int index;
     public int equipIndex;
-    public int[] equipRuneGroup = new int[10];
 
     public void Init(int idx)
     {
@@ -26,35 +25,13 @@ public class SkillSaveInfo
         if (TableManager.Instance.skillTable.TryGetRecord(index, out var data) == false) return null;
         return data.GetCopyRecord();
     }
-    public RuneRecord GetRuneData(int runeId)
-    {
-        int seed = SaveData_PlayerSkill.Instance.equipRuneInfo[runeId].runeSeed;
-        TableManager.Instance.runeTable.TryGetRecord(seed, out var data); 
-        return data.GetCopyRecord();
-    }
-}
-[System.Serializable]
-public class RuneSaveInfo
-{
-    public bool isEquip;
-    public int id;
-    public int runeSeed;
-
-    public RuneSaveInfo(int id, int seed)
-    {
-        this.id = id;
-        this.runeSeed = seed;
-        isEquip = false;
-    }
 }
 public class SaveData_PlayerSkill : SaveData
 {
     //ÀüÃ¼ ½ºÅ³, ·é
     public List<SkillSaveInfo> skillSaveInfoGroup = new List<SkillSaveInfo>();
-    public List<RuneSaveInfo> runeSaveInfoGroup = new List<RuneSaveInfo>();
     //ÀåÂø ½ºÅ³, ·é
-    public List<SkillSaveInfo> equipSkillInfo = new List<SkillSaveInfo>(Define.MaxEquipSkill);
-    public Dictionary<int, RuneSaveInfo> equipRuneInfo = new Dictionary<int, RuneSaveInfo>();
+    public List<SkillSaveInfo> equipSkillInfo = new List<SkillSaveInfo>();
 
     public int RuneId;
     public static SaveData_PlayerSkill Instance
@@ -67,11 +44,6 @@ public class SaveData_PlayerSkill : SaveData
 
     public void Init()
     {
-        for (int i = 0; i < runeSaveInfoGroup.Count; i++)
-        {
-            if(runeSaveInfoGroup[i].isEquip)
-                equipRuneInfo.Add(runeSaveInfoGroup[i].id, runeSaveInfoGroup[i]);
-        }
     }
 
     #region SkillInfo
@@ -108,21 +80,9 @@ public class SaveData_PlayerSkill : SaveData
     }
     public SkillSaveInfo GetEquipSkill(int slotIdx)
     {
+        if (equipSkillInfo.Count <= slotIdx) return null;
+
         return equipSkillInfo[slotIdx];
-    }
-
-    public void SetRune(RuneSaveInfo saveData)
-    {
-        runeSaveInfoGroup.Add(saveData);
-        RuneId += 1;
-
-        SetChange();
-        SetNotify();
-    }
-
-    public RuneSaveInfo GetRunInfo(int id)
-    {
-        return runeSaveInfoGroup.Find(a => a.id == id);
     }
 
     #endregion
@@ -148,31 +108,6 @@ public class SaveData_PlayerSkill : SaveData
         if (preSkillData != null) preSkillData.equipIndex = -1;
 
         equipSkillInfo[slotIdx] = null;
-    }
-    public void RuneEquip(int skillIdx, int equipIdx, int runeId)
-    {
-        RuneUnEquip(skillIdx, equipIdx);
-
-        var skillData = skillSaveInfoGroup.Find(a => a.index == skillIdx);
-        skillData.equipRuneGroup[equipIdx] = runeId;
-
-        var runeData = runeSaveInfoGroup.Find(a => a.id == runeId);
-        runeData.isEquip = true;
-
-        SetChange();
-        SetNotify();
-    }
-    public void RuneUnEquip(int skillIdx, int equipIdx)
-    {
-        var skillData = skillSaveInfoGroup.Find(a => a.index == skillIdx);
-        if (skillData.equipRuneGroup[equipIdx] == 0) return;
-
-        var runeData = runeSaveInfoGroup.Find(a => a.id == skillData.equipRuneGroup[equipIdx]);
-        runeData.isEquip = true;
-        skillData.equipRuneGroup[equipIdx] = 0;
-
-        SetChange();
-        SetNotify();
     }
     public void ChangeSkillLevel(int skillIdx, int value)
     {

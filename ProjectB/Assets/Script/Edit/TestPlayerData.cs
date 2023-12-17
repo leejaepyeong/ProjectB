@@ -17,5 +17,5 @@ public class TestPlayerData : ScriptableObject
     [FoldoutGroup("Stat")] public float criRate;
     [FoldoutGroup("Stat")] public float criDmg;
 
-    [FoldoutGroup("Skill")] public string temp;
+    [FoldoutGroup("Skill")] public List<int> equipSkill;
 }

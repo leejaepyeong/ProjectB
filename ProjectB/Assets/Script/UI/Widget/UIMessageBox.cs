@@ -20,54 +20,17 @@ public class UIMessageBox : UIBase
     private string ok;
     private string cancle;
 
-    private bool isCancleOn;
-
     private UnityAction okAction;
     private UnityAction cancleAction;
 
-    public class UIParameter : Parameter
+    protected override void Awake()
     {
-        public string title;
-        public string dest;
-        public string ok = "1";
-        public string cancle = "2";
-        public bool isCancleOn = true;
-        public bool escapable = true;
-        public bool backable = true;
-        public UnityAction okAction;
-        public UnityAction cancleAction;
-    }
-
-    public override void SetParam(Parameter param)
-    {
-        if(param is UIParameter parameter)
-        {
-            title = parameter.title;
-            dest = parameter.dest;
-            ok = parameter.ok;
-            cancle = parameter.cancle;
-            escapable = parameter.escapable;
-            backable = parameter.backable;
-            isCancleOn = parameter.isCancleOn;
-            okAction = parameter.okAction;
-            cancleAction = parameter.cancleAction;
-        }
-    }
-
-    public override void Init()
-    {
-        base.Init();
+        base.Awake();
         buttonOk.onClick.AddListener(OnClickOk);
         buttonCancle.onClick.AddListener(OnClickCancle);
     }
 
-    public override void DeInit()
-    {
-        buttonOk.onClick.RemoveAllListeners();
-        buttonCancle.onClick.RemoveAllListeners();
-    }
-
-    public override void Open()
+    public virtual void Open(string title, string dest, string okText, UnityAction okAction, string cancleText, UnityAction cancleAction)
     {
         base.Open();
 
@@ -75,6 +38,9 @@ public class UIMessageBox : UIBase
         SetText(textDest, dest);
         SetText(textOk, ok);
         SetText(textCancle, cancle);
+
+        this.okAction = okAction;
+        this.cancleAction = cancleAction;
     }
 
     #region Button Click

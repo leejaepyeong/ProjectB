@@ -9,7 +9,7 @@ public class RecordBase
 
     public virtual void LoadExcel(Dictionary<string, string> _data)
     {
-        index = FileUtil.Get<int>(_data, "index");
+        index = FileUtil.Get<int>(_data, "Index");
     }
 }
 

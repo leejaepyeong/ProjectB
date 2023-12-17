@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Animation
+  m_EditorClassIdentifier: 
+  m_GroupName: Animation
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 622ee08801ddd204db734ea8363a720a
+  m_SerializeEntries:
+  - m_GUID: f6ed231003949d242a9d1dc4e329f2d3
+    m_Address: Assets/Data/GameResources/Animation
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Remote
+    - Animation
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 0b85ada165676584a86a5d299cec6c75, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 6889c49aa6a39654ca2a4adaa7700cf8, type: 2}
+    - {fileID: 11400000, guid: dfd3e9e7899cebe4b950dd65a6f26957, type: 2}

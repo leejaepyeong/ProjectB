@@ -12,4 +12,9 @@ public class BaseScene : MonoBase
         Manager.Instance.SetUI(this);
         Init();
     }
+
+    public virtual void Init()
+    {
+
+    }
 }

@@ -23,6 +23,7 @@ public class RuneRecord : RecordBase
     public int groupIdx;
     public int nameIdx;
     public int destIdx;
+    public string iconPath;
     public List<RuneTypeInfo> runeTypeInfoList = new List<RuneTypeInfo>();
 
     public override void LoadExcel(Dictionary<string, string> _data)
@@ -31,11 +32,16 @@ public class RuneRecord : RecordBase
         groupIdx = FileUtil.Get<int>(_data, "Rune_Group");
         nameIdx = FileUtil.Get<int>(_data, "Rune_Name");
         destIdx = FileUtil.Get<int>(_data, "Rune_Desc");
+        iconPath = FileUtil.Get<string>(_data, "Rune_IconPath");
         for (int i = 0; i < 3; i++)
         {
             runeTypeInfoList.Add(new RuneTypeInfo(FileUtil.Get<eRuneType>(_data, $"Rune_effect{i+1}"), FileUtil.Get<float>(_data, $"Rune_effect{i + 1}_Value"), FileUtil.Get<int>(_data, $"Rune_Tag{ i + 1 }")));
         }
     }
+
+    public string getName => TableManager.Instance.stringTable.GetText(nameIdx);
+    public string getDest => TableManager.Instance.stringTable.GetText(destIdx);
+
     public RuneRecord GetCopyRecord()
     {
         RuneRecord copy = new RuneRecord();
@@ -78,26 +84,8 @@ public class RuneRecord : RecordBase
                 case eRuneType.CoolTimeDown:
                     skill.coolTIme -= runeTypeInfoList[i].value;
                     break;
-                case eRuneType.AddProjectilenum:
-                    skill.skillBulletTargetNum += (int)runeTypeInfoList[i].value;
-                    break;
-                case eRuneType.AddProjectilesize:
-                    skill.skillBulletSize += runeTypeInfoList[i].value;
-                    break;
-                case eRuneType.AddProjectilespd:
-                    skill.skillBulletSpd += runeTypeInfoList[i].value;
-                    break;
                 case eRuneType.AddProjectiledmg:
                     skill.damagePerValue += runeTypeInfoList[i].value;
-                    break;
-                case eRuneType.MinProjectilenum:
-                    skill.skillBulletTargetNum -= (int)runeTypeInfoList[i].value;
-                    break;
-                case eRuneType.MinProjectilesize:
-                    skill.skillBulletSize -= runeTypeInfoList[i].value;
-                    break;
-                case eRuneType.MinProjectilespd:
-                    skill.skillBulletSpd -= runeTypeInfoList[i].value;
                     break;
                 case eRuneType.MinProjectiledmg:
                     skill.damagePerValue -= runeTypeInfoList[i].value;

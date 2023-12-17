@@ -86,8 +86,6 @@ public class Unit_Base : MonoBehaviour
     public virtual void Attack()
     {
         isAtkAble = false;
-        var targets = Manager.Instance.skillManager.GetTargetList(unitBehavior, unitData.atkInfo);
-        unitBehavior.SetTargets(targets);
         unitBehavior.Action(unitData.atkInfo.skillNode);
     }
 
