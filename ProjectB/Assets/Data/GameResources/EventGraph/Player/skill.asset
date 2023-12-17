@@ -23,7 +23,7 @@ MonoBehaviour:
   Memo: 
   ProjectileEvent:
     projectileType: 0
-    projectileHit: 0
+    projectileHit: 1
     projectileEffect:
       m_AssetGUID: bec6a5ab43e709d4d971197df77ab201
       m_SubObjectName: 
@@ -31,20 +31,18 @@ MonoBehaviour:
       m_EditorAssetChanged: 0
     hitEvent:
       paricleObject:
-        m_AssetGUID: 
+        m_AssetGUID: 77ffef51616c9ac4eb2d36e7ddc1e47f
         m_SubObjectName: 
         m_SubObjectType: 
         m_EditorAssetChanged: 0
       referenceBone: 
       localPosition: {x: 0, y: 0, z: 0}
       localEular: {x: 0, y: 0, z: 0}
-      localScale: {x: 0, y: 0, z: 0}
+      localScale: {x: 1, y: 1, z: 1}
       duration: 5
-      smoothStop: 2
-      gameTime: 0
-    maxHitCount: 0
+    maxHitCount: 100
     straight:
-      maxDistance: 5
+      maxDistance: 10
       radius: 1.5
       speed: 3
       curveSpeed:
@@ -52,19 +50,19 @@ MonoBehaviour:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 1
+          value: 0
           inSlope: 0
           outSlope: 0
-          tangentMode: 34
+          tangentMode: 0
           weightedMode: 0
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
           time: 1
           value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 34
+          inSlope: 2
+          outSlope: 2
+          tangentMode: 0
           weightedMode: 0
           inWeight: 0
           outWeight: 0
@@ -101,3 +99,4 @@ MonoBehaviour:
   nodes:
   - {fileID: -291297716556137276}
   animationFPS: 60
+  animationName: Skill

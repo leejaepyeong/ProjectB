@@ -40,8 +40,6 @@ MonoBehaviour:
       localEular: {x: 0, y: 0, z: 0}
       localScale: {x: 0, y: 0, z: 0}
       duration: 5
-      smoothStop: 2
-      gameTime: 0
     maxHitCount: 0
     straight:
       maxDistance: 5
@@ -101,3 +99,4 @@ MonoBehaviour:
   nodes:
   - {fileID: -291297716556137276}
   animationFPS: 60
+  animationName: Skill

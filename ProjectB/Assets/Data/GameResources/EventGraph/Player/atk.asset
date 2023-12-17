@@ -99,3 +99,4 @@ MonoBehaviour:
   nodes:
   - {fileID: -291297716556137276}
   animationFPS: 60
+  animationName: Atk

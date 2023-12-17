@@ -248,7 +248,7 @@ public class UnitBehavior : BaseBehavior, IEventHandler
     {
         eventDispatcher.Clear();
         eventDispatcher.Add(eventGraph);
-        Animator.CrossFadeInFixedTime(eventGraph.name, 0f);
+        Animator.CrossFadeInFixedTime(eventGraph.animationName, 0f);
     }
 
     private void OnHandleSoundEvent(SoundEvent soundEvent)

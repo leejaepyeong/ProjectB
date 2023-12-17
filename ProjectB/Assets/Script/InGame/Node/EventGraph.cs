@@ -8,6 +8,7 @@ using XNode;
 public class EventGraph : NodeGraph
 {
     public float animationFPS = 60f;
+    public string animationName;
 
     public void SetSkill(SkillInfo skillInfo)
     {
