@@ -48,13 +48,6 @@ public enum eUnitType
     Player,
 }
 
-public enum eDamageType
-{
-    Normal,     //일반 데미지
-    PerHp,      //현재 체력 퍼센트
-    PerMaxHp,   //최대 체력 퍼센트
-}
-
 public enum eStat
 {
     none,
@@ -85,6 +78,9 @@ public enum eDamagePerType
     Atk,
     Def,
     AtkSpd,
+
+    CurHp,
+    MaxHp,
 }
 public enum eSkillState
 {
@@ -127,12 +123,9 @@ public enum eSkillTarget
 {
     Near,
     NonTarget,
-
     Target,
     Team,
-
-    normal,
-    self,
+    Self,
 }
 public enum eSkillDuration
 {

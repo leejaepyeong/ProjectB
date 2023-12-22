@@ -18,6 +18,8 @@ public class PlayLogic : BaseScene
 
     [FoldoutGroup("Setting")] public SpawnLogic spawnLogic;
     [FoldoutGroup("Setting")] public UIPlayLogic uiPlayLogic;
+    [FoldoutGroup("Camera")] public Camera ingameCamera;
+    [FoldoutGroup("Camera")] public Camera uiCamera;
 
     protected ePlayLogicFsm curFsm;
     protected Coroutine coFsmSetting;
@@ -27,6 +29,11 @@ public class PlayLogic : BaseScene
     QueueCommand commands = new QueueCommand();
     IntroCommand_LoadDataFile loadDataFile = new IntroCommand_LoadDataFile();
     IntroCommand_LoadLocalData loadLocalData = new IntroCommand_LoadLocalData();
+
+    public bool isTargetSkillOn;
+    private const string RECT_RANGE_OBJECT = "";
+    private const string CIRCLE_RANGE_OBJECT = "";
+    private const string FANSHAPE_RANGE_OBJECT = "";
 
     public override void Init()
     {
@@ -142,6 +149,7 @@ public class PlayLogic : BaseScene
     {
         spawnLogic.UpdateFrame(deltaTime);
     }
+
     #endregion
     #region Boss
     protected virtual void EnterBossRound()
@@ -157,6 +165,50 @@ public class PlayLogic : BaseScene
     protected virtual void EnterResult()
     {
 
+    }
+    #endregion
+
+    #region Skill Area
+    public void UseTargetSkill(SkillInfo skillInfo)
+    {
+        if (isTargetSkillOn) return;
+        isTargetSkillOn = true;
+        var position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        var nodeList = skillInfo.skillRecord.skillNode.nodes;
+        for (int i = 0; i < nodeList.Count; i++)
+        {
+            if (nodeList[i] is HitEvenet.HitEventNode hitEvent)
+            {
+                switch (hitEvent.HitEvent.hitRange)
+                {
+                    case HitEvenet.eHitRange.Rect:
+                        DrawRect(skillInfo, UnitManager.Instance.Player);
+                        break;
+                    case HitEvenet.eHitRange.Circle:
+                        DrawCircle(skillInfo, UnitManager.Instance.Player);
+                        break;
+                    case HitEvenet.eHitRange.FanShape:
+                        DrawFanShape(skillInfo, UnitManager.Instance.Player);
+                        break;
+                }
+            }
+        }
+    }
+
+    private void DrawRect(SkillInfo skillInfo, UnitBehavior unit)
+    {
+        BattleManager.Instance.GameObjectPool.TryGet(RECT_RANGE_OBJECT, out var rangeObj);
+    }
+
+    private void DrawCircle(SkillInfo skillInfo, UnitBehavior unit)
+    {
+        BattleManager.Instance.GameObjectPool.TryGet(CIRCLE_RANGE_OBJECT, out var rangeObj);
+    }
+
+    private void DrawFanShape(SkillInfo skillInfo, UnitBehavior unit)
+    {
+        BattleManager.Instance.GameObjectPool.TryGet(FANSHAPE_RANGE_OBJECT, out var rangeObj);
     }
     #endregion
 }

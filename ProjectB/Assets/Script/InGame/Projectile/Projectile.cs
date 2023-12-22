@@ -20,12 +20,12 @@ public abstract class Projectile
     protected GameObject Model;
     protected Transform transform => projectileBehavior.transform;
     protected eTeam team;
-    protected Transform caster;
+    protected UnitBehavior caster;
     protected Transform targetTrf;
     protected Dictionary<int ,UnitBehavior> targetList = new();
     protected int hitCount;
 
-    public virtual void Init(ProjectileBehavior projectileBehavior, ProjectileEvent projectileEvent, eTeam team, Transform caster, Transform targetTrf)
+    public virtual void Init(ProjectileBehavior projectileBehavior, ProjectileEvent projectileEvent, eTeam team, UnitBehavior caster, Transform targetTrf)
     {
         this.projectileBehavior = projectileBehavior;
         this.projectileEvent = projectileEvent;
@@ -113,7 +113,7 @@ public abstract class Projectile
 
     public void ApplyDamage(UnitBehavior unit)
     {
-        EffectManager.Instance.SpawnEffect(projectileEvent.HitEvent, projectileBehavior.transform.position);
-        unit.UnitBase.ApplyDamage(projectileBehavior.skillInfo.skillRecord.damagePerValue);
+        EffectManager.Instance.SpawnEffect(projectileEvent.HitEvent, projectileBehavior.transform.position, unit);
+        unit.UnitBase.ApplyDamage(caster, projectileBehavior.skillInfo.skillRecord.damagePerValue, projectileBehavior.skillInfo.skillRecord.damagePerType);
     }
 }

@@ -85,7 +85,7 @@ public abstract class Hit
         var list = GetTargetList();
         for (int i = 0; i < list.Count; i++)
         {
-            list[i].UnitBase.ApplyDamage(hitEvent.dmgPercent, hitEvent.dmgType);
+            list[i].UnitBase.ApplyDamage(caster, hitBehavior.skillInfo.skillRecord.damagePerValue, hitBehavior.skillInfo.skillRecord.damagePerType);
             hittedDic.Add(list[i].ID, list[i]);
         }
     }

@@ -101,7 +101,7 @@ public class Manager : Singleton<Manager>
         {
             if (mainCamera == null)
             {
-                mainCamera = curScene.GetComponentInChildren<Camera>();
+                mainCamera = Camera.main;
                 mainCamera.transform.SetParent(transform);
             }
             return mainCamera;

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using Sirenix.OdinInspector;
 
 namespace HitEvenet
 {
@@ -20,6 +21,7 @@ namespace HitEvenet
     }
     public class HitEventNode : EventNode
     {
+        [LabelWidth(160)]
         public HitEvent HitEvent = new();
         public override EventNodeData EventData => HitEvent;
     }
@@ -35,11 +37,8 @@ namespace HitEvenet
     [Serializable]
     public class Circle : IHitData
     {
-        [SerializeField] private AnimationCurve curveSpeed;
         [SerializeField] private AssetReferenceGameObject projectileEffect;
         [SerializeField] private ParticleEvent hitEvent;
-
-        public AnimationCurve CurveSpeed => curveSpeed;
         public object projectileEffectKey => projectileEffect.RuntimeKey;
         public ParticleEvent HitEvent => hitEvent;
 
@@ -49,12 +48,10 @@ namespace HitEvenet
     public class Rect : IHitData
     {
         [SerializeField] private Vector2 range;
-        [SerializeField] private AnimationCurve curveSpeed;
         [SerializeField] private AssetReferenceGameObject projectileEffect;
         [SerializeField] private ParticleEvent hitEvent;
 
         public Vector2 Range => range;
-        public AnimationCurve CurveSpeed => curveSpeed;
         public object projectileEffectKey => projectileEffect.RuntimeKey;
         public ParticleEvent HitEvent => hitEvent;
 
@@ -65,12 +62,10 @@ namespace HitEvenet
     public class FanShape : IHitData
     {
         [SerializeField] private float angle;
-        [SerializeField] private AnimationCurve curveSpeed;
         [SerializeField] private AssetReferenceGameObject projectileEffect;
         [SerializeField] private ParticleEvent hitEvent;
 
         public float Angle => angle;
-        public AnimationCurve CurveSpeed => curveSpeed;
         public object projectileEffectKey => projectileEffect.RuntimeKey;
         public ParticleEvent HitEvent => hitEvent;
 

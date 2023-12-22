@@ -7,7 +7,7 @@ public class Projectile_Straight : Projectile
     private Vector3 targetPos;
 
     Projectiles.Straight straight;
-    public override void Init(ProjectileBehavior projectileBehavior, ProjectileEvent projectileEvent,eTeam team, Transform owner, Transform target)
+    public override void Init(ProjectileBehavior projectileBehavior, ProjectileEvent projectileEvent,eTeam team, UnitBehavior owner, Transform target)
     {
         base.Init(projectileBehavior, projectileEvent,team, owner, target);
         straight = projectileData as Projectiles.Straight;

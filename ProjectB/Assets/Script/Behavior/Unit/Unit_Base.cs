@@ -100,18 +100,21 @@ public class Unit_Base : MonoBehaviour
         }
     }
 
-    public void ApplyDamage(float dmgPercent, eDamageType dmgType = eDamageType.Normal)
+    public void ApplyDamage(UnitBehavior caster ,float dmgPercent, eDamagePerType dmgType = eDamagePerType.Atk)
     {
         switch (dmgType)
         {
-            case eDamageType.Normal:
+            case eDamagePerType.Atk:
             default:
                 curHp -= (long)(unitState.atk * dmgPercent);
                 break;
-            case eDamageType.PerHp:
+            case eDamagePerType.AtkSpd:
                 curHp -= (long)(curHp * dmgPercent);
                 break;
-            case eDamageType.PerMaxHp:
+            case eDamagePerType.CurHp:
+                curHp -= (long)(unitState.hp * dmgPercent);
+                break;
+            case eDamagePerType.MaxHp:
                 curHp -= (long)(unitState.hp * dmgPercent);
                 break;
         }

@@ -28,4 +28,12 @@ public class SpawnLogic : MonoBehaviour
 
         UnitManager.Instance.SpawnUnit(101, spawnPos);
     }
+
+    private void OnDrawGizmos()
+    {
+        UnityEditor.Handles.color = Color.yellow;
+        UnityEditor.Handles.DrawWireDisc(transform.position, transform.forward, maxRadius/2);
+        UnityEditor.Handles.color = Color.red;
+        UnityEditor.Handles.DrawWireCube(transform.position, new Vector3(maxRadius, maxRadius, maxRadius));
+    }
 }

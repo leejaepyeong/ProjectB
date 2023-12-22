@@ -56,7 +56,9 @@ public class SkillManager
             case eSkillTarget.Near:
                 unitList = GetTargetList_Near(caster, skillRecord, targetList);
                 break;
-            case eSkillTarget.self:
+            case eSkillTarget.Team:
+                break;
+            case eSkillTarget.Self:
                 unitList.Add(caster);
                 break;
         }

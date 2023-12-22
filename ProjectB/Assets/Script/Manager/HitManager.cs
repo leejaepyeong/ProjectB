@@ -35,12 +35,12 @@ public class HitManager : BaseManager
         }
     }
 
-    public HitBehavior SpawnHit(HitEvent hitEvent, UnitBehavior caster = null, UnitBehavior target = null)
+    public HitBehavior SpawnHit(SkillInfo skillInfo, HitEvent hitEvent, UnitBehavior caster = null, UnitBehavior target = null)
     {
         if (!GameObjectPool.TryGet(HIT_BEHAVIOR_ASSETKEY, out var hitObj)) return null;
         HitBehavior hit = hitObj.GetComponent<HitBehavior>();
 
-        hit.Init(hitEvent, caster, target);
+        hit.Init(skillInfo, hitEvent, caster, target);
         hitList.Add(hit);
 
         return hit;

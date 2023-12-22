@@ -14,6 +14,8 @@ public class UIPlayLogic : MonoBehaviour
 
     [FoldoutGroup("Bottom")] public UISkillInven uiSkillInven;
     [FoldoutGroup("Bottom")] public UISkillInven_Placement uiSkillInven_Placement;
+    [FoldoutGroup("Bottom/Exp")] public Image expGage;
+    [FoldoutGroup("Bottom/Exp")] public TextMeshProUGUI textExp;
 
     public void Init()
     {

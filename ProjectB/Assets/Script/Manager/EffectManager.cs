@@ -34,22 +34,40 @@ public class EffectManager : BaseManager
         EffectBehavior effectBehavior = effect.GetComponent<EffectBehavior>();
         effectBehavior.transform.SetParent(transform);
 
-        effectBehavior.transform.position = spawnTrf.position + particleEvent.localPosition;
-        effectBehavior.transform.localEulerAngles = particleEvent.localEular;
-        effectBehavior.transform.localScale = particleEvent.localScale;
+        switch (particleEvent.effectSpawn)
+        {
+            case ParticleEvent.eEffectSpawn.Custom:
+                effectBehavior.transform.position = spawnTrf.position + particleEvent.position;
+                effectBehavior.transform.localEulerAngles = particleEvent.eular;
+                break;
+            case ParticleEvent.eEffectSpawn.Center:
+                effectBehavior.transform.position = Vector3.zero;
+                effectBehavior.transform.localEulerAngles = Vector3.zero;
+                break;
+        }
+        effectBehavior.transform.localScale = particleEvent.scale;
         effectBehavior.Init(particleEvent);
 
         effectList.Add(effectBehavior);
     }
-    public void SpawnEffect(ParticleEvent particleEvent, Vector3 hitPos)
+    public void SpawnEffect(ParticleEvent particleEvent, Vector3 hitPos, UnitBehavior hitUnit = null)
     {
         if (!GameObjectPool.TryGet(EFFECT_BEHAVIOR_ASSETKEY, out var effect)) return;
         EffectBehavior effectBehavior = effect.GetComponent<EffectBehavior>();
         effectBehavior.transform.SetParent(transform);
 
-        effectBehavior.transform.position = hitPos;
-        effectBehavior.transform.localEulerAngles = particleEvent.localEular;
-        effectBehavior.transform.localScale = particleEvent.localScale;
+        switch (particleEvent.effectSpawn)
+        {
+            case ParticleEvent.eEffectSpawn.Center:
+                effectBehavior.transform.position = Vector3.zero;
+                effectBehavior.transform.localEulerAngles = Vector3.zero;
+                break;
+            case ParticleEvent.eEffectSpawn.HitPosition:
+                effectBehavior.transform.position = hitPos;
+                effectBehavior.transform.localEulerAngles = particleEvent.eular;
+                break;
+        }
+        effectBehavior.transform.localScale = particleEvent.scale;
         effectBehavior.Init(particleEvent);
 
         effectList.Add(effectBehavior);

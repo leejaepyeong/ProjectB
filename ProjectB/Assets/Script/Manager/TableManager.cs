@@ -31,6 +31,7 @@ public class TableManager
     public SkillEffectTable skillEffectTable;
     public RuneTable runeTable;
     public ItemTable itemTable;
+    public ExpTable expTable;
 
     public void Load(ClassFileSave _fileSave = null)
     {
@@ -44,6 +45,7 @@ public class TableManager
         m_tableList.Add(skillEffectTable = new SkillEffectTable(m_fileSave, "Table/Skill_Effect_Info"));
         m_tableList.Add(stringTable = new StringTable(m_fileSave, "Table/String_Info"));
         m_tableList.Add(itemTable = new ItemTable(m_fileSave, "Table/Item_Info"));
+        m_tableList.Add(expTable = new ExpTable(m_fileSave, "Table/Exp_Info"));
 
         for (int i = 0; i < m_tableList.Count; ++i)
         {

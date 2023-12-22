@@ -190,7 +190,12 @@ public class UISkillSlot : UISlot
         if (skillInfo.skillRecord.type != eSkillType.Active) return;
         if (UnitManager.Instance.Player.isUseSkill) return;
 
-        skillInfo.UseSkill();
+        if(skillInfo.skillRecord.targetType == eSkillTarget.Target)
+        {
+            PlayLogic.Instance.UseTargetSkill(skillInfo);
+        }
+        else
+            skillInfo.UseSkill();
     }
 
     protected void OnClickActiveSkill_Placement()

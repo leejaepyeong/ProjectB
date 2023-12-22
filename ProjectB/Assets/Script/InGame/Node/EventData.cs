@@ -15,11 +15,21 @@ public enum eGameTime
 [Serializable]
 public class ParticleEvent : EventNodeData
 {
+    public enum eEffectSpawn
+    {
+        Custom,
+        Center,
+        HitPosition,
+    }
+
     public AssetReferenceGameObject paricleObject;
     public string referenceBone;
-    public Vector3 localPosition;
-    public Vector3 localEular;
-    public Vector3 localScale;
+    public eEffectSpawn effectSpawn;
+    [ShowIf("@effectSpawn == eEffectSpawn.Custom")]
+    public Vector3 position = Vector3.zero;
+    [ShowIf("@effectSpawn == eEffectSpawn.Custom")]
+    public Vector3 eular = Vector3.zero;
+    public Vector3 scale = Vector3.one;
     public float duration = 5f;
 
     public override string TitleName { get; } = "Particle Event";
@@ -102,8 +112,6 @@ public class HitEvent : EventNodeData
 
     public float radius;
     public float speed;
-    public eDamageType dmgType;
-    public float dmgPercent;
 
     [SerializeField, ShowIf("@hitRange == eHitRange.Circle")]
     private HitEvenet.Circle circle;

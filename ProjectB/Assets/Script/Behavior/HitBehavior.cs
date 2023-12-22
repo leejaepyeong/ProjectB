@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class HitBehavior : BaseBehavior
 {
+    public SkillInfo skillInfo;
     private HitEvent hitEvent;
     private Hit hit;
 
     private UnitBehavior caster;
     private UnitBehavior target;
-
-    public void Init(HitEvent hitEvent, UnitBehavior caster, UnitBehavior target)
+    public void Init(SkillInfo skillInfo, HitEvent hitEvent, UnitBehavior caster, UnitBehavior target)
     {
+        this.skillInfo = skillInfo;
         this.hitEvent = hitEvent;
         this.caster = caster;
         this.target = target;

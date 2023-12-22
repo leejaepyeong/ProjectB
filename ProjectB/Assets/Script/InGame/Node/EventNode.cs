@@ -11,11 +11,9 @@ public abstract class EventNodeData
     public abstract string TitleName { get; }
     public abstract string SubjectName { get; }
 }
-
+[NodeWidth(320)]
 public abstract class EventNode : Node
 {
-    public const int LABEL_WIDTH = 140;
-
     #region Animation Time
     public const float FRAME_RATE = 60f;
     public enum ETimeBase
@@ -23,7 +21,6 @@ public abstract class EventNode : Node
         TimeElapsed,
         FrameCount,
     }
-
     [SerializeField, BoxGroup("Animation Time")]
     public ETimeBase TimeBase = ETimeBase.FrameCount;
     [SerializeField, BoxGroup("Animation Time"), ShowIf("@TimeBase == ETimeBase.TimeElapsed")]

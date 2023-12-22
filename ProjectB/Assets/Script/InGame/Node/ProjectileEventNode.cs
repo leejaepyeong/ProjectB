@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using Sirenix.OdinInspector;
 
 namespace Projectiles
 {
@@ -21,6 +22,7 @@ namespace Projectiles
 
     public class ProjectileEventNode : EventNode
     {
+        [LabelWidth(160)]
         public ProjectileEvent ProjectileEvent = new();
         public override EventNodeData EventData => ProjectileEvent;
     }

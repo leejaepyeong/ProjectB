@@ -52,6 +52,6 @@ public class ProjectileBehavior : BaseBehavior
                 break;
         }
 
-        projectile.Init(this, projectileEvent,caster.UnitState.team, caster.transform, target.transform);
+        projectile.Init(this, projectileEvent,caster.UnitState.team, caster, target.transform);
     }
 }
