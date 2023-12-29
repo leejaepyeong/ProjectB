@@ -36,7 +36,7 @@ public class SkillRecord : RecordBase
         targetType = FileUtil.Get<eSkillTarget>(_data, "Skill_Target");
         damagePerType = FileUtil.Get<eDamagePerType>(_data, "Skill_Dmg_Type");
         damagePerValue = FileUtil.Get<float>(_data, "Skill_Dmg_num");
-        skillBulletTargetNum = FileUtil.Get<int>(_data, "Skill_Target");
+        skillBulletTargetNum = FileUtil.Get<int>(_data, "Skill_TargetCount");
         equipRuneCount = FileUtil.Get<int>(_data, "Skill_Equip_Rune");
         for (int i = 0; i < 5; i++)
         {

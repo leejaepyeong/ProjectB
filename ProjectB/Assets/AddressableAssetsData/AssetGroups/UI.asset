@@ -59,6 +59,11 @@ MonoBehaviour:
     - UI
     - Remote
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 62f14c11b44448a4a95caed5235ea63f
+    m_Address: Assets/Data/GameResources/Prefab/RangePrefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 0b85ada165676584a86a5d299cec6c75, type: 2}
   m_SchemaSet:
