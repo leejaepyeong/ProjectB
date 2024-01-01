@@ -21,7 +21,6 @@ public class RangeObject : MonoBase
     private HitEvent hitEvent;
     private UnityEngine.Events.UnityAction clickAction;
 
-    private int angle;
     public virtual void Open(SkillInfo skillInfo, UnitBehavior caster, HitEvent hitEvent, UnityEngine.Events.UnityAction clickAction = null)
     {
         base.Open();
@@ -33,28 +32,34 @@ public class RangeObject : MonoBase
         switch (hitEvent.GetHitData())
         {
             case HitEvenet.Rect rect:
+                transform.localScale = rect.Range;
                 break;
             case HitEvenet.Circle circle:
+                transform.localScale = Vector3.one * hitEvent.radius;
                 break;
             case HitEvenet.FanShape fanShape:
+                transform.localScale = Vector3.one * hitEvent.radius;
+                for (int i = 0; i < fanShapeObjs.Length; i++)
+                {
+                    fanShapeObjs[i].SetActive(false);
+                }
+                switch (fanShape.Angle)
+                {
+                    case 30:
+                        fanShapeObjs[0].SetActive(true);
+                        break;
+                    case 45:
+                        fanShapeObjs[1].SetActive(true);
+                        break;
+                    case 90:
+                        fanShapeObjs[2].SetActive(true);
+                        break;
+                    case 180:
+                        fanShapeObjs[3].SetActive(true);
+                        break;
+                }
                 break;
             default:
-                break;
-        }
-
-        switch (angle)
-        {
-            case 30:
-                fanShapeObjs[0].SetActive(true);
-                break;
-            case 45:
-                fanShapeObjs[1].SetActive(true);
-                break;
-            case 90:
-                fanShapeObjs[2].SetActive(true);
-                break;
-            case 180:
-                fanShapeObjs[3].SetActive(true);
                 break;
         }
     }
