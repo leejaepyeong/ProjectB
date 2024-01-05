@@ -56,7 +56,7 @@ public class InvenItemInfo
 
 public class UIInGameInventory : UIBase, LoopScrollPrefabSource, LoopScrollDataSource
 {
-    public LoopScrollRect loopScrollRect;
+    public UIInfinite.UIInfiniteScroll infiniteScroll;
 
     private Dictionary<int, InvenItemInfo> invenItemInfoDic = new Dictionary<int, InvenItemInfo>();
     private List<InvenItemInfo> invenItemList = new List<InvenItemInfo>();
@@ -77,10 +77,10 @@ public class UIInGameInventory : UIBase, LoopScrollPrefabSource, LoopScrollDataS
 
     public override void ResetData()
     {
-        loopScrollRect.prefabSource = this;
-        loopScrollRect.dataSource = this;
-        loopScrollRect.totalCount = invenItemList.Count;
-        loopScrollRect.RefillCells();
+        //loopScrollRect.prefabSource = this;
+        //loopScrollRect.dataSource = this;
+        //loopScrollRect.totalCount = invenItemList.Count;
+        //loopScrollRect.RefillCells();
     }
 
     public void AddSkillItem(int itemId, int skillIdx)

@@ -71,9 +71,8 @@ public class RangeObject : MonoBase
 
     private void SearchTargetColor()
     {
-
     }
-    
+
     public void OnClickAction()
     {
         if (clickAction != null)

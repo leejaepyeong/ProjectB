@@ -124,6 +124,7 @@ public enum eSkillTarget
     Near,
     NonTarget,
     Target,
+    Target_Direction,
     Team,
     Self,
 }

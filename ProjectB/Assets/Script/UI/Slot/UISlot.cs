@@ -10,11 +10,6 @@ public class UISlot : UIBase
     protected override void Awake()
     {
         base.Awake();
-        RectTransform.anchoredPosition3D = Vector3.zero;
-        RectTransform.offsetMin = Vector2.zero;
-        RectTransform.offsetMax = Vector2.zero;
-        RectTransform.localRotation = Quaternion.identity;
-        RectTransform.localScale = Vector3.one;
     }
 
     public virtual void Clear()

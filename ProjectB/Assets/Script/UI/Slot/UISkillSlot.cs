@@ -194,6 +194,10 @@ public class UISkillSlot : UISlot
         {
             PlayLogic.Instance.UseTargetSkill(skillInfo);
         }
+        else if(skillInfo.skillRecord.targetType == eSkillTarget.Target_Direction)
+        {
+            PlayLogic.Instance.UseTargetSkill(skillInfo);
+        }
         else
             skillInfo.UseSkill();
     }
