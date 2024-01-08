@@ -15,7 +15,7 @@ namespace UIInfinite
             Vertical,
         }
 
-        private float contentPosition { get {return direction == eDirection.Horizontal ? contentRect.anchoredPosition.x : contentRect.anchoredPosition.y; } 
+        private float contentPosition { get {return direction == eDirection.Horizontal ? contentRect.anchoredPosition.x : -contentRect.anchoredPosition.y; } 
             set {contentRect.anchoredPosition = direction == eDirection.Horizontal ? new Vector2(value, contentRect.anchoredPosition.y): new Vector2(contentRect.anchoredPosition.x, -value); } }
         private float contentSize => direction == eDirection.Horizontal ? contentRect.rect.height : contentRect.rect.width;
         private float prevPosition;
@@ -208,17 +208,17 @@ namespace UIInfinite
             while (contentPosition - prevPosition < -itemSize * 2)
             {
                 prevPosition -= itemSize;
-                var first = itemSlotList.First;
-                if (first == null) break;
-                var tempItem = first.Value;
-                itemSlotList.RemoveFirst();
-                itemSlotList.AddLast(tempItem);
 
-                float movePos = itemSize * (itemSlotList.Count + nextItemNumber);
-                tempItem.anchoredPosition = direction == eDirection.Horizontal ? new Vector2(movePos, 0) : new Vector2(0, -movePos);
-
+                float movePos = itemSize * ((itemSlotList.Count / groupLineCount) + nextItemNumber);
                 for (int i = 0; i < groupLineCount; i++)
                 {
+                    var first = itemSlotList.First;
+                    if (first == null) break;
+                    var tempItem = first.Value;
+                    itemSlotList.RemoveFirst();
+                    itemSlotList.AddLast(tempItem);
+
+                    tempItem.anchoredPosition = direction == eDirection.Horizontal ? new Vector2(movePos, tempItem.anchoredPosition.y) : new Vector2(tempItem.anchoredPosition.x, -movePos);
                     UpdateItem(itemSlotList.Count + (nextItemNumber * groupLineCount) + i, tempItem.gameObject);
                 }
                 nextItemNumber++;

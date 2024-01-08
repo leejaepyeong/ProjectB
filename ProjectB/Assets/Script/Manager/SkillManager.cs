@@ -12,7 +12,7 @@ public class SkillManager
         if (CheckSkill(caster, skillRecord) == false) return;
         skillRecord.SetCoolTime();
 
-
+        ApplySkill(skillRecord);
     }
 
     public void UseSkillPlayer(UnitBehavior caster, SkillInfo skillInfo)

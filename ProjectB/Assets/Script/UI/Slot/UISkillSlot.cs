@@ -99,6 +99,11 @@ public class SkillInfo
         runeDic[runeIdx] = null;
     }
 
+    public void AddSkillEffect()
+    {
+
+    }
+
     public void UseSkill()
     {
         UnitManager.Instance.Player.isUseSkill = true;
