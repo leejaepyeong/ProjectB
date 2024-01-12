@@ -15,7 +15,7 @@ namespace UIInfinite
             Vertical,
         }
 
-        private float contentPosition { get {return direction == eDirection.Horizontal ? contentRect.anchoredPosition.x : -contentRect.anchoredPosition.y; } 
+        private float contentPosition { get {return direction == eDirection.Horizontal ? contentRect.anchoredPosition.x : -1 * contentRect.anchoredPosition.y; } 
             set {contentRect.anchoredPosition = direction == eDirection.Horizontal ? new Vector2(value, contentRect.anchoredPosition.y): new Vector2(contentRect.anchoredPosition.x, -value); } }
         private float contentSize => direction == eDirection.Horizontal ? contentRect.rect.height : contentRect.rect.width;
         private float prevPosition;
@@ -133,8 +133,9 @@ namespace UIInfinite
         public void Set(int total)
         {
             totalItem = total;
-
+            ReSizeContent();
             SetStartPosition(0);
+            Refresh();
         }
 
         public void Refresh()
@@ -254,7 +255,6 @@ namespace UIInfinite
             }
             else
             {
-
                 itemObj.SetActive(true);
 
                 var item = itemObj.GetComponent<UIInfiniteItemSlot>();

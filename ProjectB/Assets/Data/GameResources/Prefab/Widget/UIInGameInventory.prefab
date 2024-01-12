@@ -197,7 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307d41fd51554e54db49cefde4c94f21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalItem: 100
+  totalItem: 0
   offset: {x: 0, y: 0}
   direction: 1
   protoItem: {fileID: 5937120941274121811}
