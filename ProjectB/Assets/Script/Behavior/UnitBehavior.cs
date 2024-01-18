@@ -5,7 +5,17 @@ using UnityEngine;
 
 public class BuffState
 {
+    public List<BuffBase> buffList = new List<BuffBase>();
 
+    public void UpdateFrame(float deltaTime)
+    {
+        for (int i = 0; i < buffList.Count; i++)
+        {
+            buffList[i].UpdateFrame(deltaTime);
+            if (buffList[i].CheckEndBuff())
+                buffList.Remove(buffList[i]);
+        }
+    }
 }
 
 public class UnitState
@@ -13,17 +23,8 @@ public class UnitState
     private Data.UnitData data;
     public eTeam team; 
     #region stat
-    public long hp;
-    public long mp;
-    public long atk;
-    public long def;
-    public float acc;
-    public float atkSpd;
-    public float moveSpd;
-    public float atkRange;
-    public float criRate;
-    public float criDmg;
-    public Dictionary<eStat, long> statDic = new Dictionary<eStat, long>();
+    public Dictionary<eStat, double> originStatValue = new Dictionary<eStat, double>();
+    public Dictionary<eStat, double> statDic = new Dictionary<eStat, double>();
     #endregion
     public SkillInfo atkInfo;
 
@@ -46,76 +47,55 @@ public class UnitState
         isStun = false;
         isSlow = false;
 
+        if(originStatValue.ContainsKey(eStat.hp) == false)
+        {
+            for (int i = 0; i < (int)eStat.END; i++)
+            {
+                originStatValue.Add((eStat)i, 0);
+                statDic.Add((eStat)i, 0);
+            }
+        }
+
         SetStat();
-        atkInfo = new SkillInfo(data.atkInfo.GetCopyRecord());
+        atkInfo = new SkillInfo(data.atkInfo);
     }
 
     public void SetStat()
     {
-        hp = data.hp;
-        mp = data.mp;
-        atk = data.atk;
-        def = data.def;
-        acc = data.acc;
-        atkSpd = data.atkSpd;
-        moveSpd = data.moveSpd;
-        atkRange = data.atkRange;
-        criRate = data.criRate;
-        criDmg = data.criDmg;
+        originStatValue[eStat.hp] = data.hp;
+        originStatValue[eStat.mp] = data.mp;
+        originStatValue[eStat.atk] = data.atk;
+        originStatValue[eStat.def] = data.def;
+        originStatValue[eStat.acc] = data.acc;
+        originStatValue[eStat.moveSpd] = data.moveSpd;
+        originStatValue[eStat.atkSpd] = data.atkSpd;
+        originStatValue[eStat.atkRange] = data.atkRange;
+        originStatValue[eStat.criDmg] = data.criDmg;
+        originStatValue[eStat.criRate] = data.criRate;
     }
-    public void SetStat(eStat statType, bool isTestScene)
+    public void SetPlayerStat(eStat statType, bool isTestScene)
     {
+        if (originStatValue.ContainsKey(statType) == false) originStatValue.Add(statType, 0);
         switch (statType)
         {
-            case eStat.hp: hp += isTestScene ? Manager.Instance.playerData.hp : SaveData_Local.Instance.userStat.hp; break;
-            case eStat.mp: mp += isTestScene ? Manager.Instance.playerData.mp : SaveData_Local.Instance.userStat.mp; break;
-            case eStat.atk:atk += isTestScene ? Manager.Instance.playerData.atk : SaveData_Local.Instance.userStat.atk; break;
-            case eStat.def: def += isTestScene ? Manager.Instance.playerData.def : SaveData_Local.Instance.userStat.def; break;
-            case eStat.acc: acc += isTestScene ? Manager.Instance.playerData.acc : SaveData_Local.Instance.userStat.acc; break;
-            case eStat.moveSpd: moveSpd += isTestScene ? Manager.Instance.playerData.moveSpd : SaveData_Local.Instance.userStat.moveSpd; break;
-            case eStat.atkSpd: atkSpd += isTestScene ? Manager.Instance.playerData.atkSpd : SaveData_Local.Instance.userStat.atkSpd; break;
-            case eStat.atkRange: atkRange += isTestScene ? Manager.Instance.playerData.atkRange : SaveData_Local.Instance.userStat.atkRange; break;
-            case eStat.criRate: criRate += isTestScene ? Manager.Instance.playerData.criRate : SaveData_Local.Instance.userStat.criRate; break;
-            case eStat.criDmg: criDmg += isTestScene ? Manager.Instance.playerData.criDmg : SaveData_Local.Instance.userStat.criDmg; break;
-        }
-    }
-
-    public void AddStat(eStat statType, double value)
-    {
-        switch (statType)
-        {
-            case eStat.hp: hp += (long)value; break;
-            case eStat.mp: mp += (long)value; break;
-            case eStat.atk: atk += (long)value; break;
-            case eStat.def: def += (long)value; break;
-            case eStat.acc: acc += (float)value; break;
-            case eStat.moveSpd: moveSpd += (float)value; break;
-            case eStat.atkSpd: atkSpd += (float)value; break;
-            case eStat.atkRange: atkRange += (float)value; break;
-            case eStat.criRate: criRate += (float)value; break;
-            case eStat.criDmg: criDmg += (float)value; break;
+            case eStat.hp: originStatValue[eStat.hp] += isTestScene ? Manager.Instance.playerData.hp : SaveData_Local.Instance.userStat.hp; break;
+            case eStat.mp: originStatValue[eStat.mp] += isTestScene ? Manager.Instance.playerData.mp : SaveData_Local.Instance.userStat.mp; break;
+            case eStat.atk: originStatValue[eStat.atk] += isTestScene ? Manager.Instance.playerData.atk : SaveData_Local.Instance.userStat.atk; break;
+            case eStat.def: originStatValue[eStat.def] += isTestScene ? Manager.Instance.playerData.def : SaveData_Local.Instance.userStat.def; break;
+            case eStat.acc: originStatValue[eStat.acc] += isTestScene ? Manager.Instance.playerData.acc : SaveData_Local.Instance.userStat.acc; break;
+            case eStat.moveSpd: originStatValue[eStat.moveSpd] += isTestScene ? Manager.Instance.playerData.moveSpd : SaveData_Local.Instance.userStat.moveSpd; break;
+            case eStat.atkSpd: originStatValue[eStat.atkSpd] += isTestScene ? Manager.Instance.playerData.atkSpd : SaveData_Local.Instance.userStat.atkSpd; break;
+            case eStat.atkRange: originStatValue[eStat.atkRange] += isTestScene ? Manager.Instance.playerData.atkRange : SaveData_Local.Instance.userStat.atkRange; break;
+            case eStat.criRate: originStatValue[eStat.criRate] += isTestScene ? Manager.Instance.playerData.criRate : SaveData_Local.Instance.userStat.criRate; break;
+            case eStat.criDmg: originStatValue[eStat.criDmg] += isTestScene ? Manager.Instance.playerData.criDmg : SaveData_Local.Instance.userStat.criDmg; break;
         }
     }
 
     public double GetStat(eStat statType)
     {
-        double value = 0;
+        double value = originStatValue[statType];
 
-        switch (statType)
-        {
-            case eStat.hp: value = hp; break;
-            case eStat.mp: value = mp; break;
-            case eStat.atk: value = atk; break;
-            case eStat.def: value = def; break;
-            case eStat.acc: value = acc; break;
-            case eStat.moveSpd: value = moveSpd; break;
-            case eStat.atkSpd: value = atkSpd; break;
-            case eStat.atkRange: value = atkRange; break;
-            case eStat.criRate: value = criRate; break;
-            case eStat.criDmg: value = criDmg; break;
-        }
-
-        return 0;
+        return value;
     }
 }
 
@@ -152,8 +132,6 @@ public class UnitBehavior : BaseBehavior, IEventHandler
     private const string SOUND_BEHAVIOR_ASSETKEY = "Assets/Data/GameResources/Prefab/Behavior/SoundBehavior.prefab";
     #endregion
 
-    public bool isUseSkill;
-
     //Monster
     public void Init(Data.UnitData data, int id)
     {
@@ -161,7 +139,6 @@ public class UnitBehavior : BaseBehavior, IEventHandler
         unitData = data;
         this.id = id;
         ElapsedTime = 0;
-        isUseSkill = false;
 
         timeScaleBehavior = Utilities.StaticeObjectPool.Pop<TimeScaleBehavior>();
         eventDispatcher = Utilities.StaticeObjectPool.Pop<EventDispatcher>();
@@ -281,17 +258,11 @@ public class UnitBehavior : BaseBehavior, IEventHandler
 
     private void OnHandleProjectileEvent(ProjectileEvent projectileEvent)
     {
-        if(isUseSkill && projectileEvent.SkillInfo == null)
-        {
-            isUseSkill = false;
-            return;
-        }
-
-        var targetList = Manager.Instance.skillManager.GetTargetList(this, isUseSkill ? projectileEvent.SkillInfo.skillRecord : unitData.atkInfo);
+        var targetList = Manager.Instance.skillManager.GetTargetList(this, projectileEvent.SkillInfo.skillRecord);
 
         for (int i = 0; i < targetList.Count; i++)
         {
-            ProjectileManager.Instance.SpawnProjectile(isUseSkill ? projectileEvent.SkillInfo : unitState.atkInfo, projectileEvent, this, targetList[i]);
+            ProjectileManager.Instance.SpawnProjectile(projectileEvent.SkillInfo, projectileEvent, this, targetList[i]);
         }
     }
     #endregion

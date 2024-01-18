@@ -12,7 +12,12 @@ public class SkillManager
         if (CheckSkill(caster, skillRecord) == false) return;
         skillRecord.SetCoolTime();
 
-        ApplySkill(skillRecord);
+        var targetList = GetTargetList(caster, skillRecord);
+
+        for (int i = 0; i < targetList.Count; i++)
+        {
+            ApplySkill(skillRecord, targetList[i], caster);
+        }
     }
 
     public void UseSkillPlayer(UnitBehavior caster, SkillInfo skillInfo)
@@ -21,7 +26,7 @@ public class SkillManager
 
         for (int i = 0; i < targetList.Count; i++)
         {
-            ApplySkill(skillInfo.skillRecord);
+            ApplySkill(skillInfo.skillRecord, targetList[i], caster);
             for (int j = 0; j < skillInfo.skillEffectList.Count; j++)
             {
                 ApplySkillEffect(skillInfo.skillEffectList[j]);
@@ -29,16 +34,15 @@ public class SkillManager
         }
     }
 
-    private void ApplySkill(SkillRecord skill)
+    private void ApplySkill(SkillRecord skill, UnitBehavior target, UnitBehavior caster)
     {
-
+        
     }
 
     private void ApplySkillEffect(SkillEffectRecord skillEffect)
     {
 
     }
-
 
     public bool CheckSkill(UnitBehavior caster, SkillRecord skillRecord)
     {

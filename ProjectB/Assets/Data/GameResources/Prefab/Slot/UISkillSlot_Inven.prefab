@@ -300,7 +300,6 @@ GameObject:
   - component: {fileID: 4522887079073475818}
   - component: {fileID: 2815659068925623757}
   - component: {fileID: 2119541207323411191}
-  - component: {fileID: 5380026395443803442}
   - component: {fileID: 2576810587050856646}
   m_Layer: 6
   m_Name: UISkillSlot_Inven
@@ -414,27 +413,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &5380026395443803442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4962733798582360385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1da744697c96ee4385c8e8500da77ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  btnClick: {fileID: 2119541207323411191}
-  btnCloseGroup: []
-  skillIcon: {fileID: 3173799891750908852}
-  OutLineIcon: {fileID: 7497903983490191987}
-  slotIdx: 0
-  isMainSkillSlot: 0
-  isPlacement: 0
-  blockIcon: {fileID: 6453386268611731448}
-  textCoolTime: {fileID: 7779517194650602071}
 --- !u!114 &2576810587050856646
 MonoBehaviour:
   m_ObjectHideFlags: 0

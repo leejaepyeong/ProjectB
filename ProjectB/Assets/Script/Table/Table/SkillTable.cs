@@ -60,34 +60,6 @@ public class SkillRecord : RecordBase
     public string getName => TableManager.Instance.stringTable.GetText(nameIdx);
     public string getDest => TableManager.Instance.stringTable.GetText(destIdx);
 
-    public SkillRecord GetCopyRecord()
-    {
-        SkillRecord copy = new SkillRecord();
-        copy.index = index;
-        copy.groupIdx = groupIdx;
-        copy.nameIdx = nameIdx;
-        copy.destIdx = destIdx;
-        copy.iconPath = iconPath;
-        copy.type = type;
-        copy.detailType = detailType;
-        copy.coolTIme = coolTIme;
-        copy.targetType = targetType;
-        copy.damagePerType = damagePerType;
-        copy.damagePerValue = damagePerValue;
-        copy.skillBulletTargetNum = skillBulletTargetNum;
-        copy.equipRuneCount = equipRuneCount;
-        for (int i = 0; i < copy.skillTags.Count; i++)
-        {
-            copy.skillTags.Add(skillTags[i]);
-        }
-        copy.eventNodePath = eventNodePath;
-        for (int i = 0; i < copy.skillEffects.Count; i++)
-        {
-            copy.skillEffects.Add(skillEffects[i]);
-        }
-        return copy;
-    }
-
     #region Logic
     private float elaspedTime;
     public void UpdateFrame(float deltaTime)

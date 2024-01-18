@@ -50,7 +50,6 @@ public enum eUnitType
 
 public enum eStat
 {
-    none,
     hp,
     mp,
     atk,
@@ -95,9 +94,6 @@ public enum eSkillType
     Normal,
     Active,
     Passive,
-
-    normalAtk,
-    skillDamage,
 }
 
 public enum eSkillDetailType

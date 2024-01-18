@@ -23,7 +23,7 @@ public class SkillSaveInfo
     public SkillRecord GetSkillData()
     {
         if (TableManager.Instance.skillTable.TryGetRecord(index, out var data) == false) return null;
-        return data.GetCopyRecord();
+        return data;
     }
 }
 public class SaveData_PlayerSkill : SaveData

@@ -10,6 +10,9 @@ public abstract class EventNodeData
 {
     public abstract string TitleName { get; }
     public abstract string SubjectName { get; }
+
+    private SkillInfo skillInfo;
+    public SkillInfo SkillInfo { get { return skillInfo; } set { skillInfo = value; } }
 }
 [NodeWidth(320)]
 public abstract class EventNode : Node

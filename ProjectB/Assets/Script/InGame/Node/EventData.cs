@@ -79,9 +79,6 @@ public class ProjectileEvent : EventNodeData
     private Projectiles.Straight straight;
     [SerializeField, ShowIf("@projectileType == Projectiles.eProjectileType.StraightFollow")] 
     private Projectiles.StraightFollow straightFollow;
-
-    private SkillInfo skillInfo;
-    public SkillInfo SkillInfo { get { return skillInfo; } set { skillInfo = value; } }
     public int MaxHitCount => maxHitCount;
 
     public Projectiles.IProjectileData GetProjectileData()

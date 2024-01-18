@@ -15,25 +15,16 @@ public class SkillInfo
 
     public SkillInfo(SkillRecord skill)
     {
-        skillRecord = skill.GetCopyRecord();
-        skillEffectList.Clear();
-        for (int i = 0; i < skillRecord.skillEffects.Count; i++)
-        {
-            if (TableManager.Instance.skillEffectTable.TryGetRecord(skillRecord.skillEffects[i], out var skillEffect) == false)
-                continue;
-            var copy = skillEffect.GetCopyRecord();
-            skillEffectList.Add(copy);
-        }
+        skillRecord = skill;
+        ReSetSkillInfo();
     }
     public SkillInfo(int slotIdx)
     {
-        elaspedTIme = 0;
         skillRecord = null;
-
         if (Manager.Instance.CurScene.isTestScene)
         {
             if(TableManager.Instance.skillTable.GetRecord(Manager.Instance.playerData.equipSkill[slotIdx]) != null)
-                skillRecord = TableManager.Instance.skillTable.GetRecord(Manager.Instance.playerData.equipSkill[slotIdx]).GetCopyRecord();
+                skillRecord = TableManager.Instance.skillTable.GetRecord(Manager.Instance.playerData.equipSkill[slotIdx]);
         }
         else
         {
@@ -41,24 +32,34 @@ public class SkillInfo
             if (playerSkill == null) return;
             skillRecord = playerSkill.GetSkillData();
         }
+        ReSetSkillInfo();
 
-        skillEffectList.Clear();
         runeDic.Clear();
-        if (skillRecord == null) return;
-
-        coolTime = skillRecord.coolTIme;
-        SetCoolTime();
-        for (int i = 0; i < skillRecord.skillEffects.Count; i++)
-        {
-            if (TableManager.Instance.skillEffectTable.TryGetRecord(skillRecord.skillEffects[i], out var skillEffect) == false)
-                continue;
-            var copy = skillEffect.GetCopyRecord();
-            skillEffectList.Add(copy);
-        }
         for (int i = 0; i < Define.MaxEquipRune; i++)
         {
             runeDic.Add(i, null);
         }
+    }
+
+    public void ReSetSkillInfo()
+    {
+        if (skillRecord == null)
+        {
+            Debug.LogError("Skill Record is Null");
+            return;
+        }
+
+        skillEffectList.Clear();
+        for (int i = 0; i < skillRecord.skillEffects.Count; i++)
+        {
+            if (TableManager.Instance.skillEffectTable.TryGetRecord(skillRecord.skillEffects[i], out var skillEffect) == false)
+                continue;
+            skillEffectList.Add(skillEffect);
+        }
+
+        coolTime = skillRecord.coolTIme;
+        SetCoolTime();
+        skillRecord.skillNode.SetSkill(this);
     }
 
     public float getTime { get { return elaspedTIme; } }
@@ -83,33 +84,25 @@ public class SkillInfo
 
     public void AddRune(RuneRecord runeRecord, int equipIdx)
     {
-        var copy = runeRecord.GetCopyRecord();
-        copy.AddSkillEffectToSkill(skillEffectList);
-        copy.SetRuneEffectToSkill(skillRecord);
-        for (int j = 0; j < skillEffectList.Count; j++)
-        {
-            copy.SetRuneEffectToSkillEffect(skillEffectList[j]);
-        }
-
-        runeDic[equipIdx] = copy;
+        runeDic[equipIdx] = runeRecord;
+        ReSetSkillInfo();
     }
 
     public void RemoveRune(int runeIdx)
     {
         runeDic[runeIdx] = null;
+        ReSetSkillInfo();
     }
 
-    public void AddSkillEffect()
+    public void ChangeSkill(SkillRecord skill)
     {
-
+        skillRecord = skill;
+        ReSetSkillInfo();
     }
 
     public void UseSkill()
     {
-        UnitManager.Instance.Player.isUseSkill = true;
-        skillRecord.skillNode.SetSkill(this);
         UnitManager.Instance.Player.Action(skillRecord.skillNode);
-
         SetCoolTime();
     }
 }
@@ -193,7 +186,6 @@ public class UISkillSlot : UISlot
         if (isMainSkillSlot == false) return;
         if (skillInfo.skillRecord == null) return;
         if (skillInfo.skillRecord.type != eSkillType.Active) return;
-        if (UnitManager.Instance.Player.isUseSkill) return;
 
         if(skillInfo.skillRecord.targetType == eSkillTarget.Target)
         {

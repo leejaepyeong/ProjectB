@@ -33,24 +33,6 @@ public class SkillEffectRecord : RecordBase
         skillDurationType = FileUtil.Get<eSkillDuration>(_data, "SkillEffect_DurType");
         skillDuration = FileUtil.Get<float>(_data, "SkillEffect_Duration");
     }
-
-    public SkillEffectRecord GetCopyRecord()
-    {
-        SkillEffectRecord copy = new SkillEffectRecord();
-        copy.groupIdx = groupIdx;
-        copy.nameIdx = nameIdx;
-        copy.destIdx = destIdx;
-        copy.buffType = buffType;
-        copy.skillState = skillState;
-        copy.skillStat = skillStat;
-        copy.addType = addType;
-        copy.skillValue = skillValue;
-        copy.skillTarget = skillTarget;
-        copy.skillDurationType = skillDurationType;
-        copy.skillDuration = skillDuration;
-
-        return copy;
-    }
 }
 public class SkillEffectTable : TTableBase<SkillEffectRecord>
 {

@@ -42,20 +42,6 @@ public class RuneRecord : RecordBase
     public string getName => TableManager.Instance.stringTable.GetText(nameIdx);
     public string getDest => TableManager.Instance.stringTable.GetText(destIdx);
 
-    public RuneRecord GetCopyRecord()
-    {
-        RuneRecord copy = new RuneRecord();
-        copy.groupIdx = groupIdx;
-        copy.nameIdx = nameIdx;
-        copy.destIdx = destIdx;
-        for (int i = 0; i < runeTypeInfoList.Count; i++)
-        {
-            copy.runeTypeInfoList[i] = new RuneTypeInfo(runeTypeInfoList[i].runeType, runeTypeInfoList[i].value, runeTypeInfoList[i].runeTag);
-        }
-
-        return copy;
-    }
-
     public void AddSkillEffectToSkill(List<SkillEffectRecord> skillEffectList)
     {
         for (int i = 0; i < runeTypeInfoList.Count; i++)
@@ -63,69 +49,15 @@ public class RuneRecord : RecordBase
             if (runeTypeInfoList[i].runeType != eRuneType.AddEffect) continue;
             if (TableManager.Instance.skillEffectTable.TryGetRecord((int)runeTypeInfoList[i].value, out var record))
             {
-                var temp = record.GetCopyRecord();
+                var temp = record;
                 skillEffectList.Add(temp);
             }
         }
     }
-    public void SetRuneEffectToSkill(SkillRecord skill)
+    public double GetRuneEffectValue(eRuneType runeType)
     {
-        if (UnitManager.Instance.Player == null)
-        {
-            Debug.LogError("Player is Null");
-            return;
-        }
-        var player = UnitManager.Instance.Player;
-
-        for (int i = 0; i < runeTypeInfoList.Count; i++)
-        {
-            switch (runeTypeInfoList[i].runeType)
-            {
-                case eRuneType.CoolTimeDown:
-                    skill.coolTIme -= runeTypeInfoList[i].value;
-                    break;
-                case eRuneType.AddProjectiledmg:
-                    skill.damagePerValue += runeTypeInfoList[i].value;
-                    break;
-                case eRuneType.MinProjectiledmg:
-                    skill.damagePerValue -= runeTypeInfoList[i].value;
-                    break;
-                case eRuneType.AddRange:
-                    player.UnitState.AddStat(eStat.atkRange, runeTypeInfoList[i].value);
-                    break;
-                case eRuneType.AddTarget:
-                    skill.skillBulletTargetNum += (int)runeTypeInfoList[i].value;
-                    break;
-                case eRuneType.AddAtk:
-                    player.UnitState.AddStat(eStat.atk, runeTypeInfoList[i].value);
-                    break;
-                case eRuneType.AddAtkspd:
-                    player.UnitState.AddStat(eStat.atkSpd, runeTypeInfoList[i].value);
-                    break;
-                case eRuneType.AddCrirate:
-                    player.UnitState.AddStat(eStat.criRate, runeTypeInfoList[i].value);
-                    break;
-                case eRuneType.AddCridmg:
-                    player.UnitState.AddStat(eStat.criDmg, runeTypeInfoList[i].value);
-                    break;
-                case eRuneType.MinAtk:
-                    player.UnitState.AddStat(eStat.atk, -runeTypeInfoList[i].value);
-                    break;
-                case eRuneType.MinAtkspd:
-                    player.UnitState.AddStat(eStat.atkSpd, -runeTypeInfoList[i].value);
-                    break;
-                case eRuneType.MinCrirate:
-                    player.UnitState.AddStat(eStat.criRate, -runeTypeInfoList[i].value);
-                    break;
-                case eRuneType.MinCridmg:
-                    player.UnitState.AddStat(eStat.criDmg, -runeTypeInfoList[i].value);
-                    break;
-                case eRuneType.GetBonusExp:
-                    break;
-                default:
-                    break;
-            }
-        }
+        var temp = runeTypeInfoList.Find(_ => _.runeType == runeType);
+        return temp == null ? 0 : temp.value;
     }
     public void SetRuneEffectToSkillEffect(SkillEffectRecord skillEffect)
     {

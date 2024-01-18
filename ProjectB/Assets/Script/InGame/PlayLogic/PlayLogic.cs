@@ -25,6 +25,7 @@ public class PlayLogic : BaseScene
     protected Coroutine coFsmSetting;
     protected float deltaTime;
     protected bool isSettingOn;
+    protected float playTime = 30f;
 
     QueueCommand commands = new QueueCommand();
     IntroCommand_LoadDataFile loadDataFile = new IntroCommand_LoadDataFile();
@@ -119,7 +120,7 @@ public class PlayLogic : BaseScene
     #region Setting
     protected virtual void EnterSetting()
     {
-        BattleManager.Instance.SetGame(30f);
+        BattleManager.Instance.SetGame(playTime);
         uiPlayLogic.Init();
         coFsmSetting = StartCoroutine(GameSettingCo());
     }

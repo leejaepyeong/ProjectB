@@ -24,4 +24,17 @@ public class ExpTable : TTableBase<ExpRecord>
     {
 
     }
+
+    public ExpRecord GetExpRecord(int exp)
+    {
+        ExpRecord record = null;
+        for (int i = 0; i < getRecordList.Count; i++)
+        {
+            record = getRecordList[i];
+            if (exp - record.needExp < 0) break;
+            exp -= record.needExp;
+        }
+
+        return record;
+    }
 }

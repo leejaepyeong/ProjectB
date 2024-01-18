@@ -10,6 +10,10 @@ public class BattleManager : BaseManager
     private bool isGameEnd;
     public bool isPause;
 
+    public int lv;
+    public int exp;
+    public int needExp;
+
     public float getCurTime { get { return elaspedTime; } }
 
     public static BattleManager Instance
@@ -22,6 +26,10 @@ public class BattleManager : BaseManager
         stageTime = time;
         isGameEnd = false;
         isInit = true;
+        lv = 1;
+        exp = 0;
+        var expRecord = TableManager.Instance.expTable.GetExpRecord(exp);
+        needExp = expRecord.needExp;
     }
 
     public override void UpdateFrame(float deltaTime)
@@ -41,5 +49,25 @@ public class BattleManager : BaseManager
         if (UnitManager.Instance.Player != null && UnitManager.Instance.Player.UnitState.isDead) { isGameEnd = true; return true; }
 
         return false;
+    }
+
+    public void AddExp(int exp)
+    {
+        this.exp += exp;
+
+        if (exp >= needExp)
+            LevelUp();
+    }
+
+    public void LevelUp()
+    {
+        var expRecord = TableManager.Instance.expTable.GetExpRecord(exp);
+        if (expRecord == null) return;
+
+        lv += 1;
+        exp -= needExp;
+        needExp = expRecord.needExp;
+        UILevelUpDlg dlg = UIManager.Instance.OpenWidget<UILevelUpDlg>();
+        dlg.Open();
     }
 }

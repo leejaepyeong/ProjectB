@@ -25,10 +25,10 @@ public class Unit_Base : MonoBehaviour
         unitBehavior = behavior;
         unitState = unitBehavior.UnitState;
         unitData = unitBehavior.UnitData;
-        atkCool = 1 / unitState.atkSpd;
+        atkCool = 1 / (float)unitState.GetStat(eStat.atkSpd);
         isAtkAble = true;
-        curHp = unitState.hp;
-        curMp = unitState.mp;
+        curHp = (long)unitState.GetStat(eStat.hp);
+        curMp = (long)unitState.GetStat(eStat.mp);
     }
 
     public virtual void UpdateFrame(float deltaTime)
@@ -57,7 +57,6 @@ public class Unit_Base : MonoBehaviour
 
     public virtual void SearchTarget()
     {
-        if (unitBehavior.isUseSkill) return;
         if(isAtkAble == false)
         {
             if (atkCool > 0)
@@ -69,7 +68,7 @@ public class Unit_Base : MonoBehaviour
         }
 
         int layer = unitState.team == eTeam.player ? LayerMask.GetMask("Monster") : LayerMask.GetMask("Player");
-        var targets = Physics2D.OverlapCircleAll(unitBehavior.GetPos(), unitState.atkRange, layer);
+        var targets = Physics2D.OverlapCircleAll(unitBehavior.GetPos(), (float)unitState.GetStat(eStat.atkRange), layer);
         if (targets.Length <= 0) return;
         targetList.Clear();
         for (int i = 0; i < targets.Length; i++)
@@ -79,7 +78,7 @@ public class Unit_Base : MonoBehaviour
                 targetList.Add(target);
         }
 
-        atkCool = 1 / unitState.atkSpd;
+        atkCool = 1 / (float)unitState.GetStat(eStat.atkSpd);
         Attack();
     }
 
@@ -106,16 +105,16 @@ public class Unit_Base : MonoBehaviour
         {
             case eDamagePerType.Atk:
             default:
-                curHp -= (long)(unitState.atk * dmgPercent);
+                curHp -= (long)(caster.UnitState.GetStat(eStat.atk) * dmgPercent);
                 break;
             case eDamagePerType.AtkSpd:
                 curHp -= (long)(curHp * dmgPercent);
                 break;
             case eDamagePerType.CurHp:
-                curHp -= (long)(unitState.hp * dmgPercent);
+                curHp -= (long)(caster.UnitState.GetStat(eStat.atk) * dmgPercent);
                 break;
             case eDamagePerType.MaxHp:
-                curHp -= (long)(unitState.hp * dmgPercent);
+                curHp -= (long)(caster.UnitState.GetStat(eStat.hp) * dmgPercent);
                 break;
         }
 

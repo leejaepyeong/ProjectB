@@ -5,12 +5,12 @@ using UnityEngine.UI;
 using Sirenix.OdinInspector;
 using TMPro;
 
-public class EquipSkill
+public class EquipedSkill
 {
     public SkillRecord skillRecord;
     public Dictionary<int, RuneRecord> runeDic = new Dictionary<int, RuneRecord>();
 
-    public EquipSkill()
+    public EquipedSkill()
     {
         for (int i = 1; i <= Define.MaxEquipRune; i++)
         {

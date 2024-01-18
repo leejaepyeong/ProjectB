@@ -9,7 +9,7 @@ public class Unit_Player : Unit_Base
         base.Init(behavior);
         for (int i = 0; i < (int)eStat.END; i++)
         {
-            unitState.SetStat((eStat)i, Manager.Instance.CurScene.isTestScene);
+            unitState.SetPlayerStat((eStat)i, Manager.Instance.CurScene.isTestScene);
         }
     }
 

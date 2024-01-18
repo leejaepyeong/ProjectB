@@ -16,12 +16,7 @@ public class EventGraph : NodeGraph
         for (int i = 0; i < nodes.Count; i++)
         {
             node = nodes[i] as EventNode;
-            switch (node.EventData)
-            {
-                case ProjectileEvent projectileEvent:
-                    projectileEvent.SkillInfo = skillInfo;
-                    break;
-            }
+            node.EventData.SkillInfo = skillInfo;
         }
     }
 }
