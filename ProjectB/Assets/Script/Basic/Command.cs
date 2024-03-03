@@ -129,6 +129,7 @@ public class IntroCommand_MoveToLobby : Command
     public void Execute()
     {
         loadSceneAsync = SceneManager.LoadSceneAsync("LobbyScene");
+        UIManager.Instance.UiFade.Fade();
     }
 
     public bool IsFinished()

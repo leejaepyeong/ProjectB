@@ -6,6 +6,8 @@ using UnityEngine.Rendering.Universal;
 public class UIManager : BaseManager
 {
     private const string UICANVAS_PATH = "Assets/Data/GameResources/Prefab/Widget/UICanvas.prefab";
+    private const string UIFADE_PATH = "Assets/Data/GameResources/Prefab/Widget/UIFade.prefab";
+
     private UICanvas uiCanvas;
     public UICanvas UiCanvas
     {
@@ -43,6 +45,20 @@ public class UIManager : BaseManager
         get 
         { 
             return Manager.Instance.GetManager<UIManager>(); 
+        }
+    }
+    private UIFade uiFade;
+    public UIFade UiFade
+    {
+        get
+        {
+            if (uiFade == null)
+            {
+                if (GameObjectPool.TryGet(UIFADE_PATH, out var obj))
+                    uiFade = obj.GetComponent<UIFade>();
+                uiFade.transform.SetParent(transform);
+            }
+            return uiFade;
         }
     }
 
