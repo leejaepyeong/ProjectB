@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public interface Command
 {
@@ -124,20 +125,19 @@ public class IntroCommand_CreateAccount : Command
 }
 public class IntroCommand_MoveToLobby : Command
 {
+    private AsyncOperation loadSceneAsync;
     public void Execute()
     {
-        Manager.Instance.getFileData.InitSaveData();
+        loadSceneAsync = SceneManager.LoadSceneAsync("LobbyScene");
     }
 
     public bool IsFinished()
     {
-        return FileData.Instance.IsLoadDone;
+        return loadSceneAsync.isDone;
     }
 
     public void Update(float deltaTime)
     {
-        if (IsFinished())
-            Execute();
     }
 }
 #endregion
