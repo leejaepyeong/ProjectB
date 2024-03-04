@@ -23,6 +23,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Remote
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7003436ea24c51345a29f996bb0ba361
+    m_Address: Assets/Data/GameResources/Prefab/Effect/HitExplosion/BombExplosion.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 0b85ada165676584a86a5d299cec6c75, type: 2}
   m_SchemaSet:

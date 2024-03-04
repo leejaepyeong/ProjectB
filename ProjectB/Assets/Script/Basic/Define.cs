@@ -119,6 +119,8 @@ public enum eSkillTarget
 {
     Near,
     NonTarget,
+    Click_Target,
+    Click_Direction,
     Target,
     Target_Direction,
     Team,

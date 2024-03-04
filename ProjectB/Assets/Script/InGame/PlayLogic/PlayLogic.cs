@@ -36,8 +36,8 @@ public class PlayLogic : BaseScene
     private Coroutine coMoveRangeObject;
 
     #region RangeObjectPath
-    private const string RECT_RANGE_OBJECT = "Assets/Data/GameResources/Prefab/RangePrefab/Circle.prefab";
-    private const string CIRCLE_RANGE_OBJECT = "Assets/Data/GameResources/Prefab/RangePrefab/Rect.prefab";
+    private const string RECT_RANGE_OBJECT = "Assets/Data/GameResources/Prefab/RangePrefab/Rect.prefab";
+    private const string CIRCLE_RANGE_OBJECT = "Assets/Data/GameResources/Prefab/RangePrefab/Circle.prefab";
     private const string FANSHAPE_RANGE_OBJECT = "Assets/Data/GameResources/Prefab/RangePrefab/FanShape.prefab";
     #endregion
     public override void Init()
@@ -234,7 +234,7 @@ public class PlayLogic : BaseScene
     {
         rangeObject.transform.SetParent(EffectManager.Instance.transform);
 
-        Vector3 position;
+        Vector3 position = Vector3.zero;
         while(isTargetSkillOn)
         {
             position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -242,7 +242,7 @@ public class PlayLogic : BaseScene
             yield return new WaitForEndOfFrame();
         }
 
-        rangeObject.OnClickAction();
+        rangeObject.OnClickAction(position);
         BattleManager.Instance.GameObjectPool.Return(rangeObject.gameObject);
         coMoveRangeObject = null;
     }

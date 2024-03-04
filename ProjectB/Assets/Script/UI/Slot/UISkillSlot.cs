@@ -13,6 +13,8 @@ public class SkillInfo
     public Dictionary<int, RuneRecord> runeDic = new Dictionary<int, RuneRecord>();
     public List<SkillEffectRecord> skillEffectList = new List<SkillEffectRecord>();
 
+    public Vector3 targetPos;
+
     public SkillInfo(SkillRecord skill)
     {
         skillRecord = skill;
@@ -187,11 +189,11 @@ public class UISkillSlot : UISlot
         if (skillInfo.skillRecord == null) return;
         if (skillInfo.skillRecord.type != eSkillType.Active) return;
 
-        if(skillInfo.skillRecord.targetType == eSkillTarget.Target)
+        if(skillInfo.skillRecord.targetType == eSkillTarget.Click_Target)
         {
             PlayLogic.Instance.UseTargetSkill(skillInfo);
         }
-        else if(skillInfo.skillRecord.targetType == eSkillTarget.Target_Direction)
+        else if(skillInfo.skillRecord.targetType == eSkillTarget.Click_Direction)
         {
             PlayLogic.Instance.UseTargetSkill(skillInfo);
         }

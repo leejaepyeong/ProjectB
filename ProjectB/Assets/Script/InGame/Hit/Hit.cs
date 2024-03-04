@@ -38,10 +38,7 @@ public abstract class Hit
         this.caster = caster;
         this.target = target;
         hitData = hitEvent.GetHitData();
-        startPos = target == null ? caster.GetPos() : target.GetPos();
-        startRot = target == null ? caster.GetRot() : target.GetRot();
-        startPosOffset = hitEvent.startPos;
-        startRotOffset = hitEvent.startRot;
+        
         maxDistance = hitEvent.radius;
         curDistance = 0;
         preDistance = 0;
@@ -50,6 +47,22 @@ public abstract class Hit
         hittedDic.Clear();
         targetList.Clear();
         isWave = hitEvent.hitType == HitEvenet.eHitType.Wave;
+    }
+    private void StartTransform()
+    {
+        if(hitEvent.SkillInfo.skillRecord.targetType == eSkillTarget.Click_Target)
+        {
+
+        }
+        else if (hitEvent.SkillInfo.skillRecord.targetType == eSkillTarget.Click_Direction)
+        {
+
+        }
+        else
+        {
+            startPos = target == null ? caster.GetPos() : target.GetPos();
+            startRot = target == null ? caster.GetRot() : target.GetRot();
+        }
     }
     public virtual void UpdateFrame(float deltaTime)
     {

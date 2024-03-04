@@ -198,6 +198,9 @@ public class UnitBehavior : BaseBehavior, IEventHandler
             case ProjectileEvent projectileEvent:
                 OnHandleProjectileEvent(projectileEvent);
                 break;
+            case HitEvent hitEvent:
+                OnHandleHitEvent(hitEvent);
+                break;
             default:
                 break;
         }
@@ -264,6 +267,10 @@ public class UnitBehavior : BaseBehavior, IEventHandler
         {
             ProjectileManager.Instance.SpawnProjectile(projectileEvent.SkillInfo, projectileEvent, this, targetList[i]);
         }
+    }
+    private void OnHandleHitEvent(HitEvent hitEvent)
+    {
+        HitManager.Instance.SpawnHit(hitEvent, this);
     }
     #endregion
 }

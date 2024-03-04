@@ -4,16 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using TMPro;
+using Sirenix.OdinInspector;
 
 public class UIBase : MonoBase
 {
-    public Button btnClick;
-    public Button[] btnCloseGroup;
     public RectTransform RectTransform => transform as RectTransform;
     protected UIManager uiManager => UIManager.Instance;
 
-    protected bool escapable;
-    protected bool backable;
+    [SerializeField, FoldoutGroup("Setting")] protected Button btnClick;
+    [SerializeField, FoldoutGroup("Setting")] protected Button[] btnCloseGroup;
+    [SerializeField, FoldoutGroup("Setting")] protected bool escapable;
+    [SerializeField, FoldoutGroup("Setting")] protected bool backable;
     protected UnityAction onClickAction;
 
     protected virtual void Awake()

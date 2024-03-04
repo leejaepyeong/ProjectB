@@ -10,8 +10,8 @@ public class Hit_Rect : Hit
 
     public override void Init(HitBehavior hitBehavior, HitEvent hitEvent, UnitBehavior caster, UnitBehavior target)
     {
-        rect = hitData as HitEvenet.Rect;
         base.Init(hitBehavior, hitEvent, caster, target);
+        rect = hitData as HitEvenet.Rect;
     }
 
     protected override void ActiveWave()

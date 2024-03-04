@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 373126310344770011}
   - component: {fileID: 924541587415857006}
   - component: {fileID: -7120135490922799254}
+  - component: {fileID: 33982491551840638}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -226,4 +227,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tween: {fileID: 5714192214646071551}
   rangeType: 0
+  collider: {fileID: 33982491551840638}
   fanShapeObjs: []
+--- !u!58 &33982491551840638
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7996254356788016849}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5

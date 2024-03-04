@@ -29,32 +29,8 @@ MonoBehaviour:
     radius: 5
     speed: 2
     circle:
-      curveSpeed:
-        serializedVersion: 2
-        m_Curve:
-        - serializedVersion: 3
-          time: 0
-          value: 0
-          inSlope: 1
-          outSlope: 1
-          tangentMode: 34
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        - serializedVersion: 3
-          time: 1
-          value: 1
-          inSlope: 1
-          outSlope: 1
-          tangentMode: 34
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
       projectileEffect:
-        m_AssetGUID: 
+        m_AssetGUID: 7003436ea24c51345a29f996bb0ba361
         m_SubObjectName: 
         m_SubObjectType: 
         m_EditorAssetChanged: 0
@@ -72,12 +48,6 @@ MonoBehaviour:
         duration: 5
     rect:
       range: {x: 0, y: 0}
-      curveSpeed:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
       projectileEffect:
         m_AssetGUID: 
         m_SubObjectName: 
@@ -97,12 +67,6 @@ MonoBehaviour:
         duration: 5
     fanShape:
       angle: 0
-      curveSpeed:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
       projectileEffect:
         m_AssetGUID: 
         m_SubObjectName: 

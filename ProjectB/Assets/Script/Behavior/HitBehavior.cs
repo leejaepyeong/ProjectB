@@ -10,9 +10,9 @@ public class HitBehavior : BaseBehavior
 
     private UnitBehavior caster;
     private UnitBehavior target;
-    public void Init(SkillInfo skillInfo, HitEvent hitEvent, UnitBehavior caster, UnitBehavior target)
+    public void Init(HitEvent hitEvent, UnitBehavior caster, UnitBehavior target)
     {
-        this.skillInfo = skillInfo;
+        this.skillInfo = hitEvent.SkillInfo;
         this.hitEvent = hitEvent;
         this.caster = caster;
         this.target = target;
@@ -42,6 +42,12 @@ public class HitBehavior : BaseBehavior
         {
             case HitEvenet.eHitRange.Circle:
                 hit = Utilities.StaticeObjectPool.Pop<Hit_Circle>();
+                break;
+            case HitEvenet.eHitRange.Rect:
+                hit = Utilities.StaticeObjectPool.Pop<Hit_Rect>();
+                break;
+            case HitEvenet.eHitRange.FanShape:
+                hit = Utilities.StaticeObjectPool.Pop<Hit_FanShape>();
                 break;
         }
 

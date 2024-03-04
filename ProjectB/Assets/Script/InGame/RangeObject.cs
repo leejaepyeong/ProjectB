@@ -14,6 +14,7 @@ public class RangeObject : MonoBase
 
     [SerializeField] private Tweener tween;
     [SerializeField] private eRangeType rangeType;
+    [SerializeField] private Collider2D collider;
     [ShowIf("@rangeType == eRangeType.FanShape"), SerializeField] private GameObject[] fanShapeObjs;
 
     private SkillInfo skillInfo;
@@ -73,11 +74,12 @@ public class RangeObject : MonoBase
     {
     }
 
-    public void OnClickAction()
+    public void OnClickAction(Vector3 clickPosition)
     {
         if (clickAction != null)
             clickAction.Invoke();
 
+        skillInfo.targetPos = clickPosition;
         skillInfo.UseSkill();
     }
 }
