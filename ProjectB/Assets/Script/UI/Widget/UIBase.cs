@@ -14,8 +14,12 @@ public class UIBase : MonoBase
     [SerializeField, FoldoutGroup("Setting")] protected Button btnClick;
     [SerializeField, FoldoutGroup("Setting")] protected Button[] btnCloseGroup;
     [SerializeField, FoldoutGroup("Setting")] protected bool escapable;
-    [SerializeField, FoldoutGroup("Setting")] protected bool backable;
+    [SerializeField, FoldoutGroup("Setting")] protected bool backGroundable;
     protected UnityAction onClickAction;
+    protected bool interactive;
+
+    public bool Escapable => escapable;
+    public bool BackGroundAble => backGroundable;
 
     protected virtual void Awake()
     {
@@ -27,19 +31,15 @@ public class UIBase : MonoBase
         }
     }
 
-    public virtual void DeInit()
-    {
-
-    }
-
     public override void Open()
     {
+        interactive = true;
         base.Open();
     }
 
     public override void Close()
     {
-        Manager.Instance.GetManager<UIManager>().RemoveUI(this);
+        UIManager.Instance.RemoveUI(this);
     }
 
     public override void UpdateFrame(float deltaTime)
@@ -49,11 +49,15 @@ public class UIBase : MonoBase
 
     public virtual void OnClickBackGround()
     {
+        if (backGroundable == false) return;
+
         Close();
     }
 
     public virtual void OnClickEscape()
     {
+        if (escapable == false) return;
+
         Close();
     }
 

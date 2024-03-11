@@ -3,62 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
+public enum eWidgetType
+{
+    Back,
+    Normal,
+    Pop,
+    Front,
+}
 public class UIManager : BaseManager
 {
-    private const string UICANVAS_PATH = "Assets/Data/GameResources/Prefab/Widget/UICanvas.prefab";
-    private const string UIFADE_PATH = "Assets/Data/GameResources/Prefab/Widget/UIFade.prefab";
+    [SerializeField] private UICanvas uiCanvasOrigin;
+    [SerializeField] private Transform attach;
+    [SerializeField] private Camera uiCamera;
 
-    private UICanvas uiCanvas;
-    public UICanvas UiCanvas
-    {
-        get
-        {
-            if(uiCanvas == null)
-            {
-                if (GameObjectPool.TryGet(UICANVAS_PATH, out var obj))
-                    uiCanvas = obj.GetComponent<UICanvas>();
-                uiCanvas.transform.SetParent(transform);
-            }
-            return uiCanvas;
-        }
-    }
-
-    public Canvas canvas
-    {
-        get
-        {
-            return UiCanvas.canvas;
-        }
-    }
-    public Camera uiCamera
-    {
-        get
-        {
-            return UiCanvas.uiCamera;
-        }
-    }
-
+    public Camera UiCamera => uiCamera;
     private List<UIBase> uiBases;
+    private Queue<UICanvas> queueCanvas = new Queue<UICanvas>();
+    private Dictionary<UIBase, UICanvas> dicCanvas = new Dictionary<UIBase, UICanvas>();
+    private Dictionary<eWidgetType, int> dicWidgetCount = new Dictionary<eWidgetType, int>();
 
     public static UIManager Instance
     {
         get 
         { 
-            return Manager.Instance.GetManager<UIManager>(); 
-        }
-    }
-    private UIFade uiFade;
-    public UIFade UiFade
-    {
-        get
-        {
-            if (uiFade == null)
-            {
-                if (GameObjectPool.TryGet(UIFADE_PATH, out var obj))
-                    uiFade = obj.GetComponent<UIFade>();
-                uiFade.transform.SetParent(transform);
-            }
-            return uiFade;
+            return Manager.Instance.GetUIManger(); 
         }
     }
 
@@ -84,29 +52,12 @@ public class UIManager : BaseManager
         uiBases.Add(uibase);
     }
 
-    public UIBase OpenUI(string path)
+    public UIBase OpenUI(string path, eWidgetType widgetType = eWidgetType.Normal)
     {
+        UICanvas uiCanvas = GetPooledCanvasContainer();
+
         UIBase uiBase = GameObjectPool.Get(path).GetComponent<UIBase>();
-        uiBase.transform.SetParent(canvas.transform);
-        uiBase.RectTransform.anchoredPosition3D = Vector3.zero;
-        uiBase.RectTransform.offsetMin = Vector2.zero;
-        uiBase.RectTransform.offsetMax = Vector2.zero;
-        uiBase.RectTransform.localRotation = Quaternion.identity;
-        uiBase.RectTransform.localScale = Vector3.one;
-
-        if (uiBase == null)
-        {
-            Debug.LogError("null == UIPath");
-            return null;
-        }            
-        AddUI(uiBase);
-        return uiBase;
-    }
-
-    public T OpenWidget<T>() where T : UIBase
-    {
-        T uiBase = GameObjectPool.Get(GetUIPath<T>()).GetComponent<T>();
-        uiBase.transform.SetParent(canvas.transform);
+        uiBase.transform.SetParent(uiCanvas.transform);
         uiBase.RectTransform.anchoredPosition3D = Vector3.zero;
         uiBase.RectTransform.offsetMin = Vector2.zero;
         uiBase.RectTransform.offsetMax = Vector2.zero;
@@ -118,8 +69,64 @@ public class UIManager : BaseManager
             Debug.LogError("null == UIPath");
             return null;
         }
+        int sortOrder = GetSortOrder(widgetType);
+        uiCanvas.canvas.sortingOrder = sortOrder;
+        uiCanvas.widgetType = widgetType;
+        dicCanvas.Add(uiBase, uiCanvas);
         AddUI(uiBase);
         return uiBase;
+    }
+
+    public T OpenWidget<T>(eWidgetType widgetType = eWidgetType.Normal) where T : UIBase
+    {
+        UICanvas uiCanvas = GetPooledCanvasContainer();
+
+        T uiBase = GameObjectPool.Get(GetUIPath<T>()).GetComponent<T>();
+        uiBase.transform.SetParent(uiCanvas.transform);
+        uiBase.RectTransform.anchoredPosition3D = Vector3.zero;
+        uiBase.RectTransform.offsetMin = Vector2.zero;
+        uiBase.RectTransform.offsetMax = Vector2.zero;
+        uiBase.RectTransform.localRotation = Quaternion.identity;
+        uiBase.RectTransform.localScale = Vector3.one;
+
+        if (uiBase == null)
+        {
+            Debug.LogError("null == UIPath");
+            return null;
+        }
+        int sortOrder = GetSortOrder(widgetType);
+        uiCanvas.canvas.sortingOrder = sortOrder;
+        uiCanvas.widgetType = widgetType;
+        dicCanvas.Add(uiBase, uiCanvas);
+
+        AddUI(uiBase);
+        return uiBase;
+    }
+    private int GetSortOrder(eWidgetType widgetType)
+    {
+        if (dicWidgetCount.ContainsKey(widgetType) == false)
+            dicWidgetCount.Add(widgetType, 1);
+        else
+            dicWidgetCount[widgetType] += 1;
+
+        int widgetCount = dicWidgetCount[widgetType];
+        int addValue = 0;
+        switch (widgetType)
+        {
+            case eWidgetType.Normal:
+                addValue = 1000;
+                break;
+            case eWidgetType.Pop:
+                addValue = 2000;
+                break;
+            case eWidgetType.Front:
+                addValue = 3000;
+                break;
+            case eWidgetType.Back:
+            default:
+                break;
+        }
+        return widgetCount + addValue;
     }
 
     public T GetUI<T>() where T : UIBase 
@@ -133,18 +140,20 @@ public class UIManager : BaseManager
         return null;
     }
 
-    public void RemoveUI()
+    public void RemoveUIEscape()
     {
         if (uiBases.Count == 0) return;
 
-        uiBases[uiBases.Count - 1].Close();
-        GameObjectPool.Return(uiBases[uiBases.Count - 1].gameObject);
-        uiBases.Remove(uiBases[uiBases.Count - 1]);
+        var uiBase = uiBases[uiBases.Count - 1];
+        uiBase.OnClickEscape();
     }
 
     public void RemoveUI(UIBase uiBase)
     {
         GameObjectPool.Return(uiBase.gameObject);
+        ReturnPooledCanvasContainer(dicCanvas[uiBase]);
+        dicWidgetCount[dicCanvas[uiBase].widgetType] -= 1;
+        dicCanvas.Remove(uiBase);
         uiBases.Remove(uiBase);
     }
 
@@ -164,12 +173,15 @@ public class UIManager : BaseManager
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
-            RemoveUI();
+            RemoveUIEscape();
     }
 
-    private string GetUIPath(UIBase uIBase)
+    public void ResetDataUI()
     {
-        return string.Format("Assets/GameResouces/Prefab/UI/" + uIBase.name + ".prefab");
+        for (int i = 0; i < uiBases.Count; i++)
+        {
+            uiBases[i].ResetData();
+        }
     }
 
     private string GetUIPath<T>()
@@ -194,4 +206,35 @@ public class UIManager : BaseManager
 
         return msg;
     }
+
+    #region Canvas
+    private UICanvas CreateCanvasContainer()
+    {
+        var objContainer = GameObject.Instantiate(uiCanvasOrigin.gameObject,
+            Vector3.zero,
+            Quaternion.identity,
+            attach);
+        return objContainer.GetComponent<UICanvas>();
+    }
+
+    private UICanvas GetPooledCanvasContainer()
+    {
+        if (queueCanvas.Count > 0)
+        {
+            return queueCanvas.Dequeue();
+        }
+        else
+        {
+            return CreateCanvasContainer();
+        }
+    }
+
+    private void ReturnPooledCanvasContainer(UICanvas container)
+    {
+        container.component = null;
+        container.SetActive(false);
+
+        queueCanvas.Enqueue(container);
+    }
+    #endregion
 }

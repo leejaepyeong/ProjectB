@@ -22,9 +22,4 @@ public class IntroScene : BaseScene
     {
         commands.UpdateFrame(deltaTime);
     }
-
-    private void LoadData()
-    {
-
-    }
 }

@@ -154,6 +154,20 @@ public class Manager : Singleton<Manager>
         return manager as T;
     }
 
+    public UIManager GetUIManger()
+    {
+        if (managerDic.TryGetValue("UIManager", out var manager) == false)
+        {
+            var obj = Resources.Load<UIManager>("UIManager");
+            manager = Instantiate(obj, transform);
+            manager.transform.SetParent(transform);
+            manager.Init();
+            managerDic.Add("UIManager", manager);
+            managerKeys.Add("UIManager");
+        }
+        return manager as UIManager;
+    }
+
     private T CreateComponent<T>(Transform _parent) where T : MonoBehaviour
     {
         GameObject _obj = new GameObject(typeof(T).Name);

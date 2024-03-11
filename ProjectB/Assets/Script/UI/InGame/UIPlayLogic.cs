@@ -7,6 +7,8 @@ using TMPro;
 
 public class UIPlayLogic : MonoBehaviour
 {
+    [SerializeField] private Canvas canvas;
+
     [SerializeField, FoldoutGroup("Top")] private UIWaveInfo uiWaveInfo;
     [SerializeField, FoldoutGroup("Top_Right")] private Button btnOption;
     [SerializeField, FoldoutGroup("Top_Right")] private Button btnInven;
@@ -16,6 +18,11 @@ public class UIPlayLogic : MonoBehaviour
     [FoldoutGroup("Bottom")] public UISkillInven_Placement uiSkillInven_Placement;
     [FoldoutGroup("Bottom/Exp")] public Image expGage;
     [FoldoutGroup("Bottom/Exp")] public TextMeshProUGUI textExp;
+
+    private void Awake()
+    {
+        canvas.worldCamera = UIManager.Instance.UiCamera;
+    }
 
     public void Init()
     {
@@ -45,7 +52,8 @@ public class UIPlayLogic : MonoBehaviour
     private void OnClickGamePause()
     {
         if (BattleManager.Instance.isPause) return;
-        UIManager.Instance.OpenWidget<UIPauseDlg>();
+        var dlg = UIManager.Instance.OpenWidget<UIPauseDlg>();
+        dlg.Open();
         BattleManager.Instance.isPause = true;
     }
 
@@ -56,6 +64,8 @@ public class UIPlayLogic : MonoBehaviour
     private void OnClickInventory()
     {
         UIManager.Instance.OpenWidget<UIInGameInventory>();
+        var dlg = UIManager.Instance.OpenWidget<UIPauseDlg>();
+        dlg.Open();
     }
     #endregion
 }

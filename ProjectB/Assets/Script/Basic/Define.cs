@@ -105,7 +105,10 @@ public enum eSkillDetailType
 }
 public enum eSkillTag
 {
+    None,
     Normal,
+    Fire,
+    Ice,
 }
 
 public enum eSkillActivate

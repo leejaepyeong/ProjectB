@@ -25,20 +25,21 @@ MonoBehaviour:
     projectileType: 0
     projectileHit: 1
     projectileEffect:
-      m_AssetGUID: bec6a5ab43e709d4d971197df77ab201
+      m_AssetGUID: da9a389c7136f4d48aa582f3b8926020
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
     hitEvent:
       paricleObject:
-        m_AssetGUID: 77ffef51616c9ac4eb2d36e7ddc1e47f
+        m_AssetGUID: 6ed953158ebba554081d624ba3420ff2
         m_SubObjectName: 
         m_SubObjectType: 
         m_EditorAssetChanged: 0
       referenceBone: 
-      localPosition: {x: 0, y: 0, z: 0}
-      localEular: {x: 0, y: 0, z: 0}
-      localScale: {x: 1, y: 1, z: 1}
+      effectSpawn: 0
+      position: {x: 0, y: 0, z: 0}
+      eular: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
       duration: 5
     maxHitCount: 100
     straight:

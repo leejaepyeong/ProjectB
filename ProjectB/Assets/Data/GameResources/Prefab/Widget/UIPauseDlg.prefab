@@ -966,7 +966,7 @@ GameObject:
   - component: {fileID: 7287084439888990292}
   - component: {fileID: 3973718557404640181}
   - component: {fileID: 710468156125997273}
-  - component: {fileID: 791405726624898849}
+  - component: {fileID: 6394164335790806207}
   m_Layer: 5
   m_Name: Button_Fsm
   m_TagString: Untagged
@@ -1033,7 +1033,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &791405726624898849
+--- !u!114 &6394164335790806207
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1042,7 +1042,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2800620507821862116}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -1074,9 +1074,13 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 710468156125997273}
-  m_OnClick:
+  toggleTransition: 1
+  graphic: {fileID: 0}
+  m_Group: {fileID: 4391586489509819965}
+  onValueChanged:
     m_PersistentCalls:
       m_Calls: []
+  m_IsOn: 0
 --- !u!1 &2846570016057285970
 GameObject:
   m_ObjectHideFlags: 0
@@ -1945,8 +1949,9 @@ GameObject:
   - component: {fileID: 2607419546388791150}
   - component: {fileID: 6625833764078678718}
   - component: {fileID: 462447010286501017}
+  - component: {fileID: 4391586489509819965}
   m_Layer: 5
-  m_Name: ButtonGroup
+  m_Name: ToggleGroup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2039,6 +2044,19 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &4391586489509819965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5402238038307301641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fafe2cfe61f6974895a912c3755e8f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AllowSwitchOff: 0
 --- !u!1 &5445648515748616917
 GameObject:
   m_ObjectHideFlags: 0
@@ -2131,9 +2149,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   btnClick: {fileID: 0}
   btnCloseGroup: []
-  buttonSound: {fileID: 3859127998830852188}
-  buttonGraphic: {fileID: 2934270861088573990}
-  buttonFsm: {fileID: 791405726624898849}
+  escapable: 1
+  backGroundable: 0
+  toggleTabs:
+  - {fileID: 267354181931544450}
+  - {fileID: 7999822736934159719}
+  - {fileID: 6394164335790806207}
   scrollAll: {fileID: 1356984185259125410}
   scrollBgm: {fileID: 8974172493981796469}
   scrollEffect: {fileID: 1790481573697678638}
@@ -2703,7 +2724,7 @@ GameObject:
   - component: {fileID: 5715070634888910821}
   - component: {fileID: 9163290813911053303}
   - component: {fileID: 9171655592678968024}
-  - component: {fileID: 2934270861088573990}
+  - component: {fileID: 7999822736934159719}
   m_Layer: 5
   m_Name: Button_Graphic
   m_TagString: Untagged
@@ -2770,7 +2791,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2934270861088573990
+--- !u!114 &7999822736934159719
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2779,7 +2800,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7164615052680370673}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -2811,9 +2832,13 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 9171655592678968024}
-  m_OnClick:
+  toggleTransition: 1
+  graphic: {fileID: 0}
+  m_Group: {fileID: 4391586489509819965}
+  onValueChanged:
     m_PersistentCalls:
       m_Calls: []
+  m_IsOn: 0
 --- !u!1 &7330428831876104444
 GameObject:
   m_ObjectHideFlags: 0
@@ -3449,7 +3474,7 @@ GameObject:
   - component: {fileID: 402622164072210568}
   - component: {fileID: 4224282292207073029}
   - component: {fileID: 2840847970289901864}
-  - component: {fileID: 3859127998830852188}
+  - component: {fileID: 267354181931544450}
   m_Layer: 5
   m_Name: Button_Sound
   m_TagString: Untagged
@@ -3516,7 +3541,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3859127998830852188
+--- !u!114 &267354181931544450
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3525,7 +3550,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8397596246486001612}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -3557,9 +3582,13 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 2840847970289901864}
-  m_OnClick:
+  toggleTransition: 1
+  graphic: {fileID: 0}
+  m_Group: {fileID: 4391586489509819965}
+  onValueChanged:
     m_PersistentCalls:
       m_Calls: []
+  m_IsOn: 0
 --- !u!1 &8585789493852458627
 GameObject:
   m_ObjectHideFlags: 0

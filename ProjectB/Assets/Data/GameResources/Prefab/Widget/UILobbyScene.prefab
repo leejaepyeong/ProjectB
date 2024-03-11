@@ -318,7 +318,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2403608111112693647}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c721f57826980704d9f1534c558e2260, type: 3}
   m_Name: 
@@ -642,7 +642,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3097877516766657954}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c721f57826980704d9f1534c558e2260, type: 3}
   m_Name: 
@@ -944,7 +944,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3713504713917630124}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c721f57826980704d9f1534c558e2260, type: 3}
   m_Name: 
@@ -1581,7 +1581,7 @@ MonoBehaviour:
   btnClick: {fileID: 0}
   btnCloseGroup: []
   escapable: 0
-  backable: 0
+  backGroundable: 0
   buttonOption: {fileID: 7002012025529909443}
   objButtonGroup: {fileID: 6799824507315559704}
   buttonStart: {fileID: 6486417249941023783}

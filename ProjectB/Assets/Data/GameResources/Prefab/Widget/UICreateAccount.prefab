@@ -818,6 +818,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d8283f63f1e4fc4c85cb5fcc4ffab7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  btnClick: {fileID: 0}
+  btnCloseGroup: []
+  escapable: 1
+  backGroundable: 0
   textInputNick: {fileID: 4445002992073943520}
   buttonOk: {fileID: 2979264988141770386}
   buttonCancle: {fileID: 5607123091203176706}

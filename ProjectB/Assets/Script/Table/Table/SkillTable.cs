@@ -18,7 +18,7 @@ public class SkillRecord : RecordBase
     public float damagePerValue;
     public int skillBulletTargetNum;
     public int equipRuneCount;
-    public List<int> skillTags = new List<int>();
+    public List<eSkillTag> skillTags = new List<eSkillTag>();
     private string eventNodePath;
     public EventGraph skillNode => BattleManager.Instance.ResourcePool.Load<EventGraph>(eventNodePath);
     public List<int> skillEffects = new List<int>();
@@ -40,7 +40,7 @@ public class SkillRecord : RecordBase
         equipRuneCount = FileUtil.Get<int>(_data, "Skill_Equip_Rune");
         for (int i = 0; i < 5; i++)
         {
-            skillTags.Add(FileUtil.Get<int>(_data, $"Tag{i + 1}"));
+            skillTags.Add(FileUtil.Get<eSkillTag>(_data, $"Tag{i + 1}"));
         }
         eventNodePath = FileUtil.Get<string>(_data, "SkillNode");
         SetSkillEffectList(FileUtil.Get<string>(_data, "SkillEffects"));

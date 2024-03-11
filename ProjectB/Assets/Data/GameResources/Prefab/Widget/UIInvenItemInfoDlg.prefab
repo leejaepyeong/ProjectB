@@ -866,6 +866,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   btnClick: {fileID: 2979264988141770386}
   btnCloseGroup: []
+  escapable: 1
+  backGroundable: 0
   textItemName: {fileID: 9116618052174320442}
   textItemDest: {fileID: 4542628075335773021}
   textItemCondition: {fileID: 8929576116908114854}

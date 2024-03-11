@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Cysharp.Threading.Tasks;
 
 public interface Command
 {
@@ -128,8 +129,8 @@ public class IntroCommand_MoveToLobby : Command
     private AsyncOperation loadSceneAsync;
     public void Execute()
     {
-        loadSceneAsync = SceneManager.LoadSceneAsync("LobbyScene");
-        UIManager.Instance.UiFade.Fade();
+        var fade = UIManager.Instance.OpenWidget<UIFade>(eWidgetType.Front);
+        fade.Open(OpenLobbyAsync());
     }
 
     public bool IsFinished()
@@ -139,6 +140,50 @@ public class IntroCommand_MoveToLobby : Command
 
     public void Update(float deltaTime)
     {
+    }
+
+    private async UniTask OpenLobbyAsync()
+    {
+        var dlg = UIManager.Instance.OpenWidget<UILoading>();
+        dlg.Open();
+
+        loadSceneAsync = SceneManager.LoadSceneAsync("LobbyScene");
+        await UniTask.WaitUntil(() => loadSceneAsync.isDone == false);
+    }
+}
+#endregion
+
+#region Lobby Command
+public class LobbyCommand_MoveToPlayScene : Command
+{
+    private UnityEngine.Events.UnityAction moveAction;
+    public LobbyCommand_MoveToPlayScene(UnityEngine.Events.UnityAction action)
+    {
+        moveAction = action;
+    }
+    private AsyncOperation loadSceneAsync;
+    public void Execute()
+    {
+        var fade = UIManager.Instance.OpenWidget<UIFade>(eWidgetType.Front);
+        fade.Open(OpenPlaySceneAsync());
+    }
+
+    public bool IsFinished()
+    {
+        return loadSceneAsync.isDone;
+    }
+
+    public void Update(float deltaTime)
+    {
+    }
+
+    private async UniTask OpenPlaySceneAsync()
+    {
+        var dlg = UIManager.Instance.OpenWidget<UILoading>();
+        dlg.Open();
+
+        loadSceneAsync = SceneManager.LoadSceneAsync("PlayScene");
+        await UniTask.WaitUntil(() => loadSceneAsync.isDone == false);
     }
 }
 #endregion

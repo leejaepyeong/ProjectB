@@ -1169,12 +1169,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   btnClick: {fileID: 0}
   btnCloseGroup: []
+  escapable: 1
+  backGroundable: 0
   textItemName: {fileID: 0}
   textItemDest: {fileID: 0}
   textItemCondition: {fileID: 0}
+  textEquip: {fileID: 0}
   itemIcon: {fileID: 0}
-  buttonEquip: {fileID: 0}
-  buttonUnEquip: {fileID: 0}
 --- !u!1 &7916593928551928929
 GameObject:
   m_ObjectHideFlags: 0

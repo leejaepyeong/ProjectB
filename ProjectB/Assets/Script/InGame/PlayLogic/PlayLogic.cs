@@ -18,8 +18,6 @@ public class PlayLogic : BaseScene
 
     [FoldoutGroup("Setting")] public SpawnLogic spawnLogic;
     [FoldoutGroup("Setting")] public UIPlayLogic uiPlayLogic;
-    [FoldoutGroup("Camera")] public Camera ingameCamera;
-    [FoldoutGroup("Camera")] public Camera uiCamera;
 
     protected ePlayLogicFsm curFsm;
     protected Coroutine coFsmSetting;
