@@ -114,6 +114,9 @@ public class HitEvent : EventNodeData
     [SerializeField, ShowIf("@hitRange == eHitRange.FanShape")]
     private HitEvenet.FanShape fanShape;
 
+    public AssetReferenceGameObject hitEffect;
+    public ParticleEvent hitParticleEvent;
+
     public HitEvenet.IHitData GetHitData()
     {
         switch (hitRange)

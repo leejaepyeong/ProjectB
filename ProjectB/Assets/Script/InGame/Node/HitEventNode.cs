@@ -37,23 +37,14 @@ namespace HitEvenet
     [Serializable]
     public class Circle : IHitData
     {
-        [SerializeField] private AssetReferenceGameObject projectileEffect;
-        [SerializeField] private ParticleEvent hitEvent;
-        public object projectileEffectKey => projectileEffect.RuntimeKey;
-        public ParticleEvent HitEvent => hitEvent;
-
         public eHitRange hitRange => eHitRange.Circle;
     }
     [Serializable]
     public class Rect : IHitData
     {
         [SerializeField] private Vector2 range;
-        [SerializeField] private AssetReferenceGameObject projectileEffect;
-        [SerializeField] private ParticleEvent hitEvent;
 
         public Vector2 Range => range;
-        public object projectileEffectKey => projectileEffect.RuntimeKey;
-        public ParticleEvent HitEvent => hitEvent;
 
         public eHitRange hitRange => eHitRange.Rect;
     }
@@ -62,12 +53,8 @@ namespace HitEvenet
     public class FanShape : IHitData
     {
         [SerializeField] private float angle;
-        [SerializeField] private AssetReferenceGameObject projectileEffect;
-        [SerializeField] private ParticleEvent hitEvent;
 
         public float Angle => angle;
-        public object projectileEffectKey => projectileEffect.RuntimeKey;
-        public ParticleEvent HitEvent => hitEvent;
 
         public eHitRange hitRange => eHitRange.FanShape;
     }

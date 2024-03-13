@@ -48,22 +48,6 @@ public abstract class Hit
         targetList.Clear();
         isWave = hitEvent.hitType == HitEvenet.eHitType.Wave;
     }
-    private void StartTransform()
-    {
-        if(hitEvent.SkillInfo.skillRecord.targetType == eSkillTarget.Click_Target)
-        {
-
-        }
-        else if (hitEvent.SkillInfo.skillRecord.targetType == eSkillTarget.Click_Direction)
-        {
-
-        }
-        else
-        {
-            startPos = target == null ? caster.GetPos() : target.GetPos();
-            startRot = target == null ? caster.GetRot() : target.GetRot();
-        }
-    }
     public virtual void UpdateFrame(float deltaTime)
     {
         if (isDone) return;
@@ -98,6 +82,7 @@ public abstract class Hit
         var list = GetTargetList();
         for (int i = 0; i < list.Count; i++)
         {
+            EffectManager.Instance.SpawnEffect(hitEvent.hitParticleEvent, list[i].GetPos(), list[i]);
             list[i].UnitBase.ApplyDamage(caster, hitBehavior.skillInfo.skillRecord.damagePerValue, hitBehavior.skillInfo.skillRecord.damagePerType);
             hittedDic.Add(list[i].ID, list[i]);
         }

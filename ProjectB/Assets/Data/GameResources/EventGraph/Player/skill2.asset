@@ -23,9 +23,7 @@ MonoBehaviour:
   Memo: 
   HitEvent:
     hitRange: 1
-    hitType: 1
-    startPos: {x: 0, y: 0, z: 0}
-    startRot: {x: 0, y: 0, z: 0}
+    hitType: 0
     radius: 5
     speed: 2
     circle:

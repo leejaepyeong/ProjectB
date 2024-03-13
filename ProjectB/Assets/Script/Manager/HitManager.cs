@@ -40,6 +40,7 @@ public class HitManager : BaseManager
         if (!GameObjectPool.TryGet(HIT_BEHAVIOR_ASSETKEY, out var hitObj)) return null;
         HitBehavior hit = hitObj.GetComponent<HitBehavior>();
 
+        hit.transform.SetParent(transform);
         hit.Init(hitEvent, caster, target);
         hitList.Add(hit);
 

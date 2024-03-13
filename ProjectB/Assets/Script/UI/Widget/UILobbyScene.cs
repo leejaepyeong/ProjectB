@@ -6,29 +6,33 @@ using TMPro;
 using Sirenix.OdinInspector;
 using UnityEngine.SceneManagement;
 
-public class UILobbyScene : UIBase
+public class UILobbyScene : MonoBehaviour
 {
+    [SerializeField] private Canvas canvas;
     [SerializeField, FoldoutGroup("Top_Right")] private Button buttonOption;
     [SerializeField, FoldoutGroup("Bottom_Right")] private GameObject objButtonGroup;
     [SerializeField, FoldoutGroup("Bottom_Right")] private Button buttonStart;
     [SerializeField, FoldoutGroup("Bottom_Right")] private Button buttonInven;
     [SerializeField, FoldoutGroup("Bottom_Right")] private Button buttonAccount;
 
-    protected override void Awake()
+    private bool interactive;
+
+    private void Awake()
     {
-        base.Awake();
+        canvas.worldCamera = UIManager.Instance.UiCamera;
         buttonOption.onClick.AddListener(OnClickOption);
         buttonStart.onClick.AddListener(OnClickStart);
         buttonInven.onClick.AddListener(OnClickInven);
         buttonAccount.onClick.AddListener(OnClickAccount);
     }
 
-    public override void Open()
+    public void Open()
     {
-        base.Open();
+        interactive = true;
+        ResetData();
     }
 
-    public override void ResetData()
+    public void ResetData()
     {
     }
 
@@ -40,7 +44,7 @@ public class UILobbyScene : UIBase
 
         if (Manager.Instance.CurScene is LobbyScene lobbyScene)
         {
-            lobbyScene.SetCommand(new LobbyCommand_MoveToPlayScene(Close));
+            lobbyScene.SetCommand(new LobbyCommand_MoveToPlayScene(null));
         }
     }
     private void OnClickInven()

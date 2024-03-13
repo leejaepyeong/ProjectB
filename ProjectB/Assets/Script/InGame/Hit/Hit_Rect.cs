@@ -12,6 +12,9 @@ public class Hit_Rect : Hit
     {
         base.Init(hitBehavior, hitEvent, caster, target);
         rect = hitData as HitEvenet.Rect;
+
+        curRange = Vector2.zero;
+        preRange = Vector2.zero;
     }
 
     protected override void ActiveWave()

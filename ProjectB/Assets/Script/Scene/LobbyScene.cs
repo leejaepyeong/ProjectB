@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LobbyScene : BaseScene
 {
+    [SerializeField] private UILobbyScene uiLobbyScene;
     #region Commnad
     public QueueCommand commands = new QueueCommand();
     #endregion
@@ -19,7 +20,6 @@ public class LobbyScene : BaseScene
 
     private void OpenUI()
     {
-        var uiLobbyScene = UIManager.Instance.OpenWidget<UILobbyScene>(eWidgetType.Back);
         uiLobbyScene.Open();
     }
 

@@ -18,7 +18,27 @@ public class HitBehavior : BaseBehavior
         this.target = target;
         elaspedTime = 0;
         SpawnHitObj();
+        StartTransform();
         isInit = true;
+    }
+
+    private void StartTransform()
+    {
+        if (hitEvent.SkillInfo.skillRecord.targetType == eSkillTarget.Click_Target)
+        {
+            transform.position = hitEvent.SkillInfo.targetPos;
+            transform.rotation = Quaternion.identity;
+        }
+        else if (hitEvent.SkillInfo.skillRecord.targetType == eSkillTarget.Click_Direction)
+        {
+            transform.position = target == null ? caster.GetPos() : target.GetPos();
+            transform.rotation = Quaternion.LookRotation(hitEvent.SkillInfo.targetPos);
+        }
+        else
+        {
+            transform.position = target == null ? caster.GetPos() : target.GetPos();
+            transform.rotation = target == null ? caster.GetRot() : target.GetRot();
+        }
     }
 
     public void Close()
@@ -38,6 +58,11 @@ public class HitBehavior : BaseBehavior
 
     private void SpawnHitObj()
     {
+        if (ProjectileManager.Instance.GameObjectPool.TryGet(hitEvent.hitEffect, out var model) == false) return;
+        Model = model;
+        Model.transform.SetParent(scaleTransform.transform);
+        Model.transform.localPosition = Vector3.zero;
+
         switch (hitEvent.hitRange)
         {
             case HitEvenet.eHitRange.Circle:
