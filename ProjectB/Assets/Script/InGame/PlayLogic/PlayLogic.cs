@@ -235,7 +235,7 @@ public class PlayLogic : BaseScene
         Vector3 position = Vector3.zero;
         while(isTargetSkillOn)
         {
-            position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            position = Manager.Instance.MainCamera.ScreenToWorldPoint(Input.mousePosition);
             rangeObject.transform.localPosition = new Vector3(position.x, position.y, 0);
             yield return new WaitForEndOfFrame();
         }

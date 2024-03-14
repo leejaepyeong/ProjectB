@@ -107,6 +107,9 @@ public class Unit_Base : MonoBehaviour
             default:
                 curHp -= (long)(caster.UnitState.GetStat(eStat.atk) * dmgPercent);
                 break;
+            case eDamagePerType.Def:
+                curHp -= (long)(caster.UnitState.GetStat(eStat.def) * dmgPercent);
+                break;
             case eDamagePerType.AtkSpd:
                 curHp -= (long)(curHp * dmgPercent);
                 break;
