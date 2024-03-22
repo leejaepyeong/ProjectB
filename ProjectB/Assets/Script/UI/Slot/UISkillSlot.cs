@@ -11,7 +11,6 @@ public class SkillInfo
     public float coolTime;
     public SkillRecord skillRecord;
     public Dictionary<int, RuneRecord> runeDic = new Dictionary<int, RuneRecord>();
-    public List<SkillEffectRecord> skillEffectList = new List<SkillEffectRecord>();
 
     public Vector3 targetPos;
 
@@ -49,14 +48,6 @@ public class SkillInfo
         {
             Debug.LogError("Skill Record is Null");
             return;
-        }
-
-        skillEffectList.Clear();
-        for (int i = 0; i < skillRecord.skillEffects.Count; i++)
-        {
-            if (TableManager.Instance.skillEffectTable.TryGetRecord(skillRecord.skillEffects[i], out var skillEffect) == false)
-                continue;
-            skillEffectList.Add(skillEffect);
         }
 
         coolTime = skillRecord.coolTIme;

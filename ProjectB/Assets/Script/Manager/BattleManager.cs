@@ -14,6 +14,10 @@ public class BattleManager : BaseManager
     public int exp;
     public int needExp;
 
+    public SkillInfo[] mainSkillInfo = new SkillInfo[5];
+    public Dictionary<eStat, double> runeAddStat = new Dictionary<eStat, double>();
+    public Dictionary<eStat, double> passiveAddStat = new Dictionary<eStat, double>();
+
     public float getCurTime { get { return elaspedTime; } }
 
     public static BattleManager Instance
@@ -69,5 +73,25 @@ public class BattleManager : BaseManager
         needExp = expRecord.needExp;
         UILevelUpDlg dlg = UIManager.Instance.OpenWidget<UILevelUpDlg>();
         dlg.Open();
+    }
+
+    public void SetMainSkillSlot(int index, SkillInfo skillInfo)
+    {
+        mainSkillInfo[index] = skillInfo;
+    }
+
+    public void CheckRuneAddStat(eStat statType, double value)
+    {
+        if (runeAddStat.ContainsKey(statType) == false)
+            runeAddStat.Add(statType, 0);
+
+        runeAddStat[statType] += value;
+    }
+    public void CheckPassiveAddStat(eStat statType, double value)
+    {
+        if (passiveAddStat.ContainsKey(statType) == false)
+            passiveAddStat.Add(statType, 0);
+
+        passiveAddStat[statType] += value;
     }
 }

@@ -31,6 +31,7 @@ namespace Editor
             [FoldoutGroup("Stat")] public long atk;
             [FoldoutGroup("Stat")] public long def;
             [FoldoutGroup("Stat")] public float acc;
+            [FoldoutGroup("Stat")] public float dod;
             [FoldoutGroup("Stat")] public float atkSpd;
             [FoldoutGroup("Stat")] public float moveSpd;
             [FoldoutGroup("Stat")] public float atkRange;

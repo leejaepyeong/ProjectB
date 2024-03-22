@@ -3,28 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class BuffState
-{
-    public List<BuffBase> buffList = new List<BuffBase>();
-
-    public void UpdateFrame(float deltaTime)
-    {
-        for (int i = 0; i < buffList.Count; i++)
-        {
-            buffList[i].UpdateFrame(deltaTime);
-            if (buffList[i].CheckEndBuff())
-                buffList.Remove(buffList[i]);
-        }
-    }
-}
-
 public class UnitState
 {
     private Data.UnitData data;
     public eTeam team; 
     #region stat
     public Dictionary<eStat, double> originStatValue = new Dictionary<eStat, double>();
-    public Dictionary<eStat, double> statDic = new Dictionary<eStat, double>();
     #endregion
     public SkillInfo atkInfo;
 
@@ -33,10 +17,6 @@ public class UnitState
     public bool isStun;
     public bool isSlow;
     public bool isMoveAble { get { return isStun == false; } }
-    #endregion
-
-    #region Buff
-    public BuffState buffState;
     #endregion
 
     public void Init(Data.UnitData data)
@@ -52,7 +32,6 @@ public class UnitState
             for (int i = 0; i < (int)eStat.END; i++)
             {
                 originStatValue.Add((eStat)i, 0);
-                statDic.Add((eStat)i, 0);
             }
         }
 
@@ -67,6 +46,7 @@ public class UnitState
         originStatValue[eStat.atk] = data.atk;
         originStatValue[eStat.def] = data.def;
         originStatValue[eStat.acc] = data.acc;
+        originStatValue[eStat.dod] = data.dod;
         originStatValue[eStat.moveSpd] = data.moveSpd;
         originStatValue[eStat.atkSpd] = data.atkSpd;
         originStatValue[eStat.atkRange] = data.atkRange;
@@ -83,19 +63,13 @@ public class UnitState
             case eStat.atk: originStatValue[eStat.atk] += isTestScene ? Manager.Instance.playerData.atk : SaveData_Local.Instance.userStat.atk; break;
             case eStat.def: originStatValue[eStat.def] += isTestScene ? Manager.Instance.playerData.def : SaveData_Local.Instance.userStat.def; break;
             case eStat.acc: originStatValue[eStat.acc] += isTestScene ? Manager.Instance.playerData.acc : SaveData_Local.Instance.userStat.acc; break;
+            case eStat.dod: originStatValue[eStat.dod] += isTestScene ? Manager.Instance.playerData.dod : SaveData_Local.Instance.userStat.dod; break;
             case eStat.moveSpd: originStatValue[eStat.moveSpd] += isTestScene ? Manager.Instance.playerData.moveSpd : SaveData_Local.Instance.userStat.moveSpd; break;
             case eStat.atkSpd: originStatValue[eStat.atkSpd] += isTestScene ? Manager.Instance.playerData.atkSpd : SaveData_Local.Instance.userStat.atkSpd; break;
             case eStat.atkRange: originStatValue[eStat.atkRange] += isTestScene ? Manager.Instance.playerData.atkRange : SaveData_Local.Instance.userStat.atkRange; break;
             case eStat.criRate: originStatValue[eStat.criRate] += isTestScene ? Manager.Instance.playerData.criRate : SaveData_Local.Instance.userStat.criRate; break;
             case eStat.criDmg: originStatValue[eStat.criDmg] += isTestScene ? Manager.Instance.playerData.criDmg : SaveData_Local.Instance.userStat.criDmg; break;
         }
-    }
-
-    public double GetStat(eStat statType)
-    {
-        double value = originStatValue[statType];
-
-        return value;
     }
 }
 

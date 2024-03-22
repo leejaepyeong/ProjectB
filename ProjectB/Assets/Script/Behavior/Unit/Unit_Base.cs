@@ -17,7 +17,8 @@ public class Unit_Base : MonoBehaviour
     protected bool isAtkAble;
     protected float atkCool;
 
-    protected List<BuffBase> buffList = new List<BuffBase>();
+    protected Dictionary<int, BuffBase> buffDic = new Dictionary<int, BuffBase>();
+    protected Dictionary<eStat, List<BuffBase>> buffStatDic = new Dictionary<eStat, List<BuffBase>>();
     protected List<UnitBehavior> targetList = new List<UnitBehavior>();
 
     public virtual void Init(UnitBehavior behavior)
@@ -25,10 +26,10 @@ public class Unit_Base : MonoBehaviour
         unitBehavior = behavior;
         unitState = unitBehavior.UnitState;
         unitData = unitBehavior.UnitData;
-        atkCool = 1 / (float)unitState.GetStat(eStat.atkSpd);
+        atkCool = 1 / (float)GetStat(eStat.atkSpd);
         isAtkAble = true;
-        curHp = (long)unitState.GetStat(eStat.hp);
-        curMp = (long)unitState.GetStat(eStat.mp);
+        curHp = (long)GetStat(eStat.hp);
+        curMp = (long)GetStat(eStat.mp);
     }
 
     public virtual void UpdateFrame(float deltaTime)
@@ -42,11 +43,11 @@ public class Unit_Base : MonoBehaviour
         SearchTarget();
         SkillUpdate();
 
-        for (int i = 0; i < buffList.Count; i++)
+        foreach (var buff in buffDic)
         {
-            buffList[i].UpdateFrame(deltaTime);
-            if (buffList[i].CheckEndBuff())
-                RemoveBuff(buffList[i]);
+            buff.Value.UpdateFrame(deltaTime);
+            if (buff.Value.CheckEndBuff())
+                RemoveBuff(buff.Value);
         }
     }
 
@@ -68,7 +69,7 @@ public class Unit_Base : MonoBehaviour
         }
 
         int layer = unitState.team == eTeam.player ? LayerMask.GetMask("Monster") : LayerMask.GetMask("Player");
-        var targets = Physics2D.OverlapCircleAll(unitBehavior.GetPos(), (float)unitState.GetStat(eStat.atkRange), layer);
+        var targets = Physics2D.OverlapCircleAll(unitBehavior.GetPos(), (float)GetStat(eStat.atkRange), layer);
         if (targets.Length <= 0) return;
         targetList.Clear();
         for (int i = 0; i < targets.Length; i++)
@@ -78,7 +79,7 @@ public class Unit_Base : MonoBehaviour
                 targetList.Add(target);
         }
 
-        atkCool = 1 / (float)unitState.GetStat(eStat.atkSpd);
+        atkCool = 1 / (float)GetStat(eStat.atkSpd);
         Attack();
     }
 
@@ -99,27 +100,85 @@ public class Unit_Base : MonoBehaviour
         }
     }
 
+    public double GetStat(eStat statType)
+    {
+        double value = unitState.originStatValue[statType];
+
+        #region CheckBuff
+        #endregion
+
+        #region Rune
+        if(unitState.team == eTeam.player)
+        {
+
+        }
+        #endregion
+
+        #region Passive
+        #endregion
+
+        return value;
+    }
+
     public void ApplyDamage(UnitBehavior caster ,float dmgPercent, eDamagePerType dmgType = eDamagePerType.Atk)
     {
+        double damageValue = 0;
+
+        float randomRate;
+        double missDamage = 1;
+        double criDamage = 1;
+        double receiveDamage = 1;
+
+        #region CheckMiss
+        if(caster.UnitBase.GetStat(eStat.acc) < GetStat(eStat.dod))
+        {
+            double dodge = GetStat(eStat.dod) - caster.UnitBase.GetStat(eStat.acc);
+            randomRate = Random.Range(0,100f);
+            missDamage = dodge > randomRate ? 0.5f : 1;
+        }
+        #endregion
+
+        #region CheckCritical
+        if(missDamage != 1)
+        {
+            randomRate = Random.Range(0, 100f);
+            criDamage = GetStat(eStat.criRate) > randomRate ? caster.UnitBase.GetStat(eStat.criDmg) : 1;
+        }
+        #endregion
+
+        #region CheckDamageType
         switch (dmgType)
         {
             case eDamagePerType.Atk:
             default:
-                curHp -= (long)(caster.UnitState.GetStat(eStat.atk) * dmgPercent);
+                damageValue = caster.UnitBase.GetStat(eStat.atk) * dmgPercent;
                 break;
             case eDamagePerType.Def:
-                curHp -= (long)(caster.UnitState.GetStat(eStat.def) * dmgPercent);
+                damageValue = caster.UnitBase.GetStat(eStat.def) * dmgPercent;
                 break;
             case eDamagePerType.AtkSpd:
-                curHp -= (long)(curHp * dmgPercent);
+                damageValue = caster.UnitBase.GetStat(eStat.atkSpd) * dmgPercent;
+                break;
+            case eDamagePerType.Hp:
+                damageValue = caster.UnitBase.GetStat(eStat.hp) * dmgPercent;
                 break;
             case eDamagePerType.CurHp:
-                curHp -= (long)(caster.UnitState.GetStat(eStat.atk) * dmgPercent);
+                damageValue = curHp * dmgPercent;
                 break;
             case eDamagePerType.MaxHp:
-                curHp -= (long)(caster.UnitState.GetStat(eStat.hp) * dmgPercent);
+                damageValue = GetStat(eStat.hp) * dmgPercent;
                 break;
         }
+        #endregion
+
+        #region Receive Damage Type
+        #endregion
+
+        #region Final Damage
+        damageValue = damageValue * missDamage * criDamage * receiveDamage;
+        #endregion
+
+        curHp -= (long)damageValue;
 
         if (curHp <= 0)
         {
@@ -129,9 +188,20 @@ public class Unit_Base : MonoBehaviour
     }
 
     #region Buff
+    public void AddBuff(BuffBase buff)
+    {
+        if(buffDic.ContainsKey(buff.getSkillEffectRecord.index) == false)
+            buffDic.Add(buff.getSkillEffectRecord.index, null);
+
+        buff.Init(buffStatDic);
+        buffDic[buff.getSkillEffectRecord.index] = buff;
+    }
     public void RemoveBuff(BuffBase buff)
     {
-        buffList.Remove(buff);
+        if (buffDic.ContainsKey(buff.getSkillEffectRecord.index) == false) return;
+
+        buff.UnInit(buffStatDic);
+        buffDic[buff.getSkillEffectRecord.index] = null;
     }
     #endregion
 }

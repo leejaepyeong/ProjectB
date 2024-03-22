@@ -139,7 +139,77 @@ public class FileUtil
 
         return def;
     }
-    
+    public static List<T> GetList<T>(Dictionary<string, string> _data, string _key, List<T> def = default(List<T>))
+    {
+        _key = _key.ToLower();
+
+        if (false == _data.ContainsKey(_key))
+        {
+            Debug.LogError("Get<" + typeof(T).ToString() + ">  [not find] : " + _key);
+            return def;
+        }
+
+        string _temp = _data[_key];
+        string[] _tempList = _temp.Split('/');
+        if (null == _temp)
+        {
+            Debug.LogError("Get[null == _temp]");
+            return def;
+        }
+
+        if (_temp.Length <= 0)
+        {
+            if (typeof(string) == typeof(T))
+                def.Add((T)((object)_temp));
+
+            return def;
+        }
+
+        try
+        {
+            for (int i = 0; i < _tempList.Length; i++)
+            {
+                if (true == typeof(T).IsEnum)
+                {
+                    def.Add((T)Enum.Parse(typeof(T), _temp, true));
+                }
+                else
+                {
+                    if (typeof(int) == typeof(T))
+                    {
+                        def.Add((T)((object)int.Parse(_temp)));
+                    }
+                    else if (typeof(long) == typeof(T))
+                    {
+                        def.Add((T)((object)long.Parse(_temp)));
+                    }
+                    else if (typeof(float) == typeof(T))
+                    {
+                        def.Add((T)((object)float.Parse(_temp)));
+                    }
+                    else if (typeof(bool) == typeof(T))
+                    {
+                        def.Add((T)((object)bool.Parse(_temp)));
+                    }
+                    else if (typeof(string) == typeof(T))
+                    {
+                        def.Add(_temp == "None" ? default(T) : (T)((object)_temp));
+                    }
+                    else
+                    {
+                        Debug.LogError("Get<" + typeof(T).ToString() + "> - [" + _key + "] : " + _temp);
+                    }
+                }
+            }
+        }
+        catch
+        {
+            Debug.LogError("Get< catch : " + typeof(T).ToString() + "> - [" + _key + "] : " + _temp);
+        }
+
+        return def;
+    }
+
     #region - json file save&load
     static public bool SaveJson<T>(T t, string _path, string _cry = null)
     {

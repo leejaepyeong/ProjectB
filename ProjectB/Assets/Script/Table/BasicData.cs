@@ -23,6 +23,7 @@ namespace Data
         public long atk;
         public long def;
         public float acc;
+        public float dod;
         public float atkSpd;
         public float moveSpd;
         public float atkRange;
@@ -48,6 +49,7 @@ namespace Data
             atk = data.info.atk;
             def = data.info.def;
             acc = data.info.acc;
+            dod = data.info.dod;
             atkSpd = data.info.atkSpd;
             moveSpd = data.info.moveSpd;
             atkRange = data.info.atkRange;

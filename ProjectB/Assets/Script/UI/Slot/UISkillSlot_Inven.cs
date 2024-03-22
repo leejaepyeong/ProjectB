@@ -32,7 +32,7 @@ public class EquipedSkill
 
         for (int i = 0; i < rune.runeTypeInfoList.Count; i++)
         {
-            if (skillRecord.skillTags.Contains((eSkillTag)rune.runeTypeInfoList[i].runeTag))
+            if (skillRecord.skillTags.Contains(rune.runeTypeInfoList[i].runeTag))
                 return true;
         }
         return false;

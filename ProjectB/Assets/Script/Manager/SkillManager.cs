@@ -27,21 +27,57 @@ public class SkillManager
         for (int i = 0; i < targetList.Count; i++)
         {
             ApplySkill(skillInfo.skillRecord, targetList[i], caster);
-            for (int j = 0; j < skillInfo.skillEffectList.Count; j++)
-            {
-                ApplySkillEffect(skillInfo.skillEffectList[j]);
-            }
         }
     }
 
-    private void ApplySkill(SkillRecord skill, UnitBehavior target, UnitBehavior caster)
+    public void ApplySkill(SkillRecord skill, UnitBehavior target, UnitBehavior caster)
     {
-        
+        switch (skill.detailType)
+        {
+            case eSkillDetailType.None:
+                break;
+            case eSkillDetailType.Single:
+                break;
+            case eSkillDetailType.Boom:
+                break;
+            case eSkillDetailType.Chain:
+                break;
+            default:
+                break;
+        }
+        for (int i = 0; i < skill.skillEffects.Count; i++)
+        {
+            if (TableManager.Instance.skillEffectTable.TryGetRecord(skill.skillEffects[i], out var skillEffect) == false)
+                continue;
+            ApplySkillEffect(skillEffect, target, caster);
+        }
     }
 
-    private void ApplySkillEffect(SkillEffectRecord skillEffect)
+    public void ApplySkillEffect(SkillEffectRecord skillEffect, UnitBehavior target, UnitBehavior caster)
     {
-
+        BuffBase buff = null;
+        switch (skillEffect.skillState)
+        {
+            case eSkillState.Burn:
+                buff = new BuffBase_Burn(skillEffect, caster, target);
+                break;
+            case eSkillState.Freeze:
+                buff = new BuffBase_Frozen(skillEffect, caster, target);
+                break;
+            case eSkillState.Fear:
+                buff = new BuffBase_Fear(skillEffect, caster, target);
+                break;
+            case eSkillState.Poison:
+                buff = new BuffBase_Poison(skillEffect, caster, target);
+                break;
+            case eSkillState.Stun:
+                buff = new BuffBase_Stun(skillEffect, caster, target);
+                break;
+            case eSkillState.AddStat:
+                buff = new BuffBase_AddStat(skillEffect, caster, target);
+                break;
+        }
+        target.UnitBase.AddBuff(buff);
     }
 
     public bool CheckSkill(UnitBehavior caster, SkillRecord skillRecord)

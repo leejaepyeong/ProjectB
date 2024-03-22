@@ -9,6 +9,8 @@ public class Define
     public const int MaxEquipSkill = 5; //스킬 장착 최대갯수
     public const int MaxEquipRune = 3;  //룬 장착 최대갯수
 
+    public const int DOT_DELAYTIME = 1; //도트 데미지 딜레이 시간
+
     public static string privateKey = "FHWqa8jt0hNf7e78";
 
     public static T Load<T>(string _path) where T : Object
@@ -55,12 +57,15 @@ public enum eStat
     atk,
     def,
     acc,
+    dod,
     atkSpd,
     moveSpd,
     atkRange,
     criRate,
     criDmg,
     END,
+    DotDmg,
+    None,
 }
 
 public enum eLanguage
@@ -77,17 +82,20 @@ public enum eDamagePerType
     Atk,
     Def,
     AtkSpd,
+    Hp,
 
     CurHp,
     MaxHp,
 }
 public enum eSkillState
 {
-    Burn,
+    Burn,   //화상 : 공격력 비례
+    Freeze, //빙결
+    Fear,   //공포
+    Poison, //중독 : 체력 비례
+    Stun,   //기절
 
-    Freeze,
-
-    AddStat,
+    AddStat,//스탯
 }
 public enum eSkillType
 {
@@ -157,21 +165,10 @@ public enum eRuneType
     AddEffect,
     AddEffectTime,
     CoolTimeDown,
-    AddProjectiledmg,
-    MinProjectiledmg,
-    AddRange,
-    AddTarget,
-    AddAtk,
-    AddAtkspd,
-    AddCrirate,
-    AddCridmg,
-    MinAtk,
-    MinAtkspd,
-    MinCrirate,
-    MinCridmg,
-    GetBonusExp,
     AddDmg,
-    MinDmg,
+
+    AddStat,
+    GetBonusExp,
 }
 
 public enum eRuneDetailType

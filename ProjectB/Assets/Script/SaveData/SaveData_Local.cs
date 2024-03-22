@@ -24,6 +24,7 @@ public class UserStat
     public long atk;
     public long def;
     public float acc;
+    public float dod;
     public float atkRange;
     public float moveSpd;
     public float atkSpd;
@@ -75,6 +76,7 @@ public class SaveData_Local : SaveData
         userStat.atk = 20;
         userStat.def = 0;
         userStat.acc = 85;
+        userStat.dod = 0;
         userStat.atkSpd = 1;
         userStat.atkRange = 10;
         userStat.criRate = 25;
@@ -102,6 +104,9 @@ public class SaveData_Local : SaveData
                 break;
             case eStat.acc:
                 userStat.acc = FValue;
+                break;
+            case eStat.dod:
+                userStat.dod = FValue;
                 break;
             case eStat.atkSpd:
                 userStat.atkSpd = FValue;
