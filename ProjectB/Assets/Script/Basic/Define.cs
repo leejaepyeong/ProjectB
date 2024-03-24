@@ -33,6 +33,12 @@ public class Define
 
         return (T)System.Enum.Parse(typeof(T), key, true);
     }
+
+    public static int GetTargetLayer(eTeam team)
+    {
+        int layer = team == eTeam.player ? LayerMask.GetMask("Monster") : LayerMask.GetMask("Player");
+        return layer;
+    }
 }
 
 #region Game System

@@ -123,7 +123,7 @@ public class Unit_Base : MonoBehaviour
     public void ApplyDamage(UnitBehavior caster ,float dmgPercent, eDamagePerType dmgType = eDamagePerType.Atk)
     {
         double damageValue = 0;
-
+        dmgPercent /= 100;
         float randomRate;
         double missDamage = 1;
         double criDamage = 1;

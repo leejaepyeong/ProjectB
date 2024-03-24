@@ -47,6 +47,10 @@ public abstract class Hit
         hittedDic.Clear();
         targetList.Clear();
         isWave = hitEvent.hitType == HitEvenet.eHitType.Wave;
+        startPos = hitBehavior.GetPos();
+        startRot = hitBehavior.GetRot();
+
+        isDone = false;
     }
     public virtual void UpdateFrame(float deltaTime)
     {

@@ -26,62 +26,27 @@ MonoBehaviour:
     hitType: 0
     radius: 5
     speed: 2
-    circle:
-      projectileEffect:
-        m_AssetGUID: 7003436ea24c51345a29f996bb0ba361
-        m_SubObjectName: 
-        m_SubObjectType: 
-        m_EditorAssetChanged: 0
-      hitEvent:
-        paricleObject:
-          m_AssetGUID: 77ffef51616c9ac4eb2d36e7ddc1e47f
-          m_SubObjectName: 
-          m_SubObjectType: 
-          m_EditorAssetChanged: 0
-        referenceBone: 
-        effectSpawn: 2
-        position: {x: 0, y: 0, z: 0}
-        eular: {x: 0, y: 0, z: 0}
-        scale: {x: 1, y: 1, z: 1}
-        duration: 5
     rect:
       range: {x: 0, y: 0}
-      projectileEffect:
-        m_AssetGUID: 
-        m_SubObjectName: 
-        m_SubObjectType: 
-        m_EditorAssetChanged: 0
-      hitEvent:
-        paricleObject:
-          m_AssetGUID: 
-          m_SubObjectName: 
-          m_SubObjectType: 
-          m_EditorAssetChanged: 0
-        referenceBone: 
-        effectSpawn: 0
-        position: {x: 0, y: 0, z: 0}
-        eular: {x: 0, y: 0, z: 0}
-        scale: {x: 1, y: 1, z: 1}
-        duration: 5
     fanShape:
       angle: 0
-      projectileEffect:
-        m_AssetGUID: 
+    hitEffect:
+      m_AssetGUID: 7003436ea24c51345a29f996bb0ba361
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    hitParticleEvent:
+      paricleObject:
+        m_AssetGUID: 77ffef51616c9ac4eb2d36e7ddc1e47f
         m_SubObjectName: 
         m_SubObjectType: 
         m_EditorAssetChanged: 0
-      hitEvent:
-        paricleObject:
-          m_AssetGUID: 
-          m_SubObjectName: 
-          m_SubObjectType: 
-          m_EditorAssetChanged: 0
-        referenceBone: 
-        effectSpawn: 0
-        position: {x: 0, y: 0, z: 0}
-        eular: {x: 0, y: 0, z: 0}
-        scale: {x: 1, y: 1, z: 1}
-        duration: 5
+      referenceBone: 
+      effectSpawn: 0
+      position: {x: 0, y: 0, z: 0}
+      eular: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      duration: 5
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -17,8 +17,8 @@ public class HitBehavior : BaseBehavior
         this.caster = caster;
         this.target = target;
         elaspedTime = 0;
-        SpawnHitObj();
         StartTransform();
+        SpawnHitObj();
         isInit = true;
     }
 
@@ -50,6 +50,7 @@ public class HitBehavior : BaseBehavior
     public override void UpdateFrame(float deltaTime)
     {
         if (isInit == false) return;
+        if (hit == null) return;
         if (hit.IsDone) Close();
         base.UpdateFrame(deltaTime);
 

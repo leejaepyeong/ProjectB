@@ -130,7 +130,7 @@ public class IntroCommand_MoveToLobby : Command
     public void Execute()
     {
         var fade = UIManager.Instance.OpenWidget<UIFade>(eWidgetType.Front);
-        fade.Open(OpenLobbyAsync());
+        fade.OpenAsync(OpenLobbyAsync()).Forget();
     }
 
     public bool IsFinished()

@@ -18,11 +18,11 @@ public class Hit_FanShape : Hit
         float range = maxDistance;
         if (isWave)
         {
-            col = Physics2D.OverlapCircleAll(startPos, curDistance, 12);
+            col = Physics2D.OverlapCircleAll(startPos, curDistance, Define.GetTargetLayer(caster.UnitState.team));
             range = curDistance;
         }
         else
-            col = Physics2D.OverlapCircleAll(startPos, maxDistance, 12);
+            col = Physics2D.OverlapCircleAll(startPos, maxDistance, Define.GetTargetLayer(caster.UnitState.team));
 
         for (int i = 0; i < col.Length; i++)
         {
