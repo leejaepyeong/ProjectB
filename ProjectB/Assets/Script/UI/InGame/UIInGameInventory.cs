@@ -54,7 +54,7 @@ public class InvenItemInfo
     }
 }
 
-public class UIInGameInventory : UIBase, LoopScrollPrefabSource, LoopScrollDataSource
+public class UIInGameInventory : UIDlg, LoopScrollPrefabSource, LoopScrollDataSource
 {
     [SerializeField, FoldoutGroup("Inventory")] private UIInfinite.UIInfiniteScroll infiniteScroll;
     [SerializeField, FoldoutGroup("Inventory")] private ScrollRect scroll;

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using Sirenix.OdinInspector;
 using TMPro;
 
-public class UILoading : UIBase
+public class UILoading : UIDlg
 {
     [SerializeField, FoldoutGroup("Center")] private TextMeshProUGUI textGuage;
     [SerializeField, FoldoutGroup("Center")] private TextMeshProUGUI textDest;

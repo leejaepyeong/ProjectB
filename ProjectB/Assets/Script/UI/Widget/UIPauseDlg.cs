@@ -6,7 +6,7 @@ using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine.Events;
 
-public class UIPauseDlg : UIBase
+public class UIPauseDlg : UIDlg
 {
     [FoldoutGroup("Center")]
     [SerializeField, FoldoutGroup("Center/GameSetting")] private Toggle[] toggleTabs;

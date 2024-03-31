@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using Sirenix.OdinInspector;
 using TMPro;
 
-public class UIInvenItemInfoDlg : UIBase
+public class UIInvenItemInfoDlg : UIDlg
 {
     [SerializeField, FoldoutGroup("Center")] private TextMeshProUGUI textItemName;
     [SerializeField, FoldoutGroup("Center")] private TextMeshProUGUI textItemDest;

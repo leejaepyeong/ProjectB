@@ -6,7 +6,7 @@ using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine.Events;
 
-public class UIMessageBox : UIBase
+public class UIMessageBox : UIDlg
 {
     [SerializeField, FoldoutGroup("Center")] private TextMeshProUGUI textTitle;
     [SerializeField, FoldoutGroup("Center")] private TextMeshProUGUI textDest;

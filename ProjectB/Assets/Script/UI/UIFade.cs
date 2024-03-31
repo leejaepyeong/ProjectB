@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using Cysharp.Threading.Tasks;
 using System;
 
-public class UIFade : UIBase
+public class UIFade : UIDlg
 {
     [SerializeField] private Image fadeImg;
     protected UnityAction action;

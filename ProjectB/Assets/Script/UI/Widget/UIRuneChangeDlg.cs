@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using Sirenix.OdinInspector;
 
-public class UIRuneChangeDlg : UIBase
+public class UIRuneChangeDlg : UIDlg
 {
     [SerializeField, FoldoutGroup("")] private List<UIRuneSlot> uiRuneSlotGroup;
 

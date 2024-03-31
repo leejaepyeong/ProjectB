@@ -17,9 +17,9 @@ public class UIManager : BaseManager
     [SerializeField] private Camera uiCamera;
 
     public Camera UiCamera => uiCamera;
-    private List<UIBase> uiBases;
+    private List<UIDlg> uiBases;
     private Queue<UICanvas> queueCanvas = new Queue<UICanvas>();
-    private Dictionary<UIBase, UICanvas> dicCanvas = new Dictionary<UIBase, UICanvas>();
+    private Dictionary<UIDlg, UICanvas> dicCanvas = new Dictionary<UIDlg, UICanvas>();
     private Dictionary<eWidgetType, int> dicWidgetCount = new Dictionary<eWidgetType, int>();
 
     public static UIManager Instance
@@ -47,16 +47,16 @@ public class UIManager : BaseManager
         ResourcePool = null;
     }
 
-    public void AddUI(UIBase uibase)
+    public void AddUI(UIDlg uibase)
     {
         uiBases.Add(uibase);
     }
 
-    public UIBase OpenUI(string path, eWidgetType widgetType = eWidgetType.Normal)
+    public UIDlg OpenUI(string path, eWidgetType widgetType = eWidgetType.Normal)
     {
         UICanvas uiCanvas = GetPooledCanvasContainer();
 
-        UIBase uiBase = GameObjectPool.Get(path).GetComponent<UIBase>();
+        UIDlg uiBase = GameObjectPool.Get(path).GetComponent<UIDlg>();
         uiBase.transform.SetParent(uiCanvas.transform);
         uiBase.RectTransform.anchoredPosition3D = Vector3.zero;
         uiBase.RectTransform.offsetMin = Vector2.zero;
@@ -77,7 +77,7 @@ public class UIManager : BaseManager
         return uiBase;
     }
 
-    public T OpenWidget<T>(eWidgetType widgetType = eWidgetType.Normal) where T : UIBase
+    public T OpenWidget<T>(eWidgetType widgetType = eWidgetType.Normal) where T : UIDlg
     {
         UICanvas uiCanvas = GetPooledCanvasContainer();
 
@@ -129,7 +129,7 @@ public class UIManager : BaseManager
         return widgetCount + addValue;
     }
 
-    public T GetUI<T>() where T : UIBase 
+    public T GetUI<T>() where T : UIDlg
     {
         for (int i = 0; i < uiBases.Count; i++)
         {
@@ -148,7 +148,7 @@ public class UIManager : BaseManager
         uiBase.OnClickEscape();
     }
 
-    public void RemoveUI(UIBase uiBase)
+    public void RemoveUI(UIDlg uiBase)
     {
         GameObjectPool.Return(uiBase.gameObject);
         ReturnPooledCanvasContainer(dicCanvas[uiBase]);

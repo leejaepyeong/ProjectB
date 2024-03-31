@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using Sirenix.OdinInspector;
 using TMPro;
 
-public class UICreateAccount : UIBase
+public class UICreateAccount : UIDlg
 {
     public enum eNickDeny
     {

@@ -11,8 +11,8 @@ public class Unit_Base : MonoBehaviour
     protected Transform target;
     protected float deltaTime;
 
-    protected long curHp;
-    protected long curMp;
+    public long curHp;
+    public long curMp;
 
     protected bool isAtkAble;
     protected float atkCool;

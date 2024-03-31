@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using Sirenix.OdinInspector;
 using TMPro;
 
-public class UILevelUpDlg : UIBase
+public class UILevelUpDlg : UIDlg
 {
     [SerializeField, FoldoutGroup("Content")] private TextMeshProUGUI textLevel;
 

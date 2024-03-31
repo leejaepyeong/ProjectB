@@ -19,7 +19,7 @@ public class UICanvas : MonoBehaviour
 
     public void SetActive(bool active) => gameObject.SetActive(active);
 
-    [ShowInInspector] public UIBase component { get; set; }
+    [ShowInInspector] public UIDlg component { get; set; }
 
     private void Awake()
     {

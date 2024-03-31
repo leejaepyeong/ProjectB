@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using Sirenix.OdinInspector;
 using TMPro;
 
-public class UIWaveInfo : UIBase
+public class UIWaveInfo : UIDlg
 {
     [SerializeField, FoldoutGroup("Time")] private TextMeshProUGUI textTimer;
 
