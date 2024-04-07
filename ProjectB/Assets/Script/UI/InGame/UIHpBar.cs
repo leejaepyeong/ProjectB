@@ -8,7 +8,7 @@ public class UIHpBar : UIBase
 {
     [SerializeField, FoldoutGroup("Content")] private Image iconHpGauge;
 
-    private UnitBehavior targetUnit;
+    [ShowInInspector] public UnitBehavior targetUnit;
     private UIHpBarDlg hpBarDlg;
 
     public virtual void Open(UnitBehavior unit, UIHpBarDlg dlg)
@@ -16,6 +16,9 @@ public class UIHpBar : UIBase
         base.Open();
         targetUnit = unit;
         hpBarDlg = dlg;
+        transform.parent = hpBarDlg.attach;
+        transform.localScale = Vector3.one;
+        transform.localPosition = Vector3.zero;
     }
 
     public override void Close()
@@ -28,6 +31,9 @@ public class UIHpBar : UIBase
     public override void UpdateFrame(float deltaTime)
     {
         iconHpGauge.fillAmount = (float)(targetUnit.UnitBase.curHp / targetUnit.UnitBase.GetStat(eStat.hp));
+        transform.localPosition = new Vector3(targetUnit.GetPos().x, targetUnit.GetPos().y + 1f,0);
 
+        if (targetUnit.UnitState.isDead)
+            Close();
     }
 }

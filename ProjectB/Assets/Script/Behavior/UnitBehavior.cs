@@ -147,6 +147,7 @@ public class UnitBehavior : BaseBehavior, IEventHandler
         gameObject.layer = layer;
         col.gameObject.layer = layer;
 
+        BattleManager.Instance.SetHpBar(this);
         isInit = true;
     }
 

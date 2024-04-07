@@ -20,6 +20,9 @@ public class BattleManager : BaseManager
 
     public float getCurTime { get { return elaspedTime; } }
 
+
+    private UIHpBarDlg uiHpBarDlg;
+
     public static BattleManager Instance
     {
         get { return Manager.Instance.GetManager<BattleManager>(); }
@@ -34,6 +37,9 @@ public class BattleManager : BaseManager
         exp = 0;
         var expRecord = TableManager.Instance.expTable.GetExpRecord(exp);
         needExp = expRecord.needExp;
+
+        uiHpBarDlg = UIManager.Instance.OpenWidget<UIHpBarDlg>(eWidgetType.Normal);
+        uiHpBarDlg.Open();
     }
 
     public override void UpdateFrame(float deltaTime)
@@ -93,5 +99,9 @@ public class BattleManager : BaseManager
             passiveAddStat.Add(statType, 0);
 
         passiveAddStat[statType] += value;
+    }
+    public void SetHpBar(UnitBehavior unit)
+    {
+        uiHpBarDlg.RequestHpBar(unit);
     }
 }
