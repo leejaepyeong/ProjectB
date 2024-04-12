@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4018575136291634382
+--- !u!1 &3474926171770381446
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3636657764576805131}
-  - component: {fileID: 1906661144329122719}
+  - component: {fileID: 4717673049105261272}
+  - component: {fileID: 7588561525839824379}
   m_Layer: 5
   m_Name: UIHpBar
   m_TagString: Untagged
@@ -17,14 +17,14 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3636657764576805131
-Transform:
+--- !u!224 &4717673049105261272
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4018575136291634382}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_GameObject: {fileID: 3474926171770381446}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -34,13 +34,18 @@ Transform:
   m_Father: {fileID: 3073323370202810954}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1906661144329122719
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &7588561525839824379
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4018575136291634382}
+  m_GameObject: {fileID: 3474926171770381446}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a4c249af394edb4ca078d2e3c9606da, type: 3}
@@ -48,6 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   btnClick: {fileID: 0}
   iconHpGauge: {fileID: 1412920808103383036}
+  targetUnit: {fileID: 0}
 --- !u!1 &4100827070219639974
 GameObject:
   m_ObjectHideFlags: 0
@@ -77,7 +83,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3636657764576805131}
+  - {fileID: 4717673049105261272}
   - {fileID: 592383964798907708}
   m_Father: {fileID: 0}
   m_RootOrder: -1
@@ -103,7 +109,7 @@ MonoBehaviour:
   btnCloseGroup: []
   escapable: 0
   backGroundable: 0
-  tempHpBar: {fileID: 4018575136291634382}
+  tempHpBar: {fileID: 3474926171770381446}
   attach: {fileID: 592383964798907708}
 --- !u!1 &4779443912020261246
 GameObject:
@@ -171,7 +177,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3636657764576805131}
+  m_Father: {fileID: 4717673049105261272}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -247,7 +253,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3636657764576805131}
+  m_Father: {fileID: 4717673049105261272}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}

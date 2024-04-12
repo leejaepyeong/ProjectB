@@ -6,14 +6,14 @@ using UnityEngine;
 public class ExpRecord : RecordBase
 {
     public int level;
-    public int needExp;
+    public long needExp;
     public int rewardIdx;
 
     public override void LoadExcel(Dictionary<string, string> _data)
     {
         base.LoadExcel(_data);
         level = FileUtil.Get<int>(_data, "Level");
-        needExp = FileUtil.Get<int>(_data, "NeedExp");
+        needExp = FileUtil.Get<long>(_data, "NeedExp");
         rewardIdx = FileUtil.Get<int>(_data, "RewardIndex");
     }
 }
@@ -25,14 +25,15 @@ public class ExpTable : TTableBase<ExpRecord>
 
     }
 
-    public ExpRecord GetExpRecord(int exp)
+    public ExpRecord GetExpRecord(long exp, out long remainExp)
     {
+        remainExp = exp;
         ExpRecord record = null;
         for (int i = 0; i < getRecordList.Count; i++)
         {
             record = getRecordList[i];
-            if (exp - record.needExp < 0) break;
-            exp -= record.needExp;
+            if (remainExp - record.needExp < 0) break;
+            remainExp -= record.needExp;
         }
 
         return record;

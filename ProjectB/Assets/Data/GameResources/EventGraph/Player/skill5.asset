@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-248759359766117293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6128e2a5411027b44a92e4e586008eea, type: 3}
+  m_Name: Hit Event
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -1064, y: -376}
+  ports:
+    keys: []
+    values: []
+  TimeBase: 1
+  FrameElapsed: 0
+  FrameCount: 0
+  Memo: 
+  HitEvent:
+    hitRange: 1
+    hitType: 0
+    radius: 5
+    speed: 2
+    rect:
+      range: {x: 0, y: 0}
+    fanShape:
+      angle: 0
+    hitEffect:
+      m_AssetGUID: 7003436ea24c51345a29f996bb0ba361
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    hitParticleEvent:
+      paricleObject:
+        m_AssetGUID: 77ffef51616c9ac4eb2d36e7ddc1e47f
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      referenceBone: 
+      effectSpawn: 0
+      position: {x: 0, y: 0, z: 0}
+      eular: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      duration: 5
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ad8f04531386af40b6ab5a5f3c652f8, type: 3}
+  m_Name: skill5
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: -248759359766117293}
+  animationFPS: 60
+  animationName: Skill

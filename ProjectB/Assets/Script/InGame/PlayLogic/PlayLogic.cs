@@ -56,6 +56,7 @@ public class PlayLogic : BaseScene
         this.deltaTime = deltaTime;
         commands.UpdateFrame(deltaTime);
         if (commands.CommandEnd() == false) return;
+
         if(curFsm == ePlayLogicFsm.none) ChangeFsm(ePlayLogicFsm.setting);
         if (isSettingOn == false) return;
 

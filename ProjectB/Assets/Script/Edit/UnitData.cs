@@ -37,6 +37,7 @@ namespace Editor
             [FoldoutGroup("Stat")] public float atkRange;
             [FoldoutGroup("Stat")] public float criRate;
             [FoldoutGroup("Stat")] public float criDmg;
+            [VerticalGroup("Info")] public long exp;
             [VerticalGroup("Info")] public Texture2D icon;
             [VerticalGroup("Info")] public string modelAssetRef;
             [VerticalGroup("Info")] public string animatorAssetRef;

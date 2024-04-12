@@ -52,7 +52,7 @@ public class UIHpBarDlg : UIDlg
         UIHpBar hpBar = null;
         if (hpBarQue.Count > 0)
         {
-            hpBarQue.Dequeue();
+            hpBar = hpBarQue.Dequeue();
         }
         else
         {

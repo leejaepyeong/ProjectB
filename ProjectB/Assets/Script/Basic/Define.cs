@@ -71,6 +71,7 @@ public enum eStat
     criDmg,
     END,
     DotDmg,
+    EXP,
     None,
 }
 

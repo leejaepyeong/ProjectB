@@ -31,9 +31,23 @@ public class UIHpBar : UIBase
     public override void UpdateFrame(float deltaTime)
     {
         iconHpGauge.fillAmount = (float)(targetUnit.UnitBase.curHp / targetUnit.UnitBase.GetStat(eStat.hp));
-        transform.localPosition = new Vector3(targetUnit.GetPos().x, targetUnit.GetPos().y + 1f,0);
+        var temp = Manager.Instance.MainCamera.WorldToViewportPoint(new Vector3(targetUnit.GetPos().x, targetUnit.GetPos().y + 1f, 0));
+        temp.x = Mathf.LerpUnclamped(hpBarDlg.RectTransform.rect.xMin, hpBarDlg.RectTransform.rect.xMax, temp.x);
+        temp.y = Mathf.LerpUnclamped(hpBarDlg.RectTransform.rect.yMin, hpBarDlg.RectTransform.rect.yMax, temp.y);
+        RectTransform.anchoredPosition = temp;
 
-        if (targetUnit.UnitState.isDead)
+        if (targetUnit == null || targetUnit.UnitState.isDead)
             Close();
+    }
+
+    private Vector2 WorldToCanvasRectPosition(RectTransform canvas, Camera camera, Vector3 position)
+    {
+        Vector2 temp = camera.WorldToViewportPoint(position);
+
+        var canvasRect = canvas.rect;
+        temp.x = Mathf.LerpUnclamped(canvasRect.xMin, canvasRect.xMax, temp.x);
+        temp.y = Mathf.LerpUnclamped(canvasRect.yMin, canvasRect.yMax, temp.y);
+
+        return temp;
     }
 }

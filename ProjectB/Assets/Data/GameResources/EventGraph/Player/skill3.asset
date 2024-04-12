@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-291297716556137276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f11231a3989ce4f4b82f1f594d412b94, type: 3}
+  m_Name: Projectile Event
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -424, y: -312}
+  ports:
+    keys: []
+    values: []
+  TimeBase: 1
+  FrameElapsed: 0
+  FrameCount: 15
+  Memo: 
+  ProjectileEvent:
+    projectileType: 0
+    projectileHit: 1
+    projectileEffect:
+      m_AssetGUID: da9a389c7136f4d48aa582f3b8926020
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    hitEvent:
+      paricleObject:
+        m_AssetGUID: 6ed953158ebba554081d624ba3420ff2
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      referenceBone: 
+      effectSpawn: 0
+      position: {x: 0, y: 0, z: 0}
+      eular: {x: 0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      duration: 5
+    maxHitCount: 100
+    straight:
+      maxDistance: 10
+      radius: 1.5
+      speed: 3
+      curveSpeed:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 2
+          outSlope: 2
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    straightFollow:
+      duration: 0
+      radius: 0
+      speed: 0
+      curveSpeed:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      hitEffect:
+        m_AssetGUID: 
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ad8f04531386af40b6ab5a5f3c652f8, type: 3}
+  m_Name: skill3
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: -291297716556137276}
+  animationFPS: 60
+  animationName: Skill

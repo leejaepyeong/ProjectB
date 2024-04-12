@@ -25,13 +25,13 @@ MonoBehaviour:
     projectileType: 0
     projectileHit: 1
     projectileEffect:
-      m_AssetGUID: da9a389c7136f4d48aa582f3b8926020
+      m_AssetGUID: 4a1d2f983e4b312439bda84608c0d703
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
     hitEvent:
       paricleObject:
-        m_AssetGUID: 6ed953158ebba554081d624ba3420ff2
+        m_AssetGUID: a77f355ea319ced479e6418df43436ce
         m_SubObjectName: 
         m_SubObjectType: 
         m_EditorAssetChanged: 0
@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ad8f04531386af40b6ab5a5f3c652f8, type: 3}
-  m_Name: skill
+  m_Name: skill4
   m_EditorClassIdentifier: 
   nodes:
   - {fileID: -291297716556137276}

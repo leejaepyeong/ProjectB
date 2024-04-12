@@ -9,6 +9,7 @@ public class UnitState
     public eTeam team; 
     #region stat
     public Dictionary<eStat, double> originStatValue = new Dictionary<eStat, double>();
+    public long exp;
     #endregion
     public SkillInfo atkInfo;
 
@@ -16,6 +17,7 @@ public class UnitState
     public bool isDead;
     public bool isStun;
     public bool isSlow;
+    public bool isInvincibility;
     public bool isMoveAble { get { return isStun == false; } }
     #endregion
 
@@ -52,6 +54,8 @@ public class UnitState
         originStatValue[eStat.atkRange] = data.atkRange;
         originStatValue[eStat.criDmg] = data.criDmg;
         originStatValue[eStat.criRate] = data.criRate;
+
+        exp = data.exp;
     }
     public void SetPlayerStat(eStat statType, bool isTestScene)
     {
@@ -75,7 +79,7 @@ public class UnitState
 
 public class UnitBehavior : BaseBehavior, IEventHandler
 {
-    private Animator Animator;
+    public Animator Animator;
     private AnimatorOverrideController animatorContorller;
     private int id;
     public int ID => id;

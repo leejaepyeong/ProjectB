@@ -122,6 +122,9 @@ public class Unit_Base : MonoBehaviour
 
     public void ApplyDamage(UnitBehavior caster ,float dmgPercent, eDamagePerType dmgType = eDamagePerType.Atk)
     {
+        if (unitState.isInvincibility)
+            return;
+
         double damageValue = 0;
         dmgPercent /= 100;
         float randomRate;
@@ -182,9 +185,13 @@ public class Unit_Base : MonoBehaviour
 
         if (curHp <= 0)
         {
-            unitState.isDead = true;
-            UnitManager.Instance.RemoveUnit(unitBehavior);
+            UnitDeath();
         }
+    }
+    private void UnitDeath()
+    {
+        unitState.isDead = true;
+        UnitManager.Instance.RemoveUnit(unitBehavior);
     }
 
     #region Buff

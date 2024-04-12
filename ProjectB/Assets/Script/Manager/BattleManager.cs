@@ -10,17 +10,13 @@ public class BattleManager : BaseManager
     private bool isGameEnd;
     public bool isPause;
 
-    public int lv;
-    public int exp;
-    public int needExp;
-
     public SkillInfo[] mainSkillInfo = new SkillInfo[5];
     public Dictionary<eStat, double> runeAddStat = new Dictionary<eStat, double>();
     public Dictionary<eStat, double> passiveAddStat = new Dictionary<eStat, double>();
 
     public float getCurTime { get { return elaspedTime; } }
 
-
+    public PlayerData playerData;
     private UIHpBarDlg uiHpBarDlg;
 
     public static BattleManager Instance
@@ -33,10 +29,9 @@ public class BattleManager : BaseManager
         stageTime = time;
         isGameEnd = false;
         isInit = true;
-        lv = 1;
-        exp = 0;
-        var expRecord = TableManager.Instance.expTable.GetExpRecord(exp);
-        needExp = expRecord.needExp;
+
+        playerData = new PlayerData();
+        playerData.Init();
 
         uiHpBarDlg = UIManager.Instance.OpenWidget<UIHpBarDlg>(eWidgetType.Normal);
         uiHpBarDlg.Open();
@@ -59,26 +54,6 @@ public class BattleManager : BaseManager
         if (UnitManager.Instance.Player != null && UnitManager.Instance.Player.UnitState.isDead) { isGameEnd = true; return true; }
 
         return false;
-    }
-
-    public void AddExp(int exp)
-    {
-        this.exp += exp;
-
-        if (exp >= needExp)
-            LevelUp();
-    }
-
-    public void LevelUp()
-    {
-        var expRecord = TableManager.Instance.expTable.GetExpRecord(exp);
-        if (expRecord == null) return;
-
-        lv += 1;
-        exp -= needExp;
-        needExp = expRecord.needExp;
-        UILevelUpDlg dlg = UIManager.Instance.OpenWidget<UILevelUpDlg>();
-        dlg.Open();
     }
 
     public void SetMainSkillSlot(int index, SkillInfo skillInfo)

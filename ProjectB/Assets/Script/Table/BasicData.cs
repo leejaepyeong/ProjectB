@@ -29,6 +29,7 @@ namespace Data
         public float atkRange;
         public float criRate;
         public float criDmg;
+        public long exp;
         public Texture2D icon;
         public string modelAssetRef;
         public string animatorAssetRef;
@@ -55,6 +56,7 @@ namespace Data
             atkRange = data.info.atkRange;
             criRate = data.info.criRate;
             criDmg = data.info.criDmg;
+            exp = data.info.exp;
             icon = data.info.icon;
             modelAssetRef = data.info.modelAssetRef;
             animatorAssetRef =data.info.animatorAssetRef;

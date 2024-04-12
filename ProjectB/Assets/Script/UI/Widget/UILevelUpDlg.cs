@@ -9,7 +9,7 @@ public class UILevelUpDlg : UIDlg
 {
     [SerializeField, FoldoutGroup("Content")] private TextMeshProUGUI textLevel;
 
-    public override void Open()
+    public virtual void Open(int levelUpCount)
     {
         base.Open();
 
@@ -26,7 +26,7 @@ public class UILevelUpDlg : UIDlg
 
     public override void ResetData()
     {
-        textLevel.SetText($"Level {BattleManager.Instance.lv}");
+        textLevel.SetText($"Level {BattleManager.Instance.playerData.curLv}");
     }
 
     public override void UpdateFrame(float deltaTime)
