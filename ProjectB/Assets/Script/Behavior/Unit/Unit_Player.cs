@@ -11,6 +11,9 @@ public class Unit_Player : Unit_Base
         {
             unitState.SetPlayerStat((eStat)i, Manager.Instance.CurScene.isTestScene);
         }
+        atkCool = 1 / (float)GetStat(eStat.atkSpd);
+        curHp = (long)GetStat(eStat.hp);
+        curMp = (long)GetStat(eStat.mp);
     }
 
 }

@@ -91,12 +91,11 @@ public class UnitManager : BaseManager
     IEnumerator RemoveUnitCo(UnitBehavior unit)
     {
         yield return new WaitForEndOfFrame();
-        unit.Animator.CrossFadeInFixedTime("Death", 0);
+        unit.Animator.SetTrigger("Death");
         yield return new WaitForEndOfFrame();
 
         var test = unit.Animator.GetCurrentAnimatorStateInfo(0);
-        yield return new WaitUntil(() => unit.Animator.GetCurrentAnimatorStateInfo(0).IsName("Death") == false);
-        yield return new WaitUntil(() => unit.Animator.GetCurrentAnimatorStateInfo(0).IsName("Death"));
+        yield return new WaitWhile(() => test.normalizedTime < test.length);
 
         unitDic.Remove(unit.ID);
         unit.Close();

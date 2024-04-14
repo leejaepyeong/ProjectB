@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddcd3d356db7532449d2d10c2c67874f, type: 3}
   m_Name: TestPlayerData
   m_EditorClassIdentifier: 
-  hp: 100
+  hp: 2000
   mp: 100
   atk: 20
   def: 0
   acc: 85
+  dod: 0
   moveSpd: 0
   atkSpd: 2
   atkRange: 10
