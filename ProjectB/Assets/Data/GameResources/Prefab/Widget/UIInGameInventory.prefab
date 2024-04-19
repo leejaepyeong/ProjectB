@@ -902,9 +902,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d031b78409c31444b57b4e53ce665f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onUpdateSlotItem:
-    m_PersistentCalls:
-      m_Calls: []
+  btnClick: {fileID: 0}
 --- !u!224 &5937120941274121811 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1307916589898780333, guid: 5ab1d509bf3af7c41942d5ee57ff7fe7, type: 3}

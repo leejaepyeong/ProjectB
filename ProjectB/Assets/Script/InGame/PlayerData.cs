@@ -27,6 +27,7 @@ public class PlayerData
             preLv = curLv;
             LevelUp();
         }
+        PlayLogic.Instance.uiPlayLogic.UpdateExp();
     }
 
     public void LevelUp()

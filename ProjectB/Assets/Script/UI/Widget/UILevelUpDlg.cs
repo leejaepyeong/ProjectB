@@ -8,12 +8,22 @@ using TMPro;
 public class UILevelUpDlg : UIDlg
 {
     [SerializeField, FoldoutGroup("Content")] private TextMeshProUGUI textLevel;
+    [SerializeField, FoldoutGroup("Content")] private Button buttonConfirm;
+
+    private UILevelUpRewardSlot selectRewardSlot;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        buttonConfirm.onClick.AddListener(OnClickSelectComplete);
+    }
 
     public virtual void Open(int levelUpCount)
     {
         base.Open();
 
         BattleManager.Instance.isPause = true;
+        selectRewardSlot = null;
 
         ResetData();
     }
@@ -29,7 +39,21 @@ public class UILevelUpDlg : UIDlg
         textLevel.SetText($"Level {BattleManager.Instance.playerData.curLv}");
     }
 
-    public override void UpdateFrame(float deltaTime)
+    public void SelectReward(UILevelUpRewardSlot rewardSlot)
     {
+        if (selectRewardSlot != null)
+            selectRewardSlot.CheckSlotSelect(false);
+        selectRewardSlot = rewardSlot;
+    }
+
+    private void OnClickSelectComplete()
+    {
+        if (selectRewardSlot == null)
+        {
+            uiManager.OpenMessageBox_Ok("알림", "보상을 선택하세요.");
+            return;
+        }
+
+        Close();
     }
 }

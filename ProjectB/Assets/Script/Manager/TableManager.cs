@@ -32,6 +32,8 @@ public class TableManager
     public RuneTable runeTable;
     public ItemTable itemTable;
     public ExpTable expTable;
+    public LevelUpRewardTable levelUpRewardTable;
+    public StatRewardTable statRewardTable;
 
     public void Load(ClassFileSave _fileSave = null)
     {
@@ -46,6 +48,9 @@ public class TableManager
         m_tableList.Add(stringTable = new StringTable(m_fileSave, "Table/String_Info"));
         m_tableList.Add(itemTable = new ItemTable(m_fileSave, "Table/Item_Info"));
         m_tableList.Add(expTable = new ExpTable(m_fileSave, "Table/Exp_Info"));
+        m_tableList.Add(levelUpRewardTable = new LevelUpRewardTable(m_fileSave, "Table/LevelUpReward_Info"));
+        m_tableList.Add(statRewardTable = new StatRewardTable(m_fileSave, "Table/StatReward_Info"));
+
 
         for (int i = 0; i < m_tableList.Count; ++i)
         {

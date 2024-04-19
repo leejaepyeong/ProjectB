@@ -183,7 +183,7 @@ public class Unit_Base : MonoBehaviour
 
         curHp -= (long)damageValue;
 
-        if (curHp <= 0)
+        if (curHp <= 0 && unitState.isDead == false)
         {
             UnitDeath();
         }
@@ -192,6 +192,10 @@ public class Unit_Base : MonoBehaviour
     {
         unitState.isDead = true;
         UnitManager.Instance.RemoveUnit(unitBehavior);
+        if (unitState.team == eTeam.player) return;
+
+        BattleManager.Instance.playerData.AddKillCount();
+        BattleManager.Instance.playerData.AddExp(unitState.exp);
     }
 
     #region Buff

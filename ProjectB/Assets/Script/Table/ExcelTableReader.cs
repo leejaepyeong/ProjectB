@@ -155,6 +155,9 @@ public class ExcelTableReader : EditorWindow
         AddLoadExcelGroup("/../../Table/SkillEffect.xlsx", new SkillEffectTable(_fileSave, "Resources/Table/Skill_Effect_Info"), "Skill_Effect_Info");
         AddLoadExcelGroup("/../../Table/Item.xlsx", new ItemTable(_fileSave, "Resources/Table/Item_Info"), "Item_Info");
         AddLoadExcelGroup("/../../Table/Exp.xlsx", new ExpTable(_fileSave, "Resources/Table/Exp_Info"), "Exp_Info");
+        AddLoadExcelGroup("/../../Table/LevelUpReward.xlsx", new LevelUpRewardTable(_fileSave, "Resources/Table/LevelUpReward_Info"), "LevelUpReward_Info");
+        AddLoadExcelGroup("/../../Table/StatReward.xlsx", new StatRewardTable(_fileSave, "Resources/Table/StatReward_Info"), "StatReward_Info");
+
     }
 
     void OnGUI()

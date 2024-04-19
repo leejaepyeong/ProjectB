@@ -74,6 +74,12 @@ public enum eStat
     EXP,
     None,
 }
+public enum eUseType
+{
+    AddExp,
+    AddSlot,
+    None,
+}
 
 public enum eLanguage
 {
@@ -190,9 +196,22 @@ public enum eRuneDetailType
 #endregion
 
 #region Item
+public enum eLevelUpReward
+{
+    None,
+    Rune,
+    Passive,
+    Active,
+    Use,
+    Stat,
+}
 public enum eItemType
 {
     None,
+    Rune,
+    Passive,
+    Active,
+    Use,
 }
 
 public enum eItemGrade

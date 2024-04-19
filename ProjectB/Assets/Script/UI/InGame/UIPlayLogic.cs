@@ -16,8 +16,8 @@ public class UIPlayLogic : MonoBehaviour
 
     [FoldoutGroup("Bottom")] public UISkillInven uiSkillInven;
     [FoldoutGroup("Bottom")] public UISkillInven_Placement uiSkillInven_Placement;
-    [FoldoutGroup("Bottom/Exp")] public Image expGage;
-    [FoldoutGroup("Bottom/Exp")] public TextMeshProUGUI textExp;
+    [SerializeField, FoldoutGroup("Bottom/Exp")] private Image expGage;
+    [SerializeField, FoldoutGroup("Bottom/Exp")] private TextMeshProUGUI textExp;
 
     private void Awake()
     {
@@ -31,6 +31,9 @@ public class UIPlayLogic : MonoBehaviour
         btnStat.onClick.AddListener(OnClickStatInfo);
         uiSkillInven.Init();
         uiSkillInven_Placement.Init();
+
+        expGage.fillAmount = 0;
+        textExp.SetText("0");
     }
 
     public void UpdateFrame(float deltaTime)
@@ -46,6 +49,13 @@ public class UIPlayLogic : MonoBehaviour
         //Pause
         if (Input.GetKeyDown(KeyCode.Escape))
             OnClickGamePause();
+    }
+
+    public void UpdateExp()
+    {
+        float percent = (float)BattleManager.Instance.playerData.curExp / BattleManager.Instance.playerData.needExp;
+        expGage.fillAmount = percent;
+        textExp.SetText((percent * 100).ToString("F1"));
     }
 
     #region Button Click
