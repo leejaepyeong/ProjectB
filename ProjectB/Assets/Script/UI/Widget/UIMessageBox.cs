@@ -12,8 +12,8 @@ public class UIMessageBox : UIDlg
     [SerializeField, FoldoutGroup("Center")] private TextMeshProUGUI textDest;
     [SerializeField, FoldoutGroup("Center")] private TextMeshProUGUI textOk;
     [SerializeField, FoldoutGroup("Center")] private TextMeshProUGUI textCancle;
-    [SerializeField, FoldoutGroup("Center")] private Button buttonOk;
-    [SerializeField, FoldoutGroup("Center")] private Button buttonCancle;
+    [SerializeField, FoldoutGroup("Bottom")] private Button buttonOk;
+    [SerializeField, FoldoutGroup("Bottom")] private Button buttonCancle;
 
     private string title;
     private string dest;
@@ -30,6 +30,17 @@ public class UIMessageBox : UIDlg
         buttonCancle.onClick.AddListener(OnClickCancle);
     }
 
+    public virtual void Open(string title, string dest, string okText, UnityAction okAction)
+    {
+        base.Open();
+
+        SetText(textTitle, title);
+        SetText(textDest, dest);
+        SetText(textOk, ok);
+        buttonCancle.gameObject.SetActive(false);
+
+        this.okAction = okAction;
+    }
     public virtual void Open(string title, string dest, string okText, UnityAction okAction, string cancleText, UnityAction cancleAction)
     {
         base.Open();
@@ -38,6 +49,7 @@ public class UIMessageBox : UIDlg
         SetText(textDest, dest);
         SetText(textOk, ok);
         SetText(textCancle, cancle);
+        buttonCancle.gameObject.SetActive(true);
 
         this.okAction = okAction;
         this.cancleAction = cancleAction;

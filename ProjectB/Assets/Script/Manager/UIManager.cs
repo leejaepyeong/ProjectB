@@ -192,8 +192,8 @@ public class UIManager : BaseManager
 
     public UIMessageBox OpenMessageBox_Ok(string title = null, string dest = null, string okText = null, UnityEngine.Events.UnityAction okAction = null)
     {
-        UIMessageBox msg = GetUI<UIMessageBox>();
-        msg.Open(title, dest, okText, okAction, null, null);
+        UIMessageBox msg = OpenWidget<UIMessageBox>(eWidgetType.Pop);
+        msg.Open(title, dest, okText, okAction);
 
         return msg;
     }
@@ -201,7 +201,7 @@ public class UIManager : BaseManager
     public UIMessageBox OpenMessageBox_OkCancle(string title = null, string dest = null, string okText = null, UnityEngine.Events.UnityAction okAction = null,
         string cancleText = null, UnityEngine.Events.UnityAction cancleAction = null)
     {
-        UIMessageBox msg = GetUI<UIMessageBox>();
+        UIMessageBox msg = OpenWidget<UIMessageBox>(eWidgetType.Pop);
         msg.Open(title, dest, okText, okAction, cancleText, cancleAction);
 
         return msg;

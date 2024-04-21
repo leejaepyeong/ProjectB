@@ -37,6 +37,8 @@ public class UnitManager : BaseManager
 
     public override void UpdateFrame(float deltaTime)
     {
+        if (BattleManager.Instance.isPause) return;
+
         base.UpdateFrame(deltaTime);
         foreach (var unit in unitDic)
         {

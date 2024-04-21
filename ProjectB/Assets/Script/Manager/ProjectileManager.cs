@@ -27,6 +27,7 @@ public class ProjectileManager : BaseManager
 
     public override void UpdateFrame(float deltaTime)
     {
+        if (BattleManager.Instance.isPause) return;
         base.UpdateFrame(deltaTime);
         for (int i = 0; i < projectileList.Count; i++)
         {

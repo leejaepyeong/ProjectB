@@ -42,6 +42,7 @@ public class BattleManager : BaseManager
         base.UpdateFrame(deltaTime);
         if (isInit == false) return;
         if (isGameEnd) return;
+        if (BattleManager.Instance.isPause) return;
 
         elaspedTime += DeltaTime;
         if (elaspedTime > stageTime) elaspedTime = stageTime;
