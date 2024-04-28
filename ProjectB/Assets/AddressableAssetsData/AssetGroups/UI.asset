@@ -62,7 +62,254 @@ MonoBehaviour:
   - m_GUID: 62f14c11b44448a4a95caed5235ea63f
     m_Address: Assets/Data/GameResources/Prefab/RangePrefab
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - UI
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 79c4dd56ce407184ea22c78915010352
+    m_Address: Assets/Data/Texture/Monk/Icons/Monk_12.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b9a6abe448baa5949928dd27c50a25b9
+    m_Address: Assets/Data/Texture/Monk/Icons/Monk_6.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 937ea9fb635e3104f9f3c7e0a863617f
+    m_Address: Assets/Data/Texture/Monk/Icons/Monk_7.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 764bde2131a7d2445825d74050cfeafe
+    m_Address: Assets/Data/Texture/Monk/Icons/Monk_8.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5b6a62ae2a150ef45873a517ed3b1ac9
+    m_Address: Assets/Data/Texture/Monk/Icons/Monk_9.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 62e974a9d495baf4e8e60ff0048a7135
+    m_Address: Assets/Data/Texture/Monk/Icons/Monk_10.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a1e3223d0e14f9745b3624d63ab883fa
+    m_Address: Assets/Data/Texture/Monk/Icons/Monk_11.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 265f04bb04c971d40bd5975456877e27
+    m_Address: Assets/Data/Texture/Monk/Icons/Monk_13.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2168d4fe2eab836439cc9b93666a0b07
+    m_Address: Assets/Data/Texture/Monk/Icons/Monk_14.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: da4a23a73dd37fa4287ad83d48dddaa4
+    m_Address: Assets/Data/Texture/Monk/Icons/Monk_15.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fa159a354e311464db25737f3dcbeebe
+    m_Address: Assets/Data/Texture/Monk/Icons/Monk_16.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 61d20aa42b267614585c0ca52137e5dd
+    m_Address: Assets/Data/Texture/Monk/Icons/Monk_17.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0e36bf87315b19141958ec578143b0df
+    m_Address: Assets/Data/Texture/Monk/Icons/Monk_18.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 22f5d2f9314325d478a0c72622dccb06
+    m_Address: Assets/Data/Texture/Monk/Icons/Monk_19.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2f1303fe638382242888a372df048bb2
+    m_Address: Assets/Data/Texture/Monk/Icons/Monk_20.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 175b91123f8f4fe478cc87c88c299d40
+    m_Address: Assets/Data/Texture/Monk/Icons/Monk_21.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 51dd77af2a20f54438f6a15ce008edf9
+    m_Address: Assets/Data/Texture/Monk/Icons/Monk_22.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ff5beb2f70f51d644bcaec1bca67c5ca
+    m_Address: Assets/Data/Texture/Monk/Icons/Monk_23.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3a4765814f10a7a4d9fa4b89fb9c7d37
+    m_Address: Assets/Data/Texture/Monk/Icons/Monk_24.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 354e9c74843c58a4c8a535d3efcdb49e
+    m_Address: Assets/Data/Texture/Monk/Icons/Monk_25.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9e1136d5de771cd45ae68f7df71d2973
+    m_Address: Assets/Data/Texture/Monk/Icons/Monk_26.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e8036b4b7910a3a459187a5531ed2778
+    m_Address: Assets/Data/Texture/Monk/Icons/Monk_27.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d78b77e6b4a936d4991a33ab015e0183
+    m_Address: Assets/Data/Texture/Monk/Icons/Monk_28.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 021ec4b03b350eb43b16ddc89d75b188
+    m_Address: Assets/Data/Texture/Monk/Icons/Monk_29.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4868af0b4db9f2c4ca07b93f37f8e5b1
+    m_Address: Assets/Data/Texture/Monk/Icons/Monk_30.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 04b328eacf89cb44ca1df5260658c245
+    m_Address: Assets/Data/Texture/Monk/Icons/Monk_31.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ddcce267c81397140be5b5915a26af9f
+    m_Address: Assets/Data/Texture/Monk/Icons/Monk_32.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 11198d319ba93994d92feee1351d9a66
+    m_Address: Assets/Data/Texture/Monk/Icons/Monk_33.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8fb8c465e7a3db149a6f8c953152155b
+    m_Address: Assets/Data/Texture/Monk/Icons/Monk_34.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 105cdaebae3334b4f9db3c5c63cf8cc0
+    m_Address: Assets/Data/Texture/Monk/Icons/Monk_35.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cce82a675ef52ef44bc329a74aec2ed7
+    m_Address: Assets/Data/Texture/Monk/Icons/Monk_36.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: de07865ed45e1c74da9d0b106f34770f
+    m_Address: Assets/Data/Texture/Monk/Icons/Monk_37.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9091e85596f8242479c0f5d067bac3d5
+    m_Address: Assets/Data/Texture/Monk/Icons/Monk_38.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dfc562e0755d3c64d950823ae11ad237
+    m_Address: Assets/Data/Texture/Monk/Icons/Monk_39.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    - Remote
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 29af07531dc441b41be311920cc0bae0
+    m_Address: Assets/Data/Texture/Monk/Icons/Monk_40.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    - Remote
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 0b85ada165676584a86a5d299cec6c75, type: 2}

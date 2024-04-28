@@ -14,8 +14,9 @@ public class UILevelUpRewardSlot : UIInfiniteItemSlot
     [SerializeField, FoldoutGroup("Content")] private TextMeshProUGUI textItemDest;
     [SerializeField, FoldoutGroup("Content")] private Button buttonSelect;
 
-    private UILevelUpDlg uILevelUpDlg;
+    [SerializeField, FoldoutGroup("Content")] private UILevelUpDlg uILevelUpDlg;
     private bool isSelect;
+    public LevelUpRewardRecord levelUpReward;
 
     protected override void Awake()
     {
@@ -24,18 +25,76 @@ public class UILevelUpRewardSlot : UIInfiniteItemSlot
         buttonSelect.onClick.AddListener(OnClickSkill);
     }
 
-    public virtual void Open(UILevelUpDlg levelUpDlg)
+    public override void UpdateItemSlot(int index)
     {
-        base.Open();
-        uILevelUpDlg = levelUpDlg;
-        isSelect = false;
-        objSelected.SetActive(false);
+        levelUpReward = uILevelUpDlg.levelUpRewardList[index];
+        if (levelUpReward == null) return;
+
+        base.UpdateItemSlot(index);
+
+        ResetData();
     }
 
     public override void ResetData()
     {
-
+        SetInfo();
+        isSelect = false;
+        objSelected.SetActive(false);
     }
+
+    #region Reward Info
+    private void SetInfo()
+    {
+        switch (levelUpReward.itemType)
+        {
+            case eLevelUpReward.None:
+                break;
+            case eLevelUpReward.Rune:
+                SetRuneInfo();
+                break;
+            case eLevelUpReward.Passive:
+            case eLevelUpReward.Active:
+                SetSkillInfo();
+                break;
+            case eLevelUpReward.Use:
+            case eLevelUpReward.Stat:
+                SetStatInfo();
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void SetRuneInfo()
+    {
+        var record = TableManager.Instance.runeTable.GetRecord(levelUpReward.itemIndex);
+        if (record == null) return;
+
+        SetIcon(skillIcon, record.iconPath);
+        SetText(textItemName, record.getName);
+        SetText(textItemDest, record.getDest);
+    }
+    private void SetSkillInfo()
+    {
+        var record = TableManager.Instance.skillTable.GetRecord(levelUpReward.itemIndex);
+        if (record == null) return;
+
+        SetIcon(skillIcon, record.iconPath);
+        SetText(textItemName, record.getName);
+        SetText(textItemDest, record.getDest);
+    }
+    private void SetStatInfo()
+    {
+        var record = TableManager.Instance.statRewardTable.GetRecord(levelUpReward.itemIndex);
+        if (record == null) return;
+
+        SetIcon(skillIcon, record.iconPath);
+        SetText(textItemName, record.getName);
+        SetText(textItemDest, record.getDest);
+    }
+
+    #endregion
+
 
     public override void Close()
     {
@@ -53,6 +112,7 @@ public class UILevelUpRewardSlot : UIInfiniteItemSlot
         {
             if (isSelect) return;
             isSelect = true;
+            uILevelUpDlg.SelectReward(this);
         }
         else
         {

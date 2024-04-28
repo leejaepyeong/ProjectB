@@ -9,7 +9,9 @@ public class UILevelUpDlg : UIDlg
 {
     [SerializeField, FoldoutGroup("Content")] private TextMeshProUGUI textLevel;
     [SerializeField, FoldoutGroup("Content")] private Button buttonConfirm;
+    [SerializeField, FoldoutGroup("Content")] private UIInfinite.UIInfiniteScroll infiniteScroll;
 
+    public List<LevelUpRewardRecord> levelUpRewardList = new List<LevelUpRewardRecord>();
     private UILevelUpRewardSlot selectRewardSlot;
 
     protected override void Awake()
@@ -37,6 +39,16 @@ public class UILevelUpDlg : UIDlg
     public override void ResetData()
     {
         textLevel.SetText($"Level {BattleManager.Instance.playerData.curLv}");
+
+        SetRewardList();
+    }
+
+    private void SetRewardList()
+    {
+        var expRecord =  TableManager.Instance.expTable.GetExpRecord(BattleManager.Instance.playerData.curLv);
+        levelUpRewardList = TableManager.Instance.levelUpRewardTable.GetLevelUpRewardList(expRecord.rewardIdx, 3);
+
+        infiniteScroll.Set(levelUpRewardList.Count);
     }
 
     public void SelectReward(UILevelUpRewardSlot rewardSlot)
@@ -52,6 +64,22 @@ public class UILevelUpDlg : UIDlg
         {
             uiManager.OpenMessageBox_Ok("알림", "보상을 선택하세요.");
             return;
+        }
+
+        switch (selectRewardSlot.levelUpReward.itemType)
+        {
+            case eLevelUpReward.Rune:
+                break;
+            case eLevelUpReward.Passive:
+            case eLevelUpReward.Active:
+                break;
+            case eLevelUpReward.Use:
+                break;
+            case eLevelUpReward.Stat:
+                break;
+            default:
+                Debug.LogError("No Type LevelUpRewardItem");
+                break;
         }
 
         Close();

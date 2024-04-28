@@ -55,15 +55,15 @@ public class UIPauseDlg : UIDlg
     #region Button Click
     private void OnClickRestart()
     {
-
+        Close();
     }
     private void OnClickBacktoGame()
     {
-
+        Close();
     }
     private void OnClickOutGame()
     {
-
+        Close();
     }
     private void OnValueChageTab(bool isOn)
     {

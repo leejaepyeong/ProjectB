@@ -180,7 +180,8 @@ public enum eRuneType
     CoolTimeDown,
     AddDmg,
 
-    AddStat,
+    AddAtk,
+    AddDamage,
     GetBonusExp,
 }
 

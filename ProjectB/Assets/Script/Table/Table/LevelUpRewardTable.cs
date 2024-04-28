@@ -47,20 +47,35 @@ public class LevelUpRewardTable : TTableBase<LevelUpRewardRecord>
             return null;
         }
 
-        List<int> rateList = new List<int>();
+        if (rewardList.Count <= rewardCount)
+            return rewardList;
+
+        List<LevelUpRewardRecord> reward = new List<LevelUpRewardRecord>();
+        List<LevelUpRewardRecord> temp = new List<LevelUpRewardRecord>();
+        int totalRate = 0;
         for (int i = 0; i < rewardList.Count; i++)
         {
-            rateList.Add(rewardList[i].rate);
+            temp.Add(rewardList[i]);
+            totalRate += rewardList[i].rate;
         }
-        List<LevelUpRewardRecord> temp = new List<LevelUpRewardRecord>();
 
-        while(temp.Count < rewardCount)
+        int tempRate = 0;
+        while(reward.Count < rewardCount)
         {
-            int totalRate = 0;
-
-            int random = Random.Range(1, 10001);
+            int random = Random.Range(1, totalRate);
+            for (int i = 0; i < temp.Count; i++)
+            {
+                tempRate += temp[i].rate;
+                if (random < tempRate)
+                {
+                    reward.Add(temp[i]);
+                    totalRate -= temp[i].rate;
+                    temp.Remove(temp[i]);
+                    break;
+                }
+            }
         }
 
-        return null;
+        return reward;
     }
 }

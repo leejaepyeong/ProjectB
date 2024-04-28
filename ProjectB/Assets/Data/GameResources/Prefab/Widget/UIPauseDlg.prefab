@@ -2150,7 +2150,7 @@ MonoBehaviour:
   btnClick: {fileID: 0}
   btnCloseGroup: []
   escapable: 1
-  backGroundable: 0
+  backGroundable: 1
   toggleTabs:
   - {fileID: 267354181931544450}
   - {fileID: 7999822736934159719}

@@ -12,11 +12,14 @@ public class PlayerData
     private int preLv;
     public long killCount { get; private set; }
 
+    public List<InvenItemInfo> invenItemList = new List<InvenItemInfo>();
+
     public void Init()
     {
         curExp = 0;
         curLv = 1;
         killCount = 0;
+        invenItemList.Clear();
     }
 
     public void AddExp(long exp)
@@ -45,4 +48,23 @@ public class PlayerData
     {
         killCount += 1;
     }
+
+    #region Item
+    public void AddISkilltem(int itemId, int skillIdx)
+    {
+        InvenItemInfo itemInfo = new InvenItemInfo(itemId, skillIdx, false);
+        invenItemList.Add(itemInfo);
+    }
+
+    public void AddRuneItem(int itemId, int runeIdx)
+    {
+        InvenItemInfo itemInfo = new InvenItemInfo(itemId, runeIdx, true);
+        invenItemList.Add(itemInfo);
+    }
+
+    public void RemoveItem()
+    {
+
+    }
+    #endregion
 }

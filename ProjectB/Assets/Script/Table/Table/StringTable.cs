@@ -26,6 +26,6 @@ public class StringTable : TTableBase<StringRecord>
     {
         StringRecord record = GetRecord(index);
 
-        return record.kor;
+        return record != null ? record.kor : index.ToString();
     }
 }

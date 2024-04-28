@@ -38,4 +38,10 @@ public class ExpTable : TTableBase<ExpRecord>
 
         return record;
     }
+    public ExpRecord GetExpRecord(int level)
+    {
+        ExpRecord record = null;
+        record = getRecordList.Find(_ => _.level == level);
+        return record;
+    }
 }

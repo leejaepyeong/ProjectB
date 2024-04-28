@@ -59,7 +59,6 @@ public class UIInGameInventory : UIDlg, LoopScrollPrefabSource, LoopScrollDataSo
     [SerializeField, FoldoutGroup("Inventory")] private UIInfinite.UIInfiniteScroll infiniteScroll;
     [SerializeField, FoldoutGroup("Inventory")] private ScrollRect scroll;
 
-    private Dictionary<int, InvenItemInfo> invenItemInfoDic = new Dictionary<int, InvenItemInfo>();
     private List<InvenItemInfo> invenItemList = new List<InvenItemInfo>();
     private Dictionary<Transform, UIInvenItemSlot> dicPrefab = new Dictionary<Transform, UIInvenItemSlot>();
 
@@ -78,26 +77,14 @@ public class UIInGameInventory : UIDlg, LoopScrollPrefabSource, LoopScrollDataSo
 
     public override void ResetData()
     {
+        invenItemList = BattleManager.Instance.playerData.invenItemList;
+
         SetInventoryUI();
     }
 
     private void SetInventoryUI()
     {
         infiniteScroll.Set(invenItemList.Count);
-    }
-
-    public void AddSkillItem(int itemId, int skillIdx)
-    {
-        InvenItemInfo itemInfo = new InvenItemInfo(itemId, skillIdx, false);
-        invenItemInfoDic.Add(itemId, itemInfo);
-        invenItemList.Add(itemInfo);
-    }
-
-    public void AddRuneItem(int itemId, int runeIdx)
-    {
-        InvenItemInfo itemInfo = new InvenItemInfo(itemId, runeIdx, true);
-        invenItemInfoDic.Add(itemId, itemInfo);
-        invenItemList.Add(itemInfo);
     }
 
     public void OpenEquipRunePage(UIInvenItemSlot invenItemSlot)

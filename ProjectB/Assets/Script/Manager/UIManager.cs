@@ -55,6 +55,7 @@ public class UIManager : BaseManager
     public UIDlg OpenUI(string path, eWidgetType widgetType = eWidgetType.Normal)
     {
         UICanvas uiCanvas = GetPooledCanvasContainer();
+        uiCanvas.gameObject.SetActive(true);
 
         UIDlg uiBase = GameObjectPool.Get(path).GetComponent<UIDlg>();
         uiBase.transform.SetParent(uiCanvas.transform);
@@ -80,6 +81,7 @@ public class UIManager : BaseManager
     public T OpenWidget<T>(eWidgetType widgetType = eWidgetType.Normal) where T : UIDlg
     {
         UICanvas uiCanvas = GetPooledCanvasContainer();
+        uiCanvas.gameObject.SetActive(true);
 
         T uiBase = GameObjectPool.Get(GetUIPath<T>()).GetComponent<T>();
         uiBase.transform.SetParent(uiCanvas.transform);
