@@ -13,12 +13,15 @@ public class PlayerData
     public long killCount { get; private set; }
 
     public List<InvenItemInfo> invenItemList = new List<InvenItemInfo>();
+    private Dictionary<int, InvenItemInfo> dicItem = new Dictionary<int, InvenItemInfo>();
+    private int itemId;
 
     public void Init()
     {
         curExp = 0;
         curLv = 1;
         killCount = 0;
+        itemId = 0;
         invenItemList.Clear();
     }
 
@@ -50,16 +53,27 @@ public class PlayerData
     }
 
     #region Item
-    public void AddISkilltem(int itemId, int skillIdx)
+    public void AddISkilltem(int skillIdx)
     {
-        InvenItemInfo itemInfo = new InvenItemInfo(itemId, skillIdx, false);
+        itemId += 1;
+        InvenItemInfo itemInfo = new InvenItemInfo(itemId, skillIdx, eItemType.Skill);
         invenItemList.Add(itemInfo);
+        dicItem.Add(itemId, itemInfo);
     }
 
-    public void AddRuneItem(int itemId, int runeIdx)
+    public void AddRuneItem(int runeIdx)
     {
-        InvenItemInfo itemInfo = new InvenItemInfo(itemId, runeIdx, true);
+        itemId += 1;
+        InvenItemInfo itemInfo = new InvenItemInfo(itemId, runeIdx, eItemType.Rune);
         invenItemList.Add(itemInfo);
+        dicItem.Add(itemId, itemInfo);
+    }
+    public void AddUseItem(int useIndex)
+    {
+        itemId += 1;
+        InvenItemInfo itemInfo = new InvenItemInfo(itemId, useIndex, eItemType.Use);
+        invenItemList.Add(itemInfo);
+        dicItem.Add(itemId, itemInfo);
     }
 
     public void RemoveItem()

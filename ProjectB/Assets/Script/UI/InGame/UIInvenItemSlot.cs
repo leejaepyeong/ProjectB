@@ -22,8 +22,6 @@ public class UIInvenItemSlot : UISlot
         onClickAction = OnClickItem;
     }
 
-    public bool isRune => invenItemInfo.isRune;
-
     public virtual void Open(InvenItemInfo itemInfo, UIInGameInventory uiInGameInventory)
     {
         base.Open();
@@ -63,4 +61,5 @@ public class UIInvenItemSlot : UISlot
 
     public SkillRecord getSkillRecord => invenItemInfo.GetSkillRecord();
     public RuneRecord getRuneRecord => invenItemInfo.GetRuneRecord();
+    public eItemType itemType => invenItemInfo.itemType;
 }

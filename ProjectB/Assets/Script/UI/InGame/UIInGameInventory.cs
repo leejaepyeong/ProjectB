@@ -9,48 +9,73 @@ public class InvenItemInfo
 {
     public int itemId;
     public bool isEquip;
-
-    public bool isRune;
-
-    private int skillIndex;
-    private int runeIndex;
-    public InvenItemInfo(int id, int idx, bool isRune)
+    public eItemType itemType;
+    public int itemIndex;
+    public InvenItemInfo(int id, int idx, eItemType itemType)
     {
         itemId = id;
-        if (isRune)
-            runeIndex = idx;
-        else
-            skillIndex = idx;
-        this.isRune = isRune;
+
+        itemIndex = idx;
+        this.itemType = itemType;
     }
 
     public SkillRecord GetSkillRecord()
     {
-        if (isRune) return null;
-        var skill = TableManager.Instance.skillTable.GetRecord(skillIndex);
+        if (itemType != eItemType.Skill) return null;
+        var skill = TableManager.Instance.skillTable.GetRecord(itemIndex);
 
         return skill;
     }
 
     public RuneRecord GetRuneRecord()
     {
-        if (isRune == false) return null;
-        var rune = TableManager.Instance.runeTable.GetRecord(runeIndex);
+        if (itemType != eItemType.Rune) return null;
+        var rune = TableManager.Instance.runeTable.GetRecord(itemIndex);
 
         return rune;
     }
+    public StatRewardRecord GetStatRecord()
+    {
+        if (itemType != eItemType.Use) return null;
+        var rune = TableManager.Instance.statRewardTable.GetRecord(itemIndex);
 
+        return rune;
+    }
     public string GetName()
     {
-        return isRune ? GetRuneRecord().getName : GetSkillRecord().getName;
+        switch (itemType)
+        {
+            case eItemType.Rune: return GetRuneRecord().getName;
+            case eItemType.Skill: return GetSkillRecord().getName;
+            case eItemType.Use: return GetStatRecord().getName;
+            case eItemType.None:
+            default:
+                return "";
+        }
     }
     public string GetDest()
     {
-        return isRune ? GetRuneRecord().getDest : GetSkillRecord().getDest;
+        switch (itemType)
+        {
+            case eItemType.Rune: return GetRuneRecord().getDest;
+            case eItemType.Skill: return GetSkillRecord().getDest;
+            case eItemType.Use: return GetStatRecord().getDest;
+            case eItemType.None:
+            default:
+                return "";
+        }
     }
     public string GetIcon()
     {
-        return isRune ? GetRuneRecord().iconPath : GetSkillRecord().iconPath;
+        switch (itemType)
+        {
+            case eItemType.Rune: return GetRuneRecord().iconPath;
+            case eItemType.Skill: return GetSkillRecord().iconPath;
+            case eItemType.Use: return GetStatRecord().iconPath;
+            case eItemType.None:
+            default:
+                return "";
+        }
     }
 }
 
@@ -85,6 +110,7 @@ public class UIInGameInventory : UIDlg, LoopScrollPrefabSource, LoopScrollDataSo
     private void SetInventoryUI()
     {
         infiniteScroll.Set(invenItemList.Count);
+        infiniteScroll.Refresh();
     }
 
     public void OpenEquipRunePage(UIInvenItemSlot invenItemSlot)

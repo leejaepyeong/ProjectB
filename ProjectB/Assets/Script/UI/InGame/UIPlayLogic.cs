@@ -73,8 +73,7 @@ public class UIPlayLogic : MonoBehaviour
     }
     private void OnClickInventory()
     {
-        UIManager.Instance.OpenWidget<UIInGameInventory>();
-        var dlg = UIManager.Instance.OpenWidget<UIPauseDlg>();
+        var dlg = UIManager.Instance.OpenWidget<UIInGameInventory>();
         dlg.Open();
     }
     #endregion

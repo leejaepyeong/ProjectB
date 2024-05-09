@@ -210,8 +210,7 @@ public enum eItemType
 {
     None,
     Rune,
-    Passive,
-    Active,
+    Skill,
     Use,
 }
 

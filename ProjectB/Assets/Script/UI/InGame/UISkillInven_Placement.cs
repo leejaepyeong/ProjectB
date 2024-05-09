@@ -23,11 +23,11 @@ public class UISkillInven_Placement : UISkillInven
 
     public override void ResetData()
     {
-        mainSkillGroup.gameObject.SetActive(selectSlot.isRune);
-        activeSkillInven.gameObject.SetActive(selectSlot.isRune == false);
-        passiveSkillInven.gameObject.SetActive(selectSlot.isRune == false);
+        mainSkillGroup.gameObject.SetActive(selectSlot.itemType == eItemType.Rune);
+        activeSkillInven.gameObject.SetActive(selectSlot.itemType == eItemType.Skill);
+        passiveSkillInven.gameObject.SetActive(selectSlot.itemType == eItemType.Skill);
 
-        if(selectSlot.isRune)
+        if(selectSlot.itemType == eItemType.Rune)
         {
             for (int i = 0; i < mainSkillGroup.uiSkillSlots.Count; i++)
             {

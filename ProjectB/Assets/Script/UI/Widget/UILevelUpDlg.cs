@@ -69,13 +69,15 @@ public class UILevelUpDlg : UIDlg
         switch (selectRewardSlot.levelUpReward.itemType)
         {
             case eLevelUpReward.Rune:
+                BattleManager.Instance.playerData.AddRuneItem(selectRewardSlot.levelUpReward.itemIndex);
                 break;
             case eLevelUpReward.Passive:
             case eLevelUpReward.Active:
+                BattleManager.Instance.playerData.AddISkilltem(selectRewardSlot.levelUpReward.itemIndex);
                 break;
             case eLevelUpReward.Use:
-                break;
             case eLevelUpReward.Stat:
+                BattleManager.Instance.playerData.AddUseItem(selectRewardSlot.levelUpReward.itemIndex);
                 break;
             default:
                 Debug.LogError("No Type LevelUpRewardItem");

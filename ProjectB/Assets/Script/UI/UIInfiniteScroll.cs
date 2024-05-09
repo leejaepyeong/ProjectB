@@ -144,15 +144,36 @@ namespace UIInfinite
             if (contentPosition != 0)
                 index = (int)(-this.contentPosition / itemSize);
 
-            foreach (var item in itemSlotList)
+            if(isGroupSlots)
             {
-                var movePos = itemSize * index;
-                item.anchoredPosition = direction == eDirection.Horizontal ? new Vector2(movePos, 0) : new Vector2(0, -movePos);
-                UpdateItem(index, item.gameObject);
-                ++index;
+                int groupIndex = 0;
+                foreach (var item in itemSlotList)
+                {
+                    var movePos = itemSize * index;
+                    item.anchoredPosition = direction == eDirection.Horizontal ? new Vector2(movePos, 0) : new Vector2(0, -movePos);
+                    item.anchoredPosition = direction == eDirection.Horizontal ? new Vector2(movePos, itemSize_Other * groupIndex) : new Vector2(itemSize_Other * groupIndex, -movePos);
+
+                    UpdateItem(index, item.gameObject);
+                    UpdateItem(groupIndex + (index * groupLineCount), item.gameObject);
+
+                    ++groupIndex;
+                    if (groupIndex == groupLineCount)
+                    {
+                        groupIndex = 0;
+                        ++index;
+                    }
+                }
             }
-
-
+            else
+            {
+                foreach (var item in itemSlotList)
+                {
+                    var movePos = itemSize * index;
+                    item.anchoredPosition = direction == eDirection.Horizontal ? new Vector2(movePos, 0) : new Vector2(0, -movePos);
+                    UpdateItem(index, item.gameObject);
+                    ++index;
+                }
+            }
         }
 
         public void SetStartPosition(int index)
