@@ -79,12 +79,13 @@ public class InvenItemInfo
     }
 }
 
-public class UIInGameInventory : UIDlg, LoopScrollPrefabSource, LoopScrollDataSource
+public class UIInGameInventory : UIDlg
 {
     [SerializeField, FoldoutGroup("Inventory")] private UIInfinite.UIInfiniteScroll infiniteScroll;
     [SerializeField, FoldoutGroup("Inventory")] private ScrollRect scroll;
 
     private List<InvenItemInfo> invenItemList = new List<InvenItemInfo>();
+    public List<InvenItemInfo> InvenItemList => invenItemList;
     private Dictionary<Transform, UIInvenItemSlot> dicPrefab = new Dictionary<Transform, UIInvenItemSlot>();
 
     private Stack<Transform> pool = new Stack<Transform>();
@@ -136,21 +137,4 @@ public class UIInGameInventory : UIDlg, LoopScrollPrefabSource, LoopScrollDataSo
         candidate.gameObject.SetActive(true);
         return candidate.gameObject;
     }
-
-    public void ReturnObject(Transform trans)
-    {
-        trans.gameObject.SetActive(false);
-        trans.SetParent(transform, false);
-
-        pool.Push(trans);
-    }
-
-    public void ProvideData(Transform transform, int idx)
-    {
-        var invenItem = invenItemList[idx];
-        UIInvenItemSlot slot = dicPrefab[transform];
-        slot.Open(invenItem, this);
-        slot.name = idx.ToString();
-    }
-
 }

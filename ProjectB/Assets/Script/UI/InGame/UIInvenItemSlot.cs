@@ -4,13 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using Sirenix.OdinInspector;
 using TMPro;
+using UIInfinite;
 
-public class UIInvenItemSlot : UISlot
+public class UIInvenItemSlot : UIInfiniteItemSlot
 {
     [SerializeField, FoldoutGroup("Center")] private Image itemIcon;
     [SerializeField, FoldoutGroup("Center")] private Image equipIcon;
 
-    private UIInGameInventory uiInGameInventory;
+    [SerializeField] private UIInGameInventory uiInGameInventory;
+
     private InvenItemInfo invenItemInfo;
     private int slotIdx;
     private int runeIdx;
@@ -22,18 +24,16 @@ public class UIInvenItemSlot : UISlot
         onClickAction = OnClickItem;
     }
 
-    public virtual void Open(InvenItemInfo itemInfo, UIInGameInventory uiInGameInventory)
-    {
-        base.Open();
-        this.uiInGameInventory = uiInGameInventory;
-        invenItemInfo = itemInfo;
-        ResetData();
-    }
-
     public override void ResetData()
     {
         SetIcon(itemIcon, invenItemInfo.GetIcon());
         equipIcon.gameObject.SetActive(isEquip);
+    }
+
+    public override void UpdateItemSlot(int index)
+    {
+        invenItemInfo = uiInGameInventory.InvenItemList[index];
+        ResetData();
     }
 
     private void OnClickItem()
@@ -42,7 +42,7 @@ public class UIInvenItemSlot : UISlot
         dlg.Open(invenItemInfo, this);
     }
 
-    public void TryEquip()
+    public void OnClickEquip()
     {
         PlayLogic.Instance.uiPlayLogic.uiSkillInven_Placement.Open(this);
     }
@@ -57,6 +57,10 @@ public class UIInvenItemSlot : UISlot
     {
         isEquip = false;
         ResetData();
+    }
+    public void UseItem()
+    {
+
     }
 
     public SkillRecord getSkillRecord => invenItemInfo.GetSkillRecord();
