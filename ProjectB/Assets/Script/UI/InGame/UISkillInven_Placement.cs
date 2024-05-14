@@ -16,9 +16,15 @@ public class UISkillInven_Placement : UISkillInven
     }
     public virtual void Open(UIInvenItemSlot invenSlot)
     {
-        base.Open();
+        BattleManager.Instance.isPause = true;
         selectSlot = invenSlot;
-        ResetData();
+        base.Open();
+    }
+
+    public override void Close()
+    {
+        BattleManager.Instance.isPause = false;
+        base.Close();
     }
 
     public override void ResetData()

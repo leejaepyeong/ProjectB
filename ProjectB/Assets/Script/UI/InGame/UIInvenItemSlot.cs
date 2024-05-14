@@ -14,14 +14,13 @@ public class UIInvenItemSlot : UIInfiniteItemSlot
     [SerializeField] private UIInGameInventory uiInGameInventory;
 
     private InvenItemInfo invenItemInfo;
-    private int slotIdx;
-    private int runeIdx;
+    private UISkillSlot equipSkillSlot;
     private bool isEquip;
 
     protected override void Awake()
     {
-        base.Awake();
         onClickAction = OnClickItem;
+        base.Awake();
     }
 
     public override void ResetData()
@@ -47,20 +46,28 @@ public class UIInvenItemSlot : UIInfiniteItemSlot
         PlayLogic.Instance.uiPlayLogic.uiSkillInven_Placement.Open(this);
     }
 
-    public void Equip()
+    public void Equip(UISkillSlot skillSlot)
     {
+        equipSkillSlot = skillSlot;
         isEquip = true;
         ResetData();
     }
 
     public void UnEquip()
     {
+        equipSkillSlot.OnClickUnEquip();
         isEquip = false;
         ResetData();
     }
     public void UseItem()
     {
-
+        BattleManager.Instance.playerData.RemoveItem(invenItemInfo.itemId);
+        ResetData();
+    }
+    public void SellItem()
+    {
+        BattleManager.Instance.playerData.RemoveItem(invenItemInfo.itemId);
+        ResetData();
     }
 
     public SkillRecord getSkillRecord => invenItemInfo.GetSkillRecord();

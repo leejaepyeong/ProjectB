@@ -62,10 +62,14 @@ public class UIInvenItemInfoDlg : UIDlg
         if (invenItemInfo.isEquip)
             uiInvenItemSlot.UnEquip();
         else
-            uiInvenItemSlot.Equip();
+            uiInvenItemSlot.OnClickEquip();
+
+        EventAction.ExcuteEvent(eEventKey.InGameInvenEquip);
+        Close();
     }
     private void OnClickUse()
     {
         uiInvenItemSlot.UseItem();
+        Close();
     }
 }

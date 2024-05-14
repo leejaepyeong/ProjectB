@@ -76,9 +76,12 @@ public class PlayerData
         dicItem.Add(itemId, itemInfo);
     }
 
-    public void RemoveItem()
+    public void RemoveItem(int itemId)
     {
+        if (dicItem.TryGetValue(itemId, out var item) == false) return;
 
+        invenItemList.Remove(item);
+        item = null;
     }
     #endregion
 }

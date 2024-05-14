@@ -87,6 +87,12 @@ public enum eLanguage
     Eng,
 }
 
+public enum eEventKey
+{
+    //Inventory
+    InGameInvenEquip,
+
+}
 #endregion
 
 #region Skill

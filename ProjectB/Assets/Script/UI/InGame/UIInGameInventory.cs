@@ -99,6 +99,9 @@ public class UIInGameInventory : UIDlg
     {
         base.Open();
         ResetData();
+
+        EventAction.RemoveListner(eEventKey.InGameInvenEquip);
+        EventAction.AddListner(eEventKey.InGameInvenEquip, Close);
     }
 
     public override void ResetData()

@@ -198,7 +198,7 @@ public class UISkillSlot : UISlot
             curInvenItemSlot.UnEquip();
 
         curInvenItemSlot = uiSkillInvenPlacement.selectSlot;
-        curInvenItemSlot.Equip();
+        curInvenItemSlot.Equip(this);
         skillInfo = new SkillInfo(curInvenItemSlot.getSkillRecord);
         ResetData();
     }
@@ -207,6 +207,13 @@ public class UISkillSlot : UISlot
     {
         var dlg = uiManager.OpenWidget<UIRuneChangeDlg>();
         dlg.Open(this ,uiSkillInvenPlacement.selectSlot);
+    }
+
+    public void OnClickUnEquip()
+    {
+        curInvenItemSlot = null;
+        skillInfo.skillRecord = null;
+        ResetData();
     }
     #endregion
 

@@ -1125,7 +1125,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3871075367154553285}
-  - component: {fileID: 9077533337863459590}
+  - component: {fileID: 5850385848048695823}
   m_Layer: 5
   m_Name: UIRuneChangeDlg
   m_TagString: Untagged
@@ -1155,7 +1155,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &9077533337863459590
+--- !u!114 &5850385848048695823
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1164,18 +1164,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 5458448612468651702}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 752d63ec0ac2b70488318971a6bda3cb, type: 3}
+  m_Script: {fileID: 11500000, guid: 293f8fd02e2b814419716763c6932a10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   btnClick: {fileID: 0}
   btnCloseGroup: []
-  escapable: 1
+  escapable: 0
   backGroundable: 0
-  textItemName: {fileID: 0}
-  textItemDest: {fileID: 0}
-  textItemCondition: {fileID: 0}
-  textEquip: {fileID: 0}
-  itemIcon: {fileID: 0}
+  uiRuneSlotGroup: []
 --- !u!1 &7916593928551928929
 GameObject:
   m_ObjectHideFlags: 0
