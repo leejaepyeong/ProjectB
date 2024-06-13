@@ -95,7 +95,7 @@ public class Unit_Base : MonoBehaviour
         {
             var skill = unitData.skillInfoGroup[i];
             unitData.skillInfoGroup[i].UpdateFrame(deltaTime);
-            if (skill.type == eSkillType.Passive && skill.IsReadyCoolTime())
+            if (skill.type == eSkillType.Auto && skill.IsReadyCoolTime())
                 Manager.Instance.skillManager.UseSkill(unitBehavior, skill);
         }
     }

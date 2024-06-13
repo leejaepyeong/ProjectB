@@ -43,6 +43,10 @@ namespace Editor
             [VerticalGroup("Info")] public string animatorAssetRef;
             [VerticalGroup("Info")] public int atkInfoIdx;
             [VerticalGroup("Info")] public int[] skillInfoIdxGroup;
+            [VerticalGroup("immunity")] public bool isStunAble;
+            [VerticalGroup("immunity")] public bool isSlowAble;
+            [VerticalGroup("immunity")] public bool isDeathAble;
+
         }
     }
 

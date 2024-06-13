@@ -10,7 +10,6 @@ public class BattleManager : BaseManager
     private bool isGameEnd;
     public bool isPause;
 
-    public SkillInfo[] mainSkillInfo = new SkillInfo[5];
     public Dictionary<eStat, double> runeAddStat = new Dictionary<eStat, double>();
     public Dictionary<eStat, double> passiveAddStat = new Dictionary<eStat, double>();
 
@@ -18,10 +17,23 @@ public class BattleManager : BaseManager
 
     public PlayerData playerData;
     private UIHpBarDlg uiHpBarDlg;
+    public UnitBehavior player;
+    public List<UnitBehavior> playerList = new List<UnitBehavior>();
 
     public static BattleManager Instance
     {
         get { return Manager.Instance.GetManager<BattleManager>(); }
+    }
+
+    public override void Clear()
+    {
+        runeAddStat.Clear();
+        passiveAddStat.Clear();
+        playerList.Clear();
+        playerData = null;
+        uiHpBarDlg = null;
+
+        base.Clear();
     }
 
     public void SetGame(float time)
@@ -55,11 +67,6 @@ public class BattleManager : BaseManager
         if (UnitManager.Instance.Player != null && UnitManager.Instance.Player.UnitState.isDead) { isGameEnd = true; return true; }
 
         return false;
-    }
-
-    public void SetMainSkillSlot(int index, SkillInfo skillInfo)
-    {
-        mainSkillInfo[index] = skillInfo;
     }
 
     public void CheckRuneAddStat(eStat statType, double value)

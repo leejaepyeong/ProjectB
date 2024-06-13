@@ -12,8 +12,6 @@ public class UISkillGroup : MonoBehaviour
         {
             uiSkillSlots[i].Init(i);
             uiSkillSlots[i].Open();
-
-            BattleManager.Instance.SetMainSkillSlot(i, uiSkillSlots[i].SkillInfo);
         }
     }
 

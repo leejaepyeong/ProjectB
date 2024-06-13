@@ -19,10 +19,10 @@ public class ProjectileManager : BaseManager
         projectileList.Clear();
     }
 
-    public void DeInit()
+    public override void Clear()
     {
-        GameObjectPool = null;
-        ResourcePool = null;
+        projectileList.Clear();
+        base.Clear();
     }
 
     public override void UpdateFrame(float deltaTime)

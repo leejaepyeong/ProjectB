@@ -7,7 +7,7 @@ using Sirenix.OdinInspector;
 
 public class UIRuneChangeDlg : UIDlg
 {
-    [SerializeField, FoldoutGroup("")] private List<UIRuneSlot> uiRuneSlotGroup;
+    [SerializeField, FoldoutGroup("Info")] private List<UIRuneSlot> uiRuneSlotGroup;
 
     private UISkillSlot uiSkillSlot;
     private UIInvenItemSlot invenSlot;

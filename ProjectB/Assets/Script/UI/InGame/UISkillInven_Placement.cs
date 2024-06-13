@@ -9,10 +9,7 @@ public class UISkillInven_Placement : UISkillInven
 
     public override void Init()
     {
-        for (int i = 0; i < mainSkillGroup.uiSkillSlots.Count; i++)
-        {
-            mainSkillGroup.uiSkillSlots[i] = uiSkillInven.mainSkillGroup.uiSkillSlots[i];
-        }
+        mainSkillGroup.Init();
     }
     public virtual void Open(UIInvenItemSlot invenSlot)
     {
@@ -37,18 +34,18 @@ public class UISkillInven_Placement : UISkillInven
         {
             for (int i = 0; i < mainSkillGroup.uiSkillSlots.Count; i++)
             {
-                mainSkillGroup.uiSkillSlots[i].Open(this);
+                mainSkillGroup.uiSkillSlots[i].Open();
             }
         }
         else
         {
             for (int i = 0; i < activeSkillInven.skillSlots.Count; i++)
             {
-                activeSkillInven.skillSlots[i].Open(this);
+                activeSkillInven.skillSlots[i].Open();
             }
             for (int i = 0; i < passiveSkillInven.skillSlots.Count; i++)
             {
-                passiveSkillInven.skillSlots[i].Open(this);
+                passiveSkillInven.skillSlots[i].Open();
             }
         }
     }

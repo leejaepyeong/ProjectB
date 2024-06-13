@@ -143,7 +143,11 @@ public class UnitBehavior : BaseBehavior, IEventHandler
 
         unitState.Init(data);
         if(data.Type == eUnitType.Player)
+        {
             unitBase = new Unit_Player();
+            BattleManager.Instance.player = this;
+            BattleManager.Instance.playerList.Add(this);
+        }
         else
             unitBase = new Unit_Monster();
         unitBase.Init(this);

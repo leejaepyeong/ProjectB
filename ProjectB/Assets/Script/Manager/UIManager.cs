@@ -38,6 +38,17 @@ public class UIManager : BaseManager
         cameraData.cameraStack.Add(uiCamera);
     }
 
+    public override void Clear()
+    {
+        RemoveUIAll();
+        uiBases.Clear();
+        queueCanvas.Clear();
+        dicCanvas.Clear();
+        dicWidgetCount.Clear();
+
+        base.Clear();
+    }
+
     public void DeInit()
     {
         RemoveUIAll();

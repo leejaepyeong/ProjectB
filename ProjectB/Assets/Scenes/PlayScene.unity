@@ -524,6 +524,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 756958679}
+--- !u!114 &925187836 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7813338285681925685, guid: 9212328930a0bd54396afe146a3d1002, type: 3}
+  m_PrefabInstance: {fileID: 6350272128478533923}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 641324b7179939843b471530f910bdef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &981661804 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1787545728127954564, guid: 9212328930a0bd54396afe146a3d1002, type: 3}
@@ -837,6 +848,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 294143637872100438, guid: 9212328930a0bd54396afe146a3d1002, type: 3}
+      propertyPath: uiSkillInvenPlacement
+      value: 
+      objectReference: {fileID: 925187836}
     - target: {fileID: 554304706299780297, guid: 9212328930a0bd54396afe146a3d1002, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -905,6 +920,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1666981999578006060, guid: 9212328930a0bd54396afe146a3d1002, type: 3}
+      propertyPath: uiSkillInvenPlacement
+      value: 
+      objectReference: {fileID: 925187836}
+    - target: {fileID: 1736940728266401610, guid: 9212328930a0bd54396afe146a3d1002, type: 3}
+      propertyPath: uiSkillInvenPlacement
+      value: 
+      objectReference: {fileID: 925187836}
     - target: {fileID: 1771491647098602316, guid: 9212328930a0bd54396afe146a3d1002, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -937,6 +960,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1908950440436817906, guid: 9212328930a0bd54396afe146a3d1002, type: 3}
+      propertyPath: uiSkillInvenPlacement
+      value: 
+      objectReference: {fileID: 925187836}
     - target: {fileID: 2371725657810447601, guid: 9212328930a0bd54396afe146a3d1002, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -953,6 +980,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2417307018957379892, guid: 9212328930a0bd54396afe146a3d1002, type: 3}
+      propertyPath: uiSkillInvenPlacement
+      value: 
+      objectReference: {fileID: 925187836}
+    - target: {fileID: 2495105662555044243, guid: 9212328930a0bd54396afe146a3d1002, type: 3}
+      propertyPath: uiSkillInvenPlacement
+      value: 
+      objectReference: {fileID: 925187836}
+    - target: {fileID: 2591798924268748449, guid: 9212328930a0bd54396afe146a3d1002, type: 3}
+      propertyPath: uiSkillInvenPlacement
+      value: 
+      objectReference: {fileID: 925187836}
+    - target: {fileID: 2699631336317466264, guid: 9212328930a0bd54396afe146a3d1002, type: 3}
+      propertyPath: uiSkillInvenPlacement
+      value: 
+      objectReference: {fileID: 925187836}
     - target: {fileID: 2728579952787515388, guid: 9212328930a0bd54396afe146a3d1002, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1017,6 +1060,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2986333927972691239, guid: 9212328930a0bd54396afe146a3d1002, type: 3}
+      propertyPath: uiSkillInvenPlacement
+      value: 
+      objectReference: {fileID: 925187836}
     - target: {fileID: 3026092142148335905, guid: 9212328930a0bd54396afe146a3d1002, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1053,6 +1100,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIPlayLogic
       objectReference: {fileID: 0}
+    - target: {fileID: 3415155025418340840, guid: 9212328930a0bd54396afe146a3d1002, type: 3}
+      propertyPath: uiSkillInvenPlacement
+      value: 
+      objectReference: {fileID: 925187836}
     - target: {fileID: 3886904113181415997, guid: 9212328930a0bd54396afe146a3d1002, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1069,6 +1120,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3915111967961072290, guid: 9212328930a0bd54396afe146a3d1002, type: 3}
+      propertyPath: uiSkillInvenPlacement
+      value: 
+      objectReference: {fileID: 925187836}
+    - target: {fileID: 3990826577667554159, guid: 9212328930a0bd54396afe146a3d1002, type: 3}
+      propertyPath: uiSkillInvenPlacement
+      value: 
+      objectReference: {fileID: 925187836}
     - target: {fileID: 4239899494341230670, guid: 9212328930a0bd54396afe146a3d1002, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1185,6 +1244,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6271027871170933324, guid: 9212328930a0bd54396afe146a3d1002, type: 3}
+      propertyPath: uiSkillInvenPlacement
+      value: 
+      objectReference: {fileID: 925187836}
     - target: {fileID: 6583819645107073610, guid: 9212328930a0bd54396afe146a3d1002, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1273,6 +1336,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8297920480671775644, guid: 9212328930a0bd54396afe146a3d1002, type: 3}
+      propertyPath: uiSkillInvenPlacement
+      value: 
+      objectReference: {fileID: 925187836}
     - target: {fileID: 8631185432388820538, guid: 9212328930a0bd54396afe146a3d1002, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1305,6 +1372,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8803172122200098120, guid: 9212328930a0bd54396afe146a3d1002, type: 3}
+      propertyPath: uiSkillInvenPlacement
+      value: 
+      objectReference: {fileID: 925187836}
     - target: {fileID: 8804383153516855820, guid: 9212328930a0bd54396afe146a3d1002, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

@@ -96,6 +96,12 @@ public class SkillManager
             case eSkillTarget.Near:
                 unitList = GetTargetList_Near(caster, skillRecord, targetList);
                 break;
+            case eSkillTarget.Random:
+                unitList = GetTargetList_Random(caster, skillRecord, targetList);
+                break;
+            case eSkillTarget.Random_Overlap:
+                unitList = GetTargetList_RandomOverlap(caster, skillRecord, targetList);
+                break;
             case eSkillTarget.Team:
                 break;
             case eSkillTarget.Self:
@@ -136,6 +142,52 @@ public class SkillManager
 
         return tempUnitList;
     }
+    private List<UnitBehavior> GetTargetList_Random(UnitBehavior caster, SkillRecord skillRecord, List<UnitBehavior> targetList = null)
+    {
+        List<UnitBehavior> list = new List<UnitBehavior>();
 
+        if (targetList == null)
+            list = UnitManager.Instance.UnitActiveList;
+        else
+        {
+            for (int i = 0; i < targetList.Count; i++)
+            {
+                list.Add(targetList[i]);
+            }
+        }
+
+        for (int i = 0; i < skillRecord.skillBulletTargetNum; i++)
+        {
+            if (list.Count < 1) break;
+            int random = Random.Range(0, list.Count);
+            tempUnitList.Add(list[random]);
+            list.Remove(list[i]);
+        }
+
+        return tempUnitList;
+    }
+    private List<UnitBehavior> GetTargetList_RandomOverlap(UnitBehavior caster, SkillRecord skillRecord, List<UnitBehavior> targetList = null)
+    {
+        List<UnitBehavior> list = new List<UnitBehavior>();
+
+        if (targetList == null)
+            list = UnitManager.Instance.UnitActiveList;
+        else
+        {
+            for (int i = 0; i < targetList.Count; i++)
+            {
+                list.Add(targetList[i]);
+            }
+        }
+
+        for (int i = 0; i < skillRecord.skillBulletTargetNum; i++)
+        {
+            int random = Random.Range(0, list.Count);
+            if (list.Count <= i) break;
+            tempUnitList.Add(list[i]);
+        }
+
+        return tempUnitList;
+    }
     #endregion
 }

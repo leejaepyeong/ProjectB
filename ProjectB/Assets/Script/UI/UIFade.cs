@@ -6,9 +6,11 @@ using UnityEngine.UI;
 using Cysharp.Threading.Tasks;
 using System;
 
-public class UIFade : UIDlg
+public class UIFade : UIBase
 {
     [SerializeField] private Image fadeImg;
+    public Canvas canvas;
+
     protected UnityAction action;
     protected UniTask actionAsync;
     private bool isFadeAct;

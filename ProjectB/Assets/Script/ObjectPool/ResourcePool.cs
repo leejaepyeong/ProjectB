@@ -169,10 +169,9 @@ public class ResourcePool
             {
                 Addressables.Release(handle);
             }
-
-            dicAssetReferenceCount.Clear();
-            dicAssetKey.Clear();
         }
+        dicAssetReferenceCount.Clear();
+        dicAssetKey.Clear();
     }
 
 

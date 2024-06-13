@@ -129,8 +129,7 @@ public class IntroCommand_MoveToLobby : Command
     private AsyncOperation loadSceneAsync;
     public void Execute()
     {
-        var fade = UIManager.Instance.OpenWidget<UIFade>(eWidgetType.Front);
-        fade.OpenAsync(OpenLobbyAsync()).Forget();
+        Manager.Instance.Fade.OpenAsync(OpenLobbyAsync()).Forget();
     }
 
     public bool IsFinished()
@@ -144,8 +143,7 @@ public class IntroCommand_MoveToLobby : Command
 
     private async UniTask OpenLobbyAsync()
     {
-        var dlg = UIManager.Instance.OpenWidget<UILoading>();
-        dlg.Open();
+        Manager.Instance.Loading.Open();
 
         loadSceneAsync = SceneManager.LoadSceneAsync("LobbyScene");
         await UniTask.WaitUntil(() => loadSceneAsync.isDone == false);
@@ -161,16 +159,16 @@ public class LobbyCommand_MoveToPlayScene : Command
     {
         moveAction = action;
     }
-    private AsyncOperation loadSceneAsync;
+    private bool isSceneLoad;
     public void Execute()
     {
-        var fade = UIManager.Instance.OpenWidget<UIFade>(eWidgetType.Front);
-        fade.Open(OpenPlaySceneAsync());
+        isSceneLoad = false;
+        Manager.Instance.Fade.Open(OpenPlaySceneAsync());
     }
 
     public bool IsFinished()
     {
-        return loadSceneAsync.isDone;
+        return isSceneLoad;
     }
 
     public void Update(float deltaTime)
@@ -179,11 +177,11 @@ public class LobbyCommand_MoveToPlayScene : Command
 
     private async UniTask OpenPlaySceneAsync()
     {
-        var dlg = UIManager.Instance.OpenWidget<UILoading>();
-        dlg.Open();
+        Manager.Instance.Loading.Open();
 
-        loadSceneAsync = SceneManager.LoadSceneAsync("PlayScene");
-        await UniTask.WaitUntil(() => loadSceneAsync.isDone == false);
+        await Manager.Instance.MoveSceneAsync("PlayScene");
+
+        isSceneLoad = true;
     }
 }
 #endregion

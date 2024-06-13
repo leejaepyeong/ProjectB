@@ -18,6 +18,11 @@ public class EffectManager : BaseManager
         base.Init();
         effectList.Clear();
     }
+    public override void Clear()
+    {
+        effectList.Clear();
+        base.Clear();
+    }
 
     public override void UpdateFrame(float deltaTime)
     {

@@ -8,6 +8,7 @@ using UnityEngine.Events;
 
 public class UIRuneSlot : UISlot
 {
+    [SerializeField, FoldoutGroup("Info")] protected GameObject objSelect;
     [SerializeField, FoldoutGroup("Info")] protected Image runeIcon;
     [SerializeField, FoldoutGroup("Info")] protected Image OutLineIcon;
     [SerializeField, FoldoutGroup("Info")] protected int slotIdx;

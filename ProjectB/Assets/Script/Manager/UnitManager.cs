@@ -26,6 +26,14 @@ public class UnitManager : BaseManager
         unitActiveList = new List<UnitBehavior>();
     }
 
+    public override void Clear()
+    {
+        unitDic.Clear();
+        unitActiveList.Clear();
+
+        base.Clear();
+    }
+
     public override void UnInit()
     {
         unitDic.Clear();

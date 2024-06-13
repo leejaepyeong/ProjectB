@@ -19,10 +19,10 @@ public class HitManager : BaseManager
         hitList.Clear();
     }
 
-    public void DeInit()
+    public override void Clear()
     {
-        GameObjectPool = null;
-        ResourcePool = null;
+        hitList.Clear();
+        base.Clear();
     }
 
     public override void UpdateFrame(float deltaTime)

@@ -120,6 +120,7 @@ public enum eSkillType
 {
     Normal,
     Active,
+    Auto,
     Passive,
 }
 
@@ -151,9 +152,9 @@ public enum eSkillTarget
     NonTarget,
     Click_Target,
     Click_Direction,
-    Target,
-    Target_Direction,
     Team,
+    Random,
+    Random_Overlap,
     Self,
 }
 public enum eSkillDuration

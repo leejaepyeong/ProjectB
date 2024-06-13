@@ -5,17 +5,19 @@ using UnityEngine.UI;
 using Sirenix.OdinInspector;
 using TMPro;
 
-public class UILoading : UIDlg
+public class UILoading : UIBase
 {
     [SerializeField, FoldoutGroup("Center")] private TextMeshProUGUI textGuage;
     [SerializeField, FoldoutGroup("Center")] private TextMeshProUGUI textDest;
     [SerializeField, FoldoutGroup("Center")] private Image loadingGauge;
     [SerializeField, FoldoutGroup("Center")] private AnimationCurve animationCurve;
 
+    public Canvas canvas;
+
     private float elaspedTime;
     private bool isSet;
 
-    public override void Open()
+    public virtual void Open()
     {
         base.Open();
         isSet = true;
@@ -25,14 +27,13 @@ public class UILoading : UIDlg
     public override void Close()
     {
         isSet = false;
-        var fade = UIManager.Instance.OpenWidget<UIFade>(eWidgetType.Front);
-        fade.Open(base.Close);
+        Manager.Instance.Fade.Open(base.Close);
     }
 
-    public override void UpdateFrame(float deltaTime)
+    private void Update()
     {
         if (isSet == false) return;
-        elaspedTime += deltaTime / 3f;
+        elaspedTime += Time.deltaTime / 3f;
         loadingGauge.fillAmount = animationCurve.Evaluate(elaspedTime);
         textGuage.SetText($"{loadingGauge.fillAmount * 100f:N1}%");
 

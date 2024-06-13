@@ -5,101 +5,6 @@ using UnityEngine.UI;
 using Sirenix.OdinInspector;
 using TMPro;
 
-public class SkillInfo
-{
-    private float elaspedTIme;
-    public float coolTime;
-    public SkillRecord skillRecord;
-    public Dictionary<int, RuneRecord> runeDic = new Dictionary<int, RuneRecord>();
-
-    public Vector3 targetPos;
-
-    public SkillInfo(SkillRecord skill)
-    {
-        skillRecord = skill;
-        ReSetSkillInfo();
-    }
-    public SkillInfo(int slotIdx)
-    {
-        skillRecord = null;
-        if (Manager.Instance.CurScene.isTestScene)
-        {
-            if(TableManager.Instance.skillTable.GetRecord(Manager.Instance.playerData.equipSkill[slotIdx]) != null)
-                skillRecord = TableManager.Instance.skillTable.GetRecord(Manager.Instance.playerData.equipSkill[slotIdx]);
-        }
-        else
-        {
-            var playerSkill = SaveData_PlayerSkill.Instance.GetEquipSkill(slotIdx);
-            if (playerSkill == null) return;
-            skillRecord = playerSkill.GetSkillData();
-        }
-        ReSetSkillInfo();
-
-        runeDic.Clear();
-        for (int i = 0; i < Define.MaxEquipRune; i++)
-        {
-            runeDic.Add(i, null);
-        }
-    }
-
-    public void ReSetSkillInfo()
-    {
-        if (skillRecord == null)
-        {
-            Debug.LogError("Skill Record is Null");
-            return;
-        }
-
-        coolTime = skillRecord.coolTIme;
-        SetCoolTime();
-        skillRecord.skillNode.SetSkill(this);
-    }
-
-    public float getTime { get { return elaspedTIme; } }
-
-    public void Update(float deltaTime)
-    {
-        if (IsReadySkill()) return;
-
-        elaspedTIme -= deltaTime;
-        if (elaspedTIme < 0) elaspedTIme = 0;
-    }
-
-    public bool IsReadySkill()
-    {
-        return elaspedTIme <= 0;
-    }
-
-    public void SetCoolTime()
-    {
-        elaspedTIme = coolTime;
-    }
-
-    public void AddRune(RuneRecord runeRecord, int equipIdx)
-    {
-        runeDic[equipIdx] = runeRecord;
-        ReSetSkillInfo();
-    }
-
-    public void RemoveRune(int runeIdx)
-    {
-        runeDic[runeIdx] = null;
-        ReSetSkillInfo();
-    }
-
-    public void ChangeSkill(SkillRecord skill)
-    {
-        skillRecord = skill;
-        ReSetSkillInfo();
-    }
-
-    public void UseSkill()
-    {
-        UnitManager.Instance.Player.Action(skillRecord.skillNode);
-        SetCoolTime();
-    }
-}
-
 public class UISkillSlot : UISlot
 {
     [SerializeField, FoldoutGroup("Info")] protected Image skillIcon;
@@ -107,6 +12,7 @@ public class UISkillSlot : UISlot
     [SerializeField, FoldoutGroup("Info")] protected int slotIdx;
     [SerializeField, FoldoutGroup("Info")] protected bool isMainSkillSlot;
     [SerializeField, FoldoutGroup("Info")] protected bool isPlacement;
+    [SerializeField, FoldoutGroup("Info")] protected UISkillInven_Placement uiSkillInvenPlacement;
 
     [SerializeField, FoldoutGroup("Block")] protected Image blockIcon;
     [SerializeField, FoldoutGroup("Block")] protected TextMeshProUGUI textCoolTime;
@@ -114,7 +20,6 @@ public class UISkillSlot : UISlot
     protected SkillInfo skillInfo;
     protected int slotIndex;
     protected UIInvenItemSlot curInvenItemSlot;
-    protected UISkillInven_Placement uiSkillInvenPlacement;
 
     public SkillInfo SkillInfo => skillInfo;
 
@@ -135,14 +40,13 @@ public class UISkillSlot : UISlot
     public void Init(int index)
     {
         slotIndex = index;
-        skillInfo = new SkillInfo(slotIndex);
+        skillInfo = BattleManager.Instance.playerData.skillInfoList[index];
     }
 
-    public virtual void Open(UISkillInven_Placement uiSkillInvenPlacement = null)
+    public virtual void Open()
     {
         base.Open();
         ResetData();
-        this.uiSkillInvenPlacement = uiSkillInvenPlacement;
     }
 
     public override void ResetData()

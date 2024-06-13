@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-
+using Cysharp.Threading.Tasks;
 public class BaseManager : MonoBehaviour
 {
     public GameObjectPool GameObjectPool;
@@ -26,6 +26,16 @@ public class BaseManager : MonoBehaviour
     {
         DeltaTime = deltaTime;
     }
+
+    public virtual void Clear()
+    {
+        GameObjectPool.ReleaseAll();
+
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
+    }
 }
 
 public class Manager : Singleton<Manager>
@@ -34,6 +44,9 @@ public class Manager : Singleton<Manager>
     private Dictionary<string, BaseManager> managerDic = new Dictionary<string, BaseManager>();
     private List<string> managerKeys = new List<string>(); 
     private SkillManager sm;
+
+    private ResourcePool ResourcePool = new();
+
     public SkillManager skillManager
     {
         get
@@ -107,6 +120,40 @@ public class Manager : Singleton<Manager>
             return mainCamera;
         }
     }
+
+    private UIFade fade;
+    public UIFade Fade
+    {
+        get
+        {
+            if (fade == null)
+            {
+                var obj = ResourcePool.Load<GameObject>("Assets/Data/GameResources/Prefab/Widget/UIFade.prefab");
+                fade = Instantiate(obj).GetComponent<UIFade>();
+                fade.transform.SetParent(transform);
+
+                fade.canvas.worldCamera = UIManager.Instance.UiCamera;
+            }
+            return fade;
+        }
+    }
+    private UILoading loading;
+    public UILoading Loading
+    {
+        get
+        {
+            if (loading == null)
+            {
+                var obj = ResourcePool.Load<GameObject>("Assets/Data/GameResources/Prefab/Widget/UILoading.prefab");
+                loading = Instantiate(obj).GetComponent<UILoading>();
+                loading.transform.SetParent(transform);
+
+                loading.canvas.worldCamera = UIManager.Instance.UiCamera;
+            }
+            return loading;
+        }
+    }
+
     public void SetUI(BaseScene scene)
     {
         curScene = scene;
@@ -175,18 +222,14 @@ public class Manager : Singleton<Manager>
             _obj.transform.SetParent(_parent);
         return _obj.AddComponent<T>();
     }
-
-    public IEnumerator MoveScene(string sceneName)
+    public async UniTask MoveSceneAsync(string sceneName)
     {
-        AsyncOperation asynLoad = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("LobbyScene");
-        asynLoad.allowSceneActivation = false;
-
-        while(true)
+        foreach (var manager in managerDic)
         {
-
-            yield return new WaitForEndOfFrame();
-
-
+            manager.Value.Clear();
         }
+
+        var loadSceneAsync = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(sceneName);
+        await UniTask.WaitUntil(() => loadSceneAsync.isDone == false);
     }
 }
