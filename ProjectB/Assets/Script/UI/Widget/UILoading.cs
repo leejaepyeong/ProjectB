@@ -17,7 +17,7 @@ public class UILoading : UIBase
     private float elaspedTime;
     private bool isSet;
 
-    public virtual void Open()
+    public override void Open()
     {
         base.Open();
         isSet = true;

@@ -46,7 +46,13 @@ public class UIManager : BaseManager
         dicCanvas.Clear();
         dicWidgetCount.Clear();
 
-        base.Clear();
+        GameObjectPool.ReleaseAll();
+
+        foreach (Transform child in attach)
+        {
+            if (uiCanvasOrigin.transform == child) continue;
+            Destroy(child.gameObject);
+        }
     }
 
     public void DeInit()

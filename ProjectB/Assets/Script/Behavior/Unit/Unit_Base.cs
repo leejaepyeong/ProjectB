@@ -18,7 +18,7 @@ public class Unit_Base : MonoBehaviour
     protected float atkCool;
 
     protected Dictionary<int, BuffBase> buffDic = new Dictionary<int, BuffBase>();
-    protected Dictionary<eStat, List<BuffBase>> buffStatDic = new Dictionary<eStat, List<BuffBase>>();
+    protected Dictionary<int, List<BuffBase>> buffListDic = new Dictionary<int, List<BuffBase>>();
     protected List<UnitBehavior> targetList = new List<UnitBehavior>();
 
     public virtual void Init(UnitBehavior behavior)
@@ -201,18 +201,25 @@ public class Unit_Base : MonoBehaviour
     #region Buff
     public void AddBuff(BuffBase buff)
     {
-        if(buffDic.ContainsKey(buff.getSkillEffectRecord.index) == false)
-            buffDic.Add(buff.getSkillEffectRecord.index, null);
-
-        buff.Init(buffStatDic);
-        buffDic[buff.getSkillEffectRecord.index] = buff;
+        if(buffListDic.ContainsKey(buff.getSkillEffectRecord.index) == false)
+            buffListDic.Add(buff.getSkillEffectRecord.index, new List<BuffBase>());
+        else if(buff.getSkillEffectRecord.isMultiAble)
+        {
+            buff.Init();
+            buffListDic[buff.getSkillEffectRecord.index].Add(buff);
+            return;
+        }
+        else
+        {
+            buffListDic[buff.getSkillEffectRecord.index].Add(buff);
+        }
     }
     public void RemoveBuff(BuffBase buff)
     {
         if (buffDic.ContainsKey(buff.getSkillEffectRecord.index) == false) return;
 
-        buff.UnInit(buffStatDic);
-        buffDic[buff.getSkillEffectRecord.index] = null;
+        buff.UnInit();
+        buffListDic[buff.getSkillEffectRecord.index].Remove(buff);
     }
     #endregion
 }

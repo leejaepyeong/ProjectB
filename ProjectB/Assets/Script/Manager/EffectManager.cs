@@ -56,7 +56,7 @@ public class EffectManager : BaseManager
 
         effectList.Add(effectBehavior);
     }
-    public void SpawnEffect(ParticleEvent particleEvent, Vector3 hitPos, UnitBehavior hitUnit = null)
+    public void SpawnEffect(ParticleEvent particleEvent, Vector3 hitPos, UnitBehavior hitUnit)
     {
         if (!GameObjectPool.TryGet(EFFECT_BEHAVIOR_ASSETKEY, out var effect)) return;
         EffectBehavior effectBehavior = effect.GetComponent<EffectBehavior>();
@@ -65,7 +65,7 @@ public class EffectManager : BaseManager
         switch (particleEvent.effectSpawn)
         {
             case ParticleEvent.eEffectSpawn.Center:
-                effectBehavior.transform.position = Vector3.zero;
+                effectBehavior.transform.position = hitUnit.GetPos();
                 effectBehavior.transform.localEulerAngles = Vector3.zero;
                 break;
             case ParticleEvent.eEffectSpawn.HitPosition:

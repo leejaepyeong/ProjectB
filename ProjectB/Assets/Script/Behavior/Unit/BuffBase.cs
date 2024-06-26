@@ -16,32 +16,14 @@ public class BuffBase
         this.target = target;
     }
 
-    public virtual void Init(Dictionary<eStat, List<BuffBase>> buffStatDic)
+    public virtual void Init()
     {
         elaspedTime = 0;
-
-        for (int i = 0; i < skillEffectRecord.skillEffectStatList.Count; i++)
-        {
-            var skillEffectStat = skillEffectRecord.skillEffectStatList[i];
-            if (skillEffectStat.stat > eStat.END) continue;
-
-            if (buffStatDic.ContainsKey(skillEffectStat.stat) == false)
-                buffStatDic.Add(skillEffectStat.stat, new List<BuffBase>());
-            buffStatDic[skillEffectStat.stat].Add(this);
-        }
     }
 
-    public virtual void UnInit(Dictionary<eStat, List<BuffBase>> buffStatDic)
+    public virtual void UnInit()
     {
-        for (int i = 0; i < skillEffectRecord.skillEffectStatList.Count; i++)
-        {
-            var skillEffectStat = skillEffectRecord.skillEffectStatList[i];
-            if (skillEffectStat.stat > eStat.END) continue;
-
-            if (buffStatDic.ContainsKey(skillEffectStat.stat) == false) continue;
-
-            buffStatDic[skillEffectStat.stat].Remove(this);
-        }
+        elaspedTime = 0;
     }
 
     public virtual void UpdateFrame(float deltaTime)
@@ -112,9 +94,9 @@ public class BuffBase_Burn : BuffBase
     public BuffBase_Burn(SkillEffectRecord skillEffect, UnitBehavior caster, UnitBehavior target) : base(skillEffect, caster, target)
     {
     }
-    public override void Init(Dictionary<eStat, List<BuffBase>> buffStatDic)
+    public override void Init()
     {
-        base.Init(buffStatDic);
+        base.Init();
         dotEffectStat = skillEffectRecord.skillEffectStatList.Find(_ => _.stat == eStat.DotDmg);
         coolTime = 0;
     }
@@ -145,9 +127,9 @@ public class BuffBase_Poison : BuffBase
     public BuffBase_Poison(SkillEffectRecord skillEffect, UnitBehavior caster, UnitBehavior target) : base(skillEffect, caster, target)
     {
     }
-    public override void Init(Dictionary<eStat, List<BuffBase>> buffStatDic)
+    public override void Init()
     {
-        base.Init(buffStatDic);
+        base.Init();
         dotEffectStat = skillEffectRecord.skillEffectStatList.Find(_ => _.stat == eStat.DotDmg);
         coolTime = 0;
     }

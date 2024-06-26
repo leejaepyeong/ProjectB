@@ -18,6 +18,7 @@ public class PlayLogic : BaseScene
 
     [FoldoutGroup("Setting")] public SpawnLogic spawnLogic;
     [FoldoutGroup("Setting")] public UIPlayLogic uiPlayLogic;
+    [FoldoutGroup("Test")] public bool isTestMode;
 
     protected ePlayLogicFsm curFsm;
     protected Coroutine coFsmSetting;
@@ -51,6 +52,7 @@ public class PlayLogic : BaseScene
 
     public override void UpdateFrame(float deltaTime)
     {
+        if (isTestMode == false && (Manager.Instance.Loading.isActiveAndEnabled || Manager.Instance.Fade.isActiveAndEnabled)) return;
         if (BattleManager.Instance.isPause) return;
 
         this.deltaTime = deltaTime;

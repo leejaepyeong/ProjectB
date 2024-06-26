@@ -38,6 +38,7 @@ public class Projectile_Straight : Projectile
         for (int i = 0; i < targets.Length; i++)
         {
             UnitBehavior hitUnit = targets[i].GetComponentInParent<UnitBehavior>();
+            if (hitUnit.UnitState.isDead) continue;
             if (Vector3.Distance(hitUnit.GetPos(), projectileBehavior.GetPos()) > straight.Radius) continue;
             AddHitTarget(hitUnit);
         }

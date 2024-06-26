@@ -595,6 +595,7 @@ MonoBehaviour:
   playerData: {fileID: 11400000, guid: d7e1e74f3089ea940b8805a8a6392cfa, type: 2}
   spawnLogic: {fileID: 1065317066}
   uiPlayLogic: {fileID: 981661804}
+  isTestMode: 1
   isTargetSkillOn: 0
 --- !u!4 &1065317068
 Transform:

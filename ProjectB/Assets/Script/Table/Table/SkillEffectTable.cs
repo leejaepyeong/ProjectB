@@ -31,6 +31,7 @@ public class SkillEffectRecord : RecordBase
     public List<float> skillValue;
     public eSkillDuration skillDurationType;
     public float skillDuration;
+    public bool isMultiAble;
 
     public List<SkillEffectStat> skillEffectStatList = new List<SkillEffectStat>();
 
