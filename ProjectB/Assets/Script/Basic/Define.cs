@@ -161,6 +161,7 @@ public enum eSkillDuration
 {
     Time,
     Alive,
+    Eternity,
 }
 public enum eBuffType
 {
@@ -227,5 +228,13 @@ public enum eItemGrade
     R,
     SR,
     SSR,
+}
+#endregion
+
+#region
+public enum eStageType
+{
+    Normal,
+
 }
 #endregion
