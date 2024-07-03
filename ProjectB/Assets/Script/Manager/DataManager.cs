@@ -75,6 +75,8 @@ namespace Data
         }
         #region Datas
         public SingleData<int, UnitData> UnitData { get; private set; }
+        public SingleData<int, StageData> StageData { get; private set; }
+
         #endregion
 
         private bool isEncryptFileDone;
@@ -123,14 +125,29 @@ namespace Data
             switch (fileName)
             {
                 case "UnitDataEditor":
-                    UnitData = new();
-
-                    var saveData = JsonUtility.FromJson<Editor.SaveUnitData>(jsonText);
-
-                    for (int i = 0; i < saveData.dataList.Count; i++)
                     {
-                        UnitData data = new UnitData(saveData.dataList[i]);
-                        UnitData.ReadEncrptData(saveData.dataList[i].Seed, data);
+                        UnitData = new();
+
+                        var saveData = JsonUtility.FromJson<Editor.SaveUnitData>(jsonText);
+
+                        for (int i = 0; i < saveData.dataList.Count; i++)
+                        {
+                            UnitData data = new UnitData(saveData.dataList[i]);
+                            UnitData.ReadEncrptData(saveData.dataList[i].Seed, data);
+                        }
+                    }
+                    break;
+                case "StageDataEditor":
+                    {
+                        StageData = new();
+
+                        var saveData = JsonUtility.FromJson<Editor.SaveStageData>(jsonText);
+
+                        for (int i = 0; i < saveData.dataList.Count; i++)
+                        {
+                            StageData data = new StageData(saveData.dataList[i]);
+                            StageData.ReadEncrptData(saveData.dataList[i].Seed, data);
+                        }
                     }
                     break;
                 default:

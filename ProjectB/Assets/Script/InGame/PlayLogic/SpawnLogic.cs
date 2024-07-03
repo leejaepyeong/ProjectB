@@ -11,6 +11,11 @@ public class SpawnLogic : MonoBehaviour
 
     protected float elaspedTime;
 
+    public virtual void Init()
+    {
+
+    }
+
     public virtual void UpdateFrame(float deltaTime)
     {
         elaspedTime += deltaTime;

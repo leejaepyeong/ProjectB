@@ -25,6 +25,7 @@ public class EffectBehavior : BaseBehavior
     private void UnInit()
     {
         isInit = false;
+        EffectManager.Instance.RemoveEffect(this);
         manager.GameObjectPool.Return(Model);
         manager.GameObjectPool.Return(gameObject);
         Model = null;

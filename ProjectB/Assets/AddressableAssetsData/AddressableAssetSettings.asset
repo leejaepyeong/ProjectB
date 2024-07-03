@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: aed49bb3e90a4dc42b0da282a2c34763
   m_currentHash:
     serializedVersion: 2
-    Hash: 9d044e610767a80544772f072b530ce0
+    Hash: 00000000000000000000000000000000
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_BundleLocalCatalog: 0
@@ -102,6 +102,7 @@ MonoBehaviour:
     - Animation
     - Table
     - EventGraph
+    - JsonData_Unit
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 2b0bf11a6e4a2a248901412c7b10789a, type: 2}

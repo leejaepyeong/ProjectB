@@ -19,11 +19,15 @@ public class PlayLogic : BaseScene
     [FoldoutGroup("Setting")] public SpawnLogic spawnLogic;
     [FoldoutGroup("Setting")] public UIPlayLogic uiPlayLogic;
     [FoldoutGroup("Test")] public bool isTestMode;
+    [ShowIf("@isTestMode"),FoldoutGroup("Test")] public int testStageSeed;
+
 
     protected ePlayLogicFsm curFsm;
     protected Coroutine coFsmSetting;
     protected float deltaTime;
     protected bool isSettingOn;
+    protected int stageSeed;
+    protected Data.StageData stageData;
     protected float playTime = 30f;
 
     QueueCommand commands = new QueueCommand();
@@ -121,6 +125,11 @@ public class PlayLogic : BaseScene
     #region Setting
     protected virtual void EnterSetting()
     {
+        if (isTestMode)
+            stageSeed = testStageSeed;
+
+        if (Data.DataManager.Instance.StageData.TryGet(stageSeed, out stageData) == false) return;
+
         BattleManager.Instance.SetGame(playTime);
         uiPlayLogic.Init();
         coFsmSetting = StartCoroutine(GameSettingCo());

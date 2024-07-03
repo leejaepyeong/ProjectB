@@ -68,4 +68,54 @@ namespace Data
         }
         public int Key => Seed;
     }
+    public class StageData : IDataKey<int>
+    {
+        public int Seed;
+        public string Name;
+        public float playTime;
+        public eStageType Type;
+        public List<SpawnInfo> spawnInfoList = new List<SpawnInfo>();
+
+        public StageData(Editor.StageData data)
+        {
+            Seed = data.Seed;
+            Name = data.Name;
+            Type = data.Type;
+            playTime = data.playTime;
+            spawnInfoList.Clear();
+            for (int i = 0; i < data.spawnInfoList.Count; i++)
+            {
+                SpawnInfo spawnInfo = new SpawnInfo(data.spawnInfoList[i]);
+                spawnInfoList.Add(spawnInfo);
+            }
+        }
+
+        public class SpawnInfo
+        {
+            public int monsterSeed;
+            public int monsterLevel;
+            public int spawnMaxCount;
+            public float startDelay;
+            public float coolTime;
+            public bool isBuff;
+
+            public eBuffType startBuffType;
+            public eStat startBuff;
+            public eSkillDuration durationType;
+
+            public SpawnInfo(Editor.StageData.SpawnInfo spawnInfo)
+            {
+                monsterSeed = spawnInfo.monsterSeed;
+                monsterLevel = spawnInfo.monsterLevel;
+                spawnMaxCount = spawnInfo.spawnMaxCount;
+                startDelay = spawnInfo.startDelay;
+                coolTime = spawnInfo.coolTime;
+                isBuff = spawnInfo.isBuff;
+                startBuffType = spawnInfo.startBuffType;
+                startBuff = spawnInfo.startBuff;
+                durationType = spawnInfo.durationType;
+            }
+        }
+        public int Key => Seed;
+    }
 }

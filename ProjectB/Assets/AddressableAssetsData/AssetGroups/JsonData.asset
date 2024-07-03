@@ -23,6 +23,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - Remote
     - JsonData
+    - JsonData_Unit
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 0b85ada165676584a86a5d299cec6c75, type: 2}
