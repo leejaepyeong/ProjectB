@@ -74,23 +74,16 @@ namespace Data
         public string Name;
         public float playTime;
         public eStageType Type;
-        public List<SpawnInfo> spawnInfoList = new List<SpawnInfo>();
 
         public StageData(Editor.StageData data)
         {
             Seed = data.Seed;
             Name = data.Name;
-            Type = data.Type;
+            Type = data.stageType;
             playTime = data.playTime;
-            spawnInfoList.Clear();
-            for (int i = 0; i < data.spawnInfoList.Count; i++)
-            {
-                SpawnInfo spawnInfo = new SpawnInfo(data.spawnInfoList[i]);
-                spawnInfoList.Add(spawnInfo);
-            }
         }
 
-        public class SpawnInfo
+        public abstract class SpawnInfo
         {
             public int monsterSeed;
             public int monsterLevel;
@@ -102,14 +95,29 @@ namespace Data
             public eBuffType startBuffType;
             public eStat startBuff;
             public eSkillDuration durationType;
-
-            public SpawnInfo(Editor.StageData.SpawnInfo spawnInfo)
+        }
+        public class SpawnNormalInfo : SpawnInfo
+        {
+            public SpawnNormalInfo(Editor.StageData.SpawnNormalInfo spawnInfo)
             {
                 monsterSeed = spawnInfo.monsterSeed;
                 monsterLevel = spawnInfo.monsterLevel;
                 spawnMaxCount = spawnInfo.spawnMaxCount;
                 startDelay = spawnInfo.startDelay;
                 coolTime = spawnInfo.coolTime;
+                isBuff = spawnInfo.isBuff;
+                startBuffType = spawnInfo.startBuffType;
+                startBuff = spawnInfo.startBuff;
+                durationType = spawnInfo.durationType;
+            }
+        }
+        public class SpawnWaveInfo : SpawnInfo
+        {
+            public SpawnWaveInfo(Editor.StageData.SpawnWaveInfo spawnInfo)
+            {
+                monsterSeed = spawnInfo.monsterSeed;
+                monsterLevel = spawnInfo.monsterLevel;
+                startDelay = spawnInfo.startDelay;
                 isBuff = spawnInfo.isBuff;
                 startBuffType = spawnInfo.startBuffType;
                 startBuff = spawnInfo.startBuff;

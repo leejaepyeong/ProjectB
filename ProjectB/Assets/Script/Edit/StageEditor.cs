@@ -101,7 +101,7 @@ namespace Editor
             foreach (var unit in dataList)
             {
                 var name = unit.Name;
-                var type = unit.Type;
+                var type = unit.stageType;
                 var mainSubIdText = unit.Seed;
 
                 var menuItem = new OdinMenuItem(tree, name, unit);

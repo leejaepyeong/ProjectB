@@ -235,6 +235,6 @@ public enum eItemGrade
 public enum eStageType
 {
     Normal,
-
+    Wave,
 }
 #endregion
