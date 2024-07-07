@@ -6,9 +6,11 @@ public class BattleManager : BaseManager
 {
     private float stageTime;
     private float elaspedTime;
+    private int waveNumber;
     private bool isInit;
     private bool isGameEnd;
     public bool isPause;
+    private bool isWin;
 
     public Dictionary<eStat, double> runeAddStat = new Dictionary<eStat, double>();
     public Dictionary<eStat, double> passiveAddStat = new Dictionary<eStat, double>();
@@ -20,6 +22,7 @@ public class BattleManager : BaseManager
     public UnitBehavior player;
     public List<UnitBehavior> playerList = new List<UnitBehavior>();
 
+    public Data.StageData stageData;
     public static BattleManager Instance
     {
         get { return Manager.Instance.GetManager<BattleManager>(); }
@@ -36,6 +39,10 @@ public class BattleManager : BaseManager
         base.Clear();
     }
 
+    public void SetGame(int stageSeed)
+    {
+        if (!Data.DataManager.Instance.StageData.TryGet(stageSeed, out stageData)) return;
+    }
     public void SetGame(float time)
     {
         stageTime = time;
@@ -58,14 +65,29 @@ public class BattleManager : BaseManager
 
         elaspedTime += DeltaTime;
         if (elaspedTime > stageTime) elaspedTime = stageTime;
-
     }
 
     public bool CheckEndGame()
     {
-        if (elaspedTime >= stageTime) { isGameEnd = true; return true; }
+        isWin = false;
         if (UnitManager.Instance.Player != null && UnitManager.Instance.Player.UnitState.isDead) { isGameEnd = true; return true; }
 
+        switch (stageData.Type)
+        {
+            case eStageType.Wave:
+                {
+                    var stageInfo = stageData.stageInfo as Data.StageData.WaveStage;
+                    if (waveNumber >= stageInfo.waveCount) { isGameEnd = true; isWin = true; return true; }
+                }
+                break;
+            case eStageType.Normal:
+            default:
+                {
+                    var stageInfo = stageData.stageInfo as Data.StageData.NormalStage;
+                    if (elaspedTime >= stageInfo.playTime) { isGameEnd = true; isWin = true;  return true; }
+                }
+                break;
+        }
         return false;
     }
 

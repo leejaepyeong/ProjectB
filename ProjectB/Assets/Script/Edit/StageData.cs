@@ -59,18 +59,24 @@ namespace Editor
             [ShowIf("@isBuff")] public eStat startBuff;
             [ShowIf("@isBuff")] public eSkillDuration durationType;
 
+            public float minAngle = 0;
+            public float maxAngle = 360;
+
+            public float minRadius = 10;
+            public float maxRadius = 15;
         }
         [Serializable]
         public class SpawnNormalInfo : SpawnInfo
         {
-            [MinValue(0)] public int spawnMaxCount;
+            [MinValue(1)] public int spawnMaxCount = 1;
             [MinValue(0)] public float coolTime;
 
         }
         [Serializable]
         public class SpawnWaveInfo : SpawnInfo
         {
-
+            [MinValue(1)] public int waveNumber;
+            [MinValue(1)] public int spawnCount;
         }
         #endregion
 

@@ -70,60 +70,117 @@ namespace Data
     }
     public class StageData : IDataKey<int>
     {
-        public int Seed;
-        public string Name;
-        public float playTime;
-        public eStageType Type;
+        public readonly int Seed;
+        public readonly string Name;
+        public readonly eStageType Type;
+        public readonly StageInfo stageInfo;
 
         public StageData(Editor.StageData data)
         {
             Seed = data.Seed;
             Name = data.Name;
             Type = data.stageType;
-            playTime = data.playTime;
+            stageInfo = new StageInfo(data.getStageType);
         }
 
-        public abstract class SpawnInfo
+        #region StageType
+        [Serializable]
+        public class StageInfo
         {
-            public int monsterSeed;
-            public int monsterLevel;
-            public int spawnMaxCount;
-            public float startDelay;
-            public float coolTime;
-            public bool isBuff;
+            public StageInfo(Editor.StageData.StageType stageType)
+            {
 
-            public eBuffType startBuffType;
-            public eStat startBuff;
-            public eSkillDuration durationType;
+            }
         }
-        public class SpawnNormalInfo : SpawnInfo
+
+        public class NormalStage : StageInfo
         {
-            public SpawnNormalInfo(Editor.StageData.SpawnNormalInfo spawnInfo)
+            public float playTime;
+            public List<SpawnNormalInfo> spawnInfoList = new List<SpawnNormalInfo>();
+
+            public NormalStage(Editor.StageData.NormalStage stageType) : base(stageType)
+            {
+                playTime = stageType.playTime;
+                spawnInfoList.Clear();
+                for (int i = 0; i < stageType.spawnInfoList.Count; i++)
+                {
+                    var spawnInfo = new SpawnNormalInfo(stageType.spawnInfoList[i]);
+                    spawnInfoList.Add(spawnInfo);
+                }
+            }
+        }
+        public class WaveStage : StageInfo
+        {
+            public int waveCount;
+            public List<SpawnWaveInfo> spawnInfoList = new List<SpawnWaveInfo>();
+
+            public WaveStage(Editor.StageData.WaveStage stageType) : base(stageType)
+            {
+                waveCount = stageType.waveCount;
+                spawnInfoList.Clear();
+                for (int i = 0; i < stageType.spawnInfoList.Count; i++)
+                {
+                    var spawnInfo = new SpawnWaveInfo(stageType.spawnInfoList[i]);
+                    spawnInfoList.Add(spawnInfo);
+                }
+            }
+        }
+        #endregion
+
+        #region SpawnInfo
+        public class SpawnInfo
+        {
+            public readonly int monsterSeed;
+            public readonly int monsterLevel;
+            public readonly float startDelay;
+            public readonly bool isBuff;
+
+            public readonly eBuffType startBuffType;
+            public readonly eStat startBuff;
+            public readonly eSkillDuration durationType;
+
+            public readonly float minAngle;
+            public readonly float maxAngle;
+
+            public readonly float minRadius;
+            public readonly float maxRadius;
+
+            public SpawnInfo(Editor.StageData.SpawnInfo spawnInfo)
             {
                 monsterSeed = spawnInfo.monsterSeed;
                 monsterLevel = spawnInfo.monsterLevel;
-                spawnMaxCount = spawnInfo.spawnMaxCount;
                 startDelay = spawnInfo.startDelay;
-                coolTime = spawnInfo.coolTime;
                 isBuff = spawnInfo.isBuff;
                 startBuffType = spawnInfo.startBuffType;
                 startBuff = spawnInfo.startBuff;
                 durationType = spawnInfo.durationType;
+                minAngle = spawnInfo.minAngle;
+                maxAngle = spawnInfo.maxAngle;
+                minRadius = spawnInfo.minRadius;
+                maxRadius = spawnInfo.maxRadius;
+            }
+        }
+        public class SpawnNormalInfo : SpawnInfo
+        {
+            public readonly int spawnMaxCount;
+            public readonly float coolTime;
+            public SpawnNormalInfo(Editor.StageData.SpawnNormalInfo spawnInfo) : base(spawnInfo)
+            {
+                spawnMaxCount = spawnInfo.spawnMaxCount;
+                coolTime = spawnInfo.coolTime;
             }
         }
         public class SpawnWaveInfo : SpawnInfo
         {
-            public SpawnWaveInfo(Editor.StageData.SpawnWaveInfo spawnInfo)
+            public readonly int waveNumber;
+            public readonly int spawnCount;
+            public SpawnWaveInfo(Editor.StageData.SpawnWaveInfo spawnInfo) : base(spawnInfo)
             {
-                monsterSeed = spawnInfo.monsterSeed;
-                monsterLevel = spawnInfo.monsterLevel;
-                startDelay = spawnInfo.startDelay;
-                isBuff = spawnInfo.isBuff;
-                startBuffType = spawnInfo.startBuffType;
-                startBuff = spawnInfo.startBuff;
-                durationType = spawnInfo.durationType;
+                waveNumber = spawnInfo.waveNumber;
+                spawnCount = spawnInfo.spawnCount;
             }
         }
+        #endregion
         public int Key => Seed;
     }
 }
