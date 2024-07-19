@@ -80,7 +80,15 @@ namespace Data
             Seed = data.Seed;
             Name = data.Name;
             Type = data.stageType;
-            stageInfo = new StageInfo(data.getStageType);
+            switch (data.getStageType)
+            {
+                case Editor.StageData.NormalStage normalStage:
+                    stageInfo = new NormalStage(normalStage);
+                    break;
+                case Editor.StageData.WaveStage waveStage:
+                    stageInfo = new WaveStage(waveStage);
+                    break;
+            }
         }
 
         #region StageType
@@ -128,7 +136,7 @@ namespace Data
         #endregion
 
         #region SpawnInfo
-        public class SpawnInfo
+        public abstract class SpawnInfo
         {
             public readonly int monsterSeed;
             public readonly int monsterLevel;
@@ -139,9 +147,13 @@ namespace Data
             public readonly eStat startBuff;
             public readonly eSkillDuration durationType;
 
+            public readonly bool randomAngle;
+            public readonly float angle;
             public readonly float minAngle;
             public readonly float maxAngle;
 
+            public readonly bool randomRadius;
+            public readonly float radius;
             public readonly float minRadius;
             public readonly float maxRadius;
 
@@ -154,8 +166,12 @@ namespace Data
                 startBuffType = spawnInfo.startBuffType;
                 startBuff = spawnInfo.startBuff;
                 durationType = spawnInfo.durationType;
+                randomAngle = spawnInfo.randomAngle;
+                angle = spawnInfo.angle;
                 minAngle = spawnInfo.minAngle;
                 maxAngle = spawnInfo.maxAngle;
+                randomRadius = spawnInfo.randomRadius;
+                radius = spawnInfo.radius;
                 minRadius = spawnInfo.minRadius;
                 maxRadius = spawnInfo.maxRadius;
             }

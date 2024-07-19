@@ -23,7 +23,7 @@ public class EventDispatcher
     private HashSet<EventNode> availabeNodes;
     private UnitBehavior unitBehavior;
 
-    public void Init(UnitBehavior unitBehavior)
+    public void Init(UnitBehavior unitBehavior = null)
     {
         this.unitBehavior = unitBehavior;
         elasped = 0;
@@ -34,6 +34,7 @@ public class EventDispatcher
     }
     public void UnInit()
     {
+        unitBehavior = null;
         elasped = 0;
         listEventNode.Clear();
         availabeNodes.Clear();
@@ -57,6 +58,8 @@ public class EventDispatcher
 
     public void Clear()
     {
+        if (unitBehavior != null && unitBehavior.UnitState.CanAction(eUnitFsm.idle))
+            unitBehavior.UnitState.SetFsm(eUnitFsm.idle);
         UnInit();
     }
 

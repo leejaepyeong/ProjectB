@@ -18,6 +18,7 @@ public class UnitState
     public bool isStun;
     public bool isSlow;
     public bool isInvincibility;
+    public eUnitFsm unitFsm;
     public bool isMoveAble { get { return isStun == false; } }
     #endregion
 
@@ -74,6 +75,44 @@ public class UnitState
             case eStat.criRate: originStatValue[eStat.criRate] += isTestScene ? Manager.Instance.playerData.criRate : SaveData_Local.Instance.userStat.criRate; break;
             case eStat.criDmg: originStatValue[eStat.criDmg] += isTestScene ? Manager.Instance.playerData.criDmg : SaveData_Local.Instance.userStat.criDmg; break;
         }
+    }
+
+    public void SetFsm(eUnitFsm fsm)
+    {
+        unitFsm = fsm;
+    }
+
+    public bool CanAction(eUnitFsm fsm)
+    {
+        if (fsm == unitFsm) return false;
+
+        switch (fsm)
+        {
+            case eUnitFsm.idle:
+                if (fsm == eUnitFsm.die)
+                    return false;
+                break;
+            case eUnitFsm.attack:
+                if (fsm == eUnitFsm.skill_NonStop || fsm == eUnitFsm.die || fsm == eUnitFsm.abnormal)
+                    return false;
+                break;
+            case eUnitFsm.skill_NonStop:
+                if (fsm == eUnitFsm.skill_NonStop || fsm == eUnitFsm.die || fsm == eUnitFsm.abnormal)
+                    return false;
+                break;
+            case eUnitFsm.skill:
+                if (fsm == eUnitFsm.skill_NonStop || fsm == eUnitFsm.die || fsm == eUnitFsm.abnormal)
+                    return false;
+                break;
+            case eUnitFsm.abnormal:
+                if (fsm == eUnitFsm.die )
+                    return false;
+                break;
+            case eUnitFsm.die:
+                break;
+        }
+
+        return true;
     }
 }
 

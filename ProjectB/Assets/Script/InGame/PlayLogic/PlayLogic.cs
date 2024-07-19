@@ -3,15 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 
-public enum ePlayLogicFsm
-{
-    none,
-    setting,
-    ready,
-    play,
-    bossRound,
-    result,
-}
 public class PlayLogic : BaseScene
 {
     public static PlayLogic Instance;
@@ -28,7 +19,6 @@ public class PlayLogic : BaseScene
     protected bool isSettingOn;
     protected int stageSeed;
     protected Data.StageData stageData;
-    protected float playTime = 30f;
 
     QueueCommand commands = new QueueCommand();
     IntroCommand_LoadDataFile loadDataFile = new IntroCommand_LoadDataFile();
@@ -127,12 +117,16 @@ public class PlayLogic : BaseScene
     {
         if (isTestMode)
             stageSeed = testStageSeed;
+        else
+            stageSeed = SaveData_Local.Instance.lastPlayStageSeed;
 
         if (Data.DataManager.Instance.StageData.TryGet(stageSeed, out stageData) == false) return;
 
-        BattleManager.Instance.SetGame(playTime);
+        BattleManager.Instance.SetGame(stageSeed);
         uiPlayLogic.Init();
         coFsmSetting = StartCoroutine(GameSettingCo());
+
+        spawnLogic.Init();
     }
 
     protected IEnumerator GameSettingCo()

@@ -62,6 +62,20 @@ public class BuffBase_Frozen: BuffBase
     public BuffBase_Frozen(SkillEffectRecord skillEffect, UnitBehavior caster, UnitBehavior target) : base(skillEffect, caster, target)
     {
     }
+
+    public override void Init()
+    {
+        base.Init();
+        target.UnitState.SetFsm(eUnitFsm.abnormal);
+        target.UnitState.isStun = true;
+    }
+
+    public override void UnInit()
+    {
+        base.UnInit();
+        target.UnitState.SetFsm(eUnitFsm.idle);
+        target.UnitState.isStun = false;
+    }
 }
 #endregion
 #region Stun
@@ -69,6 +83,19 @@ public class BuffBase_Stun : BuffBase
 {
     public BuffBase_Stun(SkillEffectRecord skillEffect, UnitBehavior caster, UnitBehavior target) : base(skillEffect, caster, target)
     {
+    }
+    public override void Init()
+    {
+        base.Init();
+        target.UnitState.SetFsm(eUnitFsm.abnormal);
+        target.UnitState.isStun = true;
+    }
+
+    public override void UnInit()
+    {
+        base.UnInit();
+        target.UnitState.SetFsm(eUnitFsm.idle);
+        target.UnitState.isStun = false;
     }
 }
 #endregion

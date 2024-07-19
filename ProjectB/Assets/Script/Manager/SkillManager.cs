@@ -2,10 +2,73 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkillManager
+public class SkillManager : BaseManager
 {
+    private List<SkillBehavior> skillList = new();
+    public const string SKILLBEHAVIOR_ASSET_KEY = "Assets/Data/GameResources/Prefab/Behavior/SkillBehavior.prefab";
+
     private List<UnitBehavior> unitList = new List<UnitBehavior>();
     private List<UnitBehavior> tempUnitList = new List<UnitBehavior>();
+
+    public static SkillManager Instance
+    {
+        get { return Manager.Instance.GetManager<SkillManager>(); }
+    }
+
+    public override void Init()
+    {
+        base.Init();
+        skillList.Clear();
+        unitList.Clear();
+        tempUnitList.Clear();
+    }
+
+    public override void Clear()
+    {
+        skillList.Clear();
+        unitList.Clear();
+        tempUnitList.Clear();
+        base.Clear();
+    }
+
+    public override void UpdateFrame(float deltaTime)
+    {
+        if (BattleManager.Instance.isPause) return;
+        base.UpdateFrame(deltaTime);
+        for (int i = 0; i < skillList.Count; i++)
+        {
+            if (skillList[i].isActiveAndEnabled == false) continue;
+            skillList[i].UpdateFrame(DeltaTime);
+        }
+    }
+
+    public SkillBehavior SpawnSkill(SkillInfo skillInfo, UnitBehavior caster = null, UnitBehavior target = null)
+    {
+        if (!GameObjectPool.TryGet(SKILLBEHAVIOR_ASSET_KEY, out var skillObj)) return null;
+        SkillBehavior skill = skillObj.GetComponent<SkillBehavior>();
+
+        skill.transform.SetParent(transform);
+        skill.transform.position = caster.GetPos();
+        skill.Init();
+        skillList.Add(skill);
+
+        return skill;
+    }
+
+    public void Remove(SkillBehavior skill)
+    {
+        skillList.Remove(skill);
+        GameObjectPool.Return(skill.Model);
+        GameObjectPool.Return(skill.gameObject);
+    }
+
+    public void RemoveAll()
+    {
+        while (skillList.Count > 0)
+        {
+            Remove(skillList[0]);
+        }
+    }
 
     public void UseSkill(UnitBehavior caster, SkillRecord skillRecord)
     {
@@ -32,19 +95,6 @@ public class SkillManager
 
     public void ApplySkill(SkillRecord skill, UnitBehavior target, UnitBehavior caster)
     {
-        switch (skill.detailType)
-        {
-            case eSkillDetailType.None:
-                break;
-            case eSkillDetailType.Single:
-                break;
-            case eSkillDetailType.Boom:
-                break;
-            case eSkillDetailType.Chain:
-                break;
-            default:
-                break;
-        }
         for (int i = 0; i < skill.skillEffects.Count; i++)
         {
             if (TableManager.Instance.skillEffectTable.TryGetRecord(skill.skillEffects[i], out var skillEffect) == false)
@@ -82,7 +132,21 @@ public class SkillManager
 
     public bool CheckSkill(UnitBehavior caster, SkillRecord skillRecord)
     {
-        return true;
+        if (skillRecord.detailType == eSkillDetailType.Normal)
+        {
+            if (caster.UnitState.CanAction(eUnitFsm.skill))
+            {
+                caster.UnitState.SetFsm(eUnitFsm.skill);
+                return true;
+            }
+            else
+                return false;
+        }
+        else
+        {
+            caster.UnitState.SetFsm(eUnitFsm.skill_NonStop);
+            return true;
+        }
     }
 
     #region Search Target List

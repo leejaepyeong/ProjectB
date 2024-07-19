@@ -68,6 +68,8 @@ public class Unit_Base : MonoBehaviour
             isAtkAble = true;
         }
 
+        if (unitState.CanAction(eUnitFsm.attack) == false) return;
+
         int layer = unitState.team == eTeam.player ? LayerMask.GetMask("Monster") : LayerMask.GetMask("Player");
         var targets = Physics2D.OverlapCircleAll(unitBehavior.GetPos(), (float)GetStat(eStat.atkRange), layer);
         if (targets.Length <= 0) return;
@@ -81,6 +83,7 @@ public class Unit_Base : MonoBehaviour
 
         atkCool = 1 / (float)GetStat(eStat.atkSpd);
         Attack();
+        unitState.SetFsm(eUnitFsm.attack);
     }
 
     public virtual void Attack()
@@ -96,7 +99,9 @@ public class Unit_Base : MonoBehaviour
             var skill = unitData.skillInfoGroup[i];
             unitData.skillInfoGroup[i].UpdateFrame(deltaTime);
             if (skill.type == eSkillType.Auto && skill.IsReadyCoolTime())
+            {
                 Manager.Instance.skillManager.UseSkill(unitBehavior, skill);
+            }
         }
     }
 

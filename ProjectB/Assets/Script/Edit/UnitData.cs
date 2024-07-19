@@ -12,9 +12,11 @@ namespace Editor
     [Serializable]
     public class UnitData
     {
-        public int Seed;
-        public string Name;
-        public eUnitType Type;
+        [VerticalGroup("Basic/row"), LabelWidth(50)] public int Seed;
+        [VerticalGroup("Basic/row"), LabelWidth(50)] public string Name;
+        [VerticalGroup("Basic/row"), LabelWidth(50)] public eUnitType Type;
+        [HideLabel, HorizontalGroup("Basic", 50), PreviewField(50, ObjectFieldAlignment.Right)]
+        public Texture icon;
         public Info info = new();
 
         public UnitData(int seed, string name)

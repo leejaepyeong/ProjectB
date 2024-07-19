@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class BattleManager : BaseManager
 {
-    private float stageTime;
     private float elaspedTime;
-    private int waveNumber;
+    public int waveNumber;
     private bool isInit;
     private bool isGameEnd;
     public bool isPause;
@@ -42,12 +41,10 @@ public class BattleManager : BaseManager
     public void SetGame(int stageSeed)
     {
         if (!Data.DataManager.Instance.StageData.TryGet(stageSeed, out stageData)) return;
-    }
-    public void SetGame(float time)
-    {
-        stageTime = time;
+
         isGameEnd = false;
         isInit = true;
+        waveNumber = 1;
 
         playerData = new PlayerData();
         playerData.Init();
@@ -64,7 +61,6 @@ public class BattleManager : BaseManager
         if (BattleManager.Instance.isPause) return;
 
         elaspedTime += DeltaTime;
-        if (elaspedTime > stageTime) elaspedTime = stageTime;
     }
 
     public bool CheckEndGame()
@@ -77,7 +73,7 @@ public class BattleManager : BaseManager
             case eStageType.Wave:
                 {
                     var stageInfo = stageData.stageInfo as Data.StageData.WaveStage;
-                    if (waveNumber >= stageInfo.waveCount) { isGameEnd = true; isWin = true; return true; }
+                    if (waveNumber > stageInfo.waveCount) { isGameEnd = true; isWin = true; return true; }
                 }
                 break;
             case eStageType.Normal:
@@ -89,6 +85,10 @@ public class BattleManager : BaseManager
                 break;
         }
         return false;
+    }
+    public void AddWaveNumber()
+    {
+        waveNumber += 1;
     }
 
     public void CheckRuneAddStat(eStat statType, double value)

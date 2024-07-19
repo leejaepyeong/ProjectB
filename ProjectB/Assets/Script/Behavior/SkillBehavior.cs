@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class SkillBehavior : BaseBehavior, IEventHandler
 {
-    private int id;
-    public int ID => id;
-
     private EventDispatcher eventDispatcher;
     private Dictionary<string, Transform> dicBoneTrf;
 
@@ -28,16 +25,14 @@ public class SkillBehavior : BaseBehavior, IEventHandler
     private const string SOUND_BEHAVIOR_ASSETKEY = "Assets/Data/GameResources/Prefab/Behavior/SoundBehavior.prefab";
     #endregion
 
-    //Monster
-    public void Init(Data.UnitData data, int id)
+    public void Init()
     {
         manager = EffectManager.Instance;
-        this.id = id;
         ElapsedTime = 0;
 
         timeScaleBehavior = Utilities.StaticeObjectPool.Pop<TimeScaleBehavior>();
         eventDispatcher = Utilities.StaticeObjectPool.Pop<EventDispatcher>();
-        eventDispatcher.Init(caster);
+        eventDispatcher.Init();
 
         isInit = true;
     }

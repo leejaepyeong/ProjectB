@@ -93,6 +93,27 @@ public enum eEventKey
     InGameInvenEquip,
 
 }
+
+public enum ePlayLogicFsm
+{
+    none,
+    setting,
+    ready,
+    play,
+    bossRound,
+    result,
+}
+
+public enum eUnitFsm
+{
+    idle,           //기본상태
+    attack,         //공격
+    skill_NonStop,  //스킬 캔슬 불가
+    skill,          //스킬
+    abnormal,       //상태이상
+    die,            //사망
+}
+
 #endregion
 
 #region Skill
@@ -126,10 +147,8 @@ public enum eSkillType
 
 public enum eSkillDetailType
 {
-    None,
-    Single,
-    Boom,
-    Chain,
+    Normal,
+    NonCancle,
 }
 public enum eSkillTag
 {
@@ -139,12 +158,13 @@ public enum eSkillTag
     Ice,
 }
 
-public enum eSkillActivate
+public enum eSkillCondition
 {
     None,
 
-    hitRate,
-    passive,
+    attackRate,
+    hitState,
+    stack,
 }
 public enum eSkillTarget
 {
@@ -231,7 +251,7 @@ public enum eItemGrade
 }
 #endregion
 
-#region
+#region Stage
 public enum eStageType
 {
     Normal,

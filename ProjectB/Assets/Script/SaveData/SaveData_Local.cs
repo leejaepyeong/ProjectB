@@ -46,6 +46,7 @@ public class SaveData_Local : SaveData
     public UserInfo userInfo = new UserInfo("");
     public UserStat userStat = new UserStat();
     public bool isSaveData;
+    public int lastPlayStageSeed;
     
     #region UserInfo
     public void SetUserInfo(UserInfo info)
@@ -121,6 +122,16 @@ public class SaveData_Local : SaveData
                 userStat.criDmg = FValue;
                 break;
         }
+
+        SetChange();
+        SetNotify();
+    }
+    #endregion
+
+    #region Stage
+    public void PlayGame(int seed)
+    {
+        lastPlayStageSeed = seed;
 
         SetChange();
         SetNotify();

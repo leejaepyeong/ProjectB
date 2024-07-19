@@ -11,36 +11,22 @@ using Sirenix.Utilities.Editor;
 namespace Editor
 {
     [System.Serializable]
-    public class SaveUnitData
+    public class SaveSkillData
     {
-        public List<UnitData> dataList = new();
+        public List<SkillData> dataList = new();
     }
-
-    public class UnitInfo
-    {
-        public string Name;
-        public int Seed;
-
-        public UnitInfo(string Name, int seed)
-        {
-            this.Name = Name;
-            Seed = seed;
-        }
-    }
-
-
-    public class UnitDataEditor : BaseEditor
+    public class SkillEditor : BaseEditor
     {
         #region Data
         private string path;
-        private List<UnitData> dataList = new();
+        private List<SkillData> dataList = new();
         private bool isReadData;
         #endregion
 
-        [MenuItem("Tools/UnitInfoEditor")]
+        [MenuItem("Tools/SkillEditor")]
         public static void Open()
         {
-            GetWindow<UnitDataEditor>().titleContent = new GUIContent("Unit Info");
+            GetWindow<SkillEditor>().titleContent = new GUIContent("Skill Info");
         }
 
         protected override OdinMenuTree BuildMenuTree()
@@ -54,13 +40,13 @@ namespace Editor
             if (isReadData == false)
                 GetSaveData();
 
-            foreach (var unit in dataList)
+            foreach (var data in dataList)
             {
-                var name = unit.Name;
-                var type = unit.Type;
-                var mainSubIdText = unit.Seed;
+                var name = data.Name;
+                var type = data.skillType;
+                var mainSubIdText = data.Seed;
 
-                var menuItem = new OdinMenuItem(tree, name, unit);
+                var menuItem = new OdinMenuItem(tree, name, data);
                 menuItem.OnRightClick += item => EditorGUIUtility.PingObject(item.Value as Object);
                 tree.AddMenuItemAtPath(type.ToString(), menuItem);
             }
@@ -76,14 +62,14 @@ namespace Editor
 
             SirenixEditorGUI.BeginHorizontalToolbar(toolbarHeiight);
             {
-                if (SirenixEditorGUI.ToolbarButton(new GUIContent("Create Unit")))
+                if (SirenixEditorGUI.ToolbarButton(new GUIContent("Create Skill")))
                 {
-                    CreateUnitAdd();
+                    CreateDataAdd();
                     ForceMenuTreeRebuild();
                 }
-                if (SirenixEditorGUI.ToolbarButton(new GUIContent("Delete Unit")))
+                if (SirenixEditorGUI.ToolbarButton(new GUIContent("Delete Skill")))
                 {
-                    DeleteUnit();
+                    DeleteData();
                     ForceMenuTreeRebuild();
                 }
                 if (SirenixEditorGUI.ToolbarButton(new GUIContent("Refresh")))
@@ -114,13 +100,13 @@ namespace Editor
 
             isExistDuplicated = false;
             dicTemp.Clear();
-            foreach (var unit in dataList)
+            foreach (var data in dataList)
             {
-                if (!dicTemp.TryGetValue(unit.Seed, out var count))
-                    dicTemp[unit.Seed] = 1;
+                if (!dicTemp.TryGetValue(data.Seed, out var count))
+                    dicTemp[data.Seed] = 1;
                 else
-                    ++dicTemp[unit.Seed];
-                if (dicTemp[unit.Seed] > 1)
+                    ++dicTemp[data.Seed];
+                if (dicTemp[data.Seed] > 1)
                     isExistDuplicated = true;
             }
 
@@ -130,8 +116,8 @@ namespace Editor
                 {
                     foreach (var menuItem in treeMenuItem.ChildMenuItems)
                     {
-                        if (!(menuItem.Value is UnitData unit)) continue;
-                        if (!dicTemp.TryGetValue(unit.Seed, out var count)) continue;
+                        if (!(menuItem.Value is StageData stage)) continue;
+                        if (!dicTemp.TryGetValue(stage.Seed, out var count)) continue;
 
                         if (count > 1)
                         {
@@ -154,25 +140,25 @@ namespace Editor
             LoadJson();
         }
 
-        private void CreateUnitAdd()
+        private void CreateDataAdd()
         {
-            UnitData data = new UnitData(dataList.Count, dataList.Count.ToString());
+            SkillData data = new SkillData(dataList.Count, dataList.Count.ToString());
             dataList.Add(data);
         }
 
-        private void DeleteUnit()
+        private void DeleteData()
         {
             if (MenuTree == null) return;
-            if (!(MenuTree.Selection.SelectedValue is UnitData unit)) return;
+            if (!(MenuTree.Selection.SelectedValue is SkillData data)) return;
 
-            dataList.Remove(unit);
+            dataList.Remove(data);
         }
 
 
         #region Json
         private void SaveToJson()
         {
-            SaveUnitData saveData = new();
+            SaveSkillData saveData = new();
 
             for (int i = 0; i < dataList.Count; i++)
             {
@@ -186,12 +172,12 @@ namespace Editor
 
         private void LoadJson()
         {
-            SaveUnitData saveData = new();
+            SaveSkillData saveData = new();
             if (File.Exists(path))
             {
                 string decryptString = File.ReadAllText(path);
                 string jsonText = Decrypt(decryptString);
-                saveData = JsonUtility.FromJson<SaveUnitData>(jsonText);
+                saveData = JsonUtility.FromJson<SaveSkillData>(jsonText);
 
                 for (int i = 0; i < saveData.dataList.Count; i++)
                 {
@@ -200,7 +186,7 @@ namespace Editor
             }
             else
             {
-                UnitData data = new UnitData(0, "0");
+                SkillData data = new SkillData(0, "0");
                 dataList.Add(data);
                 SaveToJson();
             }
@@ -208,5 +194,3 @@ namespace Editor
         #endregion
     }
 }
-
-

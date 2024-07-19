@@ -137,7 +137,7 @@ namespace Data
                         }
                     }
                     break;
-                case "StageDataEditor":
+                case "StageEditor":
                     {
                         StageData = new();
 

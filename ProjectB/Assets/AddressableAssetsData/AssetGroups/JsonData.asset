@@ -17,11 +17,16 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 024a4e9afa48c3746a97f3c48ea83049
   m_SerializeEntries:
+  - m_GUID: c74a9f57b0a678144b5622666d266ea3
+    m_Address: Assets/Data/GameResources/DataJsons/StageEditor.json
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - JsonData
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1f01bb0c9d15cfa4489d05bb3458eecf
     m_Address: Assets/Data/GameResources/DataJsons/UnitDataEditor.json
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Remote
     - JsonData
     - JsonData_Unit
     FlaggedDuringContentUpdateRestriction: 0

@@ -85,3 +85,97 @@ public class SkillTable : TTableBase<SkillRecord>
 
     }
 }
+
+[Serializable]
+public abstract class ACondition
+{
+    public ACondition()
+    {
+
+    }
+
+    public abstract bool CheckCondition();
+    public abstract void ResetCondition();
+    public abstract void UpdateFrame(float deltaTIme);
+
+}
+[Serializable]
+public class Condition_AttackRate : ACondition
+{
+    public float rate;
+    public Condition_AttackRate() : base()
+    {
+
+    }
+
+    public override void ResetCondition()
+    {
+
+    }
+    public override bool CheckCondition()
+    {
+        int random = UnityEngine.Random.Range(0,10000);
+        float randomRate = random / 100f;
+        return randomRate < rate;
+    }
+    public override void UpdateFrame(float deltaTIme)
+    {
+    }
+}
+[Serializable]
+public class Condition_HitState : ACondition
+{
+    public eSkillState hitState;
+    private UnitBehavior target;
+    public Condition_HitState() : base()
+    {
+
+    }
+    public override void ResetCondition()
+    {
+        target = null;
+    }
+    public void SetTarget(UnitBehavior target)
+    {
+        this.target = target;
+    }
+
+    public override bool CheckCondition()
+    {
+
+        return false;
+    }
+    public override void UpdateFrame(float deltaTIme)
+    {
+
+    }
+}
+[Serializable]
+public class Condition_Stack : ACondition
+{
+    public int needStack;
+    private int curStack;
+
+    public Condition_Stack() : base()
+    {
+
+    }
+
+    public override void ResetCondition()
+    {
+        curStack = 0;
+    }
+    public void AddStack(int stack)
+    {
+        curStack += stack;
+    }
+
+    public override bool CheckCondition()
+    {
+        return curStack >= needStack;
+    }
+    public override void UpdateFrame(float deltaTIme)
+    {
+
+    }
+}

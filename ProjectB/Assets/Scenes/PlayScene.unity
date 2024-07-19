@@ -576,9 +576,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7e56ce09eac62b49aa86d15b4249e60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coolTime: 0.5
-  maxRadius: 12
-  minRadius: 5
+  radius: 15
 --- !u!114 &1065317067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -596,6 +594,7 @@ MonoBehaviour:
   spawnLogic: {fileID: 1065317066}
   uiPlayLogic: {fileID: 981661804}
   isTestMode: 1
+  testStageSeed: 1
   isTargetSkillOn: 0
 --- !u!4 &1065317068
 Transform:
@@ -1228,6 +1227,10 @@ PrefabInstance:
     - target: {fileID: 5464660349648951021, guid: 9212328930a0bd54396afe146a3d1002, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5706855098082590941, guid: 9212328930a0bd54396afe146a3d1002, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
       objectReference: {fileID: 0}
     - target: {fileID: 6051539894628637635, guid: 9212328930a0bd54396afe146a3d1002, type: 3}
       propertyPath: m_AnchorMax.y

@@ -50,33 +50,38 @@ namespace Editor
         [Serializable]
         public abstract class SpawnInfo
         {
-            public int monsterSeed;
-            public int monsterLevel;
+            [LabelWidth(100), VerticalGroup("UnitData")] public int monsterSeed;
+            [LabelWidth(100), VerticalGroup("UnitData")] public int monsterLevel;
             [MinValue(0)] public float startDelay;
-            public bool isBuff;
+            [VerticalGroup("Buff")] public bool isBuff;
 
-            [ShowIf("@isBuff")] public eBuffType startBuffType;
-            [ShowIf("@isBuff")] public eStat startBuff;
-            [ShowIf("@isBuff")] public eSkillDuration durationType;
+            [LabelWidth(100), VerticalGroup("Buff"), ShowIf("@isBuff")] public eBuffType startBuffType;
+            [LabelWidth(100), VerticalGroup("Buff"), ShowIf("@isBuff")] public eStat startBuff;
+            [LabelWidth(100), VerticalGroup("Buff"), ShowIf("@isBuff")] public float value;
+            [LabelWidth(100), VerticalGroup("Buff"), ShowIf("@isBuff")] public eSkillDuration durationType;
+            [LabelWidth(100), VerticalGroup("Buff"), ShowIf("@isBuff && durationType == eSkillDuration.Time")] public float time;
 
-            public float minAngle = 0;
-            public float maxAngle = 360;
+            [LabelWidth(100), VerticalGroup("SpawnAngle")] public bool randomAngle;
+            [LabelWidth(100), VerticalGroup("SpawnAngle"), ShowIf("@randomAngle == false")] public float angle = 0;
+            [LabelWidth(100), VerticalGroup("SpawnAngle"), ShowIf("@randomAngle")] public float minAngle = 0;
+            [LabelWidth(100), VerticalGroup("SpawnAngle"), ShowIf("@randomAngle")] public float maxAngle = 360;
 
-            public float minRadius = 10;
-            public float maxRadius = 15;
+            [LabelWidth(100), VerticalGroup("SpawnRadius")] public bool randomRadius;
+            [LabelWidth(100), VerticalGroup("SpawnRadius"), ShowIf("@randomRadius == false")] public float radius = 15;
+            [LabelWidth(100), VerticalGroup("SpawnRadius"), ShowIf("@randomRadius")] public float minRadius = 10;
+            [LabelWidth(100), VerticalGroup("SpawnRadius"), ShowIf("@randomRadius")] public float maxRadius = 15;
         }
         [Serializable]
         public class SpawnNormalInfo : SpawnInfo
         {
             [MinValue(1)] public int spawnMaxCount = 1;
             [MinValue(0)] public float coolTime;
-
         }
         [Serializable]
         public class SpawnWaveInfo : SpawnInfo
         {
-            [MinValue(1)] public int waveNumber;
-            [MinValue(1)] public int spawnCount;
+            [MinValue(1)] public int waveNumber = 1;
+            [MinValue(1)] public int spawnCount = 1;
         }
         #endregion
 
