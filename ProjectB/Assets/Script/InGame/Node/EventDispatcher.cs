@@ -60,7 +60,10 @@ public class EventDispatcher
     {
         if (unitBehavior != null && unitBehavior.UnitState.CanAction(eUnitFsm.idle))
             unitBehavior.UnitState.SetFsm(eUnitFsm.idle);
-        UnInit();
+
+        elasped = 0;
+        listEventNode.Clear();
+        availabeNodes.Clear();
     }
 
     public void UpdateFrame(float deltaTime, IEventHandler handler)
@@ -78,9 +81,14 @@ public class EventDispatcher
             availabeNodes.Remove(eventNode);
         }
 
-        if(availabeNodes.Count == 0)
+        if(NodeEnd())
         {
             Clear();
-        }    
+        }
+    }
+
+    public bool NodeEnd()
+    {
+        return availabeNodes.Count == 0;
     }
 }

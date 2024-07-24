@@ -9,6 +9,7 @@ using UnityEngine.Events;
 public class UIRuneSlot : UISlot
 {
     [SerializeField, FoldoutGroup("Info")] protected GameObject objSelect;
+    [SerializeField, FoldoutGroup("Info")] protected Button buttonClickRune;
     [SerializeField, FoldoutGroup("Info")] protected Image runeIcon;
     [SerializeField, FoldoutGroup("Info")] protected Image OutLineIcon;
     [SerializeField, FoldoutGroup("Info")] protected int slotIdx;
@@ -19,7 +20,7 @@ public class UIRuneSlot : UISlot
     protected override void Awake()
     {
         base.Awake();
-        onClickAction = OnClickRune;
+        buttonClickRune.onClick.AddListener(OnClickRune);
     }
 
     public virtual void Open(RuneRecord runeRecord, UnityAction<int> action)
@@ -32,7 +33,9 @@ public class UIRuneSlot : UISlot
 
     public override void ResetData()
     {
-        SetIcon(runeIcon, runeRecord != null ? runeRecord.iconPath : "");
+        runeIcon.gameObject.SetActive(runeRecord != null);
+        if (runeRecord != null)
+            SetIcon(runeIcon, runeRecord.iconPath);
     }
 
     private void OnClickRune()

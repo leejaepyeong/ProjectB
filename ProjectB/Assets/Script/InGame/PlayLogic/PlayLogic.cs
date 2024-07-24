@@ -186,52 +186,56 @@ public class PlayLogic : BaseScene
         if (isTargetSkillOn) return;
         isTargetSkillOn = true;
 
+        List<RangeObject> rangeObjectList = new List<RangeObject>();
         var nodeList = skillInfo.skillRecord.skillNode.nodes;
         for (int i = 0; i < nodeList.Count; i++)
         {
             if (nodeList[i] is HitEvenet.HitEventNode hitEvent)
             {
+                RangeObject rangeObj = null;
                 switch (hitEvent.HitEvent.hitRange)
                 {
                     case HitEvenet.eHitRange.Rect:
-                        DrawRect(skillInfo, UnitManager.Instance.Player, hitEvent.HitEvent, action);
+                        rangeObj = DrawRect(skillInfo, UnitManager.Instance.Player, hitEvent.HitEvent, action);
                         break;
                     case HitEvenet.eHitRange.Circle:
-                        DrawCircle(skillInfo, UnitManager.Instance.Player, hitEvent.HitEvent, action);
+                        rangeObj = DrawCircle(skillInfo, UnitManager.Instance.Player, hitEvent.HitEvent, action);
                         break;
                     case HitEvenet.eHitRange.FanShape:
-                        DrawFanShape(skillInfo, UnitManager.Instance.Player, hitEvent.HitEvent, action);
+                        rangeObj = DrawFanShape(skillInfo, UnitManager.Instance.Player, hitEvent.HitEvent, action);
                         break;
                 }
+                rangeObjectList.Add(rangeObj);
             }
         }
+        coMoveRangeObject = StartCoroutine(CoMoveRangeObject(rangeObjectList, skillInfo));
     }
 
-    private void DrawRect(SkillInfo skillInfo, UnitBehavior caster, HitEvent hitEvent, UnityEngine.Events.UnityAction action= null)
+    private RangeObject DrawRect(SkillInfo skillInfo, UnitBehavior caster, HitEvent hitEvent, UnityEngine.Events.UnityAction action= null)
     {
-        if (BattleManager.Instance.GameObjectPool.TryGet(RECT_RANGE_OBJECT, out var rangeObj) == false) return;
+        if (BattleManager.Instance.GameObjectPool.TryGet(RECT_RANGE_OBJECT, out var rangeObj) == false) return null;
         var rectObj = rangeObj.GetComponent<RangeObject>();
         rectObj.Open(skillInfo, caster, hitEvent);
 
-        coMoveRangeObject = StartCoroutine(CoMoveRangeObject(rectObj));
+        return rectObj;
     }
 
-    private void DrawCircle(SkillInfo skillInfo, UnitBehavior caster, HitEvent hitEvent, UnityEngine.Events.UnityAction action = null)
+    private RangeObject DrawCircle(SkillInfo skillInfo, UnitBehavior caster, HitEvent hitEvent, UnityEngine.Events.UnityAction action = null)
     {
-        if (BattleManager.Instance.GameObjectPool.TryGet(CIRCLE_RANGE_OBJECT, out var rangeObj) == false) return;
+        if (BattleManager.Instance.GameObjectPool.TryGet(CIRCLE_RANGE_OBJECT, out var rangeObj) == false) return null;
         var circleObj = rangeObj.GetComponent<RangeObject>();
         circleObj.Open(skillInfo, caster, hitEvent);
 
-        coMoveRangeObject = StartCoroutine(CoMoveRangeObject(circleObj));
+        return circleObj;
     }
 
-    private void DrawFanShape(SkillInfo skillInfo, UnitBehavior caster, HitEvent hitEvent, UnityEngine.Events.UnityAction action = null)
+    private RangeObject DrawFanShape(SkillInfo skillInfo, UnitBehavior caster, HitEvent hitEvent, UnityEngine.Events.UnityAction action = null)
     {
-        if (BattleManager.Instance.GameObjectPool.TryGet(FANSHAPE_RANGE_OBJECT, out var rangeObj) == false) return;
+        if (BattleManager.Instance.GameObjectPool.TryGet(FANSHAPE_RANGE_OBJECT, out var rangeObj) == false) return null;
         var fanObj = rangeObj.GetComponent<RangeObject>();
         fanObj.Open(skillInfo, caster, hitEvent);
 
-        coMoveRangeObject = StartCoroutine(CoMoveRangeObject(fanObj));
+        return fanObj;
     }
 
     protected IEnumerator CoMoveRangeObject(RangeObject rangeObject)
@@ -248,6 +252,30 @@ public class PlayLogic : BaseScene
 
         rangeObject.OnClickAction(position);
         BattleManager.Instance.GameObjectPool.Return(rangeObject.gameObject);
+        coMoveRangeObject = null;
+    }
+    protected IEnumerator CoMoveRangeObject(List<RangeObject> list, SkillInfo skillInfo)
+    {
+        Vector3 position = Vector3.zero;
+        while (isTargetSkillOn)
+        {
+            position = Manager.Instance.MainCamera.ScreenToWorldPoint(Input.mousePosition);
+            for (int i = 0; i < list.Count; i++)
+            {
+                list[i].MoveMousePosition(new Vector3(position.x, position.y, 0));
+            }
+            yield return new WaitForEndOfFrame();
+        }
+
+        skillInfo.targetPos = position;
+        skillInfo.UseSkill();
+
+        for (int i = 0; i < list.Count; i++)
+        {
+            list[i].OnClickAction(position);
+            BattleManager.Instance.GameObjectPool.Return(list[i].gameObject);
+        }
+
         coMoveRangeObject = null;
     }
     #endregion

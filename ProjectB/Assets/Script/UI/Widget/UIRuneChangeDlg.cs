@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Sirenix.OdinInspector;
+using UnityEngine.Events;
 
 public class UIRuneChangeDlg : UIDlg
 {
@@ -20,18 +21,20 @@ public class UIRuneChangeDlg : UIDlg
 
     private Dictionary<int, RuneRecord> tempRuneDic = new Dictionary<int, RuneRecord>();
     private int previewIndex = 0;
+    private UnityAction closeAction;
 
     protected override void Awake()
     {
+        onClickAction = EquipRune;
         base.Awake();
-        btnClick.onClick.AddListener(EquipRune);
     }
 
-    public virtual void Open(UISkillSlot skillSlot, UIInvenItemSlot invenSlot)
+    public virtual void Open(UISkillSlot skillSlot, UIInvenItemSlot invenSlot, UnityAction closeAction)
     {
         base.Open();
         uiSkillSlot = skillSlot;
         this.invenSlot = invenSlot;
+        this.closeAction = closeAction;
 
         SetText(textSkillName, uiSkillSlot.SkillInfo.skillRecord.getName);
         SetText(textSkillDest, uiSkillSlot.SkillInfo.skillRecord.getDest);
@@ -53,6 +56,7 @@ public class UIRuneChangeDlg : UIDlg
     {
         previewIndex = 0;
         tempRuneDic.Clear();
+        closeAction?.Invoke();
         base.Close();
     }
 
@@ -93,7 +97,7 @@ public class UIRuneChangeDlg : UIDlg
 
     private void EquipRune()
     {
-        uiSkillSlot.SkillInfo.runeDic[previewIndex] = invenSlot.getRuneRecord;
+        BattleManager.Instance.playerData.EquipRune(uiSkillSlot.SlotIndex, previewIndex, invenSlot.getRuneRecord);
         Close();
     }
 }

@@ -50,7 +50,7 @@ public class UnitManager : BaseManager
         base.UpdateFrame(deltaTime);
         foreach (var unit in unitDic)
         {
-            unit.Value.UpdateFrame(DeltaTime, 1);
+            unit.Value.UpdateFrame(DeltaTime, Time.timeScale);
         }
     }
 

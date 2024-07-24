@@ -25,6 +25,7 @@ public class SkillManager : BaseManager
 
     public override void Clear()
     {
+        RemoveAll();
         skillList.Clear();
         unitList.Clear();
         tempUnitList.Clear();
@@ -38,18 +39,19 @@ public class SkillManager : BaseManager
         for (int i = 0; i < skillList.Count; i++)
         {
             if (skillList[i].isActiveAndEnabled == false) continue;
-            skillList[i].UpdateFrame(DeltaTime);
+            skillList[i].UpdateFrame(DeltaTime, Time.timeScale);
         }
     }
 
-    public SkillBehavior SpawnSkill(SkillInfo skillInfo, UnitBehavior caster = null, UnitBehavior target = null)
+    public SkillBehavior SpawnSkill(SkillInfo skillInfo, UnitBehavior caster, UnitBehavior target = null)
     {
         if (!GameObjectPool.TryGet(SKILLBEHAVIOR_ASSET_KEY, out var skillObj)) return null;
         SkillBehavior skill = skillObj.GetComponent<SkillBehavior>();
 
         skill.transform.SetParent(transform);
         skill.transform.position = caster.GetPos();
-        skill.Init();
+        skill.Init(caster);
+        skill.Action(skillInfo.skillRecord.skillNode);
         skillList.Add(skill);
 
         return skill;

@@ -19,17 +19,18 @@ public class SkillBehavior : BaseBehavior, IEventHandler
     #endregion
 
     private UnitBehavior caster;
-    private EffectManager manager;
+    private SkillManager manager;
 
     #region AssetKey
     private const string SOUND_BEHAVIOR_ASSETKEY = "Assets/Data/GameResources/Prefab/Behavior/SoundBehavior.prefab";
     #endregion
 
-    public void Init()
+    public void Init(UnitBehavior caster)
     {
-        manager = EffectManager.Instance;
+        manager = SkillManager.Instance;
         ElapsedTime = 0;
 
+        this.caster = caster;
         timeScaleBehavior = Utilities.StaticeObjectPool.Pop<TimeScaleBehavior>();
         eventDispatcher = Utilities.StaticeObjectPool.Pop<EventDispatcher>();
         eventDispatcher.Init();
@@ -40,7 +41,7 @@ public class SkillBehavior : BaseBehavior, IEventHandler
     public void Close()
     {
         isInit = false;
-        manager.GameObjectPool.Return(Model);
+        manager.Remove(this);
     }
 
     public void OnHandleEvent(EventNodeData eventData)
@@ -80,6 +81,8 @@ public class SkillBehavior : BaseBehavior, IEventHandler
         ElapsedTime += DeltaTime;
 
         eventDispatcher.UpdateFrame(DeltaTime, this);
+        if (eventDispatcher.NodeEnd())
+            Close();
     }
 
     #region NodeEvent

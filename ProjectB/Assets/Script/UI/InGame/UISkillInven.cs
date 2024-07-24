@@ -14,6 +14,8 @@ public class UISkillInven : UIBase
     public virtual void Init()
     {
         mainSkillGroup.Init();
+        activeSkillInven.Init();
+        passiveSkillInven.Init();
     }
     public override void Open()
     {
@@ -24,11 +26,16 @@ public class UISkillInven : UIBase
     public override void ResetData()
     {
         base.ResetData();
+        mainSkillGroup.Resetdata();
+        activeSkillInven.Resetdata();
+        passiveSkillInven.Resetdata();
     }
 
     public override void UpdateFrame(float deltaTime)
     {
         base.UpdateFrame(deltaTime);
         mainSkillGroup.UpdateFrame(deltaTime);
+        activeSkillInven.UpdateFrame(deltaTime);
+        passiveSkillInven.UpdateFrame(deltaTime);
     }
 }

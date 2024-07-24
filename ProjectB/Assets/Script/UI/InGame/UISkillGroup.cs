@@ -15,6 +15,14 @@ public class UISkillGroup : MonoBehaviour
         }
     }
 
+    public void Resetdata()
+    {
+        for (int i = 0; i < uiSkillSlots.Count; i++)
+        {
+            uiSkillSlots[i].ResetData();
+        }
+    }
+
     public void UpdateFrame(float deltaTime)
     {
         for (int i = 0; i < uiSkillSlots.Count; i++)

@@ -104,6 +104,7 @@ public class HitEvent : EventNodeData
     public HitEvenet.eHitRange hitRange;
     public HitEvenet.eHitType hitType;
 
+    public Vector3 localOffset;
     public float radius;
     public float speed;
 

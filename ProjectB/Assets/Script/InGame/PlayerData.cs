@@ -38,6 +38,10 @@ public class SkillInfo
             runeDic.Add(i, null);
         }
     }
+    public SkillInfo(int slotIdx, bool isPassive)
+    {
+
+    }
 
     public void ReSetSkillInfo()
     {
@@ -56,6 +60,7 @@ public class SkillInfo
 
     public void Update(float deltaTime)
     {
+        if (skillRecord == null) return;
         if (IsReadySkill())
         {
             if (skillRecord.type == eSkillType.Auto && 
@@ -98,7 +103,7 @@ public class SkillInfo
 
     public void UseSkill()
     {
-        UnitManager.Instance.Player.Action(skillRecord.skillNode);
+        SkillManager.Instance.SpawnSkill(this, UnitManager.Instance.Player);
         SetCoolTime();
     }
 }
@@ -116,9 +121,12 @@ public class PlayerData
     private Dictionary<int, InvenItemInfo> dicItem = new Dictionary<int, InvenItemInfo>();
     private int itemId;
 
-    public List<SkillInfo> skillInfoList = new List<SkillInfo>();
-
+    public List<SkillInfo> mainSkillInfoList = new List<SkillInfo>(mainSkillCount);
+    public List<SkillInfo> activeSkillInfoList = new List<SkillInfo>(activeSkillCount);
+    public List<SkillInfo> passiveSkillInfoList = new List<SkillInfo>(passiveSkillCount);
     private const int mainSkillCount = 5;
+    private const int activeSkillCount = 5;
+    private const int passiveSkillCount = 5;
 
     public void Init()
     {
@@ -128,7 +136,12 @@ public class PlayerData
         itemId = 0;
         invenItemList.Clear();
 
+        mainSkillInfoList.Clear();
+        activeSkillInfoList.Clear();
+        passiveSkillInfoList.Clear();
+
         SetMainSkill();
+        SetSubSkill();
     }
 
     private void SetMainSkill()
@@ -136,7 +149,20 @@ public class PlayerData
         for (int i = 0; i < mainSkillCount; i++)
         {
             SkillInfo skill = new SkillInfo(i);
-            skillInfoList.Add(skill);
+            mainSkillInfoList.Add(skill);
+        }
+    }
+    private void SetSubSkill()
+    {
+        for (int i = 0; i < activeSkillCount; i++)
+        {
+            SkillInfo skill = new SkillInfo(i, false);
+            activeSkillInfoList.Add(skill);
+        }
+        for (int i = 0; i < passiveSkillCount; i++)
+        {
+            SkillInfo skill = new SkillInfo(i, true);
+            passiveSkillInfoList.Add(skill);
         }
     }
 
@@ -197,6 +223,28 @@ public class PlayerData
 
         invenItemList.Remove(item);
         item = null;
+    }
+    #endregion
+
+    #region Equip Skill & Rune
+    public void EquipRune(int slotIndex, int runeSlotIndex, RuneRecord runeRecord)
+    {
+        mainSkillInfoList[slotIndex].runeDic[runeSlotIndex] = runeRecord;
+        ResetInfo();
+    }
+    public void EquipActiveSkill(int slotIndex, SkillRecord skillRecord)
+    {
+        activeSkillInfoList[slotIndex].ChangeSkill(skillRecord);
+        ResetInfo();
+    }
+    public void EquipPassiveSkill(int slotIndex, SkillRecord skillRecord)
+    {
+        passiveSkillInfoList[slotIndex].ChangeSkill(skillRecord);
+        ResetInfo();
+    }
+    public void ResetInfo()
+    {
+        PlayLogic.Instance.uiPlayLogic.uiSkillInven.ResetData();
     }
     #endregion
 }

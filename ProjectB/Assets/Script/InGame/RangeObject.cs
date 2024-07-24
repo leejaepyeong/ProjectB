@@ -29,6 +29,7 @@ public class RangeObject : MonoBase
         this.caster = caster;
         this.hitEvent = hitEvent;
         this.clickAction = clickAction;
+        transform.SetParent(EffectManager.Instance.transform);
 
         switch (hitEvent.GetHitData())
         {
@@ -74,12 +75,14 @@ public class RangeObject : MonoBase
     {
     }
 
+    public void MoveMousePosition(Vector3 mousePosition)
+    {
+        transform.localPosition = hitEvent.localOffset + mousePosition;
+    }
+
     public void OnClickAction(Vector3 clickPosition)
     {
         if (clickAction != null)
             clickAction.Invoke();
-
-        skillInfo.targetPos = clickPosition;
-        skillInfo.UseSkill();
     }
 }

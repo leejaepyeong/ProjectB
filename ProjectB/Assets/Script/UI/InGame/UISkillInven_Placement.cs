@@ -9,7 +9,19 @@ public class UISkillInven_Placement : UISkillInven
 
     public override void Init()
     {
-        mainSkillGroup.Init();
+        base.Init();
+        for (int i = 0; i < mainSkillGroup.uiSkillSlots.Count; i++)
+        {
+            mainSkillGroup.uiSkillSlots[i].actionClose += Close;
+        }
+        for (int i = 0; i < activeSkillInven.skillSlots.Count; i++)
+        {
+            activeSkillInven.skillSlots[i].actionClose += Close;
+        }
+        for (int i = 0; i < passiveSkillInven.skillSlots.Count; i++)
+        {
+            passiveSkillInven.skillSlots[i].actionClose += Close;
+        }
     }
     public virtual void Open(UIInvenItemSlot invenSlot)
     {
@@ -26,9 +38,11 @@ public class UISkillInven_Placement : UISkillInven
 
     public override void ResetData()
     {
+        base.ResetData();
+
         mainSkillGroup.gameObject.SetActive(selectSlot.itemType == eItemType.Rune);
-        activeSkillInven.gameObject.SetActive(selectSlot.itemType == eItemType.Skill);
-        passiveSkillInven.gameObject.SetActive(selectSlot.itemType == eItemType.Skill);
+        activeSkillInven.gameObject.SetActive(selectSlot.itemType == eItemType.Skill && selectSlot.getSkillRecord.type != eSkillType.Passive);
+        passiveSkillInven.gameObject.SetActive(selectSlot.itemType == eItemType.Skill && selectSlot.getSkillRecord.type == eSkillType.Passive);
 
         if(selectSlot.itemType == eItemType.Rune)
         {

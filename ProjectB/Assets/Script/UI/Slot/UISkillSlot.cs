@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Sirenix.OdinInspector;
 using TMPro;
+using UnityEngine.Events;
 
 public class UISkillSlot : UISlot
 {
@@ -19,9 +20,12 @@ public class UISkillSlot : UISlot
 
     protected SkillInfo skillInfo;
     protected int slotIndex;
+    public int SlotIndex => slotIndex;
     protected UIInvenItemSlot curInvenItemSlot;
 
     public SkillInfo SkillInfo => skillInfo;
+
+    public UnityAction actionClose;
 
     protected override void Awake()
     {
@@ -40,7 +44,15 @@ public class UISkillSlot : UISlot
     public void Init(int index)
     {
         slotIndex = index;
-        skillInfo = BattleManager.Instance.playerData.skillInfoList[index];
+        skillInfo = BattleManager.Instance.playerData.mainSkillInfoList[index];
+    }
+    public void Init(int index, bool isPassive)
+    {
+        slotIndex = index;
+        if(isPassive)
+            skillInfo = BattleManager.Instance.playerData.passiveSkillInfoList[index];
+        else
+            skillInfo = BattleManager.Instance.playerData.activeSkillInfoList[index];
     }
 
     public virtual void Open()
@@ -110,7 +122,7 @@ public class UISkillSlot : UISlot
     protected void OnClickMainSkill_Placement()
     {
         var dlg = uiManager.OpenWidget<UIRuneChangeDlg>();
-        dlg.Open(this ,uiSkillInvenPlacement.selectSlot);
+        dlg.Open(this ,uiSkillInvenPlacement.selectSlot, actionClose);
     }
 
     public void OnClickUnEquip()
