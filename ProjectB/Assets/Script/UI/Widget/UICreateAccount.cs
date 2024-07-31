@@ -16,8 +16,9 @@ public class UICreateAccount : UIDlg
     }
 
     [SerializeField, FoldoutGroup("Center")] private TMP_InputField textInputNick;
+    [SerializeField, FoldoutGroup("Center")] private GameObject objErrorMessage;
+    [SerializeField, FoldoutGroup("Center")] private TextMeshProUGUI textErrorMessage;
     [SerializeField, FoldoutGroup("Center")] private Button buttonOk;
-    [SerializeField, FoldoutGroup("Center")] private Button buttonCancle;
 
     private eNickDeny nickState;
 
@@ -25,7 +26,18 @@ public class UICreateAccount : UIDlg
     {
         base.Awake();
         buttonOk.onClick.AddListener(OnClickConfirm);
-        buttonCancle.onClick.AddListener(OnClickCancle);
+    }
+
+    public override void Open()
+    {
+        base.Open();
+        ResetData();
+    }
+
+    public override void ResetData()
+    {
+        base.ResetData();
+        objErrorMessage.SetActive(false);
     }
 
     #region Button Click
@@ -39,31 +51,27 @@ public class UICreateAccount : UIDlg
         switch (nickState)
         {
             case eNickDeny.none:
+                objErrorMessage.SetActive(false);
                 title = TableManager.Instance.stringTable.GetText(1000);
                 dest = string.Format(TableManager.Instance.stringTable.GetText(1001), textInputNick);
                 UserInfo userInfo = new UserInfo(textInputNick.text);
                 okAction = () => SaveData_Local.Instance.SetUserInfo(userInfo); SaveData_PlayerSkill.Instance.SetSkillInfo(); Close();
-                break;
+                uiManager.OpenMessageBox_Ok(title, dest, okAction: okAction);
+                return;
             case eNickDeny.empty:
-                title = TableManager.Instance.stringTable.GetText(1000);
                 dest = TableManager.Instance.stringTable.GetText(1002);
                 break;
             case eNickDeny.maxLength:
-                title = TableManager.Instance.stringTable.GetText(1000);
                 dest = TableManager.Instance.stringTable.GetText(1003);
                 break;
             case eNickDeny.noUseText:
-                title = TableManager.Instance.stringTable.GetText(1000);
                 dest = TableManager.Instance.stringTable.GetText(1004);
                 break;
         }
-        uiManager.OpenMessageBox_Ok(title, dest, okAction: okAction);
+        objErrorMessage.SetActive(true);
+        textErrorMessage.SetText(dest);
     }
 
-    private void OnClickCancle()
-    {
-
-    }
     #endregion
 
     private void CheckNickName(string name)

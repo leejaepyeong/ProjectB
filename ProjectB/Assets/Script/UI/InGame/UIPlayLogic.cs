@@ -12,11 +12,16 @@ public class UIPlayLogic : MonoBehaviour
     [SerializeField, FoldoutGroup("Top")] private UIWaveInfo uiWaveInfo;
     [SerializeField, FoldoutGroup("Top_Right")] private Button btnOption;
     [SerializeField, FoldoutGroup("Top_Right")] private Button btnInven;
-    [SerializeField, FoldoutGroup("Top_Left")] private Button btnStat;
+    [SerializeField, FoldoutGroup("Top_Right")] private Button btnStat;
+    [SerializeField, FoldoutGroup("Top_Right")] private Button btnMission;
+
+
+    [SerializeField, FoldoutGroup("Top_Left")] private TextMeshProUGUI userNickName;
+    [SerializeField, FoldoutGroup("Top_Left")] private TextMeshProUGUI userLevel;
 
     [FoldoutGroup("Bottom")] public UISkillInven uiSkillInven;
     [FoldoutGroup("Bottom")] public UISkillInven_Placement uiSkillInven_Placement;
-    [SerializeField, FoldoutGroup("Bottom/Exp")] private Image expGage;
+    [SerializeField, FoldoutGroup("Bottom/Exp")] private Slider expGage;
     [SerializeField, FoldoutGroup("Bottom/Exp")] private TextMeshProUGUI textExp;
 
     private void Awake()
@@ -32,7 +37,7 @@ public class UIPlayLogic : MonoBehaviour
         uiSkillInven.Init();
         uiSkillInven_Placement.Init();
 
-        expGage.fillAmount = 0;
+        expGage.value = 0;
         textExp.SetText("0");
     }
 
@@ -54,7 +59,7 @@ public class UIPlayLogic : MonoBehaviour
     public void UpdateExp()
     {
         float percent = (float)BattleManager.Instance.playerData.curExp / BattleManager.Instance.playerData.needExp;
-        expGage.fillAmount = percent;
+        expGage.value = percent;
         textExp.SetText((percent * 100).ToString("F1"));
     }
 
@@ -69,7 +74,8 @@ public class UIPlayLogic : MonoBehaviour
 
     private void OnClickStatInfo()
     {
-
+        var dlg = UIManager.Instance.OpenWidget<UIInGameInventory>();
+        dlg.Open();
     }
     private void OnClickInventory()
     {
