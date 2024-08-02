@@ -24,11 +24,6 @@ public class UIPlayLogic : MonoBehaviour
     [SerializeField, FoldoutGroup("Bottom/Exp")] private Slider expGage;
     [SerializeField, FoldoutGroup("Bottom/Exp")] private TextMeshProUGUI textExp;
 
-    private void Awake()
-    {
-        canvas.worldCamera = UIManager.Instance.UiCamera;
-    }
-
     public void Init()
     {
         btnOption.onClick.AddListener(OnClickGamePause);

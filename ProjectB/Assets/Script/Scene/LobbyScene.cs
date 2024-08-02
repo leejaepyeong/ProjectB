@@ -11,6 +11,7 @@ public class LobbyScene : BaseScene
     public override void Init()
     {
         OpenUI();
+        base.Init();
     }
 
     public override void UpdateFrame(float deltaTime)

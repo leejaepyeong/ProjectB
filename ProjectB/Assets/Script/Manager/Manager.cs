@@ -112,11 +112,10 @@ public class Manager : Singleton<Manager>
     {
         get
         {
-            if (mainCamera == null)
-            {
-                mainCamera = Camera.main;
-                mainCamera.transform.SetParent(transform);
-            }
+            if (curScene == null)
+                return Camera.main;
+
+            mainCamera = curScene.mainCamera;
             return mainCamera;
         }
     }

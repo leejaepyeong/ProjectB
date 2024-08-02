@@ -16,6 +16,8 @@ public class IntroScene : BaseScene
         commands.Add(loadLocalData);
         commands.Add(createAccount);
         commands.Add(moveToLobby);
+
+        base.Init();
     }
 
     public override void UpdateFrame(float deltaTime)

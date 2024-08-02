@@ -489,6 +489,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTestScene: 0
   playerData: {fileID: 0}
+  mainCamera: {fileID: 739083742}
 --- !u!4 &1701599367
 Transform:
   m_ObjectHideFlags: 0

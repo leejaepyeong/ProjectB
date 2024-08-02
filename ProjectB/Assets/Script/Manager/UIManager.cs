@@ -34,6 +34,11 @@ public class UIManager : BaseManager
     {
         base.Init();
         uiBases = new();
+        SetCameraStack();
+    }
+
+    public void SetCameraStack()
+    {
         var cameraData = Manager.Instance.MainCamera.GetUniversalAdditionalCameraData();
         cameraData.cameraStack.Add(uiCamera);
     }

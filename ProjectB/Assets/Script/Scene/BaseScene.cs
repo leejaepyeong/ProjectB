@@ -7,6 +7,8 @@ public class BaseScene : MonoBase
 {
     [SerializeField, FoldoutGroup("User")] public bool isTestScene;
     [SerializeField, FoldoutGroup("User")] public TestPlayerData playerData;
+    [SerializeField, FoldoutGroup("Camera")] public Camera mainCamera;
+
     private void Awake()
     {
         Manager.Instance.SetUI(this);
@@ -15,6 +17,6 @@ public class BaseScene : MonoBase
 
     public virtual void Init()
     {
-
+        UIManager.Instance.SetCameraStack();
     }
 }

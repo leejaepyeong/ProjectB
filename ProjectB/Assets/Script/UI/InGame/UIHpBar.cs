@@ -41,7 +41,7 @@ public class UIHpBar : UIBase
 
     private Vector2 WorldToCanvasRectPosition()
     {
-        var temp = Manager.Instance.MainCamera.WorldToViewportPoint(new Vector3(targetUnit.GetPos().x, targetUnit.GetPos().y + 1f, 0));
+        var temp = PlayLogic.Instance.playCamera.WorldToViewportPoint(new Vector3(targetUnit.GetPos().x, targetUnit.GetPos().y + 1f, 0));
         temp.x = Mathf.LerpUnclamped(hpBarDlg.RectTransform.rect.xMin, hpBarDlg.RectTransform.rect.xMax, temp.x);
         temp.y = Mathf.LerpUnclamped(hpBarDlg.RectTransform.rect.yMin, hpBarDlg.RectTransform.rect.yMax, temp.y);
 

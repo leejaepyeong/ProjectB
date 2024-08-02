@@ -535,6 +535,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTestScene: 0
   playerData: {fileID: 11400000, guid: d7e1e74f3089ea940b8805a8a6392cfa, type: 2}
+  mainCamera: {fileID: 178446515}
   uiLobbyScene: {fileID: 591025761}
 --- !u!4 &1839542574
 Transform:

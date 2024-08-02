@@ -12,6 +12,9 @@ public class PlayLogic : BaseScene
     [FoldoutGroup("Test")] public bool isTestMode;
     [ShowIf("@isTestMode"),FoldoutGroup("Test")] public int testStageSeed;
 
+    [SerializeField, FoldoutGroup("Camera")] public Camera uiCamera;
+    [SerializeField, FoldoutGroup("Camera")] public Camera uiBackCamera;
+    [SerializeField, FoldoutGroup("Camera")] public Camera playCamera;
 
     protected ePlayLogicFsm curFsm;
     protected Coroutine coFsmSetting;
@@ -42,6 +45,8 @@ public class PlayLogic : BaseScene
 
         commands.Add(loadDataFile);
         commands.Add(loadLocalData);
+
+        base.Init();
     }
 
     public override void UpdateFrame(float deltaTime)
@@ -245,7 +250,7 @@ public class PlayLogic : BaseScene
         Vector3 position = Vector3.zero;
         while(isTargetSkillOn)
         {
-            position = Manager.Instance.MainCamera.ScreenToWorldPoint(Input.mousePosition);
+            position = playCamera.ScreenToWorldPoint(Input.mousePosition);
             rangeObject.transform.localPosition = new Vector3(position.x, position.y, 0);
             yield return new WaitForEndOfFrame();
         }
