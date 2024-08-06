@@ -6,7 +6,7 @@ using Sirenix.OdinInspector;
 
 public class UIHpBar : UIBase
 {
-    [SerializeField, FoldoutGroup("Content")] private Image iconHpGauge;
+    [SerializeField, FoldoutGroup("Content")] private Slider iconHpGauge;
 
     [ShowInInspector] public UnitBehavior targetUnit;
     private UIHpBarDlg hpBarDlg;
@@ -32,7 +32,7 @@ public class UIHpBar : UIBase
 
     public override void UpdateFrame(float deltaTime)
     {
-        iconHpGauge.fillAmount = (float)(targetUnit.UnitBase.curHp / targetUnit.UnitBase.GetStat(eStat.hp));
+        iconHpGauge.value = (float)(targetUnit.UnitBase.curHp / targetUnit.UnitBase.GetStat(eStat.hp));
         RectTransform.anchoredPosition = WorldToCanvasRectPosition();
 
         if (targetUnit == null || targetUnit.UnitState.isDead)
